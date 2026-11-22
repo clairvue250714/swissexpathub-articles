@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>B Permit vs C Permit Taxation in Switzerland: What Actually Changes?</title>
+<title>B Permit vs C Permit Taxation in Switzerland</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
 <style>
 :root {
@@ -54,35 +54,76 @@ body {
   font-family: 'Inter', system-ui, sans-serif;
   font-size: 16px;
   line-height: 1.75;
-  padding: 40px max(16px, 5vw) 80px;
 }
 
-.article {
-  max-width: 720px;
+/* ── PROGRESS BAR ── */
+#progress-bar {
+  position: fixed; top: 0; left: 0; height: 3px;
+  background: var(--blue); width: 0%; z-index: 100;
+  transition: width 0.1s linear;
+}
+
+/* ── PAGE ── */
+.page {
+  max-width: 760px;
   margin: 0 auto;
+  padding: 56px max(16px, 5vw) 80px;
   display: flex;
   flex-direction: column;
   gap: 32px;
 }
 
 /* ── HEADER ── */
-.article-header { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
 .article-meta {
   font-family: 'Space Grotesk', sans-serif;
   font-size: 11px; font-weight: 700;
   letter-spacing: .12em; text-transform: uppercase;
-  color: var(--fg2); margin-bottom: 10px;
+  color: var(--fg2); margin-bottom: 12px;
+  opacity: 0; transform: translateY(14px);
+  transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1) 0.05s, transform 0.7s cubic-bezier(0.16,1,0.3,1) 0.05s;
 }
+.article-meta.visible { opacity: 1; transform: translateY(0); }
+
 h1 {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(24px, 5vw, 36px);
-  font-weight: 700; line-height: 1.2;
+  font-size: clamp(26px, 5vw, 40px);
+  font-weight: 700; line-height: 1.15;
   text-wrap: balance; color: var(--fg);
+  opacity: 0; transform: translateY(16px);
+  transition: opacity 0.75s cubic-bezier(0.16,1,0.3,1) 0.14s, transform 0.75s cubic-bezier(0.16,1,0.3,1) 0.14s;
 }
+h1.visible { opacity: 1; transform: translateY(0); }
+
 .header-rule {
-  height: 2px; background: var(--blue);
-  border-radius: 2px; margin-top: 20px;
-  width: 48px;
+  height: 3px; background: var(--blue);
+  border-radius: 2px; margin-top: 20px; width: 0;
+  transition: width 0.8s cubic-bezier(0.16,1,0.3,1) 0.5s;
+}
+.header-rule.visible { width: 48px; }
+
+h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 22px; font-weight: 700;
+  color: var(--fg); margin-bottom: 4px;
+}
+h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px; font-weight: 700;
+  color: var(--blue-mid); margin-bottom: 6px;
+}
+p { font-size: 15.5px; color: var(--fg); margin-bottom: 12px; }
+p:last-child { margin-bottom: 0; }
+.hl-blue  { color: var(--blue-mid); font-weight: 600; }
+.hl-green { color: var(--green);    font-weight: 600; }
+.hl-red   { color: var(--red);      font-weight: 600; }
+
+/* ── REVEAL ── */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0; transform: translateY(18px);
+    transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
 }
 
 /* ── QUICK ANSWER ── */
@@ -100,112 +141,131 @@ h1 {
   border-radius: 16px;
   padding: 28px 32px;
 }
-.takeaways h2 {
+.takeaways-label {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 16px; font-weight: 700;
-  color: rgba(255,255,255,.6);
-  letter-spacing: .08em; text-transform: uppercase;
-  margin-bottom: 16px; margin-top: 0;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: rgba(255,255,255,.55); margin-bottom: 20px;
 }
-.takeaways ul { list-style: none; }
-.takeaways ul li {
-  color: #e8ecf5;
-  font-size: 14.5px;
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(255,255,255,.1);
-  display: flex; gap: 12px; align-items: flex-start;
+.takeaway-item {
+  display: flex; gap: 16px; padding: 11px 0;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  align-items: flex-start;
+  opacity: 0; transform: translateY(10px);
+  transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1);
 }
-.takeaways ul li:last-child { border-bottom: none; }
-.takeaways ul li::before {
-  content: "✓"; color: #3dba78;
-  font-weight: 700; flex-shrink: 0; margin-top: 1px;
-}
+.takeaway-item.visible { opacity: 1; transform: translateY(0); }
+.takeaway-item:last-child { border-bottom: none; }
+.takeaway-check { color: #3dba78; font-weight: 700; flex-shrink: 0; margin-top: 2px; font-size: 15px; }
+.takeaway-text { font-size: 14.5px; color: rgba(255,255,255,.88); line-height: 1.65; }
 
-/* ── HEADINGS ── */
-h2 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 20px; font-weight: 700;
-  color: var(--fg); margin-bottom: 4px;
-}
-h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  color: var(--blue-mid); margin-bottom: 6px;
-}
-p { font-size: 15.5px; color: var(--fg); margin-bottom: 12px; }
-p:last-child { margin-bottom: 0; }
-.hl-blue  { color: var(--blue-mid); font-weight: 600; }
-.hl-green { color: var(--green);    font-weight: 600; }
-.hl-red   { color: var(--red);      font-weight: 600; }
-sup { font-size: 11px; color: var(--blue-mid); }
-
-/* ── SITUATION CARDS ── */
-.situation-cards {
+/* ── COMPARE GRID ── */
+.compare-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 14px;
 }
-@media (max-width: 520px) { .situation-cards { grid-template-columns: 1fr; } }
+@media (max-width: 540px) { .compare-grid { grid-template-columns: 1fr; } }
 
-.sit-card {
+.compare-card {
+  border-radius: 16px;
+  padding: 22px 24px;
+  border: 1.5px solid var(--border);
+  background: var(--bg2);
+  box-shadow: var(--shadow);
+  opacity: 0; transform: translateY(16px);
+  transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1), box-shadow .25s;
+}
+.compare-card.visible { opacity: 1; transform: translateY(0); }
+.compare-card:hover { box-shadow: var(--shadow-md); }
+.compare-card.b { border-top: 3px solid var(--blue-mid); }
+.compare-card.c { border-top: 3px solid var(--green); }
+.compare-card h3 { font-size: 15px; margin-bottom: 14px; }
+.compare-card.b h3 { color: var(--blue-mid); }
+.compare-card.c h3 { color: var(--green); }
+.compare-row {
+  font-size: 13.5px; color: var(--fg2);
+  padding: 9px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: flex-start; gap: 10px;
+  line-height: 1.5;
+}
+.compare-row:last-child { border-bottom: none; }
+.compare-row::before {
+  content: "→"; color: var(--blue-mid);
+  flex-shrink: 0; font-weight: 700; margin-top: 1px;
+}
+.compare-card.c .compare-row::before { color: var(--green); }
+
+/* ── PROFILE CARDS ── */
+.profiles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+@media (max-width: 540px) { .profiles { grid-template-columns: 1fr; } }
+
+.profile-card {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 22px 24px;
+  box-shadow: var(--shadow);
+  opacity: 0; transform: translateY(16px) scale(0.98);
+  transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1), box-shadow .25s;
+}
+.profile-card.visible { opacity: 1; transform: translateY(0) scale(1); }
+.profile-card:hover { box-shadow: var(--shadow-md); }
+.profile-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px; font-weight: 700;
+  color: var(--blue-mid); margin-bottom: 12px;
+  padding-bottom: 10px; border-bottom: 1px solid var(--border);
+}
+.profile-card p { font-size: 13.5px; color: var(--fg2); margin-bottom: 10px; line-height: 1.6; }
+.profile-note {
+  background: var(--gold-light);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 10px 14px;
+  font-size: 13px; color: var(--fg); font-style: italic;
+  margin-top: 4px;
+}
+
+/* ── MISTAKES ── */
+.mistakes { display: flex; flex-direction: column; gap: 12px; }
+.mistake-item {
+  display: flex; gap: 16px; align-items: flex-start;
   background: var(--bg2);
   border: 1.5px solid var(--border);
   border-radius: 14px;
   padding: 18px 20px;
   box-shadow: var(--shadow);
-  transition: border-color .2s, box-shadow .2s;
+  opacity: 0; transform: translateX(-14px);
+  transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1), box-shadow .25s;
 }
-.sit-card:hover { box-shadow: var(--shadow-md); }
-.sit-card.alert { border-color: var(--red); }
-.sit-card h3 { color: var(--blue-mid); margin-bottom: 6px; }
-.sit-card.alert h3 { color: var(--red); }
-.sit-card p { font-size: 13px; color: var(--fg2); margin: 0; }
-
-/* ── CHECKLIST ── */
-.checklist {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 16px;
-  padding: 24px 28px;
-  box-shadow: var(--shadow);
-}
-.checklist h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  margin-bottom: 16px; color: var(--fg);
-}
-.checklist-item {
-  display: flex; align-items: flex-start; gap: 12px;
-  padding: 11px 0;
-  border-bottom: 1px solid var(--border);
-  cursor: pointer;
-}
-.checklist-item:last-of-type { border-bottom: none; }
-.check-box {
-  width: 22px; height: 22px;
-  border: 2px solid var(--blue);
-  border-radius: 6px; flex-shrink: 0;
+.mistake-item.visible { opacity: 1; transform: translateX(0); }
+.mistake-item:hover { box-shadow: var(--shadow-md); }
+.mistake-icon {
+  font-size: 20px; flex-shrink: 0;
+  width: 40px; height: 40px;
+  background: var(--red-light);
+  border-radius: 10px;
   display: flex; align-items: center; justify-content: center;
-  transition: all .2s; margin-top: 2px;
 }
-.check-box.checked { background: var(--blue); border-color: var(--blue); }
-.check-box.checked::after { content: "✓"; color: white; font-size: 13px; font-weight: 700; }
-.checklist-item.done span { text-decoration: line-through; color: var(--fg2); }
-.checklist-item span { font-size: 14.5px; color: var(--fg); font-family: 'Inter', sans-serif; }
-.progress-bar { height: 5px; background: var(--border); border-radius: 3px; margin-top: 16px; }
-.progress-fill { height: 100%; background: var(--green); border-radius: 3px; transition: width .4s ease; }
-.progress-label { font-size: 12px; color: var(--fg2); margin-top: 6px; font-family: 'Inter', sans-serif; }
+.mistake-content h3 { color: var(--red); font-size: 14px; margin-bottom: 6px; }
+.mistake-content p { font-size: 13.5px; color: var(--fg2); margin: 0; line-height: 1.6; }
 
 /* ── FAQ ── */
+.faq-list { display: flex; flex-direction: column; gap: 8px; }
 .faq-item {
   background: var(--bg2);
   border: 1.5px solid var(--border);
   border-radius: 12px;
-  margin-bottom: 8px;
   overflow: hidden;
   transition: border-color .2s;
 }
-.faq-item.open { border-color: var(--blue); }
+.faq-item.open { border-color: var(--blue-mid); }
 .faq-q {
   padding: 16px 20px;
   font-family: 'Space Grotesk', sans-serif;
@@ -213,15 +273,14 @@ sup { font-size: 11px; color: var(--blue-mid); }
   cursor: pointer;
   display: flex; justify-content: space-between; align-items: center;
   gap: 12px; color: var(--fg);
-  background: transparent;
+  background: transparent; border: none; width: 100%; text-align: left;
 }
-.faq-arrow { color: var(--blue); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
+.faq-arrow { color: var(--blue-mid); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
 .faq-item.open .faq-arrow { transform: rotate(180deg); }
 .faq-a {
   display: none;
   padding: 0 20px 16px;
   font-size: 14px; color: var(--fg2); line-height: 1.65;
-  font-family: 'Inter', sans-serif;
 }
 .faq-item.open .faq-a { display: block; }
 
@@ -232,165 +291,235 @@ sup { font-size: 11px; color: var(--blue-mid); }
   padding: 32px 36px;
   text-align: center;
 }
-.cta-box p {
-  color: rgba(255,255,255,.8);
-  font-size: 15px; margin-bottom: 20px;
-}
+.cta-box p { color: rgba(255,255,255,.8); font-size: 15px; margin-bottom: 20px; line-height: 1.65; max-width: 500px; margin-left: auto; margin-right: auto; }
 .cta-btn {
-  background: var(--gold);
-  color: #fff;
-  padding: 13px 28px;
-  border-radius: 10px;
-  text-decoration: none;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  display: inline-block;
-  transition: opacity .2s;
+  background: var(--gold); color: #fff;
+  padding: 13px 28px; border-radius: 10px; text-decoration: none;
+  font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700;
+  display: inline-block; transition: opacity .2s, transform .15s;
 }
-.cta-btn:hover { opacity: .88; }
-
-/* ── SOURCES ── */
-.sources {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  padding: 20px 24px;
-}
-.sources h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: .1em; text-transform: uppercase;
-  color: var(--fg2); margin-bottom: 10px;
-}
-.sources ol { padding-left: 18px; }
-.sources ol li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; }
-
-/* ── FADE IN ── */
-.fade-in { opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
-.fade-in.visible { opacity: 1; transform: translateY(0); }
+.cta-btn:hover { opacity: .88; transform: translateY(-1px); }
 
 @media (max-width: 600px) {
-  h1 { font-size: 24px; }
-  .situation-cards { grid-template-columns: 1fr; }
+  .compare-grid, .profiles { grid-template-columns: 1fr; }
   .cta-box { padding: 24px 20px; }
   .takeaways { padding: 20px 20px; }
 }
 </style>
 </head>
 <body>
-<div class="article">
-  <div class="article-header fade-in">
-    <p class="article-meta">Tax & Finance · Permits · 4 min read</p>
-    <h1>B Permit vs C Permit Taxation in Switzerland: What Actually Changes?</h1>
+
+<div id="progress-bar"></div>
+
+<div class="page">
+
+  <div class="article-header">
+    <p class="article-meta" id="metaTag">Tax &amp; Finance · Permits · 4 min read</p>
+    <h1 id="heroTitle">B Permit vs C Permit Taxation in Switzerland: What Actually Changes?</h1>
+    <div class="header-rule" id="headerRule"></div>
   </div>
 
-  <div class="quick-answer fade-in">
+  <div class="quick-answer reveal">
     <p><strong>Quick Answer:</strong> Getting a C Permit does not automatically mean paying more tax. What changes is <span class="hl-blue">responsibility</span> — you move from automatic payroll deductions to filing a full annual tax return. For some that is straightforward. For others it reveals financial complexity — and deductions — they never had access to before.</p>
   </div>
 
-  <div class="takeaways fade-in">
-    <h2>Key Takeaways</h2>
-    <ul>
-      <li>Many expats pay similar or even less tax after the C Permit — once they understand available deductions</li>
-      <li>Pillar 3a, pension fund buy-ins, childcare, and professional expenses become fully deductible</li>
-      <li>Foreign investments, property, and cryptocurrency must now be declared in full</li>
-      <li>The cost of professional advice is often small compared to the deductions being missed</li>
-      <li>Decisions made in the first C Permit return set the pattern for every year that follows</li>
-    </ul>
-  </div>
-
-  <h2 class="fade-in">What Actually Changes?</h2>
-  <div class="compare-grid fade-in">
-    <div class="compare-card b">
-      <h3>🔵 B Permit</h3>
-      <div class="compare-row">Tax deducted automatically from salary</div>
-      <div class="compare-row">Most deductions not accessible</div>
-      <div class="compare-row">Limited reporting obligations</div>
-      <div class="compare-row">Withholding tax (impôt à la source)</div>
+  <div class="takeaways">
+    <p class="takeaways-label">Key Takeaways</p>
+    <div class="takeaway-item" data-delay="0">
+      <span class="takeaway-check">✓</span>
+      <span class="takeaway-text">Many expats pay similar or even less tax after the C Permit — once they understand available deductions</span>
     </div>
-    <div class="compare-card c">
-      <h3>🟢 C Permit</h3>
-      <div class="compare-row">You file a full annual tax return</div>
-      <div class="compare-row">All deductions now accessible</div>
-      <div class="compare-row">Worldwide assets must be declared</div>
-      <div class="compare-row">Ordinary taxation applies</div>
+    <div class="takeaway-item" data-delay="90">
+      <span class="takeaway-check">✓</span>
+      <span class="takeaway-text">Pillar 3a, pension fund buy-ins, childcare, and professional expenses become fully deductible</span>
+    </div>
+    <div class="takeaway-item" data-delay="180">
+      <span class="takeaway-check">✓</span>
+      <span class="takeaway-text">Foreign investments, property, and cryptocurrency must now be declared in full</span>
+    </div>
+    <div class="takeaway-item" data-delay="270">
+      <span class="takeaway-check">✓</span>
+      <span class="takeaway-text">The cost of professional advice is often small compared to the deductions being missed</span>
+    </div>
+    <div class="takeaway-item" data-delay="360">
+      <span class="takeaway-check">✓</span>
+      <span class="takeaway-text">Decisions made in the first C Permit return set the pattern for every year that follows</span>
     </div>
   </div>
 
-  <p class="fade-in">Once you are filing a complete tax return, deductions can have a meaningful impact on your final bill. Examples include <span class="hl-blue">Pillar 3a contributions</span>, <span class="hl-blue">pension fund buy-ins</span>, childcare expenses, professional expenses, insurance-related deductions, and charitable donations. The challenge is not knowing these deductions exist — it is knowing which ones apply and how to claim them.</p>
-
-  <h2 class="fade-in">Two Expats, Two Different Experiences</h2>
-  <div class="profiles fade-in">
-    <div class="profile-card">
-      <div class="profile-name">Expat A — Salary CHF 120,000</div>
-      <p>No investments. No property abroad. No cryptocurrency.</p>
-      <p>At first glance the transition seems straightforward. But the key question remains: <em>Am I claiming everything I am entitled to?</em></p>
-      <div class="profile-note">Deductions such as Pillar 3a, commuting, and professional costs are available but often never claimed.</div>
-    </div>
-    <div class="profile-card">
-      <div class="profile-name">Expat B — Salary CHF 180,000</div>
-      <p>ETF portfolio. Cryptocurrency holdings. Rental property abroad.</p>
-      <p>More reporting, more decisions, more planning opportunities. The difference between handling it well and poorly can be significant.</p>
-      <div class="profile-note">Which situation sounds more like yours?</div>
-    </div>
-  </div>
-
-  <h2 class="fade-in">Common Mistakes</h2>
-  <div class="mistakes fade-in">
-    <div class="mistake-item">
-      <div class="mistake-icon">❌</div>
-      <div class="mistake-content">
-        <h3>Assuming taxes automatically increase</h3>
-        <p>The C Permit does not automatically raise your tax rate. Many people pay similar or even less — once they understand the deductions available.</p>
+  <div>
+    <h2 class="reveal">What Actually Changes?</h2>
+    <div class="compare-grid">
+      <div class="compare-card b" data-delay="0">
+        <h3>🔵 B Permit</h3>
+        <div class="compare-row">Tax deducted automatically from salary</div>
+        <div class="compare-row">Most deductions not accessible</div>
+        <div class="compare-row">Limited reporting obligations</div>
+        <div class="compare-row">Withholding tax (impôt à la source)</div>
       </div>
-    </div>
-    <div class="mistake-item">
-      <div class="mistake-icon">❌</div>
-      <div class="mistake-content">
-        <h3>Filing without reviewing available deductions</h3>
-        <p>Many expats submit their first tax return without fully understanding what they can claim. One of the most common and most avoidable mistakes.</p>
-      </div>
-    </div>
-    <div class="mistake-item">
-      <div class="mistake-icon">❌</div>
-      <div class="mistake-content">
-        <h3>Treating the first return as a one-off</h3>
-        <p>Annual filing is exactly that — annual. The habits and decisions you make in the first year tend to repeat. Starting correctly is far easier than correcting years of missed opportunities later.</p>
+      <div class="compare-card c" data-delay="120">
+        <h3>🟢 C Permit</h3>
+        <div class="compare-row">You file a full annual tax return</div>
+        <div class="compare-row">All deductions now accessible</div>
+        <div class="compare-row">Worldwide assets must be declared</div>
+        <div class="compare-row">Ordinary taxation applies</div>
       </div>
     </div>
   </div>
 
-  <h2 class="fade-in">Before You Ask</h2>
-  <div class="faq fade-in">
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Does a C Permit automatically mean higher taxes?<span class="faq-arrow">▾</span></div>
-      <div class="faq-a">Not necessarily. The main change is moving from payroll-based taxation to annual filing. Whether your tax bill increases, stays the same, or decreases depends on your specific situation and how well you understand the deductions available to you.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Will I need to declare foreign investments and property?<span class="faq-arrow">▾</span></div>
-      <div class="faq-a">In most cases, yes. Swiss tax residents must declare worldwide assets. Investments, property, or accounts outside Switzerland will typically need to be included in your annual return.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">What is the most important thing to do when I obtain a C Permit?<span class="faq-arrow">▾</span></div>
-      <div class="faq-a">Understand what needs to be reported and what deductions may apply before filing your first return. Decisions made in the first year tend to set the pattern for years that follow.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Can professional advice actually reduce my taxes?<span class="faq-arrow">▾</span></div>
-      <div class="faq-a">Potentially, yes. Many expats seek professional support to be confident that available deductions are being claimed correctly and that no planning opportunities are being missed. Professional advice cannot eliminate taxes — but it can help prevent avoidable costs.</div>
+  <p class="reveal">Once you are filing a complete tax return, deductions can have a meaningful impact on your final bill. Examples include <span class="hl-blue">Pillar 3a contributions</span>, <span class="hl-blue">pension fund buy-ins</span>, childcare expenses, professional expenses, insurance-related deductions, and charitable donations. The challenge is not knowing these deductions exist — it is knowing which ones apply and how to claim them.</p>
+
+  <div>
+    <h2 class="reveal">Two Expats, Two Different Experiences</h2>
+    <div class="profiles">
+      <div class="profile-card" data-delay="0">
+        <div class="profile-name">Expat A — Salary CHF 120,000</div>
+        <p>No investments. No property abroad. No cryptocurrency.</p>
+        <p>At first glance the transition seems straightforward. But the key question remains: <em>Am I claiming everything I am entitled to?</em></p>
+        <div class="profile-note">Deductions such as Pillar 3a, commuting, and professional costs are available but often never claimed.</div>
+      </div>
+      <div class="profile-card" data-delay="130">
+        <div class="profile-name">Expat B — Salary CHF 180,000</div>
+        <p>ETF portfolio. Cryptocurrency holdings. Rental property abroad.</p>
+        <p>More reporting, more decisions, more planning opportunities. The difference between handling it well and poorly can be significant.</p>
+        <div class="profile-note">Which situation sounds more like yours?</div>
+      </div>
     </div>
   </div>
 
-  <div class="cta-box fade-in">
+  <div>
+    <h2 class="reveal">Common Mistakes</h2>
+    <div class="mistakes">
+      <div class="mistake-item" data-delay="0">
+        <div class="mistake-icon">❌</div>
+        <div class="mistake-content">
+          <h3>Assuming taxes automatically increase</h3>
+          <p>The C Permit does not automatically raise your tax rate. Many people pay similar or even less — once they understand the deductions available.</p>
+        </div>
+      </div>
+      <div class="mistake-item" data-delay="100">
+        <div class="mistake-icon">❌</div>
+        <div class="mistake-content">
+          <h3>Filing without reviewing available deductions</h3>
+          <p>Many expats submit their first tax return without fully understanding what they can claim. One of the most common and most avoidable mistakes.</p>
+        </div>
+      </div>
+      <div class="mistake-item" data-delay="200">
+        <div class="mistake-icon">❌</div>
+        <div class="mistake-content">
+          <h3>Treating the first return as a one-off</h3>
+          <p>Annual filing is exactly that — annual. The habits and decisions you make in the first year tend to repeat. Starting correctly is far easier than correcting years of missed opportunities later.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <h2 class="reveal">Before You Ask</h2>
+    <div class="faq-list reveal" data-delay="60">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Does a C Permit automatically mean higher taxes?<span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Not necessarily. The main change is moving from payroll-based taxation to annual filing. Whether your tax bill increases, stays the same, or decreases depends on your specific situation and how well you understand the deductions available to you.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Will I need to declare foreign investments and property?<span class="faq-arrow">▾</span></button>
+        <div class="faq-a">In most cases, yes. Swiss tax residents must declare worldwide assets. Investments, property, or accounts outside Switzerland will typically need to be included in your annual return.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What is the most important thing to do when I obtain a C Permit?<span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Understand what needs to be reported and what deductions may apply before filing your first return. Decisions made in the first year tend to set the pattern for years that follow.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Can professional advice actually reduce my taxes?<span class="faq-arrow">▾</span></button>
+        <div class="faq-a">Potentially, yes. Many expats seek professional support to be confident that available deductions are being claimed correctly and that no planning opportunities are being missed. Professional advice cannot eliminate taxes — but it can help prevent avoidable costs.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-box reveal">
     <p>Obtaining a C Permit is often the moment when Swiss taxation becomes genuinely hands-on for the first time. SwissExpatHub can connect you with experienced advisors who regularly assist international residents navigating exactly this transition.</p>
     <a href="/directory" class="cta-btn">Find Your Advisor →</a>
   </div>
 
 </div>
+
 <script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  /* ── SCROLL PROGRESS ── */
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    document.getElementById('progress-bar').style.width =
+      Math.min(100, docHeight > 0 ? (scrollTop / docHeight) * 100 : 0) + '%';
+  }, { passive: true });
+
+  /* ── HEADER ENTRANCE ── */
+  window.addEventListener('load', () => {
+    setTimeout(() => document.getElementById('metaTag').classList.add('visible'), 60);
+    setTimeout(() => document.getElementById('heroTitle').classList.add('visible'), 180);
+    setTimeout(() => document.getElementById('headerRule').classList.add('visible'), 500);
+  });
+
+  /* ── TAKEAWAYS ── */
+  const takeawayObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const delay = parseInt(entry.target.dataset.delay || 0);
+        setTimeout(() => entry.target.classList.add('visible'), delay);
+        takeawayObs.unobserve(entry.target);
+      }
+    });
   }, { threshold: 0.1 });
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  document.querySelectorAll('.takeaway-item').forEach(el => takeawayObs.observe(el));
+
+  /* ── COMPARE CARDS ── */
+  const compareObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const delay = parseInt(entry.target.dataset.delay || 0);
+        setTimeout(() => entry.target.classList.add('visible'), delay);
+        compareObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.compare-card').forEach(el => compareObs.observe(el));
+
+  /* ── PROFILE CARDS ── */
+  const profileObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const delay = parseInt(entry.target.dataset.delay || 0);
+        setTimeout(() => entry.target.classList.add('visible'), delay);
+        profileObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.profile-card').forEach(el => profileObs.observe(el));
+
+  /* ── MISTAKES ── */
+  const mistakeObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const delay = parseInt(entry.target.dataset.delay || 0);
+        setTimeout(() => entry.target.classList.add('visible'), delay);
+        mistakeObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.mistake-item').forEach(el => mistakeObs.observe(el));
+
+  /* ── GENERAL REVEAL ── */
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const delay = parseInt(entry.target.dataset.delay || 0);
+        setTimeout(() => entry.target.classList.add('visible'), delay);
+        revealObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
+  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+  /* ── FAQ ── */
   function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
 </script>
 </body>
