@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pillar 3a: Bank, Insurance, or ETF Portfolio — Which Is Right for You?</title>
+<meta name="description" content="Bank savings account, insurance product or ETF portfolio: how the three Pillar 3a options compare for expats in Switzerland in 2026 — fees, flexibility and what the difference adds up to over 30 years.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
 <style>
 :root {
@@ -47,269 +48,615 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 body {
-  background: var(--bg);
-  color: var(--fg);
+  background: var(--bg); color: var(--fg);
   font-family: 'Inter', system-ui, sans-serif;
-  font-size: 16px;
-  line-height: 1.75;
-  padding: 40px max(16px, 5vw) 80px;
+  font-size: 16px; line-height: 1.75;
+  padding: 48px max(16px, 5vw) 80px;
 }
+.article { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 36px; }
 
-.article {
-  max-width: 720px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
+#progress-bar {
+  position: fixed; top: 0; left: 0; height: 3px;
+  background: var(--blue-mid); width: 0%;
+  z-index: 1000; transition: width .1s linear;
+  border-radius: 0 2px 2px 0;
 }
 
 /* ── HEADER ── */
-.article-header { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
 .article-meta {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: .12em; text-transform: uppercase;
-  color: var(--fg2); margin-bottom: 10px;
+  font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--fg2); margin-bottom: 12px;
+  opacity: 0; transform: translateY(-8px); transition: opacity .5s ease, transform .5s ease;
 }
+.article-meta.visible { opacity: 1; transform: translateY(0); }
 h1 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(24px, 5vw, 36px);
-  font-weight: 700; line-height: 1.2;
-  text-wrap: balance; color: var(--fg);
+  font-family: 'Space Grotesk', sans-serif; font-size: clamp(24px, 5vw, 36px);
+  font-weight: 700; line-height: 1.2; text-wrap: balance; color: var(--fg);
+  opacity: 0; transform: translateY(12px);
+  transition: opacity .6s ease .15s, transform .6s ease .15s;
 }
+h1.visible { opacity: 1; transform: translateY(0); }
 .header-rule {
-  height: 2px; background: var(--blue);
-  border-radius: 2px; margin-top: 20px;
-  width: 48px;
+  height: 3px; background: var(--blue); border-radius: 2px; margin-top: 20px;
+  width: 0; transition: width .8s cubic-bezier(.16,1,.3,1) .5s;
 }
+.header-rule.visible { width: 48px; }
 
-/* ── QUICK ANSWER ── */
-.quick-answer {
-  background: var(--blue-light);
-  border-left: 4px solid var(--blue);
-  border-radius: 0 14px 14px 0;
-  padding: 20px 24px;
-}
-.quick-answer p { font-size: 15px; color: var(--fg); margin: 0; }
-
-/* ── TAKEAWAYS ── */
-.takeaways {
-  background: var(--blue);
-  border-radius: 16px;
-  padding: 28px 32px;
-}
-.takeaways h2 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 16px; font-weight: 700;
-  color: rgba(255,255,255,.6);
-  letter-spacing: .08em; text-transform: uppercase;
-  margin-bottom: 16px; margin-top: 0;
-}
-.takeaways ul { list-style: none; }
-.takeaways ul li {
-  color: #e8ecf5;
-  font-size: 14.5px;
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(255,255,255,.1);
-  display: flex; gap: 12px; align-items: flex-start;
-}
-.takeaways ul li:last-child { border-bottom: none; }
-.takeaways ul li::before {
-  content: "✓"; color: #3dba78;
-  font-weight: 700; flex-shrink: 0; margin-top: 1px;
-}
-
-/* ── HEADINGS ── */
-h2 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 20px; font-weight: 700;
-  color: var(--fg); margin-bottom: 4px;
-}
-h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  color: var(--blue-mid); margin-bottom: 6px;
-}
+/* ── TYPE ── */
+h2 { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; color: var(--fg); margin-bottom: 8px; }
+h3 { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; color: var(--blue-mid); margin-bottom: 6px; }
 p { font-size: 15.5px; color: var(--fg); margin-bottom: 12px; }
 p:last-child { margin-bottom: 0; }
 .hl-blue  { color: var(--blue-mid); font-weight: 600; }
 .hl-green { color: var(--green);    font-weight: 600; }
 .hl-red   { color: var(--red);      font-weight: 600; }
-sup { font-size: 11px; color: var(--blue-mid); }
+.lead { font-style: italic; color: var(--fg2); }
+.viz-label {
+  font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--fg2); margin-bottom: 12px;
+}
+.viz-note { font-size: 12px; color: var(--fg2); margin-top: 10px; }
+.illus {
+  display: inline-block; font-family: 'Space Grotesk', sans-serif; font-size: 10.5px; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--gold); background: var(--gold-light);
+  border-radius: 6px; padding: 2px 8px; margin-bottom: 10px;
+}
+.calc-line { font-size: 13px; color: var(--fg2); margin-top: 10px; font-variant-numeric: tabular-nums; }
+.calc-line strong { color: var(--fg); }
 
-/* ── SITUATION CARDS ── */
-.situation-cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
+/* ── QUICK ANSWER / TAKEAWAYS ── */
+.quick-answer { background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 14px 14px 0; padding: 20px 24px; }
+.quick-answer p { font-size: 15px; }
+.takeaways { background: var(--blue); border-radius: 16px; padding: 28px 32px; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .takeaways { background: #1f3a6b; } }
+:root[data-theme="dark"] .takeaways { background: #1f3a6b; }
+.takeaways h2 { font-size: 13px; color: rgba(255,255,255,.55); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 18px; }
+.takeaways ul { list-style: none; }
+.takeaway-item {
+  color: #e8ecf5; font-size: 14.5px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.1);
+  display: flex; gap: 12px; align-items: flex-start;
+  opacity: 0; transform: translateX(-10px); transition: opacity .45s ease, transform .45s ease;
 }
-@media (max-width: 520px) { .situation-cards { grid-template-columns: 1fr; } }
+.takeaway-item:last-child { border-bottom: none; }
+.takeaway-item.visible { opacity: 1; transform: translateX(0); }
+.takeaway-item::before { content: "✓"; color: #3dba78; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
 
-.sit-card {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 14px;
-  padding: 18px 20px;
-  box-shadow: var(--shadow);
-  transition: border-color .2s, box-shadow .2s;
+/* ── OPTION CARDS ── */
+.opt {
+  position: relative; overflow: hidden;
+  background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px;
+  padding: 24px 26px; box-shadow: var(--shadow);
+  opacity: 0; transform: translateY(16px);
+  transition: opacity .5s ease, transform .5s ease, box-shadow .2s;
+  --accent: var(--blue-mid); --accent-light: var(--blue-light);
 }
-.sit-card:hover { box-shadow: var(--shadow-md); }
-.sit-card.alert { border-color: var(--red); }
-.sit-card h3 { color: var(--blue-mid); margin-bottom: 6px; }
-.sit-card.alert h3 { color: var(--red); }
-.sit-card p { font-size: 13px; color: var(--fg2); margin: 0; }
+.opt.red   { --accent: var(--red);   --accent-light: var(--red-light); }
+.opt.green { --accent: var(--green); --accent-light: var(--green-light); }
+.opt.visible { opacity: 1; transform: none; }
+.opt:hover { box-shadow: var(--shadow-md); }
+.opt::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--accent);
+  transform: scaleY(0); transform-origin: top; transition: transform .6s cubic-bezier(.16,1,.3,1) .25s;
+}
+.opt.visible::before { transform: scaleY(1); }
+.opt-head { display: flex; align-items: center; gap: 14px; margin-bottom: 10px; }
+.opt-num {
+  font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; color: var(--accent);
+  background: var(--accent-light); border-radius: 8px; padding: 4px 10px; flex-shrink: 0; white-space: nowrap;
+  transform: scale(.6); opacity: 0; transition: transform .5s cubic-bezier(.34,1.56,.64,1) .2s, opacity .4s ease .2s;
+}
+.opt.visible .opt-num { transform: scale(1); opacity: 1; }
+.opt-head h2 { margin: 0; font-size: 18px; }
+.opt p { font-size: 15px; }
+.viz { margin-top: 18px; padding-top: 16px; border-top: 1px dashed var(--border); }
 
-/* ── CHECKLIST ── */
-.checklist {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 16px;
-  padding: 24px 28px;
-  box-shadow: var(--shadow);
-}
-.checklist h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  margin-bottom: 16px; color: var(--fg);
-}
-.checklist-item {
-  display: flex; align-items: flex-start; gap: 12px;
-  padding: 11px 0;
+/* ── 1: tax-saving calculator ── */
+.tax { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px; }
+.stat { text-align: center; border-radius: 12px; padding: 14px 10px; }
+.stat .k { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--fg2); }
+.stat .v { font-family: 'Space Grotesk', sans-serif; font-size: 23px; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1.3; }
+.stat .s { font-size: 11.5px; color: var(--fg2); }
+.stat.in  { background: var(--blue-light); }  .stat.in .v  { color: var(--blue-mid); }
+.stat.out { background: var(--green-light); } .stat.out .v { color: var(--green); }
+.arrow { font-size: 22px; color: var(--fg2); }
+.slider { margin-top: 14px; }
+.slider label { font-size: 13px; color: var(--fg2); display: flex; justify-content: space-between; gap: 10px; }
+.slider .val { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--fg); }
+.slider input[type=range] { width: 100%; accent-color: var(--blue-mid); margin-top: 4px; }
+.scale-ends { display: flex; justify-content: space-between; font-size: 11.5px; color: var(--fg2); }
+
+/* ── 2: insurance vs ETF table ── */
+.cmp-table { border: 1.5px solid var(--border); border-radius: 14px; overflow: hidden; }
+.cmp-row {
+  display: grid; grid-template-columns: 1.1fr 1.4fr 1.4fr; font-size: 13.5px;
   border-bottom: 1px solid var(--border);
-  cursor: pointer;
+  opacity: 0; transform: translateX(-8px); transition: opacity .4s ease, transform .4s ease;
 }
-.checklist-item:last-of-type { border-bottom: none; }
-.check-box {
-  width: 22px; height: 22px;
-  border: 2px solid var(--blue);
-  border-radius: 6px; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  transition: all .2s; margin-top: 2px;
+.cmp-row:last-child { border-bottom: none; }
+.cmp-row.visible { opacity: 1; transform: none; }
+.cmp-row > div { padding: 10px 14px; line-height: 1.5; }
+.cmp-row .lbl { font-weight: 600; color: var(--fg); background: var(--bg); }
+.cmp-row .ins { background: var(--red-light); color: var(--fg); }
+.cmp-row .etf { background: var(--green-light); color: var(--fg); }
+.cmp-row.head { opacity: 1; transform: none; }
+.cmp-row.head > div { font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #fff; }
+.cmp-row.head .lbl { background: var(--fg2); }
+.cmp-row.head .ins { background: var(--red); }
+.cmp-row.head .etf { background: var(--green); }
+.sales {
+  background: var(--gold-light); border-left: 4px solid var(--gold); border-radius: 0 12px 12px 0;
+  padding: 14px 18px; margin: 4px 0 14px;
 }
-.check-box.checked { background: var(--blue); border-color: var(--blue); }
-.check-box.checked::after { content: "✓"; color: white; font-size: 13px; font-weight: 700; }
-.checklist-item.done span { text-decoration: line-through; color: var(--fg2); }
-.checklist-item span { font-size: 14.5px; color: var(--fg); font-family: 'Inter', sans-serif; }
-.progress-bar { height: 5px; background: var(--border); border-radius: 3px; margin-top: 16px; }
-.progress-fill { height: 100%; background: var(--green); border-radius: 3px; transition: width .4s ease; }
-.progress-label { font-size: 12px; color: var(--fg2); margin-top: 6px; font-family: 'Inter', sans-serif; }
+.sales p { font-size: 14.5px; }
+.sales strong { color: var(--gold); }
+@media (max-width: 580px) {
+  .cmp-row { grid-template-columns: 1fr 1fr; }
+  .cmp-row .lbl { grid-column: 1 / -1; padding-bottom: 4px; }
+  .cmp-row.head .lbl { display: none; }
+}
+
+/* ── 3: fee bars ── */
+.fees { display: flex; flex-direction: column; gap: 9px; }
+.fee-row { display: grid; grid-template-columns: 150px 1fr; gap: 12px; align-items: center; font-size: 13px; }
+.fee-name { color: var(--fg); font-weight: 600; line-height: 1.25; }
+.fee-name small { display: block; font-weight: 500; color: var(--fg2); font-size: 11px; }
+.fee-track { height: 24px; background: var(--border); border-radius: 6px; overflow: hidden; position: relative; }
+.fee-fill {
+  height: 100%; width: 0; border-radius: 6px; background: var(--green);
+  color: #fff; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: flex-end;
+  padding-right: 8px; white-space: nowrap; font-variant-numeric: tabular-nums;
+  transition: width 1s cubic-bezier(.16,1,.3,1);
+}
+.fee-fill.new  { background: var(--gold); }
+.fee-fill.bank { background: var(--red); }
+.cost-box { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+.cost { border-radius: 12px; padding: 12px 14px; text-align: center; }
+.cost .k { font-size: 12px; color: var(--fg2); }
+.cost .v { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.cost.lo { background: var(--green-light); } .cost.lo .v { color: var(--green); }
+.cost.hi { background: var(--red-light); }   .cost.hi .v { color: var(--red); }
+@media (max-width: 540px) { .fee-row { grid-template-columns: 110px 1fr; } }
+
+/* ── NUMBERS: growth ── */
+.growth { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px; padding: 22px 24px; box-shadow: var(--shadow); }
+.g-row { display: grid; grid-template-columns: 130px 1fr; gap: 12px; align-items: center; margin-bottom: 12px; font-size: 13px; }
+.g-row .lbl { color: var(--fg); font-weight: 600; line-height: 1.25; }
+.g-row .lbl small { display: block; color: var(--fg2); font-weight: 500; font-size: 11px; }
+.g-track { height: 34px; background: var(--border); border-radius: 8px; overflow: hidden; }
+.g-fill {
+  height: 100%; width: 0; border-radius: 8px; display: flex; align-items: center; justify-content: flex-end;
+  padding-right: 10px; color: #fff; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 13.5px;
+  white-space: nowrap; font-variant-numeric: tabular-nums; transition: width .7s cubic-bezier(.16,1,.3,1);
+}
+.g-fill.bank { background: var(--fg2); }
+.g-fill.etf  { background: var(--green); }
+.gap-box {
+  margin-top: 6px; text-align: center; border-radius: 14px; padding: 14px; background: var(--gold-light); border: 1.5px solid var(--gold);
+}
+.gap-box .big { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700; color: var(--gold); font-variant-numeric: tabular-nums; }
+.gap-box p { font-size: 13px; color: var(--fg2); margin: 2px 0 0; }
+@media (max-width: 540px) { .g-row { grid-template-columns: 1fr; gap: 4px; } }
+
+/* ── PROFILE TABS ── */
+.tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 12px; }
+.tab {
+  font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer;
+  padding: 8px 14px; border-radius: 999px; border: 1.5px solid var(--border); background: var(--bg2); color: var(--fg2);
+  transition: background .2s, color .2s, border-color .2s;
+}
+.tab:hover { border-color: var(--blue-mid); color: var(--blue-mid); }
+.tab.active { background: var(--blue); border-color: var(--blue); color: #fff; }
+.panel {
+  background: var(--bg2); border: 1.5px solid var(--border); border-radius: 14px; padding: 18px 22px; box-shadow: var(--shadow);
+  animation: fadeUp .35s ease;
+}
+.panel[hidden] { display: none; }
+.panel .verdict {
+  display: inline-block; font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .08em;
+  text-transform: uppercase; padding: 3px 9px; border-radius: 6px; margin-bottom: 8px;
+}
+.verdict.v-blue  { background: var(--blue-light);  color: var(--blue-mid); }
+.verdict.v-green { background: var(--green-light); color: var(--green); }
+.verdict.v-gold  { background: var(--gold-light);  color: var(--gold); }
+.panel p { font-size: 14.5px; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+/* ── SWITCH FLOW ── */
+.flow { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: center; gap: 8px; }
+.node {
+  text-align: center; border-radius: 12px; padding: 12px 8px; font-size: 13px; font-weight: 600;
+  border: 1.5px solid var(--border); background: var(--bg2);
+  opacity: 0; transform: scale(.9); transition: opacity .4s ease, transform .4s cubic-bezier(.34,1.56,.64,1);
+}
+.node.visible { opacity: 1; transform: none; }
+.node small { display: block; font-weight: 500; color: var(--fg2); font-size: 11.5px; }
+.node.mid { border-color: var(--green); background: var(--green-light); color: var(--green); }
+.f-arrow { color: var(--fg2); font-size: 18px; opacity: 0; transition: opacity .4s ease; }
+.f-arrow.visible { opacity: 1; }
+@media (max-width: 540px) {
+  .flow { grid-template-columns: 1fr; }
+  .f-arrow { transform: rotate(90deg); text-align: center; }
+}
+.note { border-radius: 0 12px 12px 0; padding: 14px 18px; margin-top: 14px; }
+.note p { font-size: 14.5px; }
+.note.warn { background: var(--gold-light); border-left: 4px solid var(--gold); }
+.note.warn strong { color: var(--gold); }
+
+/* ── MISTAKES ── */
+.mistakes { display: flex; flex-direction: column; gap: 12px; margin-top: 12px; }
+.mistake-item {
+  background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px; padding: 20px 24px;
+  box-shadow: var(--shadow); display: flex; gap: 18px; align-items: flex-start;
+  opacity: 0; transform: translateX(-14px); transition: opacity .45s ease, transform .45s ease, box-shadow .2s;
+}
+.mistake-item.visible { opacity: 1; transform: translateX(0); }
+.mistake-item:hover { box-shadow: var(--shadow-md); }
+.mistake-number { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; color: var(--red); line-height: 1; flex-shrink: 0; min-width: 32px; opacity: .25; }
+.mistake-content h3 { color: var(--red); font-size: 15px; margin-bottom: 6px; }
+.mistake-content p { font-size: 14.5px; color: var(--fg2); margin: 0; line-height: 1.6; }
 
 /* ── FAQ ── */
-.faq-item {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  margin-bottom: 8px;
-  overflow: hidden;
-  transition: border-color .2s;
-}
-.faq-item.open { border-color: var(--blue); }
-.faq-q {
-  padding: 16px 20px;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 14px; font-weight: 600;
-  cursor: pointer;
-  display: flex; justify-content: space-between; align-items: center;
-  gap: 12px; color: var(--fg);
-  background: transparent;
-}
-.faq-arrow { color: var(--blue); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
+.faq-item { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; margin-bottom: 8px; overflow: hidden; transition: border-color .2s; }
+.faq-item.open { border-color: var(--blue-mid); }
+.faq-q { padding: 16px 20px; font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; color: var(--fg); user-select: none; }
+.faq-arrow { color: var(--blue-mid); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
 .faq-item.open .faq-arrow { transform: rotate(180deg); }
-.faq-a {
-  display: none;
-  padding: 0 20px 16px;
-  font-size: 14px; color: var(--fg2); line-height: 1.65;
-  font-family: 'Inter', sans-serif;
-}
-.faq-item.open .faq-a { display: block; }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .35s ease; font-size: 14px; color: var(--fg2); line-height: 1.65; padding: 0 20px; }
+.faq-item.open .faq-a { max-height: 400px; padding: 0 20px 16px; }
 
-/* ── CTA ── */
-.cta-box {
-  background: var(--blue);
-  border-radius: 16px;
-  padding: 32px 36px;
-  text-align: center;
-}
-.cta-box p {
-  color: rgba(255,255,255,.8);
-  font-size: 15px; margin-bottom: 20px;
-}
-.cta-btn {
-  background: var(--gold);
-  color: #fff;
-  padding: 13px 28px;
-  border-radius: 10px;
-  text-decoration: none;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  display: inline-block;
-  transition: opacity .2s;
-}
-.cta-btn:hover { opacity: .88; }
-
-/* ── SOURCES ── */
-.sources {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  padding: 20px 24px;
-}
-.sources h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: .1em; text-transform: uppercase;
-  color: var(--fg2); margin-bottom: 10px;
-}
+/* ── CTA / SOURCES ── */
+.cta-box { background: var(--blue); border-radius: 16px; padding: 32px 36px; text-align: center; }
+.cta-box p { color: rgba(255,255,255,.85); font-size: 15px; margin-bottom: 14px; }
+.cta-box p:last-of-type { margin-bottom: 20px; }
+.cta-btn { background:var(--gold); color:#fff; padding:13px 28px; border-radius:10px; text-decoration:none; font-family:'Space Grotesk',sans-serif; font-size:15px; font-weight:700; display:inline-block; transition:opacity .2s,transform .2s; }
+.cta-btn:hover { opacity:.88; transform:translateY(-1px); }
+.sources { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; padding: 20px 24px; }
+.sources h3 { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--fg2); margin-bottom: 10px; }
 .sources ol { padding-left: 18px; }
-.sources ol li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; }
+.sources li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; }
 
-/* ── FADE IN ── */
-.fade-in { opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
-.fade-in.visible { opacity: 1; transform: translateY(0); }
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
 
 @media (max-width: 600px) {
-  h1 { font-size: 24px; }
-  .situation-cards { grid-template-columns: 1fr; }
+  body { padding-top: 36px; }
+  .takeaways { padding: 22px 20px; }
   .cta-box { padding: 24px 20px; }
-  .takeaways { padding: 20px 20px; }
+  .opt { padding: 18px 18px; }
+  .stat .v { font-size: 19px; }
+  .growth { padding: 18px 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
 }
 </style>
 </head>
 <body>
+<div id="progress-bar"></div>
 <div class="article">
 
-  <div class="article-header fade-in"><p class="article-meta">Pensions · Investment · 4 min read</p><h1>Pillar 3a: Bank, Insurance, or ETF Portfolio — Which Is Right for You?</h1></div>
-  <div class="quick-answer fade-in"><p><strong>Quick Answer:</strong> Most expats open a Pillar 3a account at whatever bank their employer suggests — and never revisit the decision. That default choice can cost tens of thousands of francs over a career in Switzerland. A 0% bank savings account versus a low-fee equity Pillar 3a over 30 years on maximum contributions is the difference between roughly <span class="hl-red">CHF 218,000</span> and <span class="hl-green">CHF 530,000.</span></p></div>
-  <div class="takeaways fade-in"><h2>Key Takeaways</h2><ul><li>There are three types of Pillar 3a: bank savings account, insurance product, and ETF investment portfolio</li><li>The three lowest-cost digital ETF providers in 2026: finpension (0.39%), frankly (0.43%), VIAC (0.44%)</li><li>Insurance-based products come with fixed premiums and cancellation penalties — rarely the best for expats</li><li>For most expats, an ETF-based account delivers significantly better long-term returns</li><li>You can transfer your Pillar 3a balance between providers at any time without triggering tax</li></ul></div>
-  <h2 class="fade-in">Option 1: Bank Savings Account</h2>
-  <p class="fade-in">The most common default choice — and the least efficient for long-term growth. Your contributions earn interest — but at current Swiss rates, that interest is close to zero. The tax deduction still works exactly the same. For someone planning to stay less than 2-3 years, this may be acceptable. For anyone planning a longer stay, it is almost certainly not the most efficient choice.</p>
-  <h2 class="fade-in">Option 2: Insurance-Based Product</h2>
-  <p class="fade-in">This is the option most commonly sold through brokers — and the one that most often surprises expats later. Insurance-based Pillar 3a products combine a life insurance policy and an investment component. The reality: <span class="hl-red">fixed monthly premiums</span> you must pay regardless of circumstances, <span class="hl-red">higher fees</span>, and <span class="hl-red">cancellation penalties</span> if you exit early. For most expats without dependants in Switzerland, the life insurance element adds cost without value.</p>
-  <div class="warning-box fade-in"><p>⚠ <strong>Insurance 3a warning for expats:</strong> If you leave Switzerland before the contract ends, you may recover significantly less than you contributed. Always check the exit terms before signing.</p></div>
-  <h2 class="fade-in">Option 3: ETF Investment Portfolio (Digital Providers)</h2>
-  <p class="fade-in">Instead of a savings account or insurance product, you invest your Pillar 3a contributions in a portfolio of low-cost ETFs — globally diversified index funds that track world markets. The three lowest-cost digital providers in 2026: <span class="hl-green">finpension at 0.39%</span>, VIAC at approximately 0.44%, and frankly at 0.43%. All can be opened in under 10 minutes on a smartphone. No branch visit required.</p>
-  <h2 class="fade-in">Which Option Is Right for You?</h2>
-  <p class="fade-in"><strong>Planning to stay less than 3 years:</strong> A bank savings account may be sufficient.<br><strong>Planning to stay 3 to 10 years:</strong> An ETF-based digital account is almost certainly more efficient.<br><strong>Planning to stay long-term:</strong> An ETF-based digital account with multiple accounts for staggered withdrawals is the strategy most financial experts recommend.</p>
-  <div class="question-box fade-in"><p><strong>Can you switch providers?</strong> Yes. Pillar 3a accounts are portable — you can transfer your accumulated balance from one provider to another at any time without triggering tax. The one exception: insurance-based products may have surrender penalties if cancelled before a certain date.</p></div>
-  <h2 class="fade-in">Before You Ask</h2>
-  <div class="faq fade-in">
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Is the tax deduction the same regardless of provider?<span class="faq-arrow">▾</span></div><div class="faq-a">Yes. Whether you use a bank savings account, an insurance product, or an ETF portfolio, the annual tax deduction is identical — CHF 7,258 for employees in 2026.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Which ETF provider is best for expats?<span class="faq-arrow">▾</span></div><div class="faq-a">finpension and VIAC are consistently ranked as the top two options in 2026. finpension has a slight fee advantage at 0.39%. VIAC offers more flexibility and a well-regarded app. Both are strong choices for most expats.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Can I have accounts with multiple providers at the same time?<span class="faq-arrow">▾</span></div><div class="faq-a">Yes. Many people hold accounts with two or three different providers simultaneously — both for diversification and for staggered withdrawal planning at retirement.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What if I already have an insurance-based product?<span class="faq-arrow">▾</span></div><div class="faq-a">Review the terms carefully — particularly the cancellation conditions and fees. An advisor can help you assess whether it makes financial sense to continue or switch.</div></div>
+  <!-- HEADER -->
+  <div class="article-header">
+    <p class="article-meta">Tax &amp; Finance · Pillar 3a · 5 min read</p>
+    <h1>Pillar 3a: Bank, Insurance, or ETF Portfolio — Which Is Right for You?</h1>
+    <div class="header-rule"></div>
   </div>
-  <div class="cta-box fade-in"><p>Choosing the right Pillar 3a structure is one of those decisions that is easy to get right from the start — and surprisingly costly to get wrong. SwissExpatHub can connect you with advisors who help international residents review and optimise their Pillar 3a strategy in Switzerland.</p><a href="/directory" class="cta-btn">Find Your Advisor →</a></div>
-  <div class="sources fade-in"><h3>Sources</h3><ol><li>Federal Tax Administration — Pillar 3a rules and deduction limits: estv.admin.ch</li><li>Federal Council — Ordinance on Pillar 3a (BVV3): admin.ch</li><li>Federal Social Insurance Office — Pension system overview: bsv.admin.ch</li></ol></div>
+
+  <!-- QUICK ANSWER -->
+  <div class="quick-answer reveal">
+    <p><strong>Quick Answer:</strong> Most expats open their Pillar 3a at the same bank where their salary is paid — and never revisit the decision.</p>
+    <p>But every bank, insurer and app has its own 3a product, with its own rules: where the money is invested, what you pay in fees and how flexible it is. Those differences, added up over the years, are what change the final amount.</p>
+    <p>That default choice can cost tens of thousands of francs over a career in Switzerland. Understanding the three options before choosing is one of the most valuable financial decisions a new arrival can make.</p>
+  </div>
+
+  <!-- TAKEAWAYS -->
+  <div class="takeaways">
+    <h2>Key Takeaways</h2>
+    <ul>
+      <li class="takeaway-item" data-delay="0">Three types of Pillar 3a exist — bank savings account, insurance product, ETF portfolio — and all three give the same tax deduction</li>
+      <li class="takeaway-item" data-delay="100">The best-established low-cost digital providers in 2026: finpension (0.39%), VIAC (up to about 0.40%) and frankly (0.43%)</li>
+      <li class="takeaway-item" data-delay="200">Insurance-based 3a locks you into fixed premiums for years, with a charge if you leave early</li>
+      <li class="takeaway-item" data-delay="300">Over 30 years of maximum contributions, the gap between a 0% account and an ETF portfolio can exceed CHF 300,000</li>
+      <li class="takeaway-item" data-delay="400">You can move your 3a balance to another provider at any time — tax-free</li>
+    </ul>
+  </div>
+
+  <!-- OPTION 1 -->
+  <div class="opt">
+    <div class="opt-head"><span class="opt-num">Option 1</span><h2>Bank Savings Account</h2></div>
+    <p class="lead">The most common default choice — and the least efficient for long-term growth.</p>
+    <p>A traditional bank 3a account works like a regular savings account. Your money earns interest — but at current Swiss rates, that interest is close to zero.</p>
+    <p>The tax deduction works exactly the same as with any other 3a. You contribute up to <span class="hl-blue">CHF 7,258 per year</span>, and that amount comes off that year's taxable income — saving roughly <span class="hl-green">CHF 1,000 to CHF 2,500 in tax for that year</span>, depending on your income and canton, every year you contribute.</p>
+    <p>But the money sitting in the account grows very little. For a stay of two or three years, that may be acceptable. For anything longer, it is almost certainly not the most efficient choice.</p>
+    <div class="viz" id="vtax">
+      <div class="viz-label">Your yearly tax saving — move the slider</div>
+      <div class="tax">
+        <div class="stat in"><div class="k">You contribute</div><div class="v" id="tax-in">CHF 0</div><div class="s">this year</div></div>
+        <div class="arrow">→</div>
+        <div class="stat out"><div class="k">Tax saved</div><div class="v" id="tax-out">CHF 0</div><div class="s">this year</div></div>
+      </div>
+      <div class="slider">
+        <label for="rate">Your marginal tax rate <span class="val" id="rate-val">25%</span></label>
+        <input type="range" id="rate" min="14" max="35" step="1" value="25" aria-label="Marginal tax rate in percent">
+        <div class="scale-ends"><span>modest salary</span><span>high Geneva salary</span></div>
+      </div>
+      <p class="calc-line" id="tax-formula"></p>
+      <p class="viz-note">Your marginal rate is the tax on the last francs you earn — the rate your 3a deduction removes. It depends on income, canton and family status.</p>
+    </div>
+  </div>
+
+  <!-- OPTION 2 -->
+  <div class="opt red">
+    <div class="opt-head"><span class="opt-num">Option 2</span><h2>Insurance-Based Product</h2></div>
+    <p class="lead">There is a strong sales industry behind this option: it's the one salespeople push hardest on newcomers — and the one that most often surprises expats later.</p>
+    <p>Insurance-based 3a products combine two things in one: a life insurance policy and an investment component — often in ETFs or funds. The pitch sounds attractive: insurance cover and investment growth at the same time. For most expats, the reality is more complicated.</p>
+    <div class="sales">
+      <p><strong>How the sales industry works:</strong> insurance brokers and salespeople actively approach newcomers — often in their first weeks in the country, before they know how the system works — because every signed contract earns a commission. Once you sign, you are locked into a fixed payment for years. Yet the same result — the tax deduction and money invested in ETFs — is available with no obligation through Option 3: you open the account yourself on your phone and decide how much and when to contribute.</p>
+    </div>
+    <p>For most expats without dependants in Switzerland, the life insurance element adds cost without adding value.</p>
+    <div class="viz" id="vins">
+      <div class="viz-label">What you sign up for</div>
+      <div class="cmp-table">
+        <div class="cmp-row head"><div class="lbl">&nbsp;</div><div class="ins">Insurance 3a</div><div class="etf">ETF 3a (Option 3)</div></div>
+        <div class="cmp-row" data-delay="0"><div class="lbl">Payments</div><div class="ins">Fixed premium, monthly or yearly, for many years</div><div class="etf">Any amount, any time, up to CHF&nbsp;7,258</div></div>
+        <div class="cmp-row" data-delay="200"><div class="lbl">Job loss, lower salary or move</div><div class="ins">Premium still due; missed payments can trigger penalties</div><div class="etf">Simply pause — nothing owed</div></div>
+        <div class="cmp-row" data-delay="400"><div class="lbl">Leaving early</div><div class="ins">Surrender charge — part of your money the insurer keeps</div><div class="etf">Free transfer to another provider</div></div>
+        <div class="cmp-row" data-delay="600"><div class="lbl">Fees</div><div class="ins">Usually much higher (two products in one)</div><div class="etf">From about 0.39% a year</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OPTION 3 -->
+  <div class="opt green">
+    <div class="opt-head"><span class="opt-num">Option 3</span><h2>ETF Portfolio (Digital Providers)</h2></div>
+    <p class="lead">The option that has grown fastest in recent years — and the one most financial comparisons recommend for long-term investors.</p>
+    <p>Instead of a savings account or an insurance policy, your 3a money goes into ETFs — funds that buy shares in hundreds or thousands of companies at once and simply follow world markets. That keeps both risk spread out and costs low.</p>
+    <p>The best-established low-cost providers in 2026 are finpension, VIAC and frankly. A newcomer, findependent, launched in October 2026 with an even lower fee, but has no track record yet. All of them open in under 10 minutes on a smartphone — no branch visit required.</p>
+    <div class="viz" id="vfee">
+      <div class="viz-label">All-in yearly fee, highest-equity strategy (2026)</div>
+      <div class="fees">
+        <div class="fee-row"><span class="fee-name">findependent<small>new, Oct 2026</small></span><div class="fee-track"><div class="fee-fill new" data-w="0.29">0.29%</div></div></div>
+        <div class="fee-row"><span class="fee-name">finpension</span><div class="fee-track"><div class="fee-fill" data-w="0.39">0.39%</div></div></div>
+        <div class="fee-row"><span class="fee-name">VIAC</span><div class="fee-track"><div class="fee-fill" data-w="0.40">up to 0.40%</div></div></div>
+        <div class="fee-row"><span class="fee-name">frankly</span><div class="fee-track"><div class="fee-fill" data-w="0.43">0.43%</div></div></div>
+        <div class="fee-row"><span class="fee-name">Typical bank 3a fund<small>range</small></span><div class="fee-track"><div class="fee-fill bank" data-w="1.04">0.80–1.04%</div></div></div>
+      </div>
+      <div class="cost-box">
+        <div class="cost lo"><div class="k">On CHF 100,000 at 0.39%</div><div class="v" id="cost-lo">CHF 0</div><div class="k">per year</div></div>
+        <div class="cost hi"><div class="k">On CHF 100,000 at 1.00%</div><div class="v" id="cost-hi">CHF 0</div><div class="k">per year</div></div>
+      </div>
+      <p class="calc-line">100,000 × 0.39% = CHF&nbsp;390 · 100,000 × 1.00% = CHF&nbsp;1,000 — charged every year, on your whole balance.</p>
+    </div>
+  </div>
+
+  <!-- THE NUMBERS -->
+  <div>
+    <h2 class="reveal">The Numbers That Matter</h2>
+    <p class="reveal">The tax deduction is identical in all cases. The difference is entirely in what happens to the money after you contribute — and the compound gap is the cost of inertia.</p>
+    <div class="growth reveal" id="vgrowth">
+      <span class="illus">Illustrative figures</span>
+      <div class="viz-label">CHF 7,258 a year, every year</div>
+      <div class="g-row"><span class="lbl">Bank account<small>0% interest</small></span><div class="g-track"><div class="g-fill bank" id="g-bank"></div></div></div>
+      <div class="g-row"><span class="lbl">ETF portfolio<small>≈ 5.5% a year after fees</small></span><div class="g-track"><div class="g-fill etf" id="g-etf"></div></div></div>
+      <div class="slider">
+        <label for="yrs">Years of contributions <span class="val" id="yrs-val">30 years</span></label>
+        <input type="range" id="yrs" min="5" max="30" step="1" value="30" aria-label="Years of contributions">
+      </div>
+      <p class="calc-line" id="g-formula"></p>
+      <div class="gap-box">
+        <div class="big" id="g-gap">CHF 0</div>
+        <p>the cost of leaving it in a 0% account</p>
+      </div>
+      <p class="viz-note">Assumes an average return of 5.5% a year after fees, close to what a global equity portfolio has delivered over long periods. Markets go down as well as up, and past returns are not guaranteed.</p>
+    </div>
+  </div>
+
+  <!-- WHICH OPTION -->
+  <div>
+    <h2 class="reveal">Which Option Is Right for You?</h2>
+    <div class="tabs reveal" role="tablist">
+      <button class="tab active" role="tab" aria-selected="true" data-p="p1">Staying under 3 years</button>
+      <button class="tab" role="tab" aria-selected="false" data-p="p2">3 to 10 years</button>
+      <button class="tab" role="tab" aria-selected="false" data-p="p3">Long-term / retiring here</button>
+      <button class="tab" role="tab" aria-selected="false" data-p="p4">Already sold an insurance 3a</button>
+    </div>
+    <div class="panel reveal" id="p1" role="tabpanel"><span class="verdict v-blue">Bank account can be enough</span><p>The simplicity and low commitment suit a short stay.</p></div>
+    <div class="panel" id="p2" role="tabpanel" hidden><span class="verdict v-green">ETF account</span><p>An ETF-based digital account is almost certainly more efficient — the difference in returns over that period is meaningful. And you can withdraw everything when you leave Switzerland for good: no penalty, only a one-off withdrawal tax.</p></div>
+    <div class="panel" id="p3" role="tabpanel" hidden><span class="verdict v-green">ETF accounts, split in several</span><p>An ETF-based digital setup spread across several accounts, so you can withdraw them in different years, is the strategy most financial experts recommend.</p></div>
+    <div class="panel" id="p4" role="tabpanel" hidden><span class="verdict v-gold">Review it first</span><p>Terms, fees and cancellation conditions vary significantly. Understanding what you signed is the first step — and an advisor can help you assess whether switching makes sense.</p></div>
+  </div>
+
+  <!-- SWITCHING -->
+  <div>
+    <h2 class="reveal">Can You Switch Providers?</h2>
+    <p class="reveal">Yes. Pillar 3a accounts are portable — you can transfer your balance from one provider to another at any time. The money goes directly between qualified 3a providers, you pay no tax on the transfer, and your deduction history is preserved.</p>
+    <div class="viz reveal" id="vflow" style="border-top:none;margin-top:6px;padding-top:0">
+      <div class="flow">
+        <div class="node" data-delay="0">Current provider<small>bank or app</small></div>
+        <div class="f-arrow" data-delay="250">→</div>
+        <div class="node mid" data-delay="400">Direct transfer<small>no tax · history kept</small></div>
+        <div class="f-arrow" data-delay="650">→</div>
+        <div class="node" data-delay="800">New provider<small>your choice</small></div>
+      </div>
+    </div>
+    <div class="note warn reveal">
+      <p><strong>⚠ The exception:</strong> insurance-based products may charge a surrender penalty if cancelled before a certain date. Always check the terms before switching.</p>
+    </div>
+  </div>
+
+  <!-- MISTAKES -->
+  <div>
+    <h2 class="reveal">Common Mistakes</h2>
+    <div class="mistakes">
+      <div class="mistake-item" data-delay="0"><span class="mistake-number">01</span><div class="mistake-content"><h3>Never reviewing the default bank account</h3><p>Most expats open whatever account their bank offers and never think about it again. The cost of that inertia compounds every year.</p></div></div>
+      <div class="mistake-item" data-delay="80"><span class="mistake-number">02</span><div class="mistake-content"><h3>Signing an insurance product without reading the terms</h3><p>The fixed premium commitment and cancellation charges are often not fully explained at the point of sale. Read the full terms before signing.</p></div></div>
+      <div class="mistake-item" data-delay="160"><span class="mistake-number">03</span><div class="mistake-content"><h3>Assuming all ETF providers are the same</h3><p>finpension at 0.39% costs about 9% less than frankly at 0.43%. A few hundredths of a percent look trivial — but they are charged on your whole balance, every year, for decades.</p></div></div>
+      <div class="mistake-item" data-delay="240"><span class="mistake-number">04</span><div class="mistake-content"><h3>Putting everything in one account</h3><p>Withdrawals are taxed on a progressive scale: the more you take out in a single year, the higher the rate. An account must be withdrawn in full, so splitting your 3a across 4 to 5 accounts and withdrawing them over 4 to 5 years can save meaningfully on that tax.</p></div></div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div>
+    <h2 class="reveal">Before You Ask</h2>
+    <div style="margin-top:12px">
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">Which ETF provider is best for expats?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">finpension and VIAC consistently rank as the top two options in 2026. VIAC offers more flexibility and a well-rated app. Both are strong choices for most expats.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">I missed a year of contributions. Can I catch up?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">Since 2026, yes — but only for gaps from 2025 onward, and only up to ten years back. A catch-up payment is deductible on top of that year's normal CHF 7,258. Gaps from 2024 and earlier cannot be filled.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">When should I speak with an advisor?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">Before you leave Switzerland. Your 3a can be withdrawn when you leave for good, but the withdrawal tax depends on timing and on the canton where the provider's foundation is based — and good planning can reduce it.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-box reveal">
+    <p>Choosing the right Pillar 3a structure is one of those decisions that is easy to get right from the start — and surprisingly costly to get wrong. Many expats discover years later that a different provider or structure would have delivered significantly better results, with no additional risk or effort.</p>
+    <p>SwissExpatHub can connect you with experienced advisors who help international residents review and optimise their Pillar 3a strategy in Switzerland.</p>
+    <a href="/directory" class="cta-btn">Find Your Advisor →</a>
+  </div>
+
+  <!-- SOURCES -->
+  <div class="sources reveal">
+    <h3>Sources</h3>
+    <ol>
+      <li>Federal Social Insurance Office — Pillar 3a maximum contributions 2026: bsv.admin.ch</li>
+      <li>Geneva Tax Authority — LPP3 amounts and retroactive Pillar 3a payments: ge.ch</li>
+      <li>Provider fee pages and independent fee comparisons (finpension, VIAC, frankly, findependent), October–November 2026</li>
+      <li>Federal Parliament — capital withdrawal tax increase (EP27) rejected, March 2026</li>
+    </ol>
+  </div>
 
 </div>
+
 <script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); });
-  }, { threshold: 0.1 });
-  document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
-  function toggleFaq(el) { el.parentElement.classList.toggle("open"); }
+// Progress bar
+window.addEventListener('scroll', () => {
+  const docH = document.documentElement.scrollHeight - window.innerHeight;
+  document.getElementById('progress-bar').style.width = (docH > 0 ? window.scrollY / docH * 100 : 0) + '%';
+});
+
+// Header entrance
+window.addEventListener('load', () => {
+  setTimeout(() => document.querySelector('.article-meta').classList.add('visible'), 80);
+  setTimeout(() => document.querySelector('h1').classList.add('visible'), 220);
+  setTimeout(() => document.querySelector('.header-rule').classList.add('visible'), 420);
+});
+
+function stagger(selector, threshold) {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), parseInt(e.target.dataset.delay || 0));
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold });
+  document.querySelectorAll(selector).forEach(el => obs.observe(el));
+}
+stagger('.takeaway-item', 0.15);
+stagger('.opt', 0.06);
+stagger('.reveal', 0.08);
+stagger('.mistake-item', 0.08);
+
+function onView(id, fn, threshold = 0.4) {
+  const el = document.getElementById(id);
+  const obs = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) { fn(); obs.disconnect(); }
+  }, { threshold });
+  obs.observe(el);
+}
+const fmt = n => 'CHF ' + Math.round(n).toLocaleString('en-US');
+const num = n => Math.round(n).toLocaleString('en-US');
+function countUp(el, to, ms, from = 0) {
+  const t0 = performance.now();
+  const step = t => {
+    const k = Math.min(1, (t - t0) / ms), e = 1 - Math.pow(1 - k, 3);
+    el.textContent = fmt(from + (to - from) * e);
+    if (k < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+// Option 1 — tax saving calculator
+const C = 7258;
+const rate = document.getElementById('rate');
+let taxShown = 0, taxStarted = false;
+function updTax(animate) {
+  const r = +rate.value, saved = C * r / 100;
+  document.getElementById('rate-val').textContent = r + '%';
+  document.getElementById('tax-formula').innerHTML =
+    `CHF 7,258 × ${r}% = <strong>${fmt(saved)}</strong> less tax this year · over 10 years of contributions: 10 × ${num(saved)} = ${fmt(saved * 10)}`;
+  const out = document.getElementById('tax-out');
+  if (animate) countUp(out, saved, 500, taxShown); else out.textContent = fmt(saved);
+  taxShown = saved;
+}
+rate.addEventListener('input', () => { if (taxStarted) updTax(false); });
+onView('vtax', () => {
+  taxStarted = true;
+  countUp(document.getElementById('tax-in'), C, 1000);
+  setTimeout(() => updTax(true), 700);
+});
+
+// Option 2 — comparison rows
+onView('vins', () => {
+  document.querySelectorAll('#vins .cmp-row:not(.head)').forEach(r =>
+    setTimeout(() => r.classList.add('visible'), parseInt(r.dataset.delay)));
+}, 0.3);
+
+// Option 3 — fee bars + cost counters
+onView('vfee', () => {
+  document.querySelectorAll('.fee-fill').forEach((f, i) =>
+    setTimeout(() => { f.style.width = (parseFloat(f.dataset.w) / 1.1 * 100) + '%'; }, i * 150));
+  setTimeout(() => {
+    countUp(document.getElementById('cost-lo'), 390, 900);
+    countUp(document.getElementById('cost-hi'), 1000, 900);
+  }, 900);
+}, 0.3);
+
+// The Numbers — growth calculator
+const R = 0.055;
+const yrs = document.getElementById('yrs');
+const fv = n => C * (Math.pow(1 + R, n) - 1) / R;
+const MAX = fv(30) * 1.03;
+let gapShown = 0, growthStarted = false;
+function updGrowth(animate) {
+  const n = +yrs.value, bank = C * n, etf = fv(n), gap = etf - bank;
+  document.getElementById('yrs-val').textContent = n + ' years';
+  const gb = document.getElementById('g-bank'), ge = document.getElementById('g-etf');
+  gb.style.width = Math.max(bank / MAX * 100, 18) + '%';
+  ge.style.width = Math.max(etf / MAX * 100, 18) + '%';
+  gb.textContent = fmt(bank); ge.textContent = fmt(etf);
+  document.getElementById('g-formula').innerHTML =
+    `Bank: 7,258 × ${n} = <strong>${fmt(bank)}</strong> · ETF: each year's 7,258 grows at 5.5% until year ${n} = <strong>${fmt(etf)}</strong> · Gap: ${num(etf)} − ${num(bank)} = <strong>${fmt(gap)}</strong>`;
+  const g = document.getElementById('g-gap');
+  if (animate) countUp(g, gap, 1100, gapShown); else g.textContent = fmt(gap);
+  gapShown = gap;
+}
+yrs.addEventListener('input', () => { if (growthStarted) updGrowth(false); });
+onView('vgrowth', () => { growthStarted = true; updGrowth(true); }, 0.3);
+
+// Profile tabs
+document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => {
+  document.querySelectorAll('.tab').forEach(x => { x.classList.remove('active'); x.setAttribute('aria-selected', 'false'); });
+  t.classList.add('active'); t.setAttribute('aria-selected', 'true');
+  document.querySelectorAll('.panel').forEach(p => { p.hidden = p.id !== t.dataset.p; if (!p.hidden) p.classList.add('visible'); });
+}));
+
+// Switch flow
+onView('vflow', () => {
+  document.querySelectorAll('#vflow .node, #vflow .f-arrow').forEach(n =>
+    setTimeout(() => n.classList.add('visible'), parseInt(n.dataset.delay)));
+}, 0.4);
+
+// FAQ
+function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
 </script>
 </body>
 </html>
