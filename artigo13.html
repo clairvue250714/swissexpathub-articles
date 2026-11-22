@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pillar 3a and ETFs: Can You Invest Your 3a Yourself — and How Does It Really Work?</title>
+<meta name="description" content="Can you invest your Pillar 3a in ETFs yourself? Why a brokerage account does not qualify, 3a vs 3b, the digital platforms, and what CHF 500 a month becomes by 65.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
 <style>
 :root {
@@ -47,269 +48,686 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 body {
-  background: var(--bg);
-  color: var(--fg);
+  background: var(--bg); color: var(--fg);
   font-family: 'Inter', system-ui, sans-serif;
-  font-size: 16px;
-  line-height: 1.75;
-  padding: 40px max(16px, 5vw) 80px;
+  font-size: 16px; line-height: 1.75;
+  padding: 48px max(16px, 5vw) 80px;
 }
+.article { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 36px; }
 
-.article {
-  max-width: 720px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
+#progress-bar {
+  position: fixed; top: 0; left: 0; height: 3px;
+  background: var(--blue-mid); width: 0%;
+  z-index: 1000; transition: width .1s linear;
+  border-radius: 0 2px 2px 0;
 }
 
 /* ── HEADER ── */
-.article-header { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
 .article-meta {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: .12em; text-transform: uppercase;
-  color: var(--fg2); margin-bottom: 10px;
+  font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--fg2); margin-bottom: 12px;
+  opacity: 0; transform: translateY(-8px); transition: opacity .5s ease, transform .5s ease;
 }
+.article-meta.visible { opacity: 1; transform: translateY(0); }
 h1 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(24px, 5vw, 36px);
-  font-weight: 700; line-height: 1.2;
-  text-wrap: balance; color: var(--fg);
+  font-family: 'Space Grotesk', sans-serif; font-size: clamp(24px, 5vw, 36px);
+  font-weight: 700; line-height: 1.2; text-wrap: balance; color: var(--fg);
+  opacity: 0; transform: translateY(12px);
+  transition: opacity .6s ease .15s, transform .6s ease .15s;
 }
+h1.visible { opacity: 1; transform: translateY(0); }
 .header-rule {
-  height: 2px; background: var(--blue);
-  border-radius: 2px; margin-top: 20px;
-  width: 48px;
+  height: 3px; background: var(--blue); border-radius: 2px; margin-top: 20px;
+  width: 0; transition: width .8s cubic-bezier(.16,1,.3,1) .5s;
 }
+.header-rule.visible { width: 48px; }
 
-/* ── QUICK ANSWER ── */
-.quick-answer {
-  background: var(--blue-light);
-  border-left: 4px solid var(--blue);
-  border-radius: 0 14px 14px 0;
-  padding: 20px 24px;
-}
-.quick-answer p { font-size: 15px; color: var(--fg); margin: 0; }
-
-/* ── TAKEAWAYS ── */
-.takeaways {
-  background: var(--blue);
-  border-radius: 16px;
-  padding: 28px 32px;
-}
-.takeaways h2 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 16px; font-weight: 700;
-  color: rgba(255,255,255,.6);
-  letter-spacing: .08em; text-transform: uppercase;
-  margin-bottom: 16px; margin-top: 0;
-}
-.takeaways ul { list-style: none; }
-.takeaways ul li {
-  color: #e8ecf5;
-  font-size: 14.5px;
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(255,255,255,.1);
-  display: flex; gap: 12px; align-items: flex-start;
-}
-.takeaways ul li:last-child { border-bottom: none; }
-.takeaways ul li::before {
-  content: "✓"; color: #3dba78;
-  font-weight: 700; flex-shrink: 0; margin-top: 1px;
-}
-
-/* ── HEADINGS ── */
-h2 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 20px; font-weight: 700;
-  color: var(--fg); margin-bottom: 4px;
-}
-h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  color: var(--blue-mid); margin-bottom: 6px;
-}
+/* ── TYPE ── */
+h2 { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; color: var(--fg); margin-bottom: 8px; }
+h3 { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; color: var(--blue-mid); margin-bottom: 6px; }
 p { font-size: 15.5px; color: var(--fg); margin-bottom: 12px; }
 p:last-child { margin-bottom: 0; }
 .hl-blue  { color: var(--blue-mid); font-weight: 600; }
 .hl-green { color: var(--green);    font-weight: 600; }
 .hl-red   { color: var(--red);      font-weight: 600; }
-sup { font-size: 11px; color: var(--blue-mid); }
-
-/* ── SITUATION CARDS ── */
-.situation-cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
+.viz-label {
+  font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--fg2); margin-bottom: 12px;
 }
-@media (max-width: 520px) { .situation-cards { grid-template-columns: 1fr; } }
+.viz-note { font-size: 12px; color: var(--fg2); margin-top: 10px; }
+.calc-line { font-size: 13px; color: var(--fg2); text-align: center; margin-top: 10px; font-variant-numeric: tabular-nums; }
 
+/* ── QUICK ANSWER / TAKEAWAYS ── */
+.quick-answer { background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 14px 14px 0; padding: 20px 24px; }
+.quick-answer p { font-size: 15px; }
+.takeaways { background: #1f4080; border-radius: 16px; padding: 28px 32px; }
+.takeaways h2 { font-size: 13px; color: rgba(255,255,255,.55); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 18px; }
+.takeaways ul { list-style: none; }
+.takeaway-item {
+  color: #e8ecf5; font-size: 14.5px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.1);
+  display: flex; gap: 12px; align-items: flex-start;
+  opacity: 0; transform: translateX(-10px); transition: opacity .45s ease, transform .45s ease;
+}
+.takeaway-item:last-child { border-bottom: none; }
+.takeaway-item.visible { opacity: 1; transform: translateX(0); }
+.takeaway-item::before { content: "✓"; color: #3dba78; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+
+/* ── SECTION CARDS ── */
+.card {
+  position: relative; overflow: hidden;
+  background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px;
+  padding: 24px 26px; box-shadow: var(--shadow);
+  opacity: 0; transform: translateY(16px);
+  transition: opacity .5s ease, transform .5s ease, box-shadow .2s;
+}
+.card.visible { opacity: 1; transform: none; }
+.card:hover { box-shadow: var(--shadow-md); }
+.card::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--c, var(--blue-mid));
+  transform: scaleY(0); transform-origin: top; transition: transform .6s cubic-bezier(.16,1,.3,1) .25s;
+}
+.card.visible::before { transform: scaleY(1); }
+.card-head { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+.card-num {
+  font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; color: var(--c, var(--blue-mid));
+  background: var(--cl, var(--blue-light)); border-radius: 8px; padding: 4px 10px; flex-shrink: 0;
+  transform: scale(.6); opacity: 0; transition: transform .5s cubic-bezier(.34,1.56,.64,1) .2s, opacity .4s ease .2s;
+}
+.card.visible .card-num { transform: scale(1); opacity: 1; }
+.card-head h2 { margin: 0; font-size: 18px; }
+.card p { font-size: 15px; }
+.c-red   { --c: var(--red);   --cl: var(--red-light); }
+.c-green { --c: var(--green); --cl: var(--green-light); }
+.c-gold  { --c: var(--gold);  --cl: var(--gold-light); }
+.viz { margin-top: 18px; padding-top: 16px; border-top: 1px dashed var(--border); }
+
+/* ── NOTE BOXES ── */
+.note { border-radius: 0 12px 12px 0; padding: 14px 18px; margin-top: 16px; }
+.note p { font-size: 14.5px; }
+.note.warn { background: var(--gold-light); border-left: 4px solid var(--gold); }
+.note.warn strong { color: var(--gold); }
+.note.new { background: var(--green-light); border-left: 4px solid var(--green); }
+.note.new strong { color: var(--green); }
+
+/* ── shared viz bits ── */
+.stat { text-align: center; border-radius: 12px; padding: 14px 10px; }
+.stat .k { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--fg2); }
+.stat .v { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1.3; white-space: nowrap; }
+.stat small { display: block; font-size: 12px; color: var(--fg2); }
+.stat.blue { background: var(--blue-light); } .stat.blue .v { color: var(--blue-mid); }
+.stat.green{ background: var(--green-light); } .stat.green .v{ color: var(--green); }
+.stat.gold { background: var(--gold-light); } .stat.gold .v { color: var(--gold); }
+.stat.red  { background: var(--red-light); }  .stat.red .v  { color: var(--red); }
+.slider { margin-top: 14px; background: var(--bg); border-radius: 12px; padding: 12px 16px; }
+.slider label { font-size: 12.5px; color: var(--fg2); display: flex; justify-content: space-between; gap: 10px; }
+.slider label b { font-family: 'Space Grotesk', sans-serif; color: var(--fg); font-size: 15px; font-variant-numeric: tabular-nums; }
+.slider input { width: 100%; accent-color: var(--blue-mid); }
+
+/* ── sit-cards ── */
+.sit-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px; }
 .sit-card {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 14px;
-  padding: 18px 20px;
-  box-shadow: var(--shadow);
-  transition: border-color .2s, box-shadow .2s;
+  background: var(--bg2); border: 1.5px solid var(--border); border-radius: 14px; padding: 16px 18px; font-size: 14px; color: var(--fg2); line-height: 1.55;
+  opacity: 0; transform: translateY(12px) scale(.98); transition: opacity .4s ease, transform .4s ease;
 }
-.sit-card:hover { box-shadow: var(--shadow-md); }
-.sit-card.alert { border-color: var(--red); }
-.sit-card h3 { color: var(--blue-mid); margin-bottom: 6px; }
-.sit-card.alert h3 { color: var(--red); }
-.sit-card p { font-size: 13px; color: var(--fg2); margin: 0; }
+.sit-card.visible { opacity: 1; transform: none; }
+.sit-card .ic { font-size: 20px; display: block; margin-bottom: 6px; }
+@media (max-width: 580px) { .sit-grid { grid-template-columns: 1fr; } }
 
-/* ── CHECKLIST ── */
-.checklist {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 16px;
-  padding: 24px 28px;
-  box-shadow: var(--shadow);
+/* ── brokerage vs 3a ── */
+.vs { border: 1.5px solid var(--border); border-radius: 14px; overflow: hidden; }
+.vs-row { display: grid; grid-template-columns: 1.4fr 1fr 1fr; font-size: 13.5px; border-bottom: 1px solid var(--border);
+  opacity: 0; transform: translateX(10px); transition: opacity .4s ease, transform .4s ease; }
+.vs-row:last-child { border-bottom: none; }
+.vs-row.visible { opacity: 1; transform: none; }
+.vs-row > div { padding: 10px 14px; }
+.vs-row.head { background: #1f4080; color: #fff; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 12.5px; }
+.vs-row .lbl { font-weight: 600; background: var(--bg); }
+.yes { color: var(--green); font-weight: 700; } .no { color: var(--red); font-weight: 700; } .mid { color: var(--gold); font-weight: 600; }
+.wt { margin-top: 16px; }
+.wt-bar { position: relative; height: 34px; border-radius: 10px; background: var(--bg); border: 1.5px solid var(--border); overflow: hidden; }
+.wt-free { position: absolute; left: 0; top: 0; bottom: 0; background: var(--green-light); transition: width .3s ease; }
+.wt-tax { position: absolute; top: 0; bottom: 0; background: var(--red-light); transition: left .3s ease, width .3s ease; }
+.wt-line { position: absolute; top: -4px; bottom: -4px; width: 2px; background: var(--red); }
+.wt-legend { display: flex; justify-content: space-between; font-size: 12.5px; color: var(--fg2); margin-top: 6px; gap: 10px; }
+.wt-legend b { font-variant-numeric: tabular-nums; }
+.wt-out { margin-top: 10px; font-size: 14px; text-align: center; font-variant-numeric: tabular-nums; }
+
+/* ── 3a vs 3b ── */
+.ab { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.ab-col { border-radius: 14px; overflow: hidden; border: 1.5px solid var(--border);
+  opacity: 0; transform: translateY(12px); transition: opacity .45s ease, transform .45s ease; }
+.ab-col.visible { opacity: 1; transform: none; }
+.ab-col h3 { margin: 0; padding: 12px 16px; color: #fff; font-size: 14px; }
+.ab-col.a h3 { background: #1a7a4a; } .ab-col.b h3 { background: #8a6420; }
+.ab-item { padding: 9px 16px; font-size: 13.5px; border-top: 1px solid var(--border); display: flex; gap: 10px; }
+.ab-item .k { min-width: 86px; color: var(--fg2); font-size: 12.5px; padding-top: 1px; }
+.stamp-3a {
+  display: inline-flex; gap: 8px; align-items: center; margin-top: 14px; padding: 9px 16px; border-radius: 10px; font-weight: 700; font-size: 14px;
+  border: 2px dashed var(--green); color: var(--green); background: var(--green-light); font-family: 'Space Grotesk', sans-serif;
+  opacity: 0; transform: rotate(-4deg) scale(1.3); transition: opacity .3s, transform .5s cubic-bezier(.34,1.56,.64,1);
 }
-.checklist h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  margin-bottom: 16px; color: var(--fg);
+.stamp-3a.visible { opacity: 1; transform: rotate(-2deg) scale(1); }
+@media (max-width: 560px) { .ab { grid-template-columns: 1fr; } }
+
+/* ── setup steps ── */
+.steps { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: center; gap: 8px; }
+.step { text-align: center; border-radius: 12px; padding: 14px 8px; background: var(--blue-light); font-size: 13px; color: var(--fg);
+  opacity: 0; transform: scale(.85); transition: opacity .35s, transform .45s cubic-bezier(.34,1.56,.64,1); }
+.step.visible { opacity: 1; transform: none; }
+.step .ic { font-size: 22px; display: block; margin-bottom: 4px; }
+.arrow { color: var(--fg2); font-size: 18px; opacity: 0; transition: opacity .3s; }
+.arrow.visible { opacity: 1; }
+.clock { text-align: center; margin-top: 12px; font-family: 'Space Grotesk', sans-serif; font-size: 14px; color: var(--fg2); }
+.clock b { color: var(--blue-mid); font-size: 20px; font-variant-numeric: tabular-nums; }
+@media (max-width: 540px) { .steps { grid-template-columns: 1fr; } .arrow { transform: rotate(90deg); justify-self: center; } }
+
+/* ── reasons ── */
+.reasons { display: flex; flex-direction: column; gap: 10px; }
+.reason { display: flex; gap: 14px; align-items: flex-start; border-radius: 12px; padding: 12px 14px; border: 1.5px solid var(--border); background: var(--bg);
+  opacity: .35; transition: opacity .45s, border-color .45s, background .45s; }
+.reason.lit { opacity: 1; border-color: var(--green); background: var(--green-light); }
+.reason .n { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--green); font-size: 18px; min-width: 22px; }
+.reason h3 { color: var(--fg); font-size: 14.5px; margin-bottom: 2px; }
+.reason p { font-size: 14px; color: var(--fg2); margin: 0; line-height: 1.6; }
+
+/* ── platforms ── */
+.plats { display: flex; flex-direction: column; gap: 12px; }
+.plat { border: 1.5px solid var(--border); border-radius: 14px; padding: 16px 18px; background: var(--bg2);
+  opacity: 0; transform: translateX(-12px); transition: opacity .45s, transform .45s; }
+.plat.visible { opacity: 1; transform: none; }
+.plat-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 6px; }
+.plat-head h3 { margin: 0; font-size: 16px; color: var(--fg); }
+.plat-head .fee { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--blue-mid); font-size: 15px; white-space: nowrap; }
+.plat p { font-size: 14px; color: var(--fg2); margin-bottom: 10px; }
+.meter { display: grid; grid-template-columns: 120px 1fr 46px; align-items: center; gap: 10px; font-size: 12.5px; color: var(--fg2); margin-top: 6px; }
+.meter .track { height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
+.meter .fill { height: 100%; width: 0; border-radius: 4px; transition: width 1.1s cubic-bezier(.16,1,.3,1); }
+.meter .fill.eq { background: var(--blue-mid); } .meter .fill.fx { background: var(--gold); }
+.meter .val { text-align: right; font-weight: 700; color: var(--fg); font-variant-numeric: tabular-nums; }
+@media (max-width: 480px) { .meter { grid-template-columns: 96px 1fr 40px; } }
+
+/* ── safety diagram ── */
+.layers { display: flex; flex-direction: column; gap: 8px; }
+.layer { display: flex; justify-content: space-between; align-items: center; gap: 12px; border-radius: 12px; padding: 12px 16px; font-size: 14px;
+  border: 1.5px solid var(--border); background: var(--bg); transition: opacity .5s, border-color .5s, background .5s; }
+.layer b { font-family: 'Space Grotesk', sans-serif; }
+.layer .tag { font-size: 12px; font-weight: 700; font-family: 'Space Grotesk', sans-serif; white-space: nowrap; opacity: 0; transition: opacity .4s; }
+.layer.app.down { opacity: .45; border-style: dashed; }
+.layer.app.down .tag { opacity: 1; color: var(--red); }
+.layer.safe.ok { border-color: var(--green); background: var(--green-light); }
+.layer.safe.ok .tag { opacity: 1; color: var(--green); }
+.layer.app.down b { text-decoration: line-through; }
+
+/* ── numbers ── */
+.nums-top { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+.stack { margin-top: 16px; }
+.stack-bar { display: flex; height: 38px; border-radius: 10px; overflow: hidden; background: var(--bg); border: 1.5px solid var(--border); }
+.stack-bar div { width: 0; transition: width 1.2s cubic-bezier(.16,1,.3,1); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 12.5px; font-weight: 700; white-space: nowrap; overflow: hidden; }
+.sb-dep { background: #2e5fa3; } .sb-gro { background: #1a7a4a; } .sb-tax { background: #b8862a; }
+.stack-legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 12.5px; color: var(--fg2); margin-top: 8px; }
+.stack-legend span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; background: var(--c); }
+.yt { margin-top: 18px; border: 1.5px solid var(--border); border-radius: 12px; overflow: hidden; }
+.yt-row { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; font-size: 13px; border-bottom: 1px solid var(--border); font-variant-numeric: tabular-nums;
+  opacity: 0; transform: translateY(6px); transition: opacity .35s, transform .35s; }
+.yt-row:last-child { border-bottom: none; }
+.yt-row.visible { opacity: 1; transform: none; }
+.yt-row > div { padding: 8px 12px; }
+.yt-row.head { background: #1f4080; color: #fff; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 12px; }
+.yt-row .g { color: var(--green); font-weight: 600; }
+.yt-row.cross { background: var(--green-light); }
+.fee-toggle { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+.fee-toggle button {
+  font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 13px; padding: 8px 14px; border-radius: 10px; cursor: pointer;
+  border: 1.5px solid var(--border); background: var(--bg); color: var(--fg2); transition: background .2s, color .2s, border-color .2s;
 }
-.checklist-item {
-  display: flex; align-items: flex-start; gap: 12px;
-  padding: 11px 0;
-  border-bottom: 1px solid var(--border);
-  cursor: pointer;
+.fee-toggle button.on { background: #2e5fa3; border-color: #2e5fa3; color: #fff; }
+.fee-out { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+@media (max-width: 560px) {
+  .nums-top { grid-template-columns: 1fr; }
+  .yt-row { font-size: 12px; grid-template-columns: .6fr 1fr 1fr 1.1fr; } .yt-row > div { padding: 8px 6px; }
+  .yt-row .yr { display: none; }
+  .fee-out { grid-template-columns: 1fr; }
 }
-.checklist-item:last-of-type { border-bottom: none; }
-.check-box {
-  width: 22px; height: 22px;
-  border: 2px solid var(--blue);
-  border-radius: 6px; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  transition: all .2s; margin-top: 2px;
+
+/* ── staggered withdrawals ── */
+.stagger-w { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-top: 12px; }
+.sw { text-align: center; border-radius: 9px; padding: 8px 2px; font-size: 12px; font-weight: 600; border: 1.5px solid var(--border); color: var(--fg2); background: var(--bg);
+  opacity: 0; transform: translateY(6px); transition: opacity .35s, transform .35s, background .35s, color .35s, border-color .35s; }
+.sw small { display: block; font-weight: 500; font-size: 11px; }
+.sw.visible { opacity: 1; transform: none; background: var(--green-light); color: var(--green); border-color: var(--green); }
+@media (max-width: 560px) { .stagger-w { grid-template-columns: repeat(3, 1fr); } }
+
+/* ── MISTAKES ── */
+.mistakes { display: flex; flex-direction: column; gap: 12px; margin-top: 12px; }
+.mistake-item {
+  background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px; padding: 20px 24px; box-shadow: var(--shadow);
+  display: flex; gap: 18px; align-items: flex-start;
+  opacity: 0; transform: translateX(-14px); transition: opacity .45s ease, transform .45s ease, box-shadow .2s;
 }
-.check-box.checked { background: var(--blue); border-color: var(--blue); }
-.check-box.checked::after { content: "✓"; color: white; font-size: 13px; font-weight: 700; }
-.checklist-item.done span { text-decoration: line-through; color: var(--fg2); }
-.checklist-item span { font-size: 14.5px; color: var(--fg); font-family: 'Inter', sans-serif; }
-.progress-bar { height: 5px; background: var(--border); border-radius: 3px; margin-top: 16px; }
-.progress-fill { height: 100%; background: var(--green); border-radius: 3px; transition: width .4s ease; }
-.progress-label { font-size: 12px; color: var(--fg2); margin-top: 6px; font-family: 'Inter', sans-serif; }
+.mistake-item.visible { opacity: 1; transform: translateX(0); }
+.mistake-item:hover { box-shadow: var(--shadow-md); }
+.mistake-number { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; color: var(--red); line-height: 1; flex-shrink: 0; min-width: 32px; opacity: .25; }
+.mistake-content h3 { color: var(--red); font-size: 15px; margin-bottom: 6px; }
+.mistake-content p { font-size: 14.5px; color: var(--fg2); margin: 0; line-height: 1.6; }
 
 /* ── FAQ ── */
-.faq-item {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  margin-bottom: 8px;
-  overflow: hidden;
-  transition: border-color .2s;
-}
-.faq-item.open { border-color: var(--blue); }
-.faq-q {
-  padding: 16px 20px;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 14px; font-weight: 600;
-  cursor: pointer;
-  display: flex; justify-content: space-between; align-items: center;
-  gap: 12px; color: var(--fg);
-  background: transparent;
-}
-.faq-arrow { color: var(--blue); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
+.faq-item { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; margin-bottom: 8px; overflow: hidden; transition: border-color .2s; }
+.faq-item.open { border-color: var(--blue-mid); }
+.faq-q { padding: 16px 20px; font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; color: var(--fg); user-select: none; }
+.faq-arrow { color: var(--blue-mid); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
 .faq-item.open .faq-arrow { transform: rotate(180deg); }
-.faq-a {
-  display: none;
-  padding: 0 20px 16px;
-  font-size: 14px; color: var(--fg2); line-height: 1.65;
-  font-family: 'Inter', sans-serif;
-}
-.faq-item.open .faq-a { display: block; }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .35s ease; font-size: 14px; color: var(--fg2); line-height: 1.65; padding: 0 20px; }
+.faq-item.open .faq-a { max-height: 400px; padding: 0 20px 16px; }
 
-/* ── CTA ── */
-.cta-box {
-  background: var(--blue);
-  border-radius: 16px;
-  padding: 32px 36px;
-  text-align: center;
-}
-.cta-box p {
-  color: rgba(255,255,255,.8);
-  font-size: 15px; margin-bottom: 20px;
-}
-.cta-btn {
-  background: var(--gold);
-  color: #fff;
-  padding: 13px 28px;
-  border-radius: 10px;
-  text-decoration: none;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  display: inline-block;
-  transition: opacity .2s;
-}
-.cta-btn:hover { opacity: .88; }
-
-/* ── SOURCES ── */
-.sources {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  padding: 20px 24px;
-}
-.sources h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: .1em; text-transform: uppercase;
-  color: var(--fg2); margin-bottom: 10px;
-}
+/* ── CTA / SOURCES ── */
+.cta-box { background: #1f4080; border-radius: 16px; padding: 32px 36px; text-align: center; }
+.cta-box p { color: rgba(255,255,255,.85); font-size: 15px; margin-bottom: 14px; }
+.cta-box p:last-of-type { margin-bottom: 20px; }
+.cta-btn { background:var(--gold); color:#fff; padding:13px 28px; border-radius:10px; text-decoration:none; font-family:'Space Grotesk',sans-serif; font-size:15px; font-weight:700; display:inline-block; transition:opacity .2s,transform .2s; }
+.cta-btn:hover { opacity:.88; transform:translateY(-1px); }
+.sources { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; padding: 20px 24px; }
+.sources h3 { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--fg2); margin-bottom: 10px; }
 .sources ol { padding-left: 18px; }
-.sources ol li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; }
+.sources li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; }
 
-/* ── FADE IN ── */
-.fade-in { opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
-.fade-in.visible { opacity: 1; transform: translateY(0); }
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
 
 @media (max-width: 600px) {
-  h1 { font-size: 24px; }
-  .situation-cards { grid-template-columns: 1fr; }
+  body { padding-top: 36px; }
+  .takeaways { padding: 22px 20px; }
   .cta-box { padding: 24px 20px; }
-  .takeaways { padding: 20px 20px; }
+  .card { padding: 18px 18px; }
+  .checklist { padding: 18px 16px; }
+  .tl-pt { width: 92px; }
+  .tl-pt.first .what { visibility: hidden; }
 }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; } }
 </style>
 </head>
 <body>
+<div id="progress-bar"></div>
 <div class="article">
 
-  <div class="article-header fade-in"><p class="article-meta">Pensions · Investment · 5 min read</p><h1>Pillar 3a and ETFs: Can You Invest Your 3a Yourself — and How Does It Really Work?</h1></div>
-  <div class="quick-answer fade-in"><p><strong>Quick Answer:</strong> Many expats ask whether they can invest their Pillar 3a money in ETFs directly. The short answer: <span class="hl-red">you cannot use a regular brokerage account for Pillar 3a.</span> The money must be held in a regulated pension foundation to qualify for the tax deduction. But you can choose exactly how it is invested — including in globally diversified index funds — through low-cost digital platforms that you control entirely yourself.</p></div>
-  <div class="takeaways fade-in"><h2>Key Takeaways</h2><ul><li>Pillar 3a money must be held in a regulated pension foundation — a regular brokerage account does not qualify</li><li>You open and manage the account yourself on a smartphone app — no advisor, no branch, no commissions</li><li>finpension (0.39%), VIAC (0.40%), and frankly (0.44%) are the three lowest-cost providers in 2026</li><li>These platforms use Swiss index funds — exempt from Swiss stamp duty and more tax-efficient for pension savings</li><li>Your money is protected even if the platform goes bankrupt — assets are held in a separate regulated foundation</li></ul></div>
-  <h2 class="fade-in">Why You Cannot Use a Regular Brokerage Account</h2>
-  <p class="fade-in">This is the most common misconception among expats who already invest independently. The Swiss tax deduction for Pillar 3a is only available when the money is held in a <span class="hl-blue">regulated pension foundation</span> — a specific legal structure authorised by the Swiss government. A regular brokerage account — whether at Interactive Brokers, Swissquote, DEGIRO, or anywhere else — does not qualify.</p>
-  <p class="fade-in">If you invest CHF 7,258 in ETFs through a regular brokerage account instead of a Pillar 3a account, you lose: the <span class="hl-red">tax deduction</span> — you cannot deduct the investment from your taxable income — and the <span class="hl-red">wealth tax exemption</span> — money in a regular brokerage account is subject to Swiss wealth tax every year; money in a Pillar 3a account is completely exempt until withdrawal.</p>
-  <h2 class="fade-in">ETFs vs Swiss Index Funds: What Are You Actually Buying?</h2>
-  <p class="fade-in">Most digital Pillar 3a platforms do not invest in ETFs in the traditional sense. They invest in <span class="hl-blue">Swiss institutional index funds</span>. Both track the same indices — global equities, US equities, Swiss equities — but the structure is different. Swiss index funds are exempt from Swiss stamp duty and pension funds can recover withholding tax on international dividends more efficiently than private investors.</p>
-  <h2 class="fade-in">The Three Best Platforms in 2026</h2>
-  <p class="fade-in"><strong>finpension 3a — 0.39% total fee:</strong> The lowest-cost option currently available. Allows up to 99% allocation in equities. Pension foundation domiciled in Schwyz — one of the lowest withdrawal tax cantons in Switzerland.</p>
-  <p class="fade-in"><strong>VIAC — approximately 0.40% total fee:</strong> The pioneer of digital Pillar 3a in Switzerland. Allows up to 99% in equities. Strong customisation and a well-regarded app.</p>
-  <p class="fade-in"><strong>frankly — 0.44% total fee:</strong> Backed by Zürcher Kantonalbank. Simpler interface. Allows up to 95% in equities. Forces at least 70% in CHF with currency hedging — which reduces long-term international returns for those with a global portfolio.</p>
-  <div class="question-box fade-in"><p><strong>Is your money safe if the platform goes bankrupt?</strong> Yes. Your Pillar 3a assets are held in a separate regulated pension foundation — legally independent from the technology platform. If finpension, VIAC, or frankly were to go bankrupt, your money would be transferred to another institution. The platform is just the interface.</p></div>
-  <h2 class="fade-in">Before You Ask</h2>
-  <div class="faq fade-in">
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Can I use Interactive Brokers or Swissquote for my Pillar 3a?<span class="faq-arrow">▾</span></div><div class="faq-a">No. The tax deduction and wealth tax exemption only apply to money held in a regulated Swiss pension foundation. A regular brokerage account does not qualify, regardless of what you invest in.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Do I need a financial advisor to open a digital Pillar 3a account?<span class="faq-arrow">▾</span></div><div class="faq-a">No. finpension, VIAC, and frankly are entirely self-service. You open the account on a smartphone app, choose your investment strategy, and manage contributions yourself. No advisor, no branch, no commission.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What happens to my Pillar 3a if I leave Switzerland?<span class="faq-arrow">▾</span></div><div class="faq-a">You can withdraw the full balance when you permanently leave Switzerland. A reduced withdrawal tax applies. The money is 100% yours from day one — there is no penalty for leaving.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Should I choose frankly if I want the security of a large bank behind the product?<span class="faq-arrow">▾</span></div><div class="faq-a">frankly is backed by ZKB, one of Switzerland's largest cantonal banks. However, its forced CHF currency hedging on international positions reduces long-term returns for globally diversified investors. For a 20+ year horizon, finpension or VIAC typically deliver better outcomes.</div></div>
+  <!-- HEADER -->
+  <div class="article-header">
+    <p class="article-meta">Pensions · Investment · 6 min read</p>
+    <h1>Pillar 3a and ETFs: Can You Invest Your 3a Yourself — and How Does It Really Work?</h1>
+    <div class="header-rule"></div>
   </div>
-  <div class="cta-box fade-in"><p>For most expats, opening a digital Pillar 3a account is one of the easiest and most valuable financial decisions available in Switzerland. The right strategy depends on your personal circumstances. SwissExpatHub can connect you with advisors who help international residents optimise their Pillar 3a strategy in Switzerland.</p><a href="/directory" class="cta-btn">Find Your Advisor →</a></div>
-  <div class="sources fade-in"><h3>Sources</h3><ol><li>Federal Tax Administration — Pillar 3a tax treatment: estv.admin.ch</li><li>IRS — PFIC rules Form 8621: irs.gov</li><li>Federal Social Insurance Office — Pension system: bsv.admin.ch</li></ol></div>
+
+  <!-- QUICK ANSWER -->
+  <div class="quick-answer reveal">
+    <p><strong>Quick Answer: Yes — but not in a regular brokerage account.</strong> To get the tax deduction, the money must sit in a Pillar 3a pension foundation. Apps such as finpension and VIAC play that role: you open the account on your phone and choose yourself where it is invested, including in global index funds.</p>
+  </div>
+
+  <!-- TAKEAWAYS -->
+  <div class="takeaways">
+    <h2>Key Takeaways</h2>
+    <ul>
+      <li class="takeaway-item" data-delay="0">Only Pillar 3a gives you the tax deduction — many products sold as “third pillar” are 3b: they invest in ETFs or funds but do not reduce your tax</li>
+      <li class="takeaway-item" data-delay="100">A fee just 0.5% higher per year can cost around CHF&nbsp;59,000 over 35 years of contributions</li>
+      <li class="takeaway-item" data-delay="200">finpension (0.39%), VIAC (0.40–0.44%) and frankly (0.44%) are three of the most popular low-cost digital providers in 2026</li>
+      <li class="takeaway-item" data-delay="300">These platforms use Swiss index funds — not ETFs — which are exempt from Swiss stamp duty and more tax-efficient for pension savings</li>
+      <li class="takeaway-item" data-delay="400">Your money is protected even if the platform goes bankrupt — assets are held in a separate regulated foundation</li>
+    </ul>
+  </div>
+
+  <!-- SOUND FAMILIAR -->
+  <div>
+    <h2 class="reveal">Does Any of This Sound Familiar?</h2>
+    <div class="sit-grid">
+      <div class="sit-card" data-delay="0"><span class="ic">📈</span>You already invest in ETFs through a brokerage account.</div>
+      <div class="sit-card" data-delay="120"><span class="ic">🤔</span>You wonder why you cannot just put your Pillar 3a money into the same account and buy the same funds.</div>
+      <div class="sit-card" data-delay="240"><span class="ic">🏦</span>Or your Pillar 3a sits in a bank savings account earning near-zero interest, and you suspect there is a better option.</div>
+    </div>
+    <p class="reveal" style="margin-top:14px">If any of these sounds familiar, this article explains how the system actually works — and what your real options are.</p>
+  </div>
+
+  <!-- 1 BROKERAGE -->
+  <div class="card c-red">
+    <div class="card-head"><span class="card-num">#1</span><h2>Why You Cannot Use a Regular Brokerage Account</h2></div>
+    <p>This is the most common misconception among expats who already invest independently.</p>
+    <p>The Swiss tax deduction for Pillar 3a is only available when the money is held in a <span class="hl-blue">regulated pension foundation</span> — a specific legal structure authorised by the Swiss government. A regular brokerage account — at Interactive Brokers, DEGIRO or anywhere else — does not qualify. Some banks and brokers, such as Swissquote, offer both: their regular brokerage account does not qualify, but their 3a product does.</p>
+    <p>If you invest CHF&nbsp;7,258 in ETFs through a regular brokerage account instead of a Pillar 3a account, you lose two things: the <strong>tax deduction</strong> — you cannot deduct the investment from your taxable income — and the <strong>wealth tax exemption</strong>.</p>
+    <p>In Geneva, a single person only pays wealth tax on net assets above roughly <span class="hl-red">CHF&nbsp;87,000</span>. Above that line, every franc in a brokerage account is taxed every year — money in Pillar 3a is not, until you withdraw it.</p>
+    <div class="viz" id="vbrok">
+      <div class="vs">
+        <div class="vs-row head" data-delay="0"><div class="lbl" style="background:transparent">&nbsp;</div><div>Brokerage account</div><div>Pillar 3a</div></div>
+        <div class="vs-row" data-delay="150"><div class="lbl">Income tax deduction</div><div class="no">✗ No</div><div class="yes">✓ Up to CHF&nbsp;7,258</div></div>
+        <div class="vs-row" data-delay="300"><div class="lbl">Wealth tax</div><div class="no">✗ Taxed yearly</div><div class="yes">✓ Exempt</div></div>
+      </div>
+      <div class="wt">
+        <div class="viz-label" style="margin-top:18px">Geneva, single person — how much of your brokerage account is above the wealth tax line?</div>
+        <div class="wt-bar"><div class="wt-free" id="wt-free"></div><div class="wt-tax" id="wt-tax"></div><div class="wt-line" id="wt-line"></div></div>
+        <div class="wt-legend"><span>CHF&nbsp;0</span><span>Line: about CHF&nbsp;87,000</span><span>CHF&nbsp;300,000</span></div>
+        <div class="slider">
+          <label for="wt">Net assets in a brokerage account <b id="wt-val">CHF 150,000</b></label>
+          <input type="range" id="wt" min="0" max="300000" step="5000" value="150000" aria-label="Net assets in a brokerage account">
+        </div>
+        <p class="wt-out" id="wt-out"></p>
+        <p class="viz-note">Illustrative, assuming these are your only assets. In Pillar 3a, the same money is outside wealth tax entirely.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2 3a vs 3b -->
+  <div class="card c-gold">
+    <div class="card-head"><span class="card-num">#2</span><h2>3a or 3b: Check What You Actually Bought</h2></div>
+    <p>In Switzerland, “third pillar” covers two different things — and only one of them reduces your tax.</p>
+    <div class="viz" id="vab" style="margin-top:12px;padding-top:12px">
+      <div class="ab">
+        <div class="ab-col a" data-delay="0"><h3>Pillar 3a (tied)</h3>
+          <div class="ab-item"><span class="k">Deduction</span><span>Up to CHF&nbsp;7,258 a year (2026)</span></div>
+          <div class="ab-item"><span class="k">Access</span><span>Locked until retirement, with exceptions (buying a home, leaving Switzerland, becoming self-employed)</span></div>
+          <div class="ab-item"><span class="k">Wealth tax</span><span>Exempt until withdrawal</span></div>
+          <div class="ab-item"><span class="k">Held in</span><span>A pension foundation or an insurer authorised for 3a</span></div>
+        </div>
+        <div class="ab-col b" data-delay="250"><h3>Pillar 3b (flexible)</h3>
+          <div class="ab-item"><span class="k">Deduction</span><span>No 3a deduction; in Geneva only a small deduction for life insurance premiums and savings interest (CHF&nbsp;2,352 for a single person)</span></div>
+          <div class="ab-item"><span class="k">Access</span><span>As the contract allows</span></div>
+          <div class="ab-item"><span class="k">Wealth tax</span><span>Taxed every year</span></div>
+          <div class="ab-item"><span class="k">Held in</span><span>Any account, fund or insurance policy</span></div>
+        </div>
+      </div>
+    </div>
+    <p style="margin-top:16px">Many banks and insurers sell products labelled “third pillar” that are in fact 3b — especially life insurance with an investment component, often offered to newly arrived expats. They may well invest in ETFs, but they do not give you the 3a deduction — and they often lock you into the contract for many years. Before you sign, check that the contract says “3a” (in French, <em>prévoyance liée</em>; in German, <em>gebundene Vorsorge</em>).</p>
+    <div style="text-align:center"><span class="stamp-3a" id="stamp3a">✓ Contract says “3a”</span></div>
+  </div>
+
+  <!-- 3 WHAT YOU CAN DO -->
+  <div class="card">
+    <div class="card-head"><span class="card-num">#3</span><h2>What You Can Do: Invest Your 3a in Index Funds Yourself</h2></div>
+    <p>Digital Pillar 3a platforms work almost like a brokerage account: you open the account on your phone in about 10 minutes, choose your allocation, and the foundation invests the money according to your instructions — no paperwork, no branch, no advisor and no commission.</p>
+    <div class="viz" id="vsteps">
+      <div class="steps">
+        <div class="step" data-delay="0"><span class="ic">📱</span>Open the app</div>
+        <div class="arrow" data-delay="200">→</div>
+        <div class="step" data-delay="350"><span class="ic">🎚️</span>Choose your allocation</div>
+        <div class="arrow" data-delay="550">→</div>
+        <div class="step" data-delay="700"><span class="ic">🏛️</span>The foundation invests</div>
+      </div>
+      <p class="clock">Set-up time: <b id="clock">0</b> min</p>
+    </div>
+  </div>
+
+  <!-- 4 ETFs vs INDEX FUNDS -->
+  <div class="card c-green">
+    <div class="card-head"><span class="card-num">#4</span><h2>ETFs vs Swiss Index Funds: What Are You Actually Buying?</h2></div>
+    <p>This is a technical detail most expats never consider — but it matters for long-term returns.</p>
+    <p>Most digital Pillar 3a platforms do not invest in ETFs in the traditional sense. They invest in <span class="hl-green">Swiss institutional index funds</span>. Both track the same indices — global equities, US equities, Swiss equities — but the structure is different, and the reason matters:</p>
+    <div class="viz" id="vreasons">
+      <div class="reasons">
+        <div class="reason" data-delay="0"><span class="n">1</span><div><h3>Stamp duty exemption</h3><p>Swiss index funds trade on the primary market — subscriptions and redemptions happen directly with the fund, not on a stock exchange. This means they are exempt from Swiss stamp duty, which applies to ETFs traded on the secondary market. Over time, this small cost difference compounds.</p></div></div>
+        <div class="reason" data-delay="450"><span class="n">2</span><div><h3>Withholding tax efficiency</h3><p>Swiss pension funds can recover withholding tax on international dividends more efficiently than private investors. This is particularly relevant for US equities, where the standard withholding tax on dividends is 15–30%. Institutional Swiss funds access preferential recovery rates through specific pension fund treaties.</p></div></div>
+        <div class="reason" data-delay="900"><span class="n">3</span><div><h3>Near-zero TER on institutional tranches</h3><p>Pension platforms can access institutional fund tranches not available to private investors — often with a TER close to zero. The platform fee covers everything.</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5 PLATFORMS -->
+  <div class="card">
+    <div class="card-head"><span class="card-num">#5</span><h2>Three Popular Platforms in 2026</h2></div>
+    <div class="viz" id="vplats" style="margin-top:4px;padding-top:4px;border-top:none">
+      <div class="plats">
+        <div class="plat" data-delay="0">
+          <div class="plat-head"><h3>finpension 3a</h3><span class="fee">0.39% total fee</span></div>
+          <p>The lowest-cost option among the three. Invests in institutional index funds from UBS and Swisscanto. High customisation. Up to 5 portfolios per person. No currency hedging forced on investors. Pension foundation based in Schwyz — which matters if you withdraw after leaving Switzerland (see FAQ).</p>
+          <div class="meter"><span>Max. equities</span><div class="track"><div class="fill eq" data-w="99"></div></div><span class="val">99%</span></div>
+          <div class="meter"><span>Max. foreign currency</span><div class="track"><div class="fill fx" data-w="99"></div></div><span class="val">99%</span></div>
+        </div>
+        <div class="plat" data-delay="200">
+          <div class="plat-head"><h3>VIAC</h3><span class="fee">≈ 0.40–0.44% total fee</span></div>
+          <p>The pioneer of digital Pillar 3a in Switzerland. Strong customisation and a well-regarded app. Also offers vested benefits accounts and a mortgage product. Pension foundation based in Basel-Stadt.</p>
+          <div class="meter"><span>Max. equities</span><div class="track"><div class="fill eq" data-w="99"></div></div><span class="val">99%</span></div>
+        </div>
+        <div class="plat" data-delay="400">
+          <div class="plat-head"><h3>frankly</h3><span class="fee">0.44% total fee</span></div>
+          <p>Backed by Zürcher Kantonalbank, one of Switzerland's largest cantonal banks. Simpler interface. Forces at least 70% in CHF with currency hedging — which reduces long-term international returns. Better suited for those who prefer the security of a large bank behind the product.</p>
+          <div class="meter"><span>Max. equities</span><div class="track"><div class="fill eq" data-w="95"></div></div><span class="val">95%</span></div>
+          <div class="meter"><span>Max. foreign currency</span><div class="track"><div class="fill fx" data-w="30"></div></div><span class="val">30%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6 SAFETY -->
+  <div class="card c-green">
+    <div class="card-head"><span class="card-num">#6</span><h2>Is Your Money Safe If the Platform Goes Bankrupt?</h2></div>
+    <p>This is one of the most common concerns — and the answer is reassuring.</p>
+    <p>Your Pillar 3a assets are held in a separate regulated pension foundation — legally independent from the technology platform. If finpension, VIAC or frankly were to go bankrupt, your money would not disappear: it is held in your name at a regulated custodian bank and would be transferred to another institution. Fund holdings are kept separate from the bank's own assets, and cash in the account is privileged in a bank insolvency up to CHF&nbsp;100,000, on top of ordinary deposit protection.</p>
+    <div class="viz" id="vsafe">
+      <div class="layers">
+        <div class="layer app" id="l-app"><span>📱 <b>The app</b> — just the interface</span><span class="tag">Bankrupt</span></div>
+        <div class="layer safe" id="l-found"><span>🏛️ <b>Pension foundation</b> — legally separate</span><span class="tag">✓ Unaffected</span></div>
+        <div class="layer safe" id="l-bank"><span>🔒 <b>Custodian bank</b> — assets in your name</span><span class="tag">✓ Your money</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7 NUMBERS -->
+  <div class="card c-gold">
+    <div class="card-head"><span class="card-num">#7</span><h2>The Numbers Over Time</h2></div>
+    <p>Example: you start at 30 and pay CHF&nbsp;500 a month into Pillar 3a — CHF&nbsp;6,000 a year — until 65. That is 35 years of contributions, with a net return of 5% a year.</p>
+    <p>Of the roughly <span class="hl-blue">CHF&nbsp;568,000</span> final balance, only <strong>CHF&nbsp;210,000</strong> came out of your pocket — and along the way you paid around <span class="hl-green">CHF&nbsp;63,000</span> less income tax. The tax saving assumes a 30% marginal rate; yours may be higher or lower.</p>
+    <div class="viz" id="vnums">
+      <div class="viz-label">Where the money comes from</div>
+      <div class="nums-top">
+        <div class="stat blue"><div class="k">You paid in</div><div class="v" id="n-dep">CHF 0</div><small>35 × CHF&nbsp;6,000</small></div>
+        <div class="stat green"><div class="k">5% growth</div><div class="v" id="n-gro">CHF 0</div><small>568,046 − 210,000</small></div>
+        <div class="stat gold"><div class="k">Tax saved</div><div class="v" id="n-tax">CHF 0</div><small id="n-tax-calc">6,000 × 30% × 35</small></div>
+      </div>
+      <div class="stack">
+        <div class="stack-bar"><div class="sb-dep" id="sb-dep">Paid in</div><div class="sb-gro" id="sb-gro">Growth</div><div class="sb-tax" id="sb-tax">Tax</div></div>
+        <div class="stack-legend"><span style="--c:#2e5fa3">Paid in</span><span style="--c:#1a7a4a">Growth (in your 3a)</span><span style="--c:#b8862a">Tax saved (in your pocket, outside the account)</span></div>
+      </div>
+      <div class="slider">
+        <label for="mrate">Your marginal tax rate <b id="mrate-val">30%</b></label>
+        <input type="range" id="mrate" min="25" max="35" step="1" value="30" aria-label="Marginal tax rate">
+      </div>
+
+      <div class="viz-label" style="margin-top:20px">Year by year</div>
+      <div class="yt" id="yt">
+        <div class="yt-row head" data-delay="0"><div>Age</div><div>Paid in</div><div>Growth</div><div>Balance</div></div>
+        <div class="yt-row" data-delay="120"><div>31 <span class="yr">(year 1)</span></div><div>CHF&nbsp;6,000</div><div class="g">CHF&nbsp;139</div><div>CHF&nbsp;6,139</div></div>
+        <div class="yt-row" data-delay="240"><div>40 <span class="yr">(year 10)</span></div><div>CHF&nbsp;60,000</div><div class="g">CHF&nbsp;17,641</div><div>CHF&nbsp;77,641</div></div>
+        <div class="yt-row" data-delay="360"><div>50 <span class="yr">(year 20)</span></div><div>CHF&nbsp;120,000</div><div class="g">CHF&nbsp;85,517</div><div>CHF&nbsp;205,517</div></div>
+        <div class="yt-row cross" data-delay="480"><div>56 <span class="yr">(year 26)</span></div><div>CHF&nbsp;156,000</div><div class="g">CHF&nbsp;163,128</div><div>CHF&nbsp;319,128</div></div>
+        <div class="yt-row" data-delay="600"><div>65 <span class="yr">(year 35)</span></div><div>CHF&nbsp;210,000</div><div class="g">CHF&nbsp;358,046</div><div>CHF&nbsp;568,046</div></div>
+      </div>
+      <p class="viz-note">Highlighted: year 26, when growth first overtakes everything you paid in — compounding does most of its work in the final years.</p>
+
+      <div class="viz-label" style="margin-top:20px">Now add fees</div>
+      <div class="fee-toggle" role="group" aria-label="Fee scenario">
+        <button type="button" class="on" data-r="0.05">Low-cost platform (5% net)</button>
+        <button type="button" data-r="0.045">+0.5% fees (4.5% net)</button>
+      </div>
+      <div class="fee-out">
+        <div class="stat blue"><div class="k">Balance at 65</div><div class="v" id="f-bal">CHF 568,046</div></div>
+        <div class="stat red"><div class="k">Lost to fees</div><div class="v" id="f-lost">CHF 0</div></div>
+      </div>
+      <p class="calc-line" id="f-calc">568,046 − 568,046 = CHF&nbsp;0</p>
+    </div>
+    <p style="margin-top:16px">A provider charging 0.5% more per year cuts the net return from 5% to 4.5%. The final balance drops to about CHF&nbsp;509,000 — CHF&nbsp;59,000 less, from fees alone. This is why the choice of provider matters far more than most people realise at the start.</p>
+    <p>At withdrawal, your 3a balance is taxed at a reduced rate, separately from your other income; the rate varies by canton.</p>
+    <p class="viz-note">Illustrative figures: CHF&nbsp;500 a month from age 30 to 65, monthly compounding; tax saving at a 25–35% marginal rate.</p>
+  </div>
+
+  <!-- MISTAKES -->
+  <div>
+    <h2 class="reveal">Common Mistakes</h2>
+    <div class="mistakes">
+      <div class="mistake-item" data-delay="0"><div class="mistake-number">01</div><div class="mistake-content"><h3>Leaving Pillar 3a in a bank savings account</h3><p>The tax deduction is the same regardless of provider. The difference is what happens to the money after you contribute. A savings account earning near zero is a significant missed opportunity over a 10 to 30-year investment horizon.</p></div></div>
+      <div class="mistake-item" data-delay="80"><div class="mistake-number">02</div><div class="mistake-content"><h3>Opening only one account</h3><p>You can open up to 5 Pillar 3a accounts with most providers. Spreading your balance across several accounts allows staggered withdrawals at retirement — each in a different tax year — which significantly reduces total withdrawal tax.</p>
+        <div class="stagger-w" id="sw">
+          <div class="sw" data-delay="0">Age 60<small>Account 1</small></div>
+          <div class="sw" data-delay="150">Age 61<small>Account 2</small></div>
+          <div class="sw" data-delay="300">Age 62<small>Account 3</small></div>
+          <div class="sw" data-delay="450">Age 63<small>Account 4</small></div>
+          <div class="sw" data-delay="600">Age 64<small>Account 5</small></div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div>
+    <h2 class="reveal">Before You Ask</h2>
+    <div style="margin-top:12px">
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">What happens to my Pillar 3a if I leave Switzerland?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">You can withdraw the full balance when you leave Switzerland permanently. A reduced withdrawal tax applies — and once you live abroad, it is levied by the canton where the pension foundation is based, which is why a foundation in a low-tax canton such as Schwyz can matter. The money is 100% yours from day one; there is no penalty for leaving.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">I'm American. Is anything different for me?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">Yes. The IRS may treat the Swiss funds inside a Pillar 3a as PFICs, which can mean extra US reporting (Form 8621). Read our article on PFICs before opening an account.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">When should I speak with an advisor?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">If you already have an insurance-based Pillar 3a product and are unsure whether it is worth keeping.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-box reveal">
+    <p>Opening the account is the easy part. How many accounts to hold, which allocation to choose, how to plan withdrawals and how it all fits your Swiss and international tax situation depends on your circumstances.</p>
+    <p>SwissExpatHub can connect you with experienced advisors who help international residents optimise their Pillar 3a strategy in Switzerland.</p>
+    <a href="/directory" class="cta-btn">Find Your Advisor →</a>
+  </div>
+
+  <!-- SOURCES -->
+  <div class="sources reveal">
+    <h3>Sources</h3>
+    <ol>
+      <li>Federal Tax Administration — Pillar 3a tax treatment: estv.admin.ch</li>
+      <li>Federal Social Insurance Office — Pillar 3a limits 2026: bsv.admin.ch</li>
+      <li>Geneva Tax Authority — Wealth tax threshold and deductions: ge.ch/impots</li>
+      <li>IRS — PFIC rules, Form 8621: irs.gov</li>
+    </ol>
+  </div>
 
 </div>
+
 <script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); });
-  }, { threshold: 0.1 });
-  document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
-  function toggleFaq(el) { el.parentElement.classList.toggle("open"); }
+window.addEventListener('scroll', () => {
+  const docH = document.documentElement.scrollHeight - window.innerHeight;
+  document.getElementById('progress-bar').style.width = (docH > 0 ? window.scrollY / docH * 100 : 0) + '%';
+});
+window.addEventListener('load', () => {
+  setTimeout(() => document.querySelector('.article-meta').classList.add('visible'), 80);
+  setTimeout(() => document.querySelector('h1').classList.add('visible'), 220);
+  setTimeout(() => document.querySelector('.header-rule').classList.add('visible'), 420);
+});
+function stagger(selector, threshold) {
+  const obs = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), parseInt(e.target.dataset.delay || 0)); obs.unobserve(e.target); }
+  }), { threshold });
+  document.querySelectorAll(selector).forEach(el => obs.observe(el));
+}
+stagger('.takeaway-item', 0.15);
+stagger('.card', 0.04);
+stagger('.reveal', 0.08);
+stagger('.sit-card', 0.1);
+stagger('.mistake-item', 0.08);
+function onView(id, fn, threshold = 0.4) {
+  const el = document.getElementById(id);
+  const obs = new IntersectionObserver(en => { if (en[0].isIntersecting) { fn(); obs.disconnect(); } }, { threshold });
+  obs.observe(el);
+}
+const num = n => Math.round(n).toLocaleString('en-US');
+const fmt = n => 'CHF ' + num(n);
+function countUp(el, to, ms, from = 0, f = fmt) {
+  const t0 = performance.now();
+  const step = t => { const k = Math.min(1, (t - t0) / ms), e = 1 - Math.pow(1 - k, 3);
+    el.textContent = f(from + (to - from) * e); if (k < 1) requestAnimationFrame(step); };
+  requestAnimationFrame(step);
+}
+const each = (sel, fn) => document.querySelectorAll(sel).forEach(fn);
+const later = (el, cls) => setTimeout(() => el.classList.add(cls), parseInt(el.dataset.delay || 0));
+
+// #1 brokerage vs 3a + wealth-tax line
+const LINE = 87872, MAXW = 300000, wt = document.getElementById('wt');
+document.getElementById('wt-line').style.left = (LINE / MAXW * 100) + '%';
+function updWt() {
+  const v = +wt.value, free = Math.min(v, LINE), over = Math.max(0, v - LINE);
+  document.getElementById('wt-val').textContent = fmt(v);
+  document.getElementById('wt-free').style.width = (free / MAXW * 100) + '%';
+  const tax = document.getElementById('wt-tax');
+  tax.style.left = (LINE / MAXW * 100) + '%'; tax.style.width = (over / MAXW * 100) + '%';
+  document.getElementById('wt-out').innerHTML = over > 0
+    ? `${num(v)} − 87,872 = <b class="hl-red">CHF&nbsp;${num(over)}</b> subject to wealth tax every year · in Pillar 3a: <b class="hl-green">CHF&nbsp;0</b>`
+    : `Below the line: <b class="hl-green">no wealth tax</b> yet — but every franc above about CHF&nbsp;87,000 would count`;
+}
+wt.addEventListener('input', updWt);
+onView('vbrok', () => { each('.vs-row', r => later(r, 'visible')); setTimeout(updWt, 500); }, 0.3);
+
+// #2 3a vs 3b
+onView('vab', () => { each('.ab-col', c => later(c, 'visible')); }, 0.25);
+onView('stamp3a', () => setTimeout(() => document.getElementById('stamp3a').classList.add('visible'), 200), 0.9);
+
+// #3 steps
+onView('vsteps', () => {
+  each('#vsteps .step, #vsteps .arrow', s => later(s, 'visible'));
+  setTimeout(() => countUp(document.getElementById('clock'), 10, 900, 0, n => Math.round(n)), 900);
+});
+
+// #4 reasons
+onView('vreasons', () => each('.reason', r => later(r, 'lit')), 0.25);
+
+// #5 platforms
+onView('vplats', () => {
+  each('.plat', p => later(p, 'visible'));
+  each('.meter .fill', f => { const d = parseInt(f.closest('.plat').dataset.delay) + 400; setTimeout(() => f.style.width = f.dataset.w + '%', d); });
+}, 0.15);
+
+// #6 safety
+onView('vsafe', () => {
+  setTimeout(() => document.getElementById('l-app').classList.add('down'), 500);
+  setTimeout(() => document.getElementById('l-found').classList.add('ok'), 1000);
+  setTimeout(() => document.getElementById('l-bank').classList.add('ok'), 1400);
+}, 0.5);
+
+// #7 numbers
+const DEP = 210000, BAL5 = 568046, GRO = BAL5 - DEP, mrate = document.getElementById('mrate');
+let numsStarted = false;
+const taxSaved = () => 6000 * (+mrate.value / 100) * 35;
+function setStack() {
+  const t = taxSaved(), tot = BAL5 + t;
+  document.getElementById('sb-dep').style.width = (DEP / tot * 100) + '%';
+  document.getElementById('sb-gro').style.width = (GRO / tot * 100) + '%';
+  document.getElementById('sb-tax').style.width = (t / tot * 100) + '%';
+}
+function updRate(animate) {
+  document.getElementById('mrate-val').textContent = mrate.value + '%';
+  document.getElementById('n-tax-calc').textContent = `6,000 × ${mrate.value}% × 35`;
+  const el = document.getElementById('n-tax');
+  if (animate) countUp(el, taxSaved(), 1000); else el.textContent = fmt(taxSaved());
+  setStack();
+}
+mrate.addEventListener('input', () => { if (numsStarted) updRate(false); });
+onView('vnums', () => {
+  numsStarted = true;
+  countUp(document.getElementById('n-dep'), DEP, 1000);
+  setTimeout(() => countUp(document.getElementById('n-gro'), GRO, 1100), 300);
+  setTimeout(() => updRate(true), 600);
+}, 0.25);
+onView('yt', () => each('.yt-row', r => later(r, 'visible')), 0.3);
+const fv = r => { const i = r / 12; return 500 * (Math.pow(1 + i, 420) - 1) / i; };
+document.querySelectorAll('.fee-toggle button').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.fee-toggle button').forEach(x => x.classList.toggle('on', x === b));
+  const bal = Math.round(fv(+b.dataset.r)), lost = BAL5 - bal;
+  const balEl = document.getElementById('f-bal'), lostEl = document.getElementById('f-lost');
+  const fromBal = parseInt(balEl.textContent.replace(/\D/g, '')) || 0, fromLost = parseInt(lostEl.textContent.replace(/\D/g, '')) || 0;
+  countUp(balEl, bal, 800, fromBal); countUp(lostEl, lost, 800, fromLost);
+  document.getElementById('f-calc').textContent = `568,046 − ${num(bal)} = CHF ${num(lost)}`;
+}));
+
+// Mistakes: staggered withdrawals
+onView('sw', () => each('.sw', s => later(s, 'visible')), 0.6);
+
+function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
 </script>
 </body>
 </html>
