@@ -48,13 +48,20 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+#progress-bar {
+  position: fixed; top: 0; left: 0; height: 3px;
+  background: var(--blue-mid); width: 0%;
+  z-index: 1000; transition: width .1s linear;
+  border-radius: 0 2px 2px 0;
+}
+
 body {
   background: var(--bg);
   color: var(--fg);
   font-family: 'Inter', system-ui, sans-serif;
   font-size: 16px;
   line-height: 1.75;
-  padding: 40px max(16px, 5vw) 80px;
+  padding: 48px max(16px, 5vw) 80px;
 }
 
 .article {
@@ -62,30 +69,36 @@ body {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 36px;
 }
 
-/* ── HEADER ── */
-.article-header { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
 .article-meta {
   font-family: 'Space Grotesk', sans-serif;
   font-size: 11px; font-weight: 700;
   letter-spacing: .12em; text-transform: uppercase;
-  color: var(--fg2); margin-bottom: 10px;
+  color: var(--fg2); margin-bottom: 12px;
+  opacity: 0; transform: translateY(-8px);
+  transition: opacity .5s ease, transform .5s ease;
 }
+.article-meta.visible { opacity: 1; transform: translateY(0); }
+
 h1 {
   font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(24px, 5vw, 36px);
   font-weight: 700; line-height: 1.2;
   text-wrap: balance; color: var(--fg);
+  opacity: 0; transform: translateY(12px);
+  transition: opacity .6s ease .15s, transform .6s ease .15s;
 }
-.header-rule {
-  height: 2px; background: var(--blue);
-  border-radius: 2px; margin-top: 20px;
-  width: 48px;
-}
+h1.visible { opacity: 1; transform: translateY(0); }
 
-/* ── QUICK ANSWER ── */
+.header-rule {
+  height: 3px; background: var(--blue);
+  border-radius: 2px; margin-top: 20px;
+  width: 0; transition: width .8s cubic-bezier(.16,1,.3,1) .5s;
+}
+.header-rule.visible { width: 48px; }
+
 .quick-answer {
   background: var(--blue-light);
   border-left: 4px solid var(--blue);
@@ -94,7 +107,6 @@ h1 {
 }
 .quick-answer p { font-size: 15px; color: var(--fg); margin: 0; }
 
-/* ── TAKEAWAYS ── */
 .takeaways {
   background: var(--blue);
   border-radius: 16px;
@@ -102,26 +114,28 @@ h1 {
 }
 .takeaways h2 {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 16px; font-weight: 700;
-  color: rgba(255,255,255,.6);
-  letter-spacing: .08em; text-transform: uppercase;
-  margin-bottom: 16px; margin-top: 0;
+  font-size: 13px; font-weight: 700;
+  color: rgba(255,255,255,.55);
+  letter-spacing: .1em; text-transform: uppercase;
+  margin-bottom: 18px; margin-top: 0;
 }
 .takeaways ul { list-style: none; }
-.takeaways ul li {
+.takeaway-item {
   color: #e8ecf5;
   font-size: 14.5px;
   padding: 10px 0;
   border-bottom: 1px solid rgba(255,255,255,.1);
   display: flex; gap: 12px; align-items: flex-start;
+  opacity: 0; transform: translateX(-10px);
+  transition: opacity .45s ease, transform .45s ease;
 }
-.takeaways ul li:last-child { border-bottom: none; }
-.takeaways ul li::before {
+.takeaway-item.visible { opacity: 1; transform: translateX(0); }
+.takeaway-item:last-child { border-bottom: none; }
+.takeaway-item::before {
   content: "✓"; color: #3dba78;
-  font-weight: 700; flex-shrink: 0; margin-top: 1px;
+  font-weight: 700; flex-shrink: 0; margin-top: 2px;
 }
 
-/* ── HEADINGS ── */
 h2 {
   font-family: 'Space Grotesk', sans-serif;
   font-size: 20px; font-weight: 700;
@@ -137,66 +151,33 @@ p:last-child { margin-bottom: 0; }
 .hl-blue  { color: var(--blue-mid); font-weight: 600; }
 .hl-green { color: var(--green);    font-weight: 600; }
 .hl-red   { color: var(--red);      font-weight: 600; }
-sup { font-size: 11px; color: var(--blue-mid); }
 
-/* ── SITUATION CARDS ── */
-.situation-cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-@media (max-width: 520px) { .situation-cards { grid-template-columns: 1fr; } }
-
-.sit-card {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 14px;
-  padding: 18px 20px;
-  box-shadow: var(--shadow);
-  transition: border-color .2s, box-shadow .2s;
-}
-.sit-card:hover { box-shadow: var(--shadow-md); }
-.sit-card.alert { border-color: var(--red); }
-.sit-card h3 { color: var(--blue-mid); margin-bottom: 6px; }
-.sit-card.alert h3 { color: var(--red); }
-.sit-card p { font-size: 13px; color: var(--fg2); margin: 0; }
-
-/* ── CHECKLIST ── */
-.checklist {
+.mistake-item {
   background: var(--bg2);
   border: 1.5px solid var(--border);
   border-radius: 16px;
-  padding: 24px 28px;
+  padding: 22px 26px;
   box-shadow: var(--shadow);
+  display: flex; gap: 18px; align-items: flex-start;
+  transition: box-shadow .2s;
+  opacity: 0; transform: translateX(-14px);
 }
-.checklist h3 {
+.mistake-item.visible { opacity: 1; transform: translateX(0); }
+.mistake-item:hover { box-shadow: var(--shadow-md); }
+.mistake-number {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  margin-bottom: 16px; color: var(--fg);
+  font-size: 28px; font-weight: 700;
+  color: var(--red); line-height: 1;
+  flex-shrink: 0; min-width: 32px;
+  opacity: .25;
 }
-.checklist-item {
-  display: flex; align-items: flex-start; gap: 12px;
-  padding: 11px 0;
-  border-bottom: 1px solid var(--border);
-  cursor: pointer;
+.mistake-content { flex: 1; }
+.mistake-content h3 {
+  color: var(--red); font-size: 15px;
+  margin-bottom: 8px;
 }
-.checklist-item:last-of-type { border-bottom: none; }
-.check-box {
-  width: 22px; height: 22px;
-  border: 2px solid var(--blue);
-  border-radius: 6px; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  transition: all .2s; margin-top: 2px;
-}
-.check-box.checked { background: var(--blue); border-color: var(--blue); }
-.check-box.checked::after { content: "✓"; color: white; font-size: 13px; font-weight: 700; }
-.checklist-item.done span { text-decoration: line-through; color: var(--fg2); }
-.checklist-item span { font-size: 14.5px; color: var(--fg); font-family: 'Inter', sans-serif; }
-.progress-bar { height: 5px; background: var(--border); border-radius: 3px; margin-top: 16px; }
-.progress-fill { height: 100%; background: var(--green); border-radius: 3px; transition: width .4s ease; }
-.progress-label { font-size: 12px; color: var(--fg2); margin-top: 6px; font-family: 'Inter', sans-serif; }
+.mistake-content p { font-size: 14.5px; color: var(--fg2); margin: 0; line-height: 1.6; }
 
-/* ── FAQ ── */
 .faq-item {
   background: var(--bg2);
   border: 1.5px solid var(--border);
@@ -205,7 +186,7 @@ sup { font-size: 11px; color: var(--blue-mid); }
   overflow: hidden;
   transition: border-color .2s;
 }
-.faq-item.open { border-color: var(--blue); }
+.faq-item.open { border-color: var(--blue-mid); }
 .faq-q {
   padding: 16px 20px;
   font-family: 'Space Grotesk', sans-serif;
@@ -213,43 +194,35 @@ sup { font-size: 11px; color: var(--blue-mid); }
   cursor: pointer;
   display: flex; justify-content: space-between; align-items: center;
   gap: 12px; color: var(--fg);
-  background: transparent;
+  user-select: none;
 }
-.faq-arrow { color: var(--blue); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
+.faq-arrow { color: var(--blue-mid); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
 .faq-item.open .faq-arrow { transform: rotate(180deg); }
 .faq-a {
-  display: none;
-  padding: 0 20px 16px;
+  max-height: 0; overflow: hidden;
+  transition: max-height .35s ease, padding .35s ease;
   font-size: 14px; color: var(--fg2); line-height: 1.65;
-  font-family: 'Inter', sans-serif;
+  padding: 0 20px;
 }
-.faq-item.open .faq-a { display: block; }
+.faq-item.open .faq-a { max-height: 300px; padding: 0 20px 16px; }
 
-/* ── CTA ── */
 .cta-box {
   background: var(--blue);
   border-radius: 16px;
   padding: 32px 36px;
   text-align: center;
 }
-.cta-box p {
-  color: rgba(255,255,255,.8);
-  font-size: 15px; margin-bottom: 20px;
-}
+.cta-box p { color: rgba(255,255,255,.85); font-size: 15px; margin-bottom: 20px; }
 .cta-btn {
-  background: var(--gold);
-  color: #fff;
-  padding: 13px 28px;
-  border-radius: 10px;
+  background: var(--gold); color: #fff;
+  padding: 13px 28px; border-radius: 10px;
   text-decoration: none;
   font-family: 'Space Grotesk', sans-serif;
   font-size: 15px; font-weight: 700;
-  display: inline-block;
-  transition: opacity .2s;
+  display: inline-block; transition: opacity .2s, transform .2s;
 }
-.cta-btn:hover { opacity: .88; }
+.cta-btn:hover { opacity: .88; transform: translateY(-1px); }
 
-/* ── SOURCES ── */
 .sources {
   background: var(--bg2);
   border: 1.5px solid var(--border);
@@ -265,52 +238,183 @@ sup { font-size: 11px; color: var(--blue-mid); }
 .sources ol { padding-left: 18px; }
 .sources ol li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; }
 
-/* ── FADE IN ── */
-.fade-in { opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
-.fade-in.visible { opacity: 1; transform: translateY(0); }
+.reveal {
+  opacity: 0; transform: translateY(16px);
+  transition: opacity .5s ease, transform .5s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
 
 @media (max-width: 600px) {
-  h1 { font-size: 24px; }
-  .situation-cards { grid-template-columns: 1fr; }
-  .cta-box { padding: 24px 20px; }
+  body { padding-top: 36px; }
   .takeaways { padding: 20px 20px; }
+  .cta-box { padding: 24px 20px; }
+  .mistake-item { padding: 16px 18px; gap: 12px; }
+  .mistake-number { font-size: 22px; }
 }
 </style>
 </head>
 <body>
+<div id="progress-bar"></div>
 <div class="article">
 
-  <div class="article-header fade-in"><p class="article-meta">Tax &amp; Finance · Cryptocurrency · 4 min read</p><h1>Cryptocurrency and Swiss Taxes: 5 Things Expats Often Miss</h1></div>
-  <div class="quick-answer fade-in"><p><strong>Quick Answer:</strong> Many expats arrive in Switzerland already owning cryptocurrency and assume that because it was purchased abroad, it has nothing to do with Swiss taxes. That assumption is worth revisiting. Switzerland is generally considered crypto-friendly. But "friendly" does not mean "invisible." The question is not whether you have a problem — it is whether everything is properly documented and reported.</p></div>
-  <div class="takeaways fade-in"><h2>Key Takeaways</h2><ul><li>Crypto held on foreign exchanges may still be relevant for Swiss tax reporting</li><li>Wealth tax can apply to crypto holdings — not just income tax</li><li>The distinction between private investor and professional trader matters</li><li>Poor record keeping is the most common problem — and the easiest to fix early</li><li>The larger your portfolio, the more a one-time review tends to be worth it</li></ul></div>
-  <h2 class="fade-in">Mistake #1: Assuming Foreign Crypto Is Outside the Swiss System</h2>
-  <p class="fade-in">Many expats continue using exchanges they opened before arriving — Coinbase, Binance, Kraken, or others. The reasoning is understandable: the account is foreign, the crypto was purchased before moving, and nobody has asked about it. However, once you become a <span class="hl-blue">Swiss tax resident, your worldwide assets become relevant</span> for reporting purposes. The location of the exchange does not change that.</p>
-  <h2 class="fade-in">Mistake #2: Only Thinking About Capital Gains</h2>
-  <p class="fade-in">Most crypto investors focus on one question: "Do I owe tax on my profits?" In Switzerland, the answer for most private investors is more nuanced than in many other countries. But focusing only on capital gains means overlooking something equally important. <span class="hl-red">Wealth tax applies to the total value of your crypto holdings at year-end</span> — regardless of whether you sold anything.</p>
-  <h2 class="fade-in">Mistake #3: Underestimating the Record Keeping Problem</h2>
-  <p class="fade-in">This is the most common practical issue. Years after buying crypto, many investors struggle to reconstruct original purchase dates and prices, transfers between wallets, full exchange history, and year-end portfolio valuations. Swiss tax reporting requires declaring the value of holdings at the end of each tax year. <span class="hl-red">The longer you wait to organize your records, the harder it becomes.</span></p>
-  <h2 class="fade-in">Mistake #4: Assuming All Investors Are Treated the Same</h2>
-  <p class="fade-in">Swiss tax authorities distinguish between <span class="hl-blue">private investors</span> and <span class="hl-red">professional traders</span>. For most expats holding crypto as a long-term investment, private investor status is typical. But certain patterns — frequent trading, use of leverage, short holding periods, or crypto representing a large portion of income — can change that assessment.</p>
-  <h2 class="fade-in">Mistake #5: Waiting Until Tax Season to Think About It</h2>
-  <p class="fade-in">Most people only start researching crypto tax obligations when preparing their annual return. By then, records may be incomplete, planning opportunities may be gone, and fixing problems becomes more complicated than preventing them.</p>
-  <div class="question-box fade-in"><p><strong>I have CHF 50,000 (or CHF 200,000) in crypto. Should I be concerned?</strong> Not necessarily. Owning cryptocurrency does not mean you have a tax problem. But it raises questions worth answering honestly: Do you know the value of your holdings at year-end? Are your purchase records complete? Have you considered how crypto affects wealth tax reporting?</p></div>
-  <h2 class="fade-in">Before You Ask</h2>
-  <div class="faq fade-in">
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Do I need to declare crypto held on foreign exchanges?<span class="faq-arrow">▾</span></div><div class="faq-a">In most cases, yes. Swiss tax residents are generally required to declare worldwide assets, including crypto held on foreign platforms. The location of the exchange does not eliminate the reporting obligation.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Does crypto affect wealth tax?<span class="faq-arrow">▾</span></div><div class="faq-a">Yes. Cryptocurrency is treated as a taxable asset for wealth tax purposes. Holdings must typically be declared at their year-end market value. Valuation rules can be complex for less liquid tokens.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What if I have held crypto for many years without reporting it?<span class="faq-arrow">▾</span></div><div class="faq-a">This situation is more common than most people realize. There are legal mechanisms in Switzerland to regularize undeclared assets. Speaking with an advisor before the situation becomes a formal problem is strongly recommended.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What is the most common mistake?<span class="faq-arrow">▾</span></div><div class="faq-a">Poor record keeping. Many investors discover years later that transaction history is incomplete, wallet transfers are undocumented, or year-end valuations were never recorded. These gaps are much easier to prevent than to fix.</div></div>
+  <!-- HEADER -->
+  <div class="article-header">
+    <p class="article-meta">Tax &amp; Finance · Cryptocurrency · 4 min read</p>
+    <h1>Cryptocurrency and Swiss Taxes: 5 Things Expats Often Miss</h1>
+    <div class="header-rule"></div>
   </div>
-  <div class="cta-box fade-in"><p>Most expats with cryptocurrency do not have a serious tax problem. What they often lack is confidence that everything is being handled correctly. SwissExpatHub connects expats in Geneva with advisors who understand cryptocurrency and Swiss tax reporting.</p><a href="/directory" class="cta-btn">Find Your Advisor →</a></div>
-  <div class="sources fade-in"><h3>Sources</h3><ol><li>Federal Tax Administration — Cryptocurrency taxation guidelines: estv.admin.ch</li><li>Geneva Tax Authority (AFC) — Wealth tax on digital assets: ge.ch/impots</li></ol></div>
+
+  <!-- QUICK ANSWER -->
+  <div class="quick-answer reveal">
+    <p><strong>Quick Answer:</strong> Many expats arrive in Switzerland already owning cryptocurrency and assume that because it was purchased abroad, it has nothing to do with Swiss taxes. That assumption is worth revisiting. Switzerland is generally considered crypto-friendly — but "friendly" does not mean "invisible." The question is not whether you have a problem. It is whether everything is properly documented and declared.</p>
+  </div>
+
+  <!-- TAKEAWAYS -->
+  <div class="takeaways">
+    <h2>Key Takeaways</h2>
+    <ul>
+      <li class="takeaway-item" data-delay="0">Crypto held on foreign exchanges must be declared to the Swiss tax authority</li>
+      <li class="takeaway-item" data-delay="100">In Switzerland, private investors pay no capital gains tax — but wealth tax applies</li>
+      <li class="takeaway-item" data-delay="200">What matters is the total value of your holdings on 31 December, converted to CHF</li>
+      <li class="takeaway-item" data-delay="300">Download your exchange statements at year-end — you may need them as proof in an audit</li>
+      <li class="takeaway-item" data-delay="400">The larger your crypto holdings relative to your salary, the more a one-time review tends to be worth it</li>
+    </ul>
+  </div>
+
+  <!-- MISTAKES -->
+  <div>
+    <h2 class="reveal">The 5 Mistakes</h2>
+    <div style="display:flex; flex-direction:column; gap:12px; margin-top:16px;">
+
+      <div class="mistake-item" data-delay="0">
+        <div class="mistake-number">1</div>
+        <div class="mistake-content">
+          <h3>Assuming Foreign Crypto Is Outside the Swiss System</h3>
+          <p>Many expats continue using exchanges they opened before arriving — Coinbase, Binance, Kraken, or others. The reasoning is understandable: the account is foreign, the crypto was purchased before moving, and nobody has asked about it. However, once you become a <span class="hl-blue">Swiss tax resident, your worldwide assets are relevant for declaration purposes</span>. The location of the exchange does not change that.</p>
+        </div>
+      </div>
+
+      <div class="mistake-item" data-delay="80">
+        <div class="mistake-number">2</div>
+        <div class="mistake-content">
+          <h3>Only Thinking About Capital Gains</h3>
+          <p>In Switzerland, private investors <span class="hl-green">pay no capital gains tax</span>. Sold Bitcoin with a CHF 50,000 profit? That gain is not taxed. What does apply is <span class="hl-blue">wealth tax</span> — a small percentage on the total value of your holdings at year-end. In Geneva, the rate ranges between <span class="hl-blue">0.15% and 0.38%</span>. With CHF 100,000 in crypto on 31 December, you pay roughly <strong>CHF 150 to CHF 380 per year</strong> — not on your profit, but on the total value.</p>
+        </div>
+      </div>
+
+      <div class="mistake-item" data-delay="160">
+        <div class="mistake-number">3</div>
+        <div class="mistake-content">
+          <h3>Not Recording Your Portfolio Value at Year-End</h3>
+          <p>On 31 December, the tax authority wants to know one thing: how much cryptocurrency do you hold, <span class="hl-blue">converted to Swiss francs</span>. That is all. Whether it is Bitcoin, Ethereum or Tether — what matters is the total value on that day. Note that number every year. It is everything you need to declare.</p>
+        </div>
+      </div>
+
+      <div class="mistake-item" data-delay="240">
+        <div class="mistake-number">4</div>
+        <div class="mistake-content">
+          <h3>Assuming You Will Never Need to Prove Anything</h3>
+          <p>Swiss tax authorities do not have direct access to your transactions on foreign exchanges. But that does not mean you will never need to explain what you hold. What can attract attention: <span class="hl-red">a large increase in wealth that does not match your salary</span>, declared gains close to 50% of your total income, use of leverage, or instruments such as futures and CFDs — bets on price movement without owning the asset. These signals can lead the tax authority to investigate whether you are a private investor or a <span class="hl-red">professional trader</span>. The difference is significant: professional traders pay income tax on their gains.</p>
+          <p style="margin-top:10px;">An audit can also be triggered by something unrelated — a property transaction, an inheritance, a lifestyle that does not match declared income. The tax authority then requests your complete asset picture. Crypto enters automatically. If it was not declared or records are incomplete, the problem surfaces.</p>
+        </div>
+      </div>
+
+      <div class="mistake-item" data-delay="320">
+        <div class="mistake-number">5</div>
+        <div class="mistake-content">
+          <h3>Not Keeping Exchange Statements</h3>
+          <p>When filing, you declare the name of each exchange and the value you held on 31 December, in CHF. The tax authority accepts what you declare — no proof is required upfront. But if an audit happens, you will need to demonstrate it. Download your exchange statement at the end of each year and keep it somewhere safe. It takes five minutes and can save a great deal of trouble later.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div>
+    <h2 class="reveal">Frequently Asked Questions</h2>
+    <div style="margin-top:12px;">
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">How do I declare crypto held on a foreign exchange?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">Simply declare the name of the exchange and the value you held on 31 December, converted to Swiss francs. The tax authority accepts what you declare. Keep the exchange statement as a backup in case it is ever requested.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">Does crypto affect wealth tax?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">Yes. Cryptocurrency is declared at its total value on 31 December, in CHF. In Geneva, the rate ranges between 0.15% and 0.38%. With CHF 100,000 in crypto, you pay between CHF 150 and CHF 380 per year.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">What if I have held crypto for years without declaring it?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">The issue is not just back taxes. If your crypto holdings are large relative to your salary, the tax authority will want to know where the wealth came from. Most exchanges keep full transaction history — you can export it. The problem arises when you closed an account, lost access, or the platform shut down. Either way, you will need to account for where the funds went. Speaking with an advisor early gives you the most options.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">What is the most common mistake?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">Not keeping exchange statements. If you are ever audited, you will need to present proof. Download the statement from each exchange at the end of the year and store it somewhere safe — that is all it takes.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-box reveal">
+    <p>Most expats with cryptocurrency do not have a serious tax problem. What they often lack is confidence that everything is being handled correctly. SwissExpatHub connects expats in Geneva with advisors who understand cryptocurrency and Swiss tax reporting.</p>
+    <a href="/directory" class="cta-btn">Find Your Advisor →</a>
+  </div>
+
+  <!-- SOURCES -->
+  <div class="sources reveal">
+    <h3>Sources</h3>
+    <ol>
+      <li>Federal Tax Administration — Cryptocurrency taxation guidelines: estv.admin.ch</li>
+      <li>Geneva Tax Authority (AFC) — Wealth tax on digital assets: ge.ch/impots</li>
+      <li>CoinTaxReporting — Binance, Coinbase & Kraken Tax Report Switzerland 2026: cointaxreporting.com</li>
+    </ol>
+  </div>
 
 </div>
 <script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); });
-  }, { threshold: 0.1 });
-  document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
-  function toggleFaq(el) { el.parentElement.classList.toggle("open"); }
+window.addEventListener('scroll', () => {
+  const docH = document.documentElement.scrollHeight - window.innerHeight;
+  document.getElementById('progress-bar').style.width = (window.scrollY / docH * 100) + '%';
+});
+
+window.addEventListener('load', () => {
+  setTimeout(() => document.querySelector('.article-meta').classList.add('visible'), 80);
+  setTimeout(() => document.querySelector('h1').classList.add('visible'), 220);
+  setTimeout(() => document.querySelector('.header-rule').classList.add('visible'), 420);
+});
+
+const takeawayObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), parseInt(e.target.dataset.delay || 0));
+      takeawayObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.15 });
+document.querySelectorAll('.takeaway-item').forEach(el => takeawayObs.observe(el));
+
+const mistakeObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), parseInt(e.target.dataset.delay || 0));
+      mistakeObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.mistake-item').forEach(el => mistakeObs.observe(el));
+
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      revealObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+function toggleFaq(el) {
+  el.parentElement.classList.toggle('open');
+}
 </script>
 </body>
 </html>
