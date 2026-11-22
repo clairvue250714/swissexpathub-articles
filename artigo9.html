@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Double Taxation Between the US and Switzerland: What Expats Need to Know</title>
+<title>Double Taxation Between the US and Switzerland: What Americans Need to Know</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
 <style>
 :root {
@@ -48,346 +48,831 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+#progress-bar {
+  position: fixed; top: 0; left: 0; height: 3px;
+  background: var(--blue-mid); width: 0%;
+  z-index: 1000; transition: width .1s linear;
+  border-radius: 0 2px 2px 0;
+}
+
 body {
-  background: var(--bg);
-  color: var(--fg);
+  background: var(--bg); color: var(--fg);
   font-family: 'Inter', system-ui, sans-serif;
-  font-size: 16px;
-  line-height: 1.75;
-  padding: 40px max(16px, 5vw) 80px;
+  font-size: 16px; line-height: 1.75;
+  padding: 48px max(16px, 5vw) 80px;
 }
+.article { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 36px; }
 
-.article {
-  max-width: 720px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-
-/* ── HEADER ── */
-.article-header { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
+/* HEADER */
 .article-meta {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: .12em; text-transform: uppercase;
-  color: var(--fg2); margin-bottom: 10px;
+  font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--fg2); margin-bottom: 12px;
+  opacity: 0; transform: translateY(-8px); transition: opacity .5s ease, transform .5s ease;
 }
+.article-meta.visible { opacity: 1; transform: translateY(0); }
 h1 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(24px, 5vw, 36px);
-  font-weight: 700; line-height: 1.2;
-  text-wrap: balance; color: var(--fg);
+  font-family: 'Space Grotesk', sans-serif; font-size: clamp(24px, 5vw, 36px);
+  font-weight: 700; line-height: 1.2; text-wrap: balance; color: var(--fg);
+  opacity: 0; transform: translateY(12px); transition: opacity .6s ease .15s, transform .6s ease .15s;
 }
+h1.visible { opacity: 1; transform: translateY(0); }
 .header-rule {
-  height: 2px; background: var(--blue);
-  border-radius: 2px; margin-top: 20px;
-  width: 48px;
+  height: 3px; background: var(--blue); border-radius: 2px; margin-top: 20px;
+  width: 0; transition: width .8s cubic-bezier(.16,1,.3,1) .5s;
 }
+.header-rule.visible { width: 48px; }
 
-/* ── QUICK ANSWER ── */
-.quick-answer {
-  background: var(--blue-light);
-  border-left: 4px solid var(--blue);
-  border-radius: 0 14px 14px 0;
-  padding: 20px 24px;
-}
+/* QUICK ANSWER */
+.quick-answer { background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 14px 14px 0; padding: 20px 24px; }
 .quick-answer p { font-size: 15px; color: var(--fg); margin: 0; }
 
-/* ── TAKEAWAYS ── */
-.takeaways {
-  background: var(--blue);
-  border-radius: 16px;
-  padding: 28px 32px;
-}
+/* TAKEAWAYS */
+.takeaways { background: var(--blue); border-radius: 16px; padding: 28px 32px; }
 .takeaways h2 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 16px; font-weight: 700;
-  color: rgba(255,255,255,.6);
-  letter-spacing: .08em; text-transform: uppercase;
-  margin-bottom: 16px; margin-top: 0;
+  font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700;
+  color: rgba(255,255,255,.55); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 18px; margin-top: 0;
 }
 .takeaways ul { list-style: none; }
-.takeaways ul li {
-  color: #e8ecf5;
-  font-size: 14.5px;
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(255,255,255,.1);
+.takeaway-item {
+  color: #e8ecf5; font-size: 14.5px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.1);
   display: flex; gap: 12px; align-items: flex-start;
+  opacity: 0; transform: translateX(-10px); transition: opacity .45s ease, transform .45s ease;
 }
-.takeaways ul li:last-child { border-bottom: none; }
-.takeaways ul li::before {
-  content: "✓"; color: #3dba78;
-  font-weight: 700; flex-shrink: 0; margin-top: 1px;
-}
+.takeaway-item.visible { opacity: 1; transform: translateX(0); }
+.takeaway-item:last-child { border-bottom: none; }
+.takeaway-item::before { content: "✓"; color: #3dba78; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
 
-/* ── HEADINGS ── */
-h2 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 20px; font-weight: 700;
-  color: var(--fg); margin-bottom: 4px;
-}
-h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  color: var(--blue-mid); margin-bottom: 6px;
-}
+/* HEADINGS */
+h2 { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; color: var(--fg); margin-bottom: 4px; }
+h3 { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; color: var(--blue-mid); margin-bottom: 6px; }
 p { font-size: 15.5px; color: var(--fg); margin-bottom: 12px; }
 p:last-child { margin-bottom: 0; }
 .hl-blue  { color: var(--blue-mid); font-weight: 600; }
 .hl-green { color: var(--green);    font-weight: 600; }
 .hl-red   { color: var(--red);      font-weight: 600; }
-sup { font-size: 11px; color: var(--blue-mid); }
+.hl-gold  { color: var(--gold);     font-weight: 600; }
+.viz { margin-top: 18px; padding-top: 16px; border-top: 1px dashed var(--border); }
+.viz-label {
+  font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--fg2); margin-bottom: 12px;
+}
+.viz-note { font-size: 12px; color: var(--fg2); margin-top: 10px; }
+.card {
+  background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px;
+  padding: 22px 24px; box-shadow: var(--shadow);
+}
 
-/* ── SITUATION CARDS ── */
-.situation-cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
+/* ── DUAL OBLIGATION (situation) ── */
+.dual { display: grid; grid-template-columns: 1fr auto 1fr; gap: 14px; align-items: center; margin-top: 16px; }
+.flag {
+  border-radius: 14px; padding: 16px; text-align: center; border: 1.5px solid var(--border); background: var(--bg2);
+  opacity: 0; transform: translateY(10px); transition: opacity .45s ease, transform .45s ease;
 }
-@media (max-width: 520px) { .situation-cards { grid-template-columns: 1fr; } }
+.flag.visible { opacity: 1; transform: none; }
+.flag .t { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 15px; }
+.flag .s { font-size: 12.5px; color: var(--fg2); }
+.flag.ch { border-color: var(--red); } .flag.ch .t { color: var(--red); }
+.flag.us { border-color: var(--blue-mid); } .flag.us .t { color: var(--blue-mid); }
+.dual-mid { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--fg2); font-size: 13px; text-align: center; opacity: 0; transition: opacity .4s ease; }
+.dual-mid.visible { opacity: 1; }
+.dual-mid span { display: block; font-size: 22px; color: var(--fg); }
 
-.sit-card {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 14px;
-  padding: 18px 20px;
-  box-shadow: var(--shadow);
-  transition: border-color .2s, box-shadow .2s;
+/* OBLIGATION CARDS */
+.obligation-item {
+  background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px; padding: 24px 28px;
+  box-shadow: var(--shadow); opacity: 0; transform: translateX(-14px);
+  transition: opacity .5s ease, transform .5s ease, box-shadow .2s; position: relative; overflow: hidden;
 }
-.sit-card:hover { box-shadow: var(--shadow-md); }
-.sit-card.alert { border-color: var(--red); }
-.sit-card h3 { color: var(--blue-mid); margin-bottom: 6px; }
-.sit-card.alert h3 { color: var(--red); }
-.sit-card p { font-size: 13px; color: var(--fg2); margin: 0; }
+.obligation-item::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--blue-mid);
+  transform: scaleY(0); transform-origin: top; transition: transform .6s cubic-bezier(.16,1,.3,1) .25s;
+}
+.obligation-item.visible { opacity: 1; transform: translateX(0); }
+.obligation-item.visible::before { transform: scaleY(1); }
+.obligation-item:hover { box-shadow: var(--shadow-md); }
+.obligation-num {
+  font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--blue-mid); margin-bottom: 6px;
+}
+.obligation-item h3 { color: var(--fg); font-size: 16px; margin-bottom: 10px; }
+.obligation-item p { font-size: 14.5px; color: var(--fg2); margin: 0; line-height: 1.65; }
+.obligation-item p + p { margin-top: 10px; }
 
-/* ── CHECKLIST ── */
-.checklist {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 16px;
-  padding: 24px 28px;
-  box-shadow: var(--shadow);
+/* still-applies chips */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  font-size: 12.5px; font-weight: 600; padding: 6px 12px; border-radius: 999px; background: var(--bg); border: 1.5px solid var(--border); color: var(--fg2);
+  opacity: 0; transform: scale(.85); transition: opacity .35s ease, transform .35s cubic-bezier(.34,1.56,.64,1), background .4s, color .4s, border-color .4s;
 }
-.checklist h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  margin-bottom: 16px; color: var(--fg);
-}
-.checklist-item {
-  display: flex; align-items: flex-start; gap: 12px;
-  padding: 11px 0;
-  border-bottom: 1px solid var(--border);
-  cursor: pointer;
-}
-.checklist-item:last-of-type { border-bottom: none; }
-.check-box {
-  width: 22px; height: 22px;
-  border: 2px solid var(--blue);
-  border-radius: 6px; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  transition: all .2s; margin-top: 2px;
-}
-.check-box.checked { background: var(--blue); border-color: var(--blue); }
-.check-box.checked::after { content: "✓"; color: white; font-size: 13px; font-weight: 700; }
-.checklist-item.done span { text-decoration: line-through; color: var(--fg2); }
-.checklist-item span { font-size: 14.5px; color: var(--fg); font-family: 'Inter', sans-serif; }
-.progress-bar { height: 5px; background: var(--border); border-radius: 3px; margin-top: 16px; }
-.progress-fill { height: 100%; background: var(--green); border-radius: 3px; transition: width .4s ease; }
-.progress-label { font-size: 12px; color: var(--fg2); margin-top: 6px; font-family: 'Inter', sans-serif; }
+.chip.visible { opacity: 1; transform: none; }
+.chip.lit { background: var(--blue-light); color: var(--blue-mid); border-color: var(--blue-mid); }
+.chip.lit::after { content: " → still file"; font-weight: 700; }
 
-/* ── FAQ ── */
-.faq-item {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  margin-bottom: 8px;
-  overflow: hidden;
-  transition: border-color .2s;
+/* FBAR meter */
+.meter-row { display: grid; grid-template-columns: 1fr; gap: 6px; }
+.stack { position: relative; display: flex; height: 30px; border-radius: 8px; overflow: visible; background: var(--border); }
+.seg {
+  height: 100%; width: 0; color: #fff; font-size: 11.5px; font-weight: 600; display: flex; align-items: center; justify-content: center;
+  white-space: nowrap; overflow: hidden; transition: width .7s cubic-bezier(.16,1,.3,1);
 }
-.faq-item.open { border-color: var(--blue); }
-.faq-q {
-  padding: 16px 20px;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 14px; font-weight: 600;
-  cursor: pointer;
-  display: flex; justify-content: space-between; align-items: center;
-  gap: 12px; color: var(--fg);
-  background: transparent;
+.seg:first-child { border-radius: 8px 0 0 8px; }
+.seg.s1 { background: var(--blue-mid); } .seg.s2 { background: #4a78b8; } .seg.s3 { background: var(--gold); border-radius: 0 8px 8px 0; }
+.mark { position: absolute; top: -8px; bottom: -8px; width: 2px; background: var(--red); }
+.mark span { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 11.5px; font-weight: 700; color: var(--red); white-space: nowrap; font-family: 'Space Grotesk', sans-serif; }
+.meter-legend { display: flex; flex-wrap: wrap; gap: 12px; font-size: 12.5px; color: var(--fg2); margin-top: 6px; font-variant-numeric: tabular-nums; }
+.meter-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 5px; }
+.meter-sum { font-size: 13.5px; margin-top: 8px; color: var(--fg2); font-variant-numeric: tabular-nums; }
+.meter-sum strong { color: var(--red); }
+.penalty { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+.pen { border-radius: 12px; padding: 12px 14px; text-align: center; background: var(--red-light); }
+.pen .k { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--fg2); font-family: 'Space Grotesk', sans-serif; }
+.pen .v { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 20px; color: var(--red); font-variant-numeric: tabular-nums; }
+.pen .d { font-size: 11.5px; color: var(--fg2); }
+
+/* 8938 thresholds */
+.thr { display: flex; flex-direction: column; gap: 10px; }
+.thr-row { display: grid; grid-template-columns: 120px 1fr; gap: 12px; align-items: center; font-size: 12.5px; color: var(--fg2); }
+.thr-row b { color: var(--fg); display: block; font-size: 13px; }
+.thr-track { height: 22px; background: var(--border); border-radius: 6px; position: relative; }
+.thr-fill {
+  position: absolute; inset: 0 auto 0 0; width: 0; border-radius: 6px; display: flex; align-items: center; justify-content: flex-end;
+  padding-right: 8px; color: #fff; font-size: 11.5px; font-weight: 700; white-space: nowrap; transition: width 1s cubic-bezier(.16,1,.3,1);
 }
-.faq-arrow { color: var(--blue); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
+.thr-fill.ye { background: var(--blue-mid); }
+.thr-fill.ap { background: var(--blue); opacity: .55; }
+.versus { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+.vs-col { border-radius: 12px; padding: 12px 14px; background: var(--bg); border: 1.5px solid var(--border); font-size: 12.5px; color: var(--fg2); }
+.vs-col b { display: block; font-family: 'Space Grotesk', sans-serif; color: var(--fg); font-size: 13.5px; margin-bottom: 4px; }
+
+/* deadlines timeline */
+.tl { position: relative; height: 112px; margin: 6px 8px 0; }
+.tl-line { position: absolute; top: 44px; left: 0; right: 0; height: 4px; background: var(--border); border-radius: 2px; }
+.tl-prog { position: absolute; top: 44px; left: 0; height: 4px; width: 0; background: var(--blue-mid); border-radius: 2px; transition: width 2s cubic-bezier(.4,0,.2,1); }
+.tl-pt { position: absolute; top: 0; transform: translateX(-50%); text-align: center; opacity: 0; transition: opacity .4s ease; width: 110px; }
+.tl-pt.visible { opacity: 1; }
+.tl-pt .lbl { font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700; color: var(--fg); height: 32px; line-height: 1.3; display: flex; align-items: flex-end; justify-content: center; }
+.tl-dot { width: 16px; height: 16px; border-radius: 50%; background: var(--bg2); border: 3px solid var(--blue-mid); margin: 4px auto 0; }
+.tl-pt .sub { font-size: 11.5px; color: var(--fg2); margin-top: 6px; line-height: 1.35; }
+.tl-pt.last .tl-dot { background: var(--blue-mid); }
+
+/* TOOL CARDS */
+.tools-grid { display: flex; flex-direction: column; gap: 12px; }
+.tool-card {
+  background: var(--bg2); border: 1.5px solid var(--border); border-radius: 14px; padding: 20px 24px;
+  opacity: 0; transform: translateY(10px); transition: opacity .4s ease, transform .4s ease;
+}
+.tool-card.visible { opacity: 1; transform: translateY(0); }
+.tool-card h3 { color: var(--blue-mid); font-size: 15px; margin-bottom: 8px; }
+.tool-card p { font-size: 14.5px; color: var(--fg2); margin: 0; line-height: 1.6; }
+
+/* FEIE + FTC split */
+.split-bar { display: flex; height: 40px; border-radius: 10px; overflow: hidden; background: var(--border); }
+.split-bar div {
+  width: 0; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 12.5px; font-weight: 700;
+  white-space: nowrap; overflow: hidden; transition: width 1s cubic-bezier(.16,1,.3,1);
+}
+.sb-feie { background: var(--green); }
+.sb-ftc  { background: var(--blue-mid); transition-delay: .9s !important; }
+.split-legend { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+.sl { border-radius: 10px; padding: 10px 12px; font-size: 12.5px; color: var(--fg2); opacity: 0; transition: opacity .4s ease; }
+.sl.visible { opacity: 1; }
+.sl b { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-variant-numeric: tabular-nums; }
+.sl.feie { background: var(--green-light); } .sl.feie b { color: var(--green); }
+.sl.ftc  { background: var(--blue-light); }  .sl.ftc b  { color: var(--blue-mid); }
+.split-calc { font-size: 13px; color: var(--fg2); margin-top: 10px; font-variant-numeric: tabular-nums; }
+.salary-pick { display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap; }
+.salary-pick button {
+  font-family: 'Space Grotesk', sans-serif; font-size: 12.5px; font-weight: 700; padding: 6px 12px; border-radius: 8px;
+  border: 1.5px solid var(--border); background: var(--bg); color: var(--fg2); cursor: pointer; transition: all .2s;
+}
+.salary-pick button.active { background: var(--blue-mid); color: #fff; border-color: var(--blue-mid); }
+
+/* WARNING / PFIC */
+.warning-box { background: var(--gold-light); border-left: 4px solid var(--gold); border-radius: 0 14px 14px 0; padding: 20px 24px; }
+.warning-box p { font-size: 15px; color: var(--fg); margin-bottom: 10px; }
+.warning-box p:last-child { margin-bottom: 0; }
+.pfic { display: flex; flex-direction: column; gap: 8px; margin-top: 14px; }
+.pfic-row { display: grid; grid-template-columns: 1fr auto auto; gap: 10px; align-items: center; opacity: 0; transform: translateX(-8px); transition: opacity .4s ease, transform .4s ease; }
+.pfic-row.visible { opacity: 1; transform: none; }
+.fund { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 9px; padding: 7px 12px; font-size: 13px; color: var(--fg); }
+.stamp {
+  font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .08em; color: var(--red);
+  border: 2px solid var(--red); border-radius: 6px; padding: 2px 8px; transform: rotate(-6deg) scale(1.8); opacity: 0;
+  transition: transform .35s cubic-bezier(.34,1.56,.64,1), opacity .2s;
+}
+.pfic-row.stamped .stamp { opacity: 1; transform: rotate(-6deg) scale(1); }
+.form-tag {
+  font-size: 12px; font-weight: 600; background: var(--bg2); border: 1.5px dashed var(--gold); color: var(--gold); border-radius: 7px; padding: 4px 9px;
+  opacity: 0; transform: translateX(-6px); transition: opacity .35s ease .15s, transform .35s ease .15s; white-space: nowrap;
+}
+.pfic-row.stamped .form-tag { opacity: 1; transform: none; }
+.pfic-count { font-size: 13px; color: var(--fg2); margin-top: 6px; }
+.pfic-count b { color: var(--gold); font-variant-numeric: tabular-nums; }
+
+/* STREAMLINED year grid */
+.ygrid { display: grid; grid-template-columns: 90px repeat(6, 1fr); gap: 5px; align-items: center; font-size: 12px; }
+.ygrid .h { font-family: 'Space Grotesk', sans-serif; font-weight: 700; text-align: center; color: var(--fg2); }
+.ygrid .rl { color: var(--fg2); font-weight: 600; }
+.yc {
+  height: 28px; border-radius: 6px; background: var(--border); transform: scale(.6); opacity: 0;
+  transition: transform .35s cubic-bezier(.34,1.56,.64,1), opacity .3s ease;
+}
+.yc.visible { transform: scale(1); opacity: 1; }
+.yc.on.ret  { background: var(--blue-mid); }
+.yc.on.fbar { background: var(--gold); }
+.yc.off { opacity: 0; }
+.yc.off.visible { opacity: .45; }
+.cond-box { margin-top: 14px; display: flex; align-items: center; gap: 10px; font-size: 13px; padding: 10px 14px; border-radius: 10px; background: var(--red-light); color: var(--red); font-weight: 600; opacity: 0; transition: opacity .5s ease; }
+.cond-box.visible { opacity: 1; }
+
+/* FATCA flow */
+.fflow { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: center; gap: 8px; }
+.node {
+  border-radius: 12px; padding: 12px 10px; text-align: center; font-size: 12.5px; color: var(--fg2); background: var(--bg2); border: 1.5px solid var(--border);
+  transition: border-color .4s, background .4s;
+}
+.node b { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 13.5px; color: var(--fg); }
+.node.on { border-color: var(--blue-mid); background: var(--blue-light); }
+.pipe { width: 44px; height: 4px; border-radius: 2px; background: var(--border); position: relative; overflow: hidden; }
+.pipe::after { content: ""; position: absolute; inset: 0; background: var(--blue-mid); transform: scaleX(0); transform-origin: left; transition: transform .6s ease; }
+.pipe.on::after { transform: scaleX(1); }
+.packet { position: absolute; top: -3px; width: 10px; height: 10px; border-radius: 50%; background: var(--gold); left: -12px; }
+.dates { display: flex; justify-content: space-between; gap: 10px; margin-top: 14px; font-size: 12.5px; color: var(--fg2); }
+.dates b { font-family: 'Space Grotesk', sans-serif; color: var(--fg); }
+
+/* PROFILE CARDS */
+.profile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.profile-card {
+  background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px; padding: 20px 22px; box-shadow: var(--shadow);
+  opacity: 0; transform: translateY(12px) scale(.98); transition: opacity .4s ease, transform .4s ease;
+}
+.profile-card.visible { opacity: 1; transform: translateY(0) scale(1); }
+.profile-card.ok  { border-color: var(--gold); }
+.profile-card.warn { border-color: var(--red); }
+.profile-label { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 10px; }
+.profile-card.ok   .profile-label { color: var(--gold); }
+.profile-card.warn .profile-label { color: var(--red); }
+.profile-card h3 { font-size: 14px; color: var(--fg); margin-bottom: 8px; }
+.profile-card ul { list-style: none; padding: 0; }
+.profile-card ul li { font-size: 13.5px; color: var(--fg2); padding: 4px 0; border-bottom: 1px solid var(--border); line-height: 1.5; }
+.profile-card ul li:last-child { border-bottom: none; }
+.status-list { margin-top: 12px; display: flex; flex-direction: column; gap: 5px; }
+.st {
+  display: flex; justify-content: space-between; font-size: 12.5px; padding: 5px 10px; border-radius: 7px; background: var(--bg);
+  opacity: 0; transform: translateX(8px); transition: opacity .35s ease, transform .35s ease;
+}
+.st.visible { opacity: 1; transform: none; }
+.st .y { color: var(--green); font-weight: 700; } .st .n { color: var(--red); font-weight: 700; }
+.profile-verdict { margin-top: 12px; font-size: 13px; font-weight: 600; padding: 8px 12px; border-radius: 8px; }
+.profile-card.ok   .profile-verdict { background: var(--gold-light); color: var(--gold); }
+.profile-card.warn .profile-verdict { background: var(--red-light);  color: var(--red); }
+
+/* MISTAKES */
+.mistake-item {
+  position: relative; overflow: hidden;
+  background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px; padding: 20px 24px; box-shadow: var(--shadow);
+  display: flex; gap: 16px; align-items: flex-start;
+  opacity: 0; transform: translateX(-14px); transition: opacity .5s ease, transform .5s ease;
+}
+.mistake-item.visible { opacity: 1; transform: translateX(0); }
+.mistake-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--red); flex-shrink: 0; margin-top: 6px; transform: scale(0); transition: transform .4s cubic-bezier(.34,1.56,.64,1) .25s; }
+.mistake-item.visible .mistake-dot { transform: scale(1); animation: pulse 1.6s ease .7s 2; }
+@keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(194,43,43,.45); } 50% { box-shadow: 0 0 0 7px rgba(194,43,43,0); } }
+.mistake-item h3 { color: var(--red); font-size: 14.5px; margin-bottom: 6px; }
+.mistake-item p { font-size: 14px; color: var(--fg2); margin: 0; line-height: 1.6; }
+
+/* FAQ */
+.faq-item { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; margin-bottom: 8px; overflow: hidden; transition: border-color .2s; }
+.faq-item.open { border-color: var(--blue-mid); }
+.faq-q { padding: 16px 20px; font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; color: var(--fg); user-select: none; }
+.faq-arrow { color: var(--blue-mid); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
 .faq-item.open .faq-arrow { transform: rotate(180deg); }
-.faq-a {
-  display: none;
-  padding: 0 20px 16px;
-  font-size: 14px; color: var(--fg2); line-height: 1.65;
-  font-family: 'Inter', sans-serif;
-}
-.faq-item.open .faq-a { display: block; }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .35s ease; font-size: 14px; color: var(--fg2); line-height: 1.65; padding: 0 20px; }
+.faq-item.open .faq-a { max-height: 300px; padding: 0 20px 16px; }
 
-/* ── CTA ── */
-.cta-box {
-  background: var(--blue);
-  border-radius: 16px;
-  padding: 32px 36px;
-  text-align: center;
-}
-.cta-box p {
-  color: rgba(255,255,255,.8);
-  font-size: 15px; margin-bottom: 20px;
-}
+/* CTA */
+.cta-box { background: var(--blue); border-radius: 16px; padding: 32px 36px; text-align: center; }
+.cta-box p { color: rgba(255,255,255,.85); font-size: 15px; margin-bottom: 20px; }
 .cta-btn {
-  background: var(--gold);
-  color: #fff;
-  padding: 13px 28px;
-  border-radius: 10px;
-  text-decoration: none;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  display: inline-block;
-  transition: opacity .2s;
+  background: var(--gold); color: #fff; padding: 13px 28px; border-radius: 10px; text-decoration: none;
+  font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; display: inline-block; transition: opacity .2s, transform .2s;
 }
-.cta-btn:hover { opacity: .88; }
+.cta-btn:hover { opacity: .88; transform: translateY(-1px); }
 
-/* ── SOURCES ── */
-.sources {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  padding: 20px 24px;
-}
-.sources h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: .1em; text-transform: uppercase;
-  color: var(--fg2); margin-bottom: 10px;
-}
+/* SOURCES */
+.sources { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; padding: 20px 24px; }
+.sources h3 { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--fg2); margin-bottom: 10px; }
 .sources ol { padding-left: 18px; }
 .sources ol li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; }
 
-/* ── FADE IN ── */
-.fade-in { opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
-.fade-in.visible { opacity: 1; transform: translateY(0); }
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
 
-@media (max-width: 600px) {
-  h1 { font-size: 24px; }
-  .situation-cards { grid-template-columns: 1fr; }
+@media (max-width: 580px) {
+  body { padding-top: 36px; }
+  .takeaways { padding: 20px; }
   .cta-box { padding: 24px 20px; }
-  .takeaways { padding: 20px 20px; }
+  .profile-grid { grid-template-columns: 1fr; }
+  .obligation-item { padding: 20px 18px; }
+  .dual { grid-template-columns: 1fr; }
+  .fflow { grid-template-columns: 1fr; }
+  .pipe { width: 4px; height: 26px; margin: 0 auto; }
+  .pipe::after { transform: scaleY(0); transform-origin: top; }
+  .pipe.on::after { transform: scaleY(1); }
+  .thr-row { grid-template-columns: 1fr; gap: 4px; }
+  .tl-pt { width: 84px; } .tl-pt .sub { font-size: 10.5px; } .tl-pt .lbl { font-size: 11px; }
+  .ygrid { grid-template-columns: 62px repeat(6, 1fr); font-size: 10.5px; }
+  .versus, .penalty, .split-legend { grid-template-columns: 1fr; }
+  .seg { font-size: 10px; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } }
+/* ── ARTICLE 9 EXTRA ── */
+.sec { display: flex; flex-direction: column; }
+.sec > h2 { margin-bottom: 10px; }
+.tool {
+  position: relative; overflow: hidden; background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px;
+  padding: 24px 26px; box-shadow: var(--shadow); opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease;
+}
+.tool.visible { opacity: 1; transform: none; }
+.tool::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--blue-mid); transform: scaleY(0); transform-origin: top; transition: transform .6s cubic-bezier(.16,1,.3,1) .25s; }
+.tool.visible::before { transform: scaleY(1); }
+.tool-tag { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--blue-mid); margin-bottom: 4px; }
+.tool h2 { margin-bottom: 10px; font-size: 19px; }
+.tool p { font-size: 15px; }
+.plain { background: var(--blue-light); border-radius: 10px; padding: 10px 14px; font-size: 14.5px; margin-bottom: 12px; }
+.plain b { color: var(--blue-mid); font-family: 'Space Grotesk', sans-serif; }
+
+/* familiar checklist */
+.fam { display: flex; flex-direction: column; gap: 8px; }
+.fam-item { display: flex; gap: 12px; align-items: center; background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; padding: 12px 16px; font-size: 14.5px; cursor: pointer; user-select: none; opacity: 0; transform: translateX(-10px); transition: opacity .4s ease, transform .4s ease, border-color .25s, background .25s; }
+.fam-item.visible { opacity: 1; transform: none; }
+.fam-item.on { border-color: var(--gold); background: var(--gold-light); }
+.fam-box { width: 22px; height: 22px; border-radius: 6px; border: 2px solid var(--gold); flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: background .2s; }
+.fam-item.on .fam-box { background: var(--gold); }
+.fam-item.on .fam-box::after { content: "✓"; color: #fff; font-size: 13px; font-weight: 700; }
+.fam-msg { font-size: 14px; color: var(--fg2); font-style: italic; margin-top: 10px; min-height: 22px; transition: color .3s; }
+.fam-msg.go { color: var(--gold); font-weight: 600; font-style: normal; }
+
+/* rate bars */
+.rates { display: flex; flex-direction: column; gap: 10px; }
+.rate-row { display: grid; grid-template-columns: 150px 1fr 54px; gap: 10px; align-items: center; font-size: 13px; color: var(--fg2); }
+.rate-row b { color: var(--fg); }
+.rate-track { height: 20px; background: var(--border); border-radius: 6px; overflow: hidden; }
+.rate-fill { height: 100%; width: 0; border-radius: 6px; transition: width 1.1s cubic-bezier(.16,1,.3,1); }
+.rate-row.ch .rate-fill { background: var(--red); }
+.rate-row.us .rate-fill { background: var(--blue-mid); }
+.rate-val { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--fg); text-align: right; font-variant-numeric: tabular-nums; }
+
+/* FEIE example bar */
+.ex-bar { position: relative; display: flex; height: 44px; border-radius: 10px; overflow: hidden; background: var(--blue-mid); transition: background .4s; }
+.ex-feie { width: 0; background: var(--green); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 13px; font-weight: 700; white-space: nowrap; overflow: hidden; transition: width 1.2s cubic-bezier(.16,1,.3,1); }
+.ex-rest { flex: 1; min-width: 70px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 13px; font-weight: 700; white-space: nowrap; overflow: hidden; }
+.ex-labels { display: flex; justify-content: space-between; font-size: 12.5px; color: var(--fg2); margin-top: 8px; font-variant-numeric: tabular-nums; }
+.ex-step { font-size: 14px; color: var(--fg2); margin-top: 12px; font-variant-numeric: tabular-nums; opacity: 0; transition: opacity .4s ease; }
+.ex-step.visible { opacity: 1; }
+.ex-step strong { color: var(--fg); }
+.ex-handoff { display: inline-block; margin-top: 10px; font-size: 12.5px; font-weight: 700; color: var(--blue-mid); background: var(--blue-light); border-radius: 999px; padding: 4px 12px; opacity: 0; transition: opacity .4s ease; }
+.ex-handoff.visible { opacity: 1; }
+.cond-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.cond { font-size: 12.5px; font-weight: 600; padding: 6px 12px; border-radius: 999px; border: 1.5px solid var(--border); background: var(--bg); color: var(--fg2); opacity: 0; transform: scale(.88); transition: opacity .35s ease, transform .35s cubic-bezier(.34,1.56,.64,1); }
+.cond.visible { opacity: 1; transform: none; }
+.cond.in { border-color: var(--green); color: var(--green); background: var(--green-light); }
+.cond.out { border-style: dashed; color: var(--red); border-color: var(--red); background: var(--red-light); }
+
+/* FTC credit */
+.credit { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: end; height: 190px; padding: 0 20px; border-bottom: 2px solid var(--border); }
+.col { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; }
+.col-bar { width: 70%; height: 0; border-radius: 8px 8px 0 0; display: flex; align-items: flex-start; justify-content: center; padding-top: 6px; color: #fff; font-weight: 700; font-size: 13px; font-variant-numeric: tabular-nums; transition: height 1s cubic-bezier(.16,1,.3,1), background .4s; position: relative; }
+.col.us .col-bar { background: var(--blue-mid); }
+.col.ch .col-bar { background: var(--red); }
+.col.us .col-bar.covered { background: repeating-linear-gradient(45deg, var(--blue-mid), var(--blue-mid) 6px, var(--red) 6px, var(--red) 12px); }
+.col-cap { font-size: 12.5px; color: var(--fg2); text-align: center; margin-top: 8px; line-height: 1.35; }
+.col-cap b { color: var(--fg); display: block; font-size: 13px; }
+.credit-out { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; margin-top: 16px; padding: 12px 16px; border-radius: 12px; background: var(--green-light); transition: background .4s; }
+.credit-out.owe { background: var(--gold-light); }
+.credit-out .lbl { font-size: 14px; color: var(--fg); }
+.credit-out .lbl small { display: block; color: var(--fg2); font-size: 12.5px; }
+.credit-out .amt { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 24px; color: var(--green); font-variant-numeric: tabular-nums; }
+.credit-out.owe .amt { color: var(--gold); }
+.toggle { display: flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap; }
+.toggle button { font-family: 'Space Grotesk', sans-serif; font-size: 12.5px; font-weight: 700; padding: 6px 12px; border-radius: 8px; border: 1.5px solid var(--border); background: var(--bg); color: var(--fg2); cursor: pointer; transition: all .2s; }
+.toggle button.active { background: var(--blue-mid); color: #fff; border-color: var(--blue-mid); }
+.rule { margin-top: 16px; display: flex; gap: 12px; align-items: center; padding: 12px 16px; border-radius: 12px; border: 1.5px dashed var(--red); background: var(--red-light); font-size: 14px; }
+.rule .dollar { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 20px; color: var(--red); }
+
+/* totalization paths */
+.paths { display: flex; flex-direction: column; gap: 8px; }
+.path { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; background: var(--bg); border: 1.5px solid var(--border); border-radius: 12px; padding: 12px 16px; opacity: 0; transform: translateX(-10px); transition: opacity .4s ease, transform .4s ease; }
+.path.visible { opacity: 1; transform: none; }
+.path .who { font-size: 14px; color: var(--fg); }
+.path .who small { display: block; font-size: 12.5px; color: var(--fg2); }
+.sys { font-family: 'Space Grotesk', sans-serif; font-size: 12.5px; font-weight: 700; padding: 5px 12px; border-radius: 8px; white-space: nowrap; transform: scale(0); transition: transform .4s cubic-bezier(.34,1.56,.64,1) .3s; }
+.path.visible .sys { transform: scale(1); }
+.sys.ch { background: var(--red-light); color: var(--red); border: 1.5px solid var(--red); }
+.sys.us { background: var(--blue-light); color: var(--blue-mid); border: 1.5px solid var(--blue-mid); }
+.contrib { display: flex; height: 30px; border-radius: 8px; overflow: hidden; margin-top: 14px; background: var(--border); }
+.contrib div { width: 0; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 12px; font-weight: 700; white-space: nowrap; overflow: hidden; transition: width 1s cubic-bezier(.16,1,.3,1); }
+.contrib .emp { background: var(--red); } .contrib .er { background: #e0716f; transition-delay: .5s; }
+.contrib-cap { font-size: 12.5px; color: var(--fg2); margin-top: 6px; font-variant-numeric: tabular-nums; }
+
+/* not covered */
+.nc { display: flex; flex-direction: column; gap: 10px; }
+.nc-card { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 14px; padding: 18px 20px; box-shadow: var(--shadow); opacity: 0; transform: translateY(10px); transition: opacity .45s ease, transform .45s ease; }
+.nc-card.visible { opacity: 1; transform: none; }
+.nc-card h3 { color: var(--fg); font-size: 15px; margin-bottom: 6px; }
+.nc-card h3 span { color: var(--red); margin-right: 6px; }
+.nc-card p { font-size: 14.5px; color: var(--fg2); margin-bottom: 8px; }
+.defs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 6px; }
+.def { border-radius: 12px; padding: 12px 14px; background: var(--bg); border: 1.5px solid var(--border); font-size: 13.5px; color: var(--fg2); line-height: 1.55; }
+.def b { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 14px; color: var(--blue-mid); margin-bottom: 4px; }
+.fine { display: flex; align-items: baseline; gap: 10px; margin-top: 6px; }
+.fine .v { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 24px; color: var(--red); font-variant-numeric: tabular-nums; }
+.fine .d { font-size: 13px; color: var(--fg2); }
+
+/* two Americans */
+.amer { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.am { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px; padding: 20px 22px; box-shadow: var(--shadow); opacity: 0; transform: translateY(12px) scale(.98); transition: opacity .4s ease, transform .4s ease; }
+.am.visible { opacity: 1; transform: none; }
+.am.a { border-color: var(--red); } .am.b { border-color: var(--green); }
+.am h3 { font-size: 15px; margin-bottom: 6px; } .am.a h3 { color: var(--red); } .am.b h3 { color: var(--green); }
+.am p { font-size: 13.5px; color: var(--fg2); margin-bottom: 10px; }
+.am .st { display: flex; justify-content: space-between; font-size: 12.5px; padding: 6px 10px; border-radius: 7px; background: var(--bg); margin-bottom: 5px; opacity: 0; transform: translateX(8px); transition: opacity .35s ease, transform .35s ease; }
+.am .st.visible { opacity: 1; transform: none; }
+.y { color: var(--green); font-weight: 700; } .n { color: var(--red); font-weight: 700; }
+.irs { margin-top: 10px; }
+.irs-lbl { font-size: 12px; color: var(--fg2); margin-bottom: 4px; }
+.irs-track { height: 16px; background: var(--border); border-radius: 5px; overflow: hidden; }
+.irs-fill { height: 100%; width: 0; border-radius: 5px; transition: width 1.1s cubic-bezier(.16,1,.3,1); }
+.am.a .irs-fill { background: var(--red); } .am.b .irs-fill { background: var(--green); }
+.am .verdict { margin-top: 10px; font-size: 13px; font-weight: 600; padding: 8px 12px; border-radius: 8px; }
+.am.a .verdict { background: var(--red-light); color: var(--red); } .am.b .verdict { background: var(--green-light); color: var(--green); }
+.both { text-align: center; font-style: italic; color: var(--fg2); font-size: 14.5px; margin-top: 14px; }
+
+/* mistakes */
+.mk { position: relative; overflow: hidden; background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px; padding: 20px 24px; box-shadow: var(--shadow); display: flex; gap: 16px; opacity: 0; transform: translateX(-14px); transition: opacity .5s ease, transform .5s ease; }
+.mk.visible { opacity: 1; transform: none; }
+.mk-num { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; color: var(--red); opacity: 0; line-height: 1; min-width: 26px; transform: scale(1.6); transition: opacity .5s ease .2s, transform .5s cubic-bezier(.34,1.56,.64,1) .2s; }
+.mk.visible .mk-num { opacity: .25; transform: scale(1); }
+.mk h3 { color: var(--red); font-size: 15px; margin-bottom: 6px; }
+.mk p { font-size: 14.5px; color: var(--fg2); margin: 0; line-height: 1.6; }
+.lock { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; margin-top: 14px; }
+.lk { text-align: center; font-size: 11px; font-weight: 700; font-family: 'Space Grotesk', sans-serif; padding: 7px 0; border-radius: 7px; background: var(--bg); color: var(--fg2); border: 1.5px solid var(--border); opacity: 0; transform: translateY(6px); transition: opacity .3s ease, transform .3s ease, background .4s, color .4s, border-color .4s; }
+.lk.visible { opacity: 1; transform: none; }
+.lk small { display: block; font-family: 'Inter', sans-serif; font-weight: 500; font-size: 9.5px; }
+.lk.rev.lit { background: var(--gold-light); color: var(--gold); border-color: var(--gold); }
+.lk.locked.lit { background: var(--red-light); color: var(--red); border-color: var(--red); }
+.lk.free.lit { background: var(--green-light); color: var(--green); border-color: var(--green); }
+
+@media (max-width: 580px) {
+  .rate-row { grid-template-columns: 1fr 46px; } .rate-row .rl { grid-column: 1 / -1; }
+  .defs, .amer { grid-template-columns: 1fr; }
+  .credit { height: 170px; padding: 0 6px; }
+  .tool { padding: 20px 18px; }
+  .lock { grid-template-columns: repeat(7, 1fr); gap: 3px; } .lk small { font-size: 8px; }
 }
 </style>
 </head>
 <body>
+<div id="progress-bar"></div>
 <div class="article">
 
-  <div class="article-header fade-in">
-    <p class="article-meta">Tax & Finance · US Expats · 5 min read</p>
-    <h1>Double Taxation Between the US and Switzerland: What Expats Need to Know</h1>
+  <!-- HEADER -->
+  <div class="article-header">
+    <p class="article-meta">Tax &amp; Finance · US Expats · 5 min read</p>
+    <h1>Double Taxation Between the US and Switzerland: What Americans Need to Know</h1>
+    <div class="header-rule"></div>
   </div>
 
-  <div class="quick-answer fade-in">
-    <p><strong>Quick Answer:</strong> The US and Switzerland have a tax treaty (since 1996) that prevents most double taxation. In practice, two tools protect you: the <span class="hl-blue">Foreign Tax Credit (FTC)</span> and the <span class="hl-green">Foreign Earned Income Exclusion (FEIE)</span>. Most US expats in Geneva pay <span class="hl-green">little or nothing</span> extra to the IRS — but you still have to file.</p>
+  <!-- QUICK ANSWER -->
+  <div class="quick-answer reveal">
+    <p><strong>Quick Answer:</strong> No — if you use the right tools, an American in Switzerland does not pay tax twice on the same income. In most cases, either your income is excluded in the US, or the Swiss tax you have already paid is subtracted from your US tax — and what you owe the IRS (the US tax authority) is little or nothing. The real risk is not double taxation itself: it is filing in the US without claiming the protections you are entitled to — and overpaying for years without noticing.</p>
   </div>
 
-  <div class="takeaways fade-in">
+  <!-- TAKEAWAYS -->
+  <div class="takeaways">
     <h2>Key Takeaways</h2>
     <ul>
-      <li>US-Switzerland tax treaty signed 1996, prevents most double taxation</li>
-      <li>Foreign Tax Credit credits Swiss taxes paid against US liability</li>
-      <li>FEIE excludes up to $132,900 of earned income from US tax (2026)</li>
-      <li>For Geneva residents (high Swiss tax), FTC is usually more valuable than FEIE</li>
-      <li>Wealth tax is NOT creditable against US tax — you pay it on top</li>
+      <li class="takeaway-item" data-delay="0">Up to $132,900 of your salary (2026) can be left out of US tax entirely — this is the FEIE, claimed on Form 2555</li>
+      <li class="takeaway-item" data-delay="100">On the rest of your income, Swiss tax already paid is subtracted from your US tax (the Foreign Tax Credit) — but never both tools on the same dollar</li>
+      <li class="takeaway-item" data-delay="200">Social security: the Totalization Agreement stops you paying into both countries at once</li>
+      <li class="takeaway-item" data-delay="300">Relying on the treaty means filing Form 8833 — forgetting it costs $1,000 per return</li>
+      <li class="takeaway-item" data-delay="400">The treaty does not replace your annual US return, nor the duty to report your Swiss accounts and assets to the US (FBAR and FATCA)</li>
     </ul>
   </div>
 
-  <p class="fade-in">Rachel is a US citizen working in Geneva, earning CHF 180,000. She pays around CHF 55,000 in Swiss income tax — an effective rate of about 30%. Her US tax liability on the same income would be roughly $28,000. <span class="hl-green">After applying the Foreign Tax Credit, she owes $0 to the IRS</span> — the Swiss taxes she already paid more than cover the US obligation.</p>
+  <!-- SOUND FAMILIAR -->
+  <div class="sec reveal" id="famsec">
+    <h2>Does Any of This Sound Familiar?</h2>
+    <div class="fam">
+      <div class="fam-item" data-delay="0"><span class="fam-box"></span>You pay Swiss taxes every month.</div>
+      <div class="fam-item" data-delay="120"><span class="fam-box"></span>You also file a US return every year — or know you should.</div>
+      <div class="fam-item" data-delay="240"><span class="fam-box"></span>You're not sure you're using the right tools to reduce what you owe the IRS.</div>
+    </div>
+    <p class="fam-msg" id="fam-msg">Tap the ones that apply to you.</p>
+  </div>
 
-  <h2 class="fade-in">The Two Main Relief Tools</h2>
-  <div class="relief-grid fade-in">
-    <div class="relief-card">
-      <h3>Foreign Tax Credit (FTC)</h3>
-      <p>Credits Swiss income taxes paid directly against your US tax liability, dollar for dollar.</p>
-      <div class="amount">Swiss tax rate ~30%<br>US rate ~22%<br>IRS owes: $0</div>
-      <span class="best-for">Best for: High earners in Geneva</span>
-    </div>
-    <div class="relief-card">
-      <h3>Foreign Earned Income Exclusion (FEIE)</h3>
-      <p>Excludes earned income from US taxation entirely, up to a set limit.</p>
-      <div class="amount">Excludes up to<br>$132,900 (2026)</div>
-      <span class="best-for">Best for: Lower earners in low-tax cantons</span>
-    </div>
-    <div class="relief-card">
-      <h3>Totalization Agreement</h3>
-      <p>Prevents dual social security contributions. You pay into one system only.</p>
-      <div class="amount">Saves ~7.65%<br>of income</div>
-      <span class="best-for">Best for: Everyone — automatic</span>
-    </div>
-    <div class="relief-card" style="border-color: #c0392b;">
-      <h3 style="color: #c0392b;">⚠ Wealth Tax Exception</h3>
-      <p>Swiss wealth tax is NOT creditable against US tax. You pay it in full regardless.</p>
-      <div class="amount" style="color: #c0392b;">0.3–1% of<br>net wealth</div>
-      <span class="best-for" style="background: #fdf0ef; color: #c0392b;">Cannot be offset</span>
+  <!-- STARTING POINT -->
+  <div class="sec reveal">
+    <h2>The Starting Point: Two Countries, Two Sets of Obligations</h2>
+    <p>As a US citizen or Green Card holder living in Switzerland, you have tax obligations in both countries at the same time.</p>
+    <p>Swiss federal income tax tops out at 11.5% — less than a third of the 37% top US federal rate. The gap narrows once cantonal, communal and wealth taxes are added, but for most expats the total burden is still lower than a comparable US state-plus-federal combination. That is why, used properly, the tools below usually leave little or nothing to pay the IRS.</p>
+    <div class="card" id="rates" style="margin-top:6px">
+      <div class="viz-label">Top federal income tax rate</div>
+      <div class="rates">
+        <div class="rate-row ch"><span class="rl"><b>Switzerland</b> (federal)</span><div class="rate-track"><div class="rate-fill" data-w="11.5"></div></div><span class="rate-val" data-v="11.5">0%</span></div>
+        <div class="rate-row us"><span class="rl"><b>United States</b> (federal)</span><div class="rate-track"><div class="rate-fill" data-w="37"></div></div><span class="rate-val" data-v="37">0%</span></div>
+      </div>
+      <p class="viz-note">Federal rates only — Swiss cantonal and communal taxes come on top.</p>
     </div>
   </div>
 
-  <h2 class="fade-in">Real Example — Rachel in Geneva</h2>
-  <div class="calc-box fade-in">
-    <h3>Rachel — US citizen, CHF 180,000 salary, Geneva</h3>
-    <div class="calc-row"><span class="calc-label">Swiss income tax paid</span><span class="calc-value red">~CHF 55,000</span></div>
-    <div class="calc-row"><span class="calc-label">US tax on same income (before FTC)</span><span class="calc-value red">~$28,000</span></div>
-    <div class="calc-row"><span class="calc-label">Foreign Tax Credit applied</span><span class="calc-value green">-$28,000</span></div>
-    <div class="calc-row"><span class="calc-label">Additional US tax owed</span><span class="calc-value green">$0</span></div>
-    <div class="calc-row"><span class="calc-label">Total tax burden</span><span class="calc-value blue">Swiss taxes only</span></div>
-  </div>
-
-  <h2 class="fade-in">What the Treaty Covers</h2>
-  <table class="treaty-table fade-in">
-    <tr><th>Income Type</th><th>Taxed By</th></tr>
-    <tr><td>Employment income (Swiss employer)</td><td>Switzerland (primary) + US (with FTC)</td></tr>
-    <tr><td>Swiss dividends paid to US residents</td><td>Switzerland 15% withholding + US</td></tr>
-    <tr><td>US dividends paid to Swiss residents</td><td>US 15% withholding + Switzerland</td></tr>
-    <tr><td>Capital gains (portfolio investments)</td><td>Country of residence only</td></tr>
-    <tr><td>Swiss AHV pension to US residents</td><td>Switzerland only</td></tr>
-    <tr><td>US Social Security to Swiss residents</td><td>US only</td></tr>
-  </table>
-
-  <h2 class="fade-in">Before You Ask</h2>
-  <div class="faq fade-in">
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Should I use FEIE or FTC?<span class="faq-arrow">▾</span></div>
-      <div class="faq-a">In Geneva — almost always the Foreign Tax Credit. Swiss tax rates are higher than US rates, meaning your Swiss taxes already cover what you owe the IRS. The FEIE is better for lower earners in low-tax cantons like Zug or Schwyz. You cannot use both on the same income. Consult a cross-border tax specialist to model both.</div>
+  <!-- TOOL 1 -->
+  <div class="tool">
+    <div class="tool-tag">Tool 1</div>
+    <h2>The Foreign Earned Income Exclusion (FEIE)</h2>
+    <p class="plain"><b>In plain terms:</b> the US lets people who live and work abroad take part of their salary out of the US tax calculation. That part is treated as if it did not exist for the IRS.</p>
+    <p>The limit is $130,000 for 2025 and $132,900 for 2026, per person. In a couple where both spouses qualify, each claims their own — up to $260,000 combined for 2025.</p>
+    <div class="viz" id="feie">
+      <div class="viz-label">Example: you earn $150,000 a year in Geneva</div>
+      <div class="ex-bar" id="ex-bar"><div class="ex-feie" id="ex-feie">FEIE $132,900</div><div class="ex-rest" id="ex-rest">$150,000</div></div>
+      <div class="ex-labels"><span>$0</span><span>$150,000</span></div>
+      <p class="ex-step" id="ex-step">$150,000 − $132,900 = <strong>$17,100</strong> is all the IRS still looks at.</p>
+      <span class="ex-handoff" id="ex-handoff">→ The $17,100 goes to Tool 2</span>
     </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Is Swiss wealth tax deductible on my US return?<span class="faq-arrow">▾</span></div>
-      <div class="faq-a">No. Swiss wealth tax is not an income tax, so it cannot be credited against your US income tax liability under the Foreign Tax Credit rules. You pay it in full, on top of your income taxes.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Does the treaty eliminate my US filing obligation?<span class="faq-arrow">▾</span></div>
-      <div class="faq-a">No. The treaty reduces or eliminates double taxation, but it does not eliminate your obligation to file a US tax return every year. You still file — you just (usually) owe little or nothing.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">I own property in Switzerland as a US citizen. How is that taxed?<span class="faq-arrow">▾</span></div>
-      <div class="faq-a">Rental income from Swiss property is taxable in Switzerland and must also be reported to the IRS. The value of the property contributes to your Swiss wealth tax base. Capital gains on Swiss property are taxable in Switzerland (the country of residence for capital gains under the treaty).</div>
+    <p style="margin-top:16px">To qualify, you must live abroad for a full calendar year, or spend at least 330 days outside the US in a 12-month period. It only covers earned income: salaries, freelance fees and business income — rent, dividends, capital gains and pensions are excluded. And it is not automatic: you claim it on Form 2555, filed with your annual return.</p>
+    <div class="cond-row" id="covers">
+      <span class="cond in" data-delay="0">✓ Salary</span>
+      <span class="cond in" data-delay="100">✓ Freelance fees</span>
+      <span class="cond in" data-delay="200">✓ Business income</span>
+      <span class="cond out" data-delay="350">✕ Rent</span>
+      <span class="cond out" data-delay="450">✕ Dividends</span>
+      <span class="cond out" data-delay="550">✕ Capital gains</span>
+      <span class="cond out" data-delay="650">✕ Pensions</span>
     </div>
   </div>
 
-  <div class="sources fade-in">
+  <!-- TOOL 2 -->
+  <div class="tool">
+    <div class="tool-tag">Tool 2</div>
+    <h2>The Foreign Tax Credit</h2>
+    <p class="plain"><b>In plain terms:</b> the tax you have already paid in Switzerland is subtracted from the tax you would owe the US. If the Swiss tax is equal or higher, you pay nothing extra to the IRS on that income.</p>
+    <p>This is where everything the FEIE does not cover goes — salary above the limit and investment income.</p>
+    <div class="viz" id="ftc">
+      <div class="viz-label">Continuing the example: the $17,100 the FEIE didn't cover</div>
+      <div class="toggle" role="group" aria-label="Swiss tax scenario">
+        <button data-ch="5100" class="active">Swiss tax ≈ $5,100</button>
+        <button data-ch="3000">Swiss tax lower: $3,000</button>
+      </div>
+      <div class="credit">
+        <div class="col us"><div class="col-bar" id="bar-us"></div></div>
+        <div class="col ch"><div class="col-bar" id="bar-ch"></div></div>
+      </div>
+      <div class="credit" style="height:auto;border:none;padding-top:0">
+        <div class="col-cap"><b>US tax on $17,100</b>about 24%</div>
+        <div class="col-cap"><b>Swiss tax already paid</b>on the same part of the salary</div>
+      </div>
+      <div class="credit-out" id="credit-out">
+        <div class="lbl" id="credit-lbl">&nbsp;</div>
+        <div class="amt" id="credit-amt">$0</div>
+      </div>
+      <p class="viz-note">Illustrative, rounded figures. The credit can never exceed the US tax on that income.</p>
+    </div>
+    <p style="margin-top:16px">The most common approach is to combine the two: the FEIE for salary up to the limit, the Foreign Tax Credit for the rest. The one rule that cannot be broken: the two never apply to the same dollar of income.</p>
+    <div class="rule reveal"><span class="dollar">$1</span><span>One dollar of income → <b>one</b> tool. FEIE <i>or</i> Foreign Tax Credit — never both.</span></div>
+  </div>
+
+  <!-- TOOL 3 -->
+  <div class="tool">
+    <div class="tool-tag">Tool 3</div>
+    <h2>The Totalization Agreement — Social Security</h2>
+    <p class="plain"><b>In plain terms:</b> it makes sure you only pay into one country's pension and social security system, not both.</p>
+    <p>It is separate from the 1996 income tax treaty, and one of the most overlooked protections. Which country applies depends on your situation:</p>
+    <div class="paths" id="paths">
+      <div class="path" data-delay="0"><div class="who">Hired in Switzerland<small>Pay into the Swiss system only (AHV/IV/EO) — not US Social Security</small></div><span class="sys ch">Switzerland</span></div>
+      <div class="path" data-delay="250"><div class="who">Sent by a US employer for up to 5 years<small>Can stay in the US system only, with a Certificate of Coverage — a document proving to Switzerland that you already pay in the US</small></div><span class="sys us">United States</span></div>
+      <div class="path" data-delay="500"><div class="who">Self-employed, living in Switzerland<small>Covered by the Swiss system only</small></div><span class="sys ch">Switzerland</span></div>
+    </div>
+    <div id="contrib">
+      <div class="contrib"><div class="emp" id="c-emp">You 5.3%</div><div class="er" id="c-er">Employer 5.3%</div></div>
+      <p class="contrib-cap">2026: AHV/IV/EO contributions = 5.3% + 5.3% = 10.6% of salary</p>
+    </div>
+    <p style="margin-top:12px">Without the agreement, you could have to pay into both countries on the same salary.</p>
+  </div>
+
+  <!-- NOT COVERED -->
+  <div class="sec">
+    <h2 class="reveal">What the Treaty Does Not Cover</h2>
+    <div class="nc">
+      <div class="nc-card" data-delay="0">
+        <h3><span>✕</span>Your annual US return</h3>
+        <p>You still have to file a US return every year, even with nothing to pay. The treaty reduces the tax, not the paperwork.</p>
+      </div>
+      <div class="nc-card" data-delay="120">
+        <h3><span>✕</span>Reporting your accounts and assets abroad</h3>
+        <p>Two separate obligations — they are not taxes, they are reports:</p>
+        <div class="defs">
+          <div class="def"><b>FBAR</b>An annual list of your bank accounts outside the US, filed with the US Treasury whenever their combined total goes above $10,000 at any point in the year.</div>
+          <div class="def"><b>FATCA</b>A US law that requires banks worldwide — Swiss banks included — to report American clients' accounts to the IRS. On your side, once your foreign assets pass certain thresholds, you list them on a dedicated form (Form 8938).</div>
+        </div>
+        <p style="margin:10px 0 0;font-style:italic">Not reporting carries heavy fines, even with no tax owed. We cover both in detail in our article on FBAR and FATCA.</p>
+      </div>
+      <div class="nc-card" data-delay="240" id="f8833">
+        <h3><span>✕</span>Telling the IRS you're using the treaty</h3>
+        <p>Whenever you pay less US tax because of a treaty article, you must say so on a dedicated form, Form 8833. Forgetting it costs:</p>
+        <div class="fine"><span class="v" id="fine-v">$0</span><span class="d">per return — even with no tax due</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TWO AMERICANS -->
+  <div class="sec">
+    <h2 class="reveal">Two Americans, Two Different Outcomes</h2>
+    <div class="amer" id="amer">
+      <div class="am a" data-delay="0">
+        <h3>American A</h3>
+        <p>CHF 160,000 salary. Files a US return every year, but has never claimed the FEIE or the Foreign Tax Credit.</p>
+        <div class="st" data-delay="300"><span>FEIE</span><span class="n">✕ not claimed</span></div>
+        <div class="st" data-delay="400"><span>Foreign Tax Credit</span><span class="n">✕ not claimed</span></div>
+        <div class="st" data-delay="500"><span>Form 8833</span><span class="n">✕</span></div>
+        <div class="irs"><div class="irs-lbl">US tax paid</div><div class="irs-track"><div class="irs-fill" data-w="100"></div></div></div>
+        <div class="verdict">Full US tax on a salary already taxed in Switzerland — possibly thousands of dollars too much each year.</div>
+      </div>
+      <div class="am b" data-delay="150">
+        <h3>American B</h3>
+        <p>Same salary. Uses the FEIE up to the limit, the Foreign Tax Credit for the rest, and files Form 8833 where applicable.</p>
+        <div class="st" data-delay="450"><span>FEIE</span><span class="y">✓ claimed</span></div>
+        <div class="st" data-delay="550"><span>Foreign Tax Credit</span><span class="y">✓ claimed</span></div>
+        <div class="st" data-delay="650"><span>Form 8833</span><span class="y">✓ where needed</span></div>
+        <div class="irs"><div class="irs-lbl">US tax paid</div><div class="irs-track"><div class="irs-fill" data-w="4"></div></div></div>
+        <div class="verdict">Pays the Swiss tax due — and little or nothing to the IRS.</div>
+      </div>
+    </div>
+    <p class="both reveal">Both are compliant. Only one is using the tools.</p>
+  </div>
+
+  <!-- MISTAKES -->
+  <div class="sec">
+    <h2 class="reveal">Common Mistakes</h2>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div class="mk" data-delay="0">
+        <div class="mk-num">1</div>
+        <div><h3>Using the FEIE and the Foreign Tax Credit on the same income</h3>
+        <p>One of the most frequent errors on US expat returns — and it can lead the IRS to adjust your return, with tax and interest to pay.</p></div>
+      </div>
+      <div class="mk" data-delay="100" id="mk2">
+        <div class="mk-num">2</div>
+        <div style="flex:1;min-width:0"><h3>Choosing the FEIE without thinking long-term</h3>
+        <p>Once chosen, the FEIE carries over from year to year. If you ever revoke it — for example, to switch to the Foreign Tax Credit only — you cannot choose it again for five years without IRS approval. The first choice deserves careful thought.</p>
+        <div class="lock" id="lock">
+          <div class="lk rev" data-delay="0">Year 0<small>revoke</small></div>
+          <div class="lk locked" data-delay="150">Y1<small>locked</small></div>
+          <div class="lk locked" data-delay="250">Y2<small>locked</small></div>
+          <div class="lk locked" data-delay="350">Y3<small>locked</small></div>
+          <div class="lk locked" data-delay="450">Y4<small>locked</small></div>
+          <div class="lk locked" data-delay="550">Y5<small>locked</small></div>
+          <div class="lk free" data-delay="750">Y6<small>available</small></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div>
+    <h2 class="reveal">Before You Ask</h2>
+    <div style="margin-top:12px">
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">I have a Green Card, not citizenship. Does this apply to me?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">Yes. As long as you hold the Green Card, you are treated as a US tax resident and have the same filing obligations — and the same tools — as a citizen.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">Do I have to claim the FEIE every year?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">The choice stays in place until you revoke it, but Form 2555 must be filed with your return for every year in which you want to use the exclusion.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">When should I speak with an advisor?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">If you have never checked whether you are using both tools correctly, if your income combines salary and investments, or before choosing between the FEIE and the Foreign Tax Credit for the first time.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-box reveal">
+    <p>The tools exist. The hard part is knowing which ones apply to you, combining them without mistakes and filing the right forms on time. SwissExpatHub connects you with advisors experienced in US expatriate taxation and the US–Switzerland tax treaty.</p>
+    <a href="/directory" class="cta-btn">Find Your Advisor →</a>
+  </div>
+
+  <!-- SOURCES -->
+  <div class="sources reveal">
     <h3>Sources</h3>
     <ol>
-      <li>IRS — US-Switzerland Income Tax Convention (1996): irs.gov</li>
-      <li>IRS — Foreign Tax Credit Form 1116: irs.gov</li>
-      <li>IRS — Foreign Earned Income Exclusion Form 2555: irs.gov</li>
-      <li>Federal Tax Administration Switzerland — International tax treaties: estv.admin.ch</li>
+      <li>IRS — Foreign Earned Income Exclusion (Form 2555): irs.gov</li>
+      <li>IRS — Foreign Tax Credit (Form 1116): irs.gov</li>
+      <li>IRS — Treaty-Based Return Position Disclosure (Form 8833): irs.gov</li>
+      <li>US Social Security Administration — Totalization Agreement with Switzerland: ssa.gov</li>
+      <li>Federal Social Insurance Office — AHV/IV/EO contribution rates 2026: bsv.admin.ch</li>
     </ol>
   </div>
 
 </div>
+
 <script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-  function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+window.addEventListener('scroll', () => {
+  const docH = document.documentElement.scrollHeight - window.innerHeight;
+  document.getElementById('progress-bar').style.width = (docH > 0 ? window.scrollY / docH * 100 : 0) + '%';
+});
+window.addEventListener('load', () => {
+  setTimeout(() => document.querySelector('.article-meta').classList.add('visible'), 80);
+  setTimeout(() => document.querySelector('h1').classList.add('visible'), 220);
+  setTimeout(() => document.querySelector('.header-rule').classList.add('visible'), 420);
+});
+function stagger(selector, threshold) {
+  const obs = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), parseInt(e.target.dataset.delay || 0)); obs.unobserve(e.target); }
+  }), { threshold });
+  document.querySelectorAll(selector).forEach(el => obs.observe(el));
+}
+function onView(id, fn, threshold = 0.4) {
+  const el = document.getElementById(id);
+  const obs = new IntersectionObserver(en => { if (en[0].isIntersecting) { fn(); obs.disconnect(); } }, { threshold });
+  obs.observe(el);
+}
+const usd = n => '$' + Math.round(n).toLocaleString('en-US');
+function countUp(el, to, ms, fmt = usd, from = 0) {
+  const t0 = performance.now();
+  const step = t => { const k = Math.min(1, (t - t0) / ms), e = 1 - Math.pow(1 - k, 3);
+    el.textContent = fmt(from + (to - from) * e); if (k < 1) requestAnimationFrame(step); };
+  requestAnimationFrame(step);
+}
+stagger('.takeaway-item', 0.15);
+stagger('.reveal', 0.08);
+stagger('.fam-item', 0.3);
+stagger('.tool', 0.05);
+stagger('.cond', 0.3);
+stagger('.path', 0.3);
+stagger('.nc-card', 0.15);
+stagger('.am', 0.15);
+stagger('.am .st', 0.5);
+stagger('.mk', 0.1);
+stagger('.lk', 0.4);
+
+// Sound familiar — tappable
+const famItems = document.querySelectorAll('.fam-item');
+famItems.forEach(f => f.addEventListener('click', () => {
+  f.classList.toggle('on');
+  const n = document.querySelectorAll('.fam-item.on').length, m = document.getElementById('fam-msg');
+  m.className = 'fam-msg' + (n ? ' go' : '');
+  m.textContent = n === 0 ? 'Tap the ones that apply to you.' : n === 3 ? 'All three? This article is written for you — keep reading.' : 'Then the tools below are worth checking.';
+}));
+
+// Rates
+onView('rates', () => {
+  document.querySelectorAll('#rates .rate-fill').forEach(f => f.style.width = (parseFloat(f.dataset.w) / 40 * 100) + '%');
+  document.querySelectorAll('#rates .rate-val').forEach(v => countUp(v, parseFloat(v.dataset.v), 1100, n => n.toFixed(1).replace('.0', '') + '%'));
+});
+
+// Tool 1 — FEIE example
+onView('feie', () => {
+  const rest = document.getElementById('ex-rest');
+  setTimeout(() => { document.getElementById('ex-feie').style.width = 'min(' + (132900 / 150000 * 100).toFixed(2) + '%, calc(100% - 70px))'; rest.textContent = ''; }, 300);
+  setTimeout(() => { rest.textContent = '$17,100'; document.getElementById('ex-step').classList.add('visible'); }, 1500);
+  setTimeout(() => document.getElementById('ex-handoff').classList.add('visible'), 2100);
+});
+
+// Tool 2 — credit
+const US_TAX = 4100, MAXV = 5600;
+function showCredit(ch) {
+  const bu = document.getElementById('bar-us'), bc = document.getElementById('bar-ch');
+  bu.style.height = (US_TAX / MAXV * 100) + '%'; bu.textContent = usd(US_TAX);
+  bc.style.height = (ch / MAXV * 100) + '%'; bc.textContent = usd(ch);
+  bu.classList.remove('covered');
+  const owe = Math.max(0, US_TAX - ch), out = document.getElementById('credit-out');
+  setTimeout(() => {
+    bu.classList.add('covered');
+    out.classList.toggle('owe', owe > 0);
+    document.getElementById('credit-lbl').innerHTML = owe > 0
+      ? `You owe the IRS only the difference<small>${usd(US_TAX)} − ${usd(ch)} = ${usd(owe)}</small>`
+      : `You owe the IRS nothing extra<small>${usd(US_TAX)} − ${usd(US_TAX)} = $0 · the leftover ${usd(ch - US_TAX)} isn't refunded, but can be used in later years</small>`;
+    countUp(document.getElementById('credit-amt'), owe, 700);
+  }, 1000);
+  document.querySelectorAll('.toggle button').forEach(b => b.classList.toggle('active', +b.dataset.ch === ch));
+}
+document.querySelectorAll('.toggle button').forEach(b => b.addEventListener('click', () => showCredit(+b.dataset.ch)));
+onView('ftc', () => showCredit(5100), 0.35);
+
+// Tool 3 — contributions
+onView('contrib', () => { document.getElementById('c-emp').style.width = '50%'; document.getElementById('c-er').style.width = '50%'; }, 0.6);
+
+// Form 8833 fine
+onView('f8833', () => countUp(document.getElementById('fine-v'), 1000, 900), 0.5);
+
+// Two Americans — IRS bars
+onView('amer', () => document.querySelectorAll('.irs-fill').forEach((f, i) => setTimeout(() => f.style.width = f.dataset.w + '%', 900 + i * 300)), 0.3);
+
+// FEIE 5-year lock
+onView('lock', () => document.querySelectorAll('.lk').forEach(l => setTimeout(() => l.classList.add('lit'), parseInt(l.dataset.delay) + 300)), 0.5);
+
+function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
 </script>
 </body>
 </html>
