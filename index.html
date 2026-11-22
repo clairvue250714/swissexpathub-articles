@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SwissExpatHub — Animações</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap">
+<style>
+:root {
+  --bg: #f7f8fa; --bg2: #ffffff; --fg: #1a1d23; --fg2: #5a6070;
+  --border: #e2e5ec; --blue: #1f4080; --blue-light: #e8eff9;
+  --shadow: 0 2px 12px rgba(0,0,0,.07);
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#13161c;--bg2:#1e222b;--fg:#e8ecf5;--fg2:#8892a4;--border:#2c3140;--blue:#5b8dde;--blue-light:#1a2540; }
+}
+*, *::before, *::after { box-sizing: border-box; margin:0; padding:0; }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: 'Inter', system-ui, sans-serif;
+  padding: 48px max(16px, 5vw);
+}
+h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(22px,4vw,32px); font-weight:700; margin-bottom:6px; }
+.sub { color: var(--fg2); font-size:15px; margin-bottom:48px; }
+.article { margin-bottom:40px; }
+.article-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size:13px; font-weight:700; letter-spacing:.08em;
+  text-transform:uppercase; color: var(--blue); margin-bottom:12px;
+}
+.cards { display:flex; flex-direction:column; gap:12px; }
+.card {
+  background: var(--bg2); border:1.5px solid var(--border);
+  border-radius:14px; padding:18px 22px; box-shadow: var(--shadow);
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  text-decoration:none; color:inherit;
+  transition: border-color .2s, box-shadow .2s, transform .15s;
+}
+.card:hover { border-color: var(--blue); box-shadow: 0 4px 20px rgba(31,64,128,.12); transform: translateY(-2px); }
+.card-label { font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color: var(--fg2); margin-bottom:4px; }
+.card-name { font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:700; }
+.card-arrow { font-size:20px; color: var(--blue); flex-shrink:0; }
+footer { margin-top:64px; font-size:12px; color: var(--fg2); }
+</style>
+</head>
+<body>
+<h1>SwissExpatHub</h1>
+<p class="sub">Animações interactivas para os artigos</p>
+
+<div class="article">
+  <div class="article-title">Artigo — Parceiro de Diplomata em Genebra</div>
+  <div class="cards">
+    <a class="card" href="section1-tipos-carte.html">
+      <div>
+        <div class="card-label">Secção 1</div>
+        <div class="card-name">A carte determina tudo — tipos B, C, F e H</div>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+    <a class="card" href="section3-tributacao.html">
+      <div>
+        <div class="card-label">Secção 3</div>
+        <div class="card-name">O que o fisco "vê" — e quanto isso custa</div>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+    <a class="card" href="section4-mudanca-carte.html">
+      <div>
+        <div class="card-label">Secção 4</div>
+        <div class="card-name">O que muda — e o que nunca muda</div>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+  </div>
+</div>
+
+<footer>SwissExpatHub · clairvue250714.github.io/swissexpathub-articles</footer>
+</body>
+</html>
