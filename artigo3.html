@@ -48,13 +48,21 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* ── PROGRESS BAR ── */
+#progress-bar {
+  position: fixed; top: 0; left: 0; height: 3px;
+  background: var(--blue-mid); width: 0%;
+  z-index: 1000; transition: width .1s linear;
+  border-radius: 0 2px 2px 0;
+}
+
 body {
   background: var(--bg);
   color: var(--fg);
   font-family: 'Inter', system-ui, sans-serif;
   font-size: 16px;
   line-height: 1.75;
-  padding: 40px max(16px, 5vw) 80px;
+  padding: 48px max(16px, 5vw) 80px;
 }
 
 .article {
@@ -62,28 +70,36 @@ body {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 36px;
 }
 
 /* ── HEADER ── */
-.article-header { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
 .article-meta {
   font-family: 'Space Grotesk', sans-serif;
   font-size: 11px; font-weight: 700;
   letter-spacing: .12em; text-transform: uppercase;
-  color: var(--fg2); margin-bottom: 10px;
+  color: var(--fg2); margin-bottom: 12px;
+  opacity: 0; transform: translateY(-8px);
+  transition: opacity .5s ease, transform .5s ease;
 }
+.article-meta.visible { opacity: 1; transform: translateY(0); }
+
 h1 {
   font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(24px, 5vw, 36px);
   font-weight: 700; line-height: 1.2;
   text-wrap: balance; color: var(--fg);
+  opacity: 0; transform: translateY(12px);
+  transition: opacity .6s ease .15s, transform .6s ease .15s;
 }
+h1.visible { opacity: 1; transform: translateY(0); }
+
 .header-rule {
-  height: 2px; background: var(--blue);
+  height: 3px; background: var(--blue);
   border-radius: 2px; margin-top: 20px;
-  width: 48px;
+  width: 0; transition: width .8s cubic-bezier(.16,1,.3,1) .5s;
 }
+.header-rule.visible { width: 48px; }
 
 /* ── QUICK ANSWER ── */
 .quick-answer {
@@ -102,23 +118,26 @@ h1 {
 }
 .takeaways h2 {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 16px; font-weight: 700;
-  color: rgba(255,255,255,.6);
-  letter-spacing: .08em; text-transform: uppercase;
-  margin-bottom: 16px; margin-top: 0;
+  font-size: 13px; font-weight: 700;
+  color: rgba(255,255,255,.55);
+  letter-spacing: .1em; text-transform: uppercase;
+  margin-bottom: 18px; margin-top: 0;
 }
 .takeaways ul { list-style: none; }
-.takeaways ul li {
+.takeaway-item {
   color: #e8ecf5;
   font-size: 14.5px;
   padding: 10px 0;
   border-bottom: 1px solid rgba(255,255,255,.1);
   display: flex; gap: 12px; align-items: flex-start;
+  opacity: 0; transform: translateX(-10px);
+  transition: opacity .45s ease, transform .45s ease;
 }
-.takeaways ul li:last-child { border-bottom: none; }
-.takeaways ul li::before {
+.takeaway-item.visible { opacity: 1; transform: translateX(0); }
+.takeaway-item:last-child { border-bottom: none; }
+.takeaway-item::before {
   content: "✓"; color: #3dba78;
-  font-weight: 700; flex-shrink: 0; margin-top: 1px;
+  font-weight: 700; flex-shrink: 0; margin-top: 2px;
 }
 
 /* ── HEADINGS ── */
@@ -137,64 +156,164 @@ p:last-child { margin-bottom: 0; }
 .hl-blue  { color: var(--blue-mid); font-weight: 600; }
 .hl-green { color: var(--green);    font-weight: 600; }
 .hl-red   { color: var(--red);      font-weight: 600; }
-sup { font-size: 11px; color: var(--blue-mid); }
 
-/* ── SITUATION CARDS ── */
-.situation-cards {
+/* ── SPLIT TABLE: Exempt vs Taxed ── */
+.split-table {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-@media (max-width: 520px) { .situation-cards { grid-template-columns: 1fr; } }
-
-.sit-card {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
+  gap: 0;
   border-radius: 14px;
-  padding: 18px 20px;
+  overflow: hidden;
+  border: 1.5px solid var(--border);
   box-shadow: var(--shadow);
-  transition: border-color .2s, box-shadow .2s;
 }
-.sit-card:hover { box-shadow: var(--shadow-md); }
-.sit-card.alert { border-color: var(--red); }
-.sit-card h3 { color: var(--blue-mid); margin-bottom: 6px; }
-.sit-card.alert h3 { color: var(--red); }
-.sit-card p { font-size: 13px; color: var(--fg2); margin: 0; }
+@media (max-width: 520px) { .split-table { grid-template-columns: 1fr; } }
+.split-col { background: var(--bg2); }
+.split-col-header {
+  padding: 14px 20px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px; font-weight: 700;
+  letter-spacing: .06em;
+  display: flex; align-items: center; gap: 8px;
+}
+.split-col:first-child .split-col-header { background: var(--green); color: #fff; }
+.split-col:last-child .split-col-header  { background: var(--blue); color: #fff; }
+.split-col-body { padding: 16px 20px; display: flex; flex-direction: column; gap: 10px; }
+.split-row {
+  font-size: 14px; color: var(--fg);
+  padding: 8px 10px;
+  background: var(--bg);
+  border-radius: 8px;
+  line-height: 1.4;
+}
+.split-col:first-child .split-row { border-left: 3px solid var(--green); }
+.split-col:last-child  .split-row { border-left: 3px solid var(--blue-mid); }
 
-/* ── CHECKLIST ── */
-.checklist {
+/* ── EXAMPLE BOX ── */
+.example-box {
   background: var(--bg2);
   border: 1.5px solid var(--border);
   border-radius: 16px;
   padding: 24px 28px;
   box-shadow: var(--shadow);
 }
-.checklist h3 {
+.example-box h3 {
   font-family: 'Space Grotesk', sans-serif;
   font-size: 15px; font-weight: 700;
-  margin-bottom: 16px; color: var(--fg);
+  color: var(--fg); margin-bottom: 16px;
 }
-.checklist-item {
-  display: flex; align-items: flex-start; gap: 12px;
-  padding: 11px 0;
+.example-row {
+  display: flex; gap: 12px; align-items: flex-start;
+  padding: 10px 12px; border-radius: 10px; margin-bottom: 8px;
+  font-size: 14px; line-height: 1.5;
+}
+.example-row:last-child { margin-bottom: 0; }
+.example-row.exempt  { background: var(--green-light); border-left: 3px solid var(--green); }
+.example-row.taxed   { background: var(--blue-light);  border-left: 3px solid var(--blue-mid); }
+.example-row.income  { background: var(--gold-light);  border-left: 3px solid var(--gold); }
+.example-label { font-weight: 600; white-space: nowrap; flex-shrink: 0; }
+.exempt  .example-label { color: var(--green); }
+.taxed   .example-label { color: var(--blue-mid); }
+.income  .example-label { color: var(--gold); }
+
+/* ── ASSET SECTIONS ── */
+.asset-section {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: box-shadow .2s;
+}
+.asset-section:hover { box-shadow: var(--shadow-md); }
+.asset-header {
+  padding: 18px 24px;
+  display: flex; gap: 14px; align-items: center;
+  border-bottom: 1.5px solid var(--border);
+  background: var(--bg);
+}
+.asset-icon { font-size: 24px; flex-shrink: 0; }
+.asset-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px; font-weight: 700; color: var(--fg);
+}
+.asset-subtitle { font-size: 12px; color: var(--fg2); margin-top: 2px; }
+.asset-body { padding: 20px 24px; display: flex; flex-direction: column; gap: 12px; }
+.asset-rule {
+  display: flex; gap: 10px; align-items: flex-start;
+  padding: 10px 14px; border-radius: 10px;
+  font-size: 14px; line-height: 1.5;
+}
+.asset-rule.exempt  { background: var(--green-light); }
+.asset-rule.taxed   { background: var(--blue-light); }
+.asset-rule.income  { background: var(--gold-light); }
+.asset-rule.warning { background: var(--red-light); }
+.asset-rule-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+.asset-rule-text { color: var(--fg); }
+.asset-rule-text strong { font-weight: 600; }
+.asset-tip {
+  font-size: 13px; color: var(--fg2); font-style: italic;
+  padding: 10px 14px;
+  border-left: 3px solid var(--gold);
+  background: var(--gold-light);
+  border-radius: 0 8px 8px 0;
+  line-height: 1.55;
+}
+
+/* ── SITUATION CARDS ── */
+.sit-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+@media (max-width: 520px) { .sit-grid { grid-template-columns: 1fr; } }
+.sit-card {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 20px;
+  box-shadow: var(--shadow);
+  transition: box-shadow .2s, transform .2s;
+  opacity: 0; transform: scale(.96) translateY(10px);
+}
+.sit-card.visible { opacity: 1; transform: scale(1) translateY(0); }
+.sit-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.sit-card.alert { border-color: var(--red); }
+.sit-card h3 { color: var(--blue-mid); font-size: 14px; margin-bottom: 6px; }
+.sit-card.alert h3 { color: var(--red); }
+.sit-card p { font-size: 13px; color: var(--fg2); margin: 0; }
+
+/* ── QUESTION BOX ── */
+.question-box {
+  background: var(--gold-light);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 14px 14px 0;
+  padding: 20px 24px;
+}
+.question-box p { font-size: 15px; color: var(--fg); margin: 0; }
+
+/* ── RATES BOX ── */
+.rates-box {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: var(--shadow);
+}
+.rates-box h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px; font-weight: 700;
+  color: var(--fg); margin-bottom: 16px;
+}
+.rates-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 0;
   border-bottom: 1px solid var(--border);
-  cursor: pointer;
+  font-size: 14px;
 }
-.checklist-item:last-of-type { border-bottom: none; }
-.check-box {
-  width: 22px; height: 22px;
-  border: 2px solid var(--blue);
-  border-radius: 6px; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  transition: all .2s; margin-top: 2px;
-}
-.check-box.checked { background: var(--blue); border-color: var(--blue); }
-.check-box.checked::after { content: "✓"; color: white; font-size: 13px; font-weight: 700; }
-.checklist-item.done span { text-decoration: line-through; color: var(--fg2); }
-.checklist-item span { font-size: 14.5px; color: var(--fg); font-family: 'Inter', sans-serif; }
-.progress-bar { height: 5px; background: var(--border); border-radius: 3px; margin-top: 16px; }
-.progress-fill { height: 100%; background: var(--green); border-radius: 3px; transition: width .4s ease; }
-.progress-label { font-size: 12px; color: var(--fg2); margin-top: 6px; font-family: 'Inter', sans-serif; }
+.rates-row:last-child { border-bottom: none; }
+.rates-label { color: var(--fg2); }
+.rates-value { font-weight: 700; color: var(--blue-mid); font-family: 'Space Grotesk', sans-serif; }
 
 /* ── FAQ ── */
 .faq-item {
@@ -205,7 +324,7 @@ sup { font-size: 11px; color: var(--blue-mid); }
   overflow: hidden;
   transition: border-color .2s;
 }
-.faq-item.open { border-color: var(--blue); }
+.faq-item.open { border-color: var(--blue-mid); }
 .faq-q {
   padding: 16px 20px;
   font-family: 'Space Grotesk', sans-serif;
@@ -213,17 +332,17 @@ sup { font-size: 11px; color: var(--blue-mid); }
   cursor: pointer;
   display: flex; justify-content: space-between; align-items: center;
   gap: 12px; color: var(--fg);
-  background: transparent;
+  user-select: none;
 }
-.faq-arrow { color: var(--blue); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
+.faq-arrow { color: var(--blue-mid); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
 .faq-item.open .faq-arrow { transform: rotate(180deg); }
 .faq-a {
-  display: none;
-  padding: 0 20px 16px;
+  max-height: 0; overflow: hidden;
+  transition: max-height .35s ease, padding .35s ease;
   font-size: 14px; color: var(--fg2); line-height: 1.65;
-  font-family: 'Inter', sans-serif;
+  padding: 0 20px;
 }
-.faq-item.open .faq-a { display: block; }
+.faq-item.open .faq-a { max-height: 300px; padding: 0 20px 16px; }
 
 /* ── CTA ── */
 .cta-box {
@@ -232,22 +351,16 @@ sup { font-size: 11px; color: var(--blue-mid); }
   padding: 32px 36px;
   text-align: center;
 }
-.cta-box p {
-  color: rgba(255,255,255,.8);
-  font-size: 15px; margin-bottom: 20px;
-}
+.cta-box p { color: rgba(255,255,255,.85); font-size: 15px; margin-bottom: 20px; }
 .cta-btn {
-  background: var(--gold);
-  color: #fff;
-  padding: 13px 28px;
-  border-radius: 10px;
+  background: var(--gold); color: #fff;
+  padding: 13px 28px; border-radius: 10px;
   text-decoration: none;
   font-family: 'Space Grotesk', sans-serif;
   font-size: 15px; font-weight: 700;
-  display: inline-block;
-  transition: opacity .2s;
+  display: inline-block; transition: opacity .2s, transform .2s;
 }
-.cta-btn:hover { opacity: .88; }
+.cta-btn:hover { opacity: .88; transform: translateY(-1px); }
 
 /* ── SOURCES ── */
 .sources {
@@ -265,53 +378,324 @@ sup { font-size: 11px; color: var(--blue-mid); }
 .sources ol { padding-left: 18px; }
 .sources ol li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; }
 
-/* ── FADE IN ── */
-.fade-in { opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
-.fade-in.visible { opacity: 1; transform: translateY(0); }
+/* ── REVEAL ── */
+.reveal {
+  opacity: 0; transform: translateY(16px);
+  transition: opacity .5s ease, transform .5s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
 
 @media (max-width: 600px) {
-  h1 { font-size: 24px; }
-  .situation-cards { grid-template-columns: 1fr; }
-  .cta-box { padding: 24px 20px; }
+  body { padding-top: 36px; }
   .takeaways { padding: 20px 20px; }
+  .cta-box { padding: 24px 20px; }
+  .asset-body { padding: 16px 18px; }
+  .example-box { padding: 18px 18px; }
 }
 </style>
 </head>
 <body>
+<div id="progress-bar"></div>
 <div class="article">
 
-  <div class="article-header fade-in"><p class="article-meta">Tax &amp; Finance · Wealth Tax · 3 min read</p><h1>Wealth Tax in Geneva: When Should Expats Pay Attention?</h1></div>
-  <div class="quick-answer fade-in"><p><strong>Quick Answer:</strong> Switzerland taxes not only your income — it also taxes your net worth. The important question is not whether wealth tax exists. It is whether it applies to your situation — and when. For many expats, it starts as a distant concern and gradually becomes relevant as savings, investments, and assets grow.</p></div>
-  <div class="takeaways fade-in"><h2>Key Takeaways</h2><ul><li>Wealth tax applies to worldwide assets — not just what you hold in Switzerland</li><li>It is not only for the ultra-wealthy — it becomes relevant as assets grow</li><li>Geneva has higher rates than most other Swiss cantons</li><li>Pillar 2 pension funds are exempt — Pillar 3a balances are included</li><li>Undeclared foreign assets can be regularized — but acting early matters</li></ul></div>
-  <h2 class="fade-in">What Counts as Taxable Wealth?</h2>
-  <p class="fade-in">Your net worth for Swiss tax purposes includes: <span class="hl-blue">bank accounts and savings</span>, investment portfolios and ETFs, real estate in Switzerland and abroad, <span class="hl-red">Pillar 3a balances</span>, cryptocurrency holdings, and the cash value of life insurance policies. Mortgages and certain debts are deductible. <span class="hl-green">Pillar 2 occupational pension funds are generally exempt.</span></p>
-  <h2 class="fade-in">Four Situations Where Wealth Tax Becomes Relevant</h2>
-  <div class="sit-grid fade-in">
-    <div class="sit-card alert"><h3>📈 Your Investment Portfolio Is Growing</h3><p>ETFs, stocks, and brokerage accounts are often the first assets that increase wealth tax exposure. Many expats accumulate these quietly without revisiting their obligations.</p></div>
-    <div class="sit-card alert"><h3>🏠 You Own Property</h3><p>Property ownership — whether in Switzerland or abroad — can significantly increase your net wealth position and wealth tax exposure.</p></div>
-    <div class="sit-card alert"><h3>₿ You Hold Cryptocurrency</h3><p>Many crypto investors focus on income tax and overlook wealth tax entirely. Valuation rules can be complex, particularly for less liquid tokens.</p></div>
-    <div class="sit-card"><h3>🗓️ You Have Been Here Several Years</h3><p>As careers progress and investments grow, wealth tax becomes more relevant. Do not assume that because it was not relevant in year one, it will never be relevant.</p></div>
+  <!-- HEADER -->
+  <div class="article-header">
+    <p class="article-meta">Tax &amp; Finance · Wealth Tax · 4 min read</p>
+    <h1>Wealth Tax in Geneva: When Should Expats Pay Attention?</h1>
+    <div class="header-rule"></div>
   </div>
-  <h2 class="fade-in">Geneva Specifically</h2>
-  <p class="fade-in">Geneva applies <span class="hl-red">higher wealth tax rates</span> than lower-tax cantons such as Zug or Schwyz. For those already in Geneva, understanding local rates and available deductions is more useful than comparing cantons — and that is where professional advice tends to add the most value.</p>
-  <div class="question-box fade-in"><p><strong>A practical question:</strong> Instead of asking "Do I have a wealth tax problem?" ask: <em>"If my investments continue growing over the next five to ten years, will wealth tax become relevant to me?"</em> For most expats who have been in Geneva for more than two or three years, the answer is probably yes.</p></div>
-  <h2 class="fade-in">Before You Ask</h2>
-  <div class="faq fade-in">
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Is wealth tax only for millionaires?<span class="faq-arrow">▾</span></div><div class="faq-a">No. It can become relevant well before most people consider themselves wealthy. A combination of savings, a brokerage account, and a property abroad can be enough to make it worth reviewing.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Do I need to declare foreign bank accounts?<span class="faq-arrow">▾</span></div><div class="faq-a">Yes. Swiss tax residents must declare worldwide assets. Foreign accounts, investments, and property are all included regardless of where they are held.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">I have never declared my foreign investments. What now?<span class="faq-arrow">▾</span></div><div class="faq-a">This is more common than most people realize. Switzerland has legal mechanisms to regularize undeclared assets. Speaking with an advisor before the situation becomes a problem is strongly recommended.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">When should I speak with an advisor?<span class="faq-arrow">▾</span></div><div class="faq-a">Usually before making significant investment, property, or long-term financial decisions — and certainly before filing a full tax return for the first time.</div></div>
+
+  <!-- QUICK ANSWER -->
+  <div class="quick-answer reveal">
+    <p><strong>Quick Answer:</strong> Switzerland taxes not only your income — it also taxes your net worth. But there is a critical distinction most expats miss: <strong>the growth in your investments is generally tax-free.</strong> What you pay is a small annual tax on the total value of what you own. Understanding the difference changes how you think about investing in Switzerland.</p>
   </div>
-  <div class="cta-box fade-in"><p>Many expats only discover the importance of wealth tax after their assets have grown significantly. Speaking with an advisor earlier helps you understand how wealth tax may affect your investments and long-term strategy in Switzerland.</p><a href="/directory" class="cta-btn">Find Your Advisor →</a></div>
-  <div class="sources fade-in"><h3>Sources</h3><ol><li>Federal Tax Administration — Wealth tax rules and rates: estv.admin.ch</li><li>Geneva Tax Authority (AFC) — Cantonal wealth tax 2026: ge.ch/impots</li></ol></div>
+
+  <!-- TAKEAWAYS -->
+  <div class="takeaways">
+    <h2>Key Takeaways</h2>
+    <ul>
+      <li class="takeaway-item" data-delay="0">Capital gains on stocks and crypto are generally tax-free in Switzerland</li>
+      <li class="takeaway-item" data-delay="100">Wealth tax applies to the total value of your assets — not to the gains</li>
+      <li class="takeaway-item" data-delay="200">In Geneva, the effective rate is low: typically 0.15% to 0.38% per year</li>
+      <li class="takeaway-item" data-delay="300">Dividends and interest are taxed as ordinary income</li>
+      <li class="takeaway-item" data-delay="400">Foreign properties and investments must be declared in full</li>
+    </ul>
+  </div>
+
+  <!-- TWO TAXES -->
+  <div>
+    <h2 class="reveal">Two Separate Taxes — One Common Confusion</h2>
+    <p class="reveal" style="margin-top:8px; margin-bottom:16px;">Most expats arrive from countries that tax capital gains. Switzerland works differently — and for long-term investors, it is more favourable:</p>
+    <div class="split-table reveal">
+      <div class="split-col">
+        <div class="split-col-header">✅ Generally Exempt</div>
+        <div class="split-col-body">
+          <div class="split-row">Stock and ETF price appreciation</div>
+          <div class="split-row">Crypto capital gains (private investor)</div>
+          <div class="split-row">Real estate capital gains</div>
+        </div>
+      </div>
+      <div class="split-col">
+        <div class="split-col-header">📊 Taxed</div>
+        <div class="split-col-body">
+          <div class="split-row">Total net worth (wealth tax — small annual %)</div>
+          <div class="split-row">Dividends and interest received</div>
+          <div class="split-row">Rental income</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXAMPLE -->
+  <div class="example-box reveal">
+    <h3>Practical Example: CHF 100,000 Portfolio</h3>
+    <p style="font-size:14px; color:var(--fg2); margin-bottom:16px;">You have CHF 100,000 in ETFs (e.g. Vanguard S&amp;P 500). By year-end the portfolio is worth CHF 108,000 — a gain of CHF 8,000. It also paid CHF 1,500 in dividends.</p>
+    <div class="example-row exempt">
+      <span class="example-label">CHF 8,000 gain →</span>
+      <span>Tax-free. No tax on the appreciation.</span>
+    </div>
+    <div class="example-row taxed">
+      <span class="example-label">CHF 108,000 total →</span>
+      <span>Wealth tax: ~0.15–0.38% = approximately CHF 162 to CHF 411 per year.</span>
+    </div>
+    <div class="example-row income">
+      <span class="example-label">CHF 1,500 dividends →</span>
+      <span>Taxed as income — added to your salary in your tax return.</span>
+    </div>
+  </div>
+
+  <!-- BY ASSET TYPE -->
+  <div>
+    <h2 class="reveal">By Asset Type: What Happens in Practice</h2>
+    <p class="reveal" style="margin-top:8px; margin-bottom:20px;">The rules vary depending on what you hold and where it is held.</p>
+
+    <!-- STOCKS -->
+    <div class="asset-section reveal" style="margin-bottom:12px;">
+      <div class="asset-header">
+        <div class="asset-icon">📈</div>
+        <div>
+          <div class="asset-title">Stocks &amp; ETFs (e.g. S&amp;P 500, Vanguard, iShares)</div>
+          <div class="asset-subtitle">The most common expat investment vehicle</div>
+        </div>
+      </div>
+      <div class="asset-body">
+        <div class="asset-rule exempt">
+          <span class="asset-rule-icon">✅</span>
+          <span class="asset-rule-text"><strong>Price appreciation:</strong> tax-free for private investors.</span>
+        </div>
+        <div class="asset-rule taxed">
+          <span class="asset-rule-icon">📊</span>
+          <span class="asset-rule-text"><strong>Total portfolio value on 31 December:</strong> subject to wealth tax (~0.15–0.38% in Geneva).</span>
+        </div>
+        <div class="asset-rule income">
+          <span class="asset-rule-icon">💰</span>
+          <span class="asset-rule-text"><strong>US dividends (Apple, Microsoft, US-domiciled ETFs):</strong> the US withholds 30% at source. Under the US-Switzerland tax treaty and form W-8BEN, this drops to 15%. The rest is reclaimed via form DA-1 on your Swiss return. Net result: you pay only your normal Swiss marginal rate — no double taxation.</span>
+        </div>
+        <div class="asset-tip">💡 Irish-domiciled ETFs (ISIN starting with "IE") — such as the popular Vanguard and iShares funds available in Europe — benefit from only 15% US withholding, as the US-Ireland treaty is more favourable. This is why many Geneva expats prefer Irish ETFs.</div>
+      </div>
+    </div>
+
+    <!-- PROPERTY -->
+    <div class="asset-section reveal" style="margin-bottom:12px;">
+      <div class="asset-header">
+        <div class="asset-icon">🏠</div>
+        <div>
+          <div class="asset-title">Property Abroad (e.g. a house in London or the US)</div>
+          <div class="asset-subtitle">Must be declared — but not directly taxed in Switzerland</div>
+        </div>
+      </div>
+      <div class="asset-body">
+        <div class="asset-rule taxed">
+          <span class="asset-rule-icon">📊</span>
+          <span class="asset-rule-text"><strong>Property value:</strong> must be declared every year using the foreign tax value or purchase price. In Geneva, the official foreign valuation is used if available. The value adds to your total wealth for wealth tax purposes.</span>
+        </div>
+        <div class="asset-rule exempt">
+          <span class="asset-rule-icon">✅</span>
+          <span class="asset-rule-text"><strong>Rental income:</strong> not taxed in Switzerland — it is taxed in the country where the property is located.</span>
+        </div>
+        <div class="asset-rule warning">
+          <span class="asset-rule-icon">⚠️</span>
+          <span class="asset-rule-text"><strong>Exemption with progression:</strong> the foreign property itself is not taxed in Geneva, but its value can push up the rate applied to your Swiss assets. If the rental generates a net loss, that loss cannot reduce your Swiss taxable income.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CRYPTO -->
+    <div class="asset-section reveal">
+      <div class="asset-header">
+        <div class="asset-icon">₿</div>
+        <div>
+          <div class="asset-title">Cryptocurrency (Bitcoin, Ethereum, etc.)</div>
+          <div class="asset-subtitle">Gains exempt — but the symmetry cuts both ways</div>
+        </div>
+      </div>
+      <div class="asset-body">
+        <div class="asset-rule exempt">
+          <span class="asset-rule-icon">✅</span>
+          <span class="asset-rule-text"><strong>Price appreciation:</strong> tax-free for private investors — same rules as stocks.</span>
+        </div>
+        <div class="asset-rule taxed">
+          <span class="asset-rule-icon">📊</span>
+          <span class="asset-rule-text"><strong>Total value on 31 December:</strong> subject to wealth tax. The value used is the market price on that date.</span>
+        </div>
+        <div class="asset-rule warning">
+          <span class="asset-rule-icon">⚠️</span>
+          <span class="asset-rule-text"><strong>Losses are not deductible.</strong> The logic is symmetrical: because gains are exempt, losses cannot be offset. If Bitcoin dropped from CHF 20,000 to CHF 12,000, you cannot deduct the CHF 8,000 loss. If it recovers to CHF 25,000 the following year, you also pay no tax on that gain.</span>
+        </div>
+        <div class="asset-tip">⚠️ These rules apply to private investors. If the tax authority determines your activity is professional — frequent trading, leverage, high turnover — gains become taxable as self-employment income. If you trade actively, seek professional advice.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GENEVA RATES -->
+  <div>
+    <h2 class="reveal">Geneva Specifically</h2>
+    <p class="reveal" style="margin-top:8px; margin-bottom:16px;">Geneva applies <span class="hl-red">higher wealth tax rates</span> than lower-tax cantons such as Zug or Schwyz — but the effective rates remain low in absolute terms.</p>
+    <div class="rates-box reveal">
+      <h3>Geneva Wealth Tax — Key Figures (2026)</h3>
+      <div class="rates-row">
+        <span class="rates-label">Tax-free allowance (single)</span>
+        <span class="rates-value">CHF 87,872</span>
+      </div>
+      <div class="rates-row">
+        <span class="rates-label">Tax-free allowance (married couple)</span>
+        <span class="rates-value">CHF 175,743</span>
+      </div>
+      <div class="rates-row">
+        <span class="rates-label">Marginal rate scale</span>
+        <span class="rates-value">0.149% – 0.383%</span>
+      </div>
+      <div class="rates-row">
+        <span class="rates-label">Example: CHF 500,000 net wealth</span>
+        <span class="rates-value">~CHF 1,671 / year</span>
+      </div>
+      <div class="rates-row">
+        <span class="rates-label">Example: CHF 1,000,000 net wealth</span>
+        <span class="rates-value">~CHF 4,629 / year</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SITUATION CARDS -->
+  <div>
+    <h2 class="reveal">Four Situations Where Wealth Tax Becomes Relevant</h2>
+    <p class="reveal" style="margin-top:8px; margin-bottom:16px;">Wealth tax often starts as a distant concern and gradually becomes significant as assets grow.</p>
+    <div class="sit-grid">
+      <div class="sit-card alert" data-delay="0"><h3>📈 Your Portfolio Is Growing</h3><p>ETFs, stocks and brokerage accounts are often the first assets to increase wealth tax exposure. Many expats accumulate these quietly without revisiting their obligations.</p></div>
+      <div class="sit-card alert" data-delay="100"><h3>🏠 You Own Property Abroad</h3><p>A house in London or the US must be declared every year. Even if no tax is paid directly on it in Switzerland, it increases your wealth base.</p></div>
+      <div class="sit-card alert" data-delay="200"><h3>₿ You Hold Cryptocurrency</h3><p>Gains may be tax-free, but the total holdings are assessed for wealth tax on 31 December every year — even if the year ended with a loss.</p></div>
+      <div class="sit-card" data-delay="300"><h3>🗓️ You Have Been Here Several Years</h3><p>As careers progress and assets accumulate, wealth tax becomes more relevant. Do not assume that because it was not relevant in year one, it will never be relevant.</p></div>
+    </div>
+  </div>
+
+  <!-- QUESTION BOX -->
+  <div class="question-box reveal">
+    <p><strong>A practical question:</strong> Instead of asking "Do I have a wealth tax problem?" ask: <em>"If my investments continue growing over the next five to ten years, will wealth tax become relevant to me?"</em> For most expats who have been in Geneva for more than two or three years, the answer is probably yes.</p>
+  </div>
+
+  <!-- FAQ -->
+  <div>
+    <h2 class="reveal">Frequently Asked Questions</h2>
+    <div style="margin-top:12px;">
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">Is wealth tax only for millionaires?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">Not in Geneva. With the tax-free allowance of CHF 87,872 for a single person, modest assets may not trigger any wealth tax at all. But a combination of savings, a brokerage account and a property abroad can quickly push you above that threshold — well before you would consider yourself wealthy.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">Do I need to declare my UK or US bank accounts and investments?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">Yes. Swiss tax residents must declare worldwide assets. Foreign bank accounts, investment portfolios, real estate and cryptocurrency holdings are all included, regardless of where they are held. Switzerland has automatic exchange of information agreements with over 100 countries.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">My crypto lost value this year. Can I deduct the loss?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">No. The system is symmetrical: because capital gains are exempt from income tax for private investors, losses are also not deductible. What matters for wealth tax is the market value on 31 December of each year — whether you are up or down on the year.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">I have never declared my foreign investments. What now?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">This is more common than most people realise. Switzerland has legal mechanisms to regularise undeclared assets. Speaking with an advisor before the situation becomes a formal issue is strongly recommended — the earlier you act, the more options are available.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">When should I speak with an advisor?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">Usually before making significant investment, property or long-term financial decisions — and certainly before filing a full Swiss tax return for the first time. The first return sets patterns that tend to repeat in subsequent years.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-box reveal">
+    <p>Wealth tax is often the piece of the Swiss tax puzzle that expats discover too late — after assets have already grown significantly. Speaking with an advisor early helps you understand how to structure your investments efficiently from the start.</p>
+    <a href="/directory" class="cta-btn">Find Your Advisor →</a>
+  </div>
+
+  <!-- SOURCES -->
+  <div class="sources reveal">
+    <h3>Sources</h3>
+    <ol>
+      <li>Federal Tax Administration — Wealth tax rules and rates: estv.admin.ch</li>
+      <li>Geneva Tax Authority (AFC) — Cantonal wealth tax 2026: ge.ch/impots</li>
+      <li>Ibani — Wealth tax rates by canton (2026): ibani.com</li>
+      <li>TrueWealth — Foreign withholding tax and dividends: truewealth.ch</li>
+      <li>Taxolution — Taxation of foreign properties in Switzerland: taxolution.ch</li>
+      <li>Koinly — Switzerland crypto tax guide: koinly.io</li>
+    </ol>
+  </div>
 
 </div>
 <script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); });
-  }, { threshold: 0.1 });
-  document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
-  function toggleFaq(el) { el.parentElement.classList.toggle("open"); }
+// Progress bar
+window.addEventListener('scroll', () => {
+  const docH = document.documentElement.scrollHeight - window.innerHeight;
+  document.getElementById('progress-bar').style.width = (window.scrollY / docH * 100) + '%';
+});
+
+// Header entrance
+window.addEventListener('load', () => {
+  const meta = document.querySelector('.article-meta');
+  const h1   = document.querySelector('h1');
+  const rule = document.querySelector('.header-rule');
+  setTimeout(() => meta.classList.add('visible'), 80);
+  setTimeout(() => h1.classList.add('visible'), 220);
+  setTimeout(() => rule.classList.add('visible'), 420);
+});
+
+// Takeaways stagger
+const takeawayObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const delay = parseInt(e.target.dataset.delay || 0);
+      setTimeout(() => e.target.classList.add('visible'), delay);
+      takeawayObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.15 });
+document.querySelectorAll('.takeaway-item').forEach(el => takeawayObs.observe(el));
+
+// Sit cards stagger
+const sitObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const delay = parseInt(e.target.dataset.delay || 0);
+      setTimeout(() => e.target.classList.add('visible'), delay);
+      sitObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.sit-card').forEach(el => sitObs.observe(el));
+
+// General reveal
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      revealObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+// FAQ smooth toggle
+function toggleFaq(el) {
+  el.parentElement.classList.toggle('open');
+}
 </script>
 </body>
 </html>
