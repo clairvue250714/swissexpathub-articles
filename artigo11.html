@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pillar 3a: What It Is, How It Works, and Why Every Expat Should Open One</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+:root {
+  --bg:         #f7f8fa;
+  --bg2:        #ffffff;
+  --fg:         #1a1d23;
+  --fg2:        #5a6070;
+  --border:     #e2e5ec;
+  --blue:       #1f4080;
+  --blue-mid:   #2e5fa3;
+  --blue-light: #e8eff9;
+  --green:      #1a7a4a;
+  --green-light:#e6f4ed;
+  --red:        #c22b2b;
+  --red-light:  #fceaea;
+  --gold:       #b8862a;
+  --gold-light: #fdf6e8;
+  --shadow:     0 2px 12px rgba(0,0,0,.07);
+  --shadow-md:  0 4px 20px rgba(0,0,0,.10);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:#13161c; --bg2:#1e222b; --fg:#e8ecf5; --fg2:#8892a4; --border:#2c3140;
+    --blue:#5b8dde; --blue-mid:#7aaae8; --blue-light:#1a2540;
+    --green:#3dba78; --green-light:#0d2318;
+    --red:#e05555; --red-light:#2a0d0d;
+    --gold:#d4a855; --gold-light:#2a2010;
+    --shadow:0 2px 16px rgba(0,0,0,.3); --shadow-md:0 4px 24px rgba(0,0,0,.4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:#13161c; --bg2:#1e222b; --fg:#e8ecf5; --fg2:#8892a4; --border:#2c3140;
+  --blue:#5b8dde; --blue-mid:#7aaae8; --blue-light:#1a2540;
+  --green:#3dba78; --green-light:#0d2318;
+  --red:#e05555; --red-light:#2a0d0d;
+  --gold:#d4a855; --gold-light:#2a2010;
+  --shadow:0 2px 16px rgba(0,0,0,.3); --shadow-md:0 4px 24px rgba(0,0,0,.4);
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.75;
+  padding: 40px max(16px, 5vw) 80px;
+}
+
+.article {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* ── HEADER ── */
+.article-header { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
+.article-meta {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--fg2); margin-bottom: 10px;
+}
+h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(24px, 5vw, 36px);
+  font-weight: 700; line-height: 1.2;
+  text-wrap: balance; color: var(--fg);
+}
+.header-rule {
+  height: 2px; background: var(--blue);
+  border-radius: 2px; margin-top: 20px;
+  width: 48px;
+}
+
+/* ── QUICK ANSWER ── */
+.quick-answer {
+  background: var(--blue-light);
+  border-left: 4px solid var(--blue);
+  border-radius: 0 14px 14px 0;
+  padding: 20px 24px;
+}
+.quick-answer p { font-size: 15px; color: var(--fg); margin: 0; }
+
+/* ── TAKEAWAYS ── */
+.takeaways {
+  background: var(--blue);
+  border-radius: 16px;
+  padding: 28px 32px;
+}
+.takeaways h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px; font-weight: 700;
+  color: rgba(255,255,255,.6);
+  letter-spacing: .08em; text-transform: uppercase;
+  margin-bottom: 16px; margin-top: 0;
+}
+.takeaways ul { list-style: none; }
+.takeaways ul li {
+  color: #e8ecf5;
+  font-size: 14.5px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+  display: flex; gap: 12px; align-items: flex-start;
+}
+.takeaways ul li:last-child { border-bottom: none; }
+.takeaways ul li::before {
+  content: "✓"; color: #3dba78;
+  font-weight: 700; flex-shrink: 0; margin-top: 1px;
+}
+
+/* ── HEADINGS ── */
+h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px; font-weight: 700;
+  color: var(--fg); margin-bottom: 4px;
+}
+h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px; font-weight: 700;
+  color: var(--blue-mid); margin-bottom: 6px;
+}
+p { font-size: 15.5px; color: var(--fg); margin-bottom: 12px; }
+p:last-child { margin-bottom: 0; }
+.hl-blue  { color: var(--blue-mid); font-weight: 600; }
+.hl-green { color: var(--green);    font-weight: 600; }
+.hl-red   { color: var(--red);      font-weight: 600; }
+sup { font-size: 11px; color: var(--blue-mid); }
+
+/* ── SITUATION CARDS ── */
+.situation-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+@media (max-width: 520px) { .situation-cards { grid-template-columns: 1fr; } }
+
+.sit-card {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 20px;
+  box-shadow: var(--shadow);
+  transition: border-color .2s, box-shadow .2s;
+}
+.sit-card:hover { box-shadow: var(--shadow-md); }
+.sit-card.alert { border-color: var(--red); }
+.sit-card h3 { color: var(--blue-mid); margin-bottom: 6px; }
+.sit-card.alert h3 { color: var(--red); }
+.sit-card p { font-size: 13px; color: var(--fg2); margin: 0; }
+
+/* ── CHECKLIST ── */
+.checklist {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: var(--shadow);
+}
+.checklist h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px; font-weight: 700;
+  margin-bottom: 16px; color: var(--fg);
+}
+.checklist-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+}
+.checklist-item:last-of-type { border-bottom: none; }
+.check-box {
+  width: 22px; height: 22px;
+  border: 2px solid var(--blue);
+  border-radius: 6px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .2s; margin-top: 2px;
+}
+.check-box.checked { background: var(--blue); border-color: var(--blue); }
+.check-box.checked::after { content: "✓"; color: white; font-size: 13px; font-weight: 700; }
+.checklist-item.done span { text-decoration: line-through; color: var(--fg2); }
+.checklist-item span { font-size: 14.5px; color: var(--fg); font-family: 'Inter', sans-serif; }
+.progress-bar { height: 5px; background: var(--border); border-radius: 3px; margin-top: 16px; }
+.progress-fill { height: 100%; background: var(--green); border-radius: 3px; transition: width .4s ease; }
+.progress-label { font-size: 12px; color: var(--fg2); margin-top: 6px; font-family: 'Inter', sans-serif; }
+
+/* ── FAQ ── */
+.faq-item {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 8px;
+  overflow: hidden;
+  transition: border-color .2s;
+}
+.faq-item.open { border-color: var(--blue); }
+.faq-q {
+  padding: 16px 20px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px; font-weight: 600;
+  cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 12px; color: var(--fg);
+  background: transparent;
+}
+.faq-arrow { color: var(--blue); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
+.faq-item.open .faq-arrow { transform: rotate(180deg); }
+.faq-a {
+  display: none;
+  padding: 0 20px 16px;
+  font-size: 14px; color: var(--fg2); line-height: 1.65;
+  font-family: 'Inter', sans-serif;
+}
+.faq-item.open .faq-a { display: block; }
+
+/* ── CTA ── */
+.cta-box {
+  background: var(--blue);
+  border-radius: 16px;
+  padding: 32px 36px;
+  text-align: center;
+}
+.cta-box p {
+  color: rgba(255,255,255,.8);
+  font-size: 15px; margin-bottom: 20px;
+}
+.cta-btn {
+  background: var(--gold);
+  color: #fff;
+  padding: 13px 28px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px; font-weight: 700;
+  display: inline-block;
+  transition: opacity .2s;
+}
+.cta-btn:hover { opacity: .88; }
+
+/* ── SOURCES ── */
+.sources {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 24px;
+}
+.sources h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--fg2); margin-bottom: 10px;
+}
+.sources ol { padding-left: 18px; }
+.sources ol li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; }
+
+/* ── FADE IN ── */
+.fade-in { opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 600px) {
+  h1 { font-size: 24px; }
+  .situation-cards { grid-template-columns: 1fr; }
+  .cta-box { padding: 24px 20px; }
+  .takeaways { padding: 20px 20px; }
+}
+</style>
+</head>
+<body>
+<div class="article">
+  <div class="article-header fade-in">
+    <p class="article-meta">Pensions · Tax Savings · 5 min read</p>
+    <h1>Pillar 3a: What It Is, How It Works, and Why Every Expat Should Open One</h1>
+  </div>
+
+  <div class="quick-answer fade-in">
+    <p><strong>Quick Answer:</strong> Pillar 3a is Switzerland's voluntary private pension account. Every franc you contribute is deducted from your taxable income. For an expat earning CHF 120,000 in Geneva, contributing the maximum <span class="hl-green">CHF 7,258 saves roughly CHF 2,100 in tax</span> — this year, every year. You can open one at any Swiss bank. Deadline: 31 December.</p>
+  </div>
+
+  <div class="takeaways fade-in">
+    <h2>Key Takeaways</h2>
+    <ul>
+      <li>Pillar 3a contributions are fully deductible from taxable income</li>
+      <li>2026 limit: CHF 7,258 for employees, CHF 36,288 for self-employed</li>
+      <li>New in 2026: retroactive contributions possible for gaps from 2025 onwards</li>
+      <li>Gains inside Pillar 3a are tax-free until withdrawal</li>
+      <li>Available to all B and C permit holders with Swiss earned income</li>
+    </ul>
+  </div>
+
+  <h2 class="fade-in">Switzerland's Three Pillars</h2>
+  <div class="pillars fade-in">
+    <div class="pillar-card p1">
+      <div class="pillar-label">Pillar 1</div>
+      <h3>AHV/AVS State Pension</h3>
+      <p>Mandatory. Funded by payroll deductions. Covers basic needs in retirement.</p>
+    </div>
+    <div class="pillar-card p2">
+      <div class="pillar-label">Pillar 2</div>
+      <h3>BVG/LPP Occupational</h3>
+      <p>Mandatory for employees. Managed by employer's pension fund.</p>
+    </div>
+    <div class="pillar-card p3">
+      <div class="pillar-label">Pillar 3a ← You decide</div>
+      <h3>Private Pension</h3>
+      <p>Voluntary. Fully tax-deductible. You choose the bank and investments.</p>
+    </div>
+  </div>
+
+  <p class="fade-in">Pillars 1 and 2 together replace roughly 60–70% of your last salary. Pillar 3a closes the gap — and gives you a tax deduction every year while doing it.<sup>1</sup></p>
+
+  <div class="saving-box fade-in">
+    <p>Tax saved by contributing CHF 7,258 — Geneva, CHF 120,000 income</p>
+    <div class="saving-num" id="savingCounter">CHF 0</div>
+    <small>Approximate saving at ~29% marginal rate. Higher earners save more.</small>
+  </div>
+
+  <h2 class="fade-in">The Rules in Plain Language</h2>
+  <div class="rules-grid fade-in">
+    <div class="rule-card">
+      <h3>Who can contribute?</h3>
+      <p>Anyone with Swiss-taxable earned income — employees, self-employed, B and C permit holders, cross-border workers who opt for ordinary assessment.</p>
+    </div>
+    <div class="rule-card">
+      <h3>How much?</h3>
+      <p>Employees with Pillar 2: CHF 7,258/year (2026). Self-employed without Pillar 2: up to 20% of net income, max CHF 36,288.</p>
+    </div>
+    <div class="rule-card">
+      <h3>When is the deadline?</h3>
+      <p>31 December of each year. Bank transfers take 1–2 days — don't leave it to the last minute.</p>
+    </div>
+    <div class="rule-card">
+      <h3>When can I withdraw?</h3>
+      <p>From age 60 (5 years before retirement). Earlier withdrawal possible when leaving Switzerland permanently, buying a primary residence, or starting a business.</p>
+    </div>
+    <div class="rule-card">
+      <h3>Are investment gains taxed?</h3>
+      <p>No. Capital gains and interest inside Pillar 3a are tax-free until withdrawal. At withdrawal, a reduced flat tax applies (varies by canton).</p>
+    </div>
+    <div class="rule-card">
+      <h3>Can I have multiple accounts?</h3>
+      <p>Yes. You can split contributions across up to 5 separate Pillar 3a accounts. This reduces the tax hit on withdrawal by staggering them across different years.</p>
+    </div>
+  </div>
+
+  <div class="new-rule fade-in">
+    <h3>🆕 New in 2026: Retroactive Contributions</h3>
+    <p>Starting January 2026, you can top up missed Pillar 3a contributions from previous years — up to 10 years back. <span class="hl-red">Important:</span> this only applies to gaps from 2025 onwards. Missed contributions from 2024 and earlier cannot be recovered. You must first pay the full 2026 contribution (CHF 7,258) before making any retroactive top-up.<sup>2</sup></p>
+  </div>
+
+  <h2 class="fade-in">Before You Ask</h2>
+  <div class="faq fade-in">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">I pay withholding tax (impôt à la source). Can I still use Pillar 3a?<span class="faq-arrow">▾</span></div>
+      <div class="faq-a">Yes, but you need to file a tax return to claim the deduction. If you earn above CHF 120,000 (B permit), you must file anyway. Below that threshold, you can request ordinary assessment to claim the Pillar 3a deduction — but once you opt in, you cannot go back to withholding tax.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What happens to my Pillar 3a if I leave Switzerland?<span class="faq-arrow">▾</span></div>
+      <div class="faq-a">You can withdraw it when you permanently leave Switzerland. A withholding tax is applied at the cantonal rate — this varies significantly by canton, which is why some expats transfer their 3a to a canton with a low exit tax before leaving (e.g. Schwyz or Appenzell).</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Bank 3a or investment 3a — which is better?<span class="faq-arrow">▾</span></div>
+      <div class="faq-a">The tax deduction is identical. The difference is return. A bank account earns minimal interest. An investment account (e.g. VIAC, Frankly, finpension) puts your money in equity funds — historically returning 5–7% per year. For expats staying 3+ years, investment 3a generally makes more sense.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Can my spouse also contribute?<span class="faq-arrow">▾</span></div>
+      <div class="faq-a">Yes. Each working spouse has their own CHF 7,258 limit. A dual-income couple can contribute CHF 14,516 together and save CHF 3,000–5,000 in tax depending on income and canton.</div>
+    </div>
+  </div>
+
+  <div class="sources fade-in">
+    <h3>Sources</h3>
+    <ol>
+      <li>Federal Social Insurance Office — Three-pillar pension system: bsv.admin.ch</li>
+      <li>Federal Tax Administration — Pillar 3a contribution limits and retroactive rules 2026: estv.admin.ch</li>
+      <li>Federal Council — Ordinance on Pillar 3a (BVV3 Art. 7): admin.ch</li>
+    </ol>
+  </div>
+</div>
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  function animateCounter(el, target, prefix, duration) {
+    let start = 0; const step = target / (duration / 16);
+    const timer = setInterval(() => { start = Math.min(start + step, target); el.textContent = prefix + Math.round(start).toLocaleString(); if (start >= target) clearInterval(timer); }, 16);
+  }
+  setTimeout(() => animateCounter(document.getElementById('savingCounter'), 2100, 'CHF ', 1500), 600);
+  function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+</script>
+</body>
+</html>

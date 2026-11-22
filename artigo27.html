@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AHV/AVS: How Switzerland's State Pension Works for Expats</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+:root {
+  --bg:         #f7f8fa;
+  --bg2:        #ffffff;
+  --fg:         #1a1d23;
+  --fg2:        #5a6070;
+  --border:     #e2e5ec;
+  --blue:       #1f4080;
+  --blue-mid:   #2e5fa3;
+  --blue-light: #e8eff9;
+  --green:      #1a7a4a;
+  --green-light:#e6f4ed;
+  --red:        #c22b2b;
+  --red-light:  #fceaea;
+  --gold:       #b8862a;
+  --gold-light: #fdf6e8;
+  --shadow:     0 2px 12px rgba(0,0,0,.07);
+  --shadow-md:  0 4px 20px rgba(0,0,0,.10);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:#13161c; --bg2:#1e222b; --fg:#e8ecf5; --fg2:#8892a4; --border:#2c3140;
+    --blue:#5b8dde; --blue-mid:#7aaae8; --blue-light:#1a2540;
+    --green:#3dba78; --green-light:#0d2318;
+    --red:#e05555; --red-light:#2a0d0d;
+    --gold:#d4a855; --gold-light:#2a2010;
+    --shadow:0 2px 16px rgba(0,0,0,.3); --shadow-md:0 4px 24px rgba(0,0,0,.4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:#13161c; --bg2:#1e222b; --fg:#e8ecf5; --fg2:#8892a4; --border:#2c3140;
+  --blue:#5b8dde; --blue-mid:#7aaae8; --blue-light:#1a2540;
+  --green:#3dba78; --green-light:#0d2318;
+  --red:#e05555; --red-light:#2a0d0d;
+  --gold:#d4a855; --gold-light:#2a2010;
+  --shadow:0 2px 16px rgba(0,0,0,.3); --shadow-md:0 4px 24px rgba(0,0,0,.4);
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.75;
+  padding: 40px max(16px, 5vw) 80px;
+}
+
+.article {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* ── HEADER ── */
+.article-header { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
+.article-meta {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--fg2); margin-bottom: 10px;
+}
+h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(24px, 5vw, 36px);
+  font-weight: 700; line-height: 1.2;
+  text-wrap: balance; color: var(--fg);
+}
+.header-rule {
+  height: 2px; background: var(--blue);
+  border-radius: 2px; margin-top: 20px;
+  width: 48px;
+}
+
+/* ── QUICK ANSWER ── */
+.quick-answer {
+  background: var(--blue-light);
+  border-left: 4px solid var(--blue);
+  border-radius: 0 14px 14px 0;
+  padding: 20px 24px;
+}
+.quick-answer p { font-size: 15px; color: var(--fg); margin: 0; }
+
+/* ── TAKEAWAYS ── */
+.takeaways {
+  background: var(--blue);
+  border-radius: 16px;
+  padding: 28px 32px;
+}
+.takeaways h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px; font-weight: 700;
+  color: rgba(255,255,255,.6);
+  letter-spacing: .08em; text-transform: uppercase;
+  margin-bottom: 16px; margin-top: 0;
+}
+.takeaways ul { list-style: none; }
+.takeaways ul li {
+  color: #e8ecf5;
+  font-size: 14.5px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+  display: flex; gap: 12px; align-items: flex-start;
+}
+.takeaways ul li:last-child { border-bottom: none; }
+.takeaways ul li::before {
+  content: "✓"; color: #3dba78;
+  font-weight: 700; flex-shrink: 0; margin-top: 1px;
+}
+
+/* ── HEADINGS ── */
+h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px; font-weight: 700;
+  color: var(--fg); margin-bottom: 4px;
+}
+h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px; font-weight: 700;
+  color: var(--blue-mid); margin-bottom: 6px;
+}
+p { font-size: 15.5px; color: var(--fg); margin-bottom: 12px; }
+p:last-child { margin-bottom: 0; }
+.hl-blue  { color: var(--blue-mid); font-weight: 600; }
+.hl-green { color: var(--green);    font-weight: 600; }
+.hl-red   { color: var(--red);      font-weight: 600; }
+sup { font-size: 11px; color: var(--blue-mid); }
+
+/* ── SITUATION CARDS ── */
+.situation-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+@media (max-width: 520px) { .situation-cards { grid-template-columns: 1fr; } }
+
+.sit-card {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 20px;
+  box-shadow: var(--shadow);
+  transition: border-color .2s, box-shadow .2s;
+}
+.sit-card:hover { box-shadow: var(--shadow-md); }
+.sit-card.alert { border-color: var(--red); }
+.sit-card h3 { color: var(--blue-mid); margin-bottom: 6px; }
+.sit-card.alert h3 { color: var(--red); }
+.sit-card p { font-size: 13px; color: var(--fg2); margin: 0; }
+
+/* ── CHECKLIST ── */
+.checklist {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: var(--shadow);
+}
+.checklist h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px; font-weight: 700;
+  margin-bottom: 16px; color: var(--fg);
+}
+.checklist-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+}
+.checklist-item:last-of-type { border-bottom: none; }
+.check-box {
+  width: 22px; height: 22px;
+  border: 2px solid var(--blue);
+  border-radius: 6px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .2s; margin-top: 2px;
+}
+.check-box.checked { background: var(--blue); border-color: var(--blue); }
+.check-box.checked::after { content: "✓"; color: white; font-size: 13px; font-weight: 700; }
+.checklist-item.done span { text-decoration: line-through; color: var(--fg2); }
+.checklist-item span { font-size: 14.5px; color: var(--fg); font-family: 'Inter', sans-serif; }
+.progress-bar { height: 5px; background: var(--border); border-radius: 3px; margin-top: 16px; }
+.progress-fill { height: 100%; background: var(--green); border-radius: 3px; transition: width .4s ease; }
+.progress-label { font-size: 12px; color: var(--fg2); margin-top: 6px; font-family: 'Inter', sans-serif; }
+
+/* ── FAQ ── */
+.faq-item {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 8px;
+  overflow: hidden;
+  transition: border-color .2s;
+}
+.faq-item.open { border-color: var(--blue); }
+.faq-q {
+  padding: 16px 20px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px; font-weight: 600;
+  cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 12px; color: var(--fg);
+  background: transparent;
+}
+.faq-arrow { color: var(--blue); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
+.faq-item.open .faq-arrow { transform: rotate(180deg); }
+.faq-a {
+  display: none;
+  padding: 0 20px 16px;
+  font-size: 14px; color: var(--fg2); line-height: 1.65;
+  font-family: 'Inter', sans-serif;
+}
+.faq-item.open .faq-a { display: block; }
+
+/* ── CTA ── */
+.cta-box {
+  background: var(--blue);
+  border-radius: 16px;
+  padding: 32px 36px;
+  text-align: center;
+}
+.cta-box p {
+  color: rgba(255,255,255,.8);
+  font-size: 15px; margin-bottom: 20px;
+}
+.cta-btn {
+  background: var(--gold);
+  color: #fff;
+  padding: 13px 28px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px; font-weight: 700;
+  display: inline-block;
+  transition: opacity .2s;
+}
+.cta-btn:hover { opacity: .88; }
+
+/* ── SOURCES ── */
+.sources {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 24px;
+}
+.sources h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--fg2); margin-bottom: 10px;
+}
+.sources ol { padding-left: 18px; }
+.sources ol li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; }
+
+/* ── FADE IN ── */
+.fade-in { opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 600px) {
+  h1 { font-size: 24px; }
+  .situation-cards { grid-template-columns: 1fr; }
+  .cta-box { padding: 24px 20px; }
+  .takeaways { padding: 20px 20px; }
+}
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<header class="hero">
+  <div class="hero-bg"></div>
+  
+  <div class="hero-gradient"></div>
+  <div class="hero-content">
+    <div class="hero-tag" id="heroTag"><span class="hero-tag-pill">AHV · AVS</span><span>State Pension · Switzerland</span></div>
+    <h1 class="hero-title" id="heroTitle">AHV/AVS: How Switzerland's State Pension Works for Expats</h1>
+    <p class="hero-subtitle" id="heroSubtitle">It appears on every payslip. Most expats never understand what they are paying or what they will receive. Here is everything you need to know about Pillar 1.</p>
+    <div class="hero-meta" id="heroMeta"><span>Updated August 2026</span><div class="hero-meta-divider"></div><span>4 min read</span></div>
+  </div>
+</header>
+<div class="article">
+  <div class="takeaways">
+    <p class="takeaways-label">Key Takeaways</p>
+    <div class="takeaway-item" data-delay="0"><span class="takeaway-num">01</span><span class="takeaway-text">AHV/AVS is mandatory for everyone working in Switzerland — regardless of nationality or permit type</span></div>
+    <div class="takeaway-item" data-delay="90"><span class="takeaway-num">02</span><span class="takeaway-text">Employees pay 5.3% of gross salary — the employer pays an equal 5.3% on top</span></div>
+    <div class="takeaway-item" data-delay="180"><span class="takeaway-num">03</span><span class="takeaway-text">A full pension (44 years of contributions) pays CHF 1,225–2,450/month in 2026</span></div>
+    <div class="takeaway-item" data-delay="270"><span class="takeaway-num">04</span><span class="takeaway-text">Expats arriving at 30 and working until 65 have 35 years of contributions — receiving a proportionally reduced pension</span></div>
+    <div class="takeaway-item" data-delay="360"><span class="takeaway-num">05</span><span class="takeaway-text">For EU/EFTA countries, Swiss AHV contributions are recognised and combined with contributions from other countries</span></div>
+    <div class="takeaway-item" data-delay="450"><span class="takeaway-num">06</span><span class="takeaway-text">Non-working spouses living in Switzerland must also pay AHV — minimum CHF 530/year</span></div>
+  </div>
+
+  <h2 class="reveal">What Is AHV / AVS?</h2>
+  <p class="reveal">AHV (Alters- und Hinterlassenenversicherung in German, AVS in French) is Switzerland's mandatory state pension system — <span class="hl-blue">Pillar 1</span> of the three-pillar retirement system. It operates as a pay-as-you-go system: contributions from today's workers finance pensions for today's retirees. It covers three situations: old age (retirement pension), disability (together with IV/AI), and survivors (pensions for widows and orphans).</p>
+
+  <h2 class="reveal">Who Pays and How Much</h2>
+  <div class="contrib-cards reveal">
+    <div class="contrib-card">
+      <p class="contrib-type">Employees</p>
+      <div class="contrib-rate">5.3%</div>
+      <p class="contrib-desc">Of gross salary. The employer pays an equal 5.3% — total 10.6% on gross salary. No ceiling on contributions.</p>
+    </div>
+    <div class="contrib-card">
+      <p class="contrib-type">Self-employed</p>
+      <div class="contrib-rate">10.0%</div>
+      <p class="contrib-desc">Of net income. Slightly lower rate than the combined employee+employer share because there is no employer to split the cost.</p>
+    </div>
+    <div class="contrib-card">
+      <p class="contrib-type">Non-working residents</p>
+      <div class="contrib-rate">CHF 530+</div>
+      <p class="contrib-desc">Per year minimum. Non-working spouses, early retirees, and anyone living in Switzerland without employment must also register and pay AHV.</p>
+    </div>
+  </div>
+
+  <div class="warning-box reveal">
+    <p>⚠ <strong>There is no ceiling on AHV contributions.</strong> On a salary of CHF 200,000, you pay CHF 10,600/year in AHV (plus CHF 10,600 from your employer). On CHF 300,000, you pay CHF 15,900/year. Unlike Pillar 2, there is no maximum insured salary for AHV contribution purposes.</p>
+  </div>
+
+  <h2 class="reveal">What You Receive — The AHV Pension</h2>
+  <p class="reveal">The AHV pension depends on two factors: the number of years of contributions and the average income during your career. A <span class="hl-blue">full pension</span> requires 44 years of contributions. Most expats who arrive mid-career will receive a proportionally reduced pension.</p>
+
+  <div class="pension-box reveal">
+    <h3>AHV pension amounts — 2026, full career (44 years)</h3>
+    <div class="pension-row"><span class="pension-label">Minimum pension (low lifetime income)</span><span class="pension-value">CHF 1,225/month</span></div>
+    <div class="pension-row"><span class="pension-label">Maximum individual pension</span><span class="pension-value">CHF 2,450/month</span></div>
+    <div class="pension-row"><span class="pension-label">Maximum couple pension (150% of individual max)</span><span class="pension-value">CHF 3,675/month</span></div>
+  </div>
+
+  <h2 class="reveal">How Much Will You Receive? — Calculate Your Pension</h2>
+  <div class="years-calc reveal">
+    <h3>Estimated AHV pension based on years contributed in Switzerland</h3>
+    <div class="years-slider-label"><span>Years contributing to AHV</span><span id="yearsLabel">20 years</span></div>
+    <input type="range" class="years-slider" min="1" max="44" value="20" id="yearsSlider">
+    <div class="years-result">
+      <span class="years-result-label">Estimated monthly AHV pension (at high income)</span>
+      <span class="years-result-value" id="yearsResult">CHF 1,113/month</span>
+    </div>
+  </div>
+
+  <p class="reveal">For most high-earning expats, the AHV pension represents a small fraction of pre-retirement income. The real retirement capital is in <span class="hl-blue">Pillar 2</span> and <span class="hl-blue">Pillar 3a</span>. But the AHV pension is for life — even a reduced pension of CHF 800–1,000/month from 35 years of contributions is meaningful income in retirement.</p>
+
+  <h2 class="reveal">Retirement Age and Flexibility</h2>
+  <p class="reveal">In 2026, the AHV retirement age is <span class="hl-blue">65 years</span> for both men and women (following the AVS 21 reform that equalised the ages). Early retirement is possible from age 63 — but with a permanent reduction in the pension. Deferral is possible up to age 70 — with a permanent increase.</p>
+
+  <h2 class="reveal">What Happens to Your AHV When You Leave Switzerland</h2>
+  <div class="departure-cards reveal">
+    <div class="dep-card">
+      <div class="dep-flag">🇪🇺</div>
+      <div>
+        <div class="dep-title">Leaving for an EU/EFTA country</div>
+        <div class="dep-desc">A social security agreement exists between Switzerland and EU/EFTA. AHV contributions made in Switzerland are recognised and combined with contributions in your destination country. At retirement, you receive a proportional pension from Switzerland (for years contributed here) and a proportional pension from your destination country.</div>
+      </div>
+    </div>
+    <div class="dep-card">
+      <div class="dep-flag">🌍</div>
+      <div>
+        <div class="dep-title">Leaving for a non-EU/EFTA country with bilateral treaty</div>
+        <div class="dep-desc">Switzerland has bilateral social security agreements with many countries — USA, Canada, Australia, Brazil, and others. Check whether your destination country has a treaty with Switzerland. If it does, similar rules to the EU/EFTA arrangement may apply.</div>
+      </div>
+    </div>
+    <div class="dep-card">
+      <div class="dep-flag">❓</div>
+      <div>
+        <div class="dep-title">No treaty — contributions stay in Switzerland</div>
+        <div class="dep-desc">Your AHV contributions remain "held" in Switzerland. When you reach Swiss retirement age (65), you receive the proportional pension for the years you contributed — even if you live abroad. The pension is paid to your foreign bank account.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="green-box reveal">
+    <p>✅ <strong>Can you claim a refund of AHV contributions?</strong> Yes — but only if you are a citizen of a country outside the EU/EFTA with no bilateral treaty. The refund is an option — but you permanently lose the right to the future pension. For most people, the lifetime pension value exceeds the refund amount.</p>
+  </div>
+
+  <h2 class="reveal">Before You Ask</h2>
+  <div class="faq-list reveal">
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">I contribute to AHV but will never retire in Switzerland. Is it worth it?<span class="faq-arrow">▾</span></div><div class="faq-a">It is mandatory while you work in Switzerland — there is no choice. But the capital does not disappear: you either receive a proportional pension at retirement age, or (in certain conditions) can request a refund. It is money that remains yours.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">My spouse does not work. Do they need to pay AHV?<span class="faq-arrow">▾</span></div><div class="faq-a">Yes, if they live in Switzerland. Non-working spouses must register with the cantonal compensation office and pay the minimum contribution (CHF 530/year in 2026). Failing to do so means those years are uninsured and reduce the future pension.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How much AHV will I receive if I work in Switzerland for 15 years?<span class="faq-arrow">▾</span></div><div class="faq-a">15 years corresponds to 15/44 of the full pension. At a high income, the full pension would be CHF 2,450/month. With 15 years: approximately CHF 835/month at age 65. A fraction of the maximum — but paid for life.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">When should I speak with an advisor?<span class="faq-arrow">▾</span></div><div class="faq-a">If you are planning to leave Switzerland and want to understand the impact on your AHV rights, or if you want to consolidate contribution years from multiple countries into a unified pension plan. International pension rights analysis is complex and benefits from professional advice.</div></div>
+  </div>
+
+  <div class="cta-box reveal">
+    <p>SwissExpatHub can connect you with advisors experienced in Swiss pension planning, AHV rights for international residents, and the intersection of Swiss and foreign social security systems.</p>
+    <a href="/directory" class="cta-btn">Find Your Advisor →</a>
+  </div>
+
+  <div class="sources reveal">
+    <p class="sources-label">Sources</p>
+    <ol>
+      <li>AHV/AVS — Official information on pensions and contributions: ahv-iv.ch</li>
+      <li>Federal Social Insurance Office — Three-pillar pension system: bsv.admin.ch</li>
+      <li>Federal Tax Administration — AHV for self-employed: estv.admin.ch</li>
+      <li>Expat Savvy — AHV/AVS Guide for Expats 2026: expat-savvy.ch</li>
+    </ol>
+  </div>
+</div>
+<script>
+  window.addEventListener('scroll', () => {
+    const s = window.scrollY, d = document.documentElement.scrollHeight - window.innerHeight;
+    document.getElementById('progress-bar').style.width = Math.min(100, d > 0 ? (s/d)*100 : 0) + '%';
+  }, { passive: true });
+  window.addEventListener('load', () => {
+    setTimeout(() => document.getElementById('heroTag').classList.add('visible'), 50);
+    setTimeout(() => document.getElementById('heroTitle').classList.add('visible'), 150);
+    setTimeout(() => document.getElementById('heroSubtitle').classList.add('visible'), 280);
+    setTimeout(() => document.getElementById('heroMeta').classList.add('visible'), 420);
+  });
+  const slider = document.getElementById('yearsSlider');
+  function updateYears() {
+    const years = parseInt(slider.value);
+    const pension = Math.round((years / 44) * 2450);
+    document.getElementById('yearsLabel').textContent = years + ' years';
+    document.getElementById('yearsResult').textContent = 'CHF ' + pension.toLocaleString() + '/month';
+  }
+  slider.addEventListener('input', updateYears);
+  updateYears();
+  const tObs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), parseInt(e.target.dataset.delay||0)); tObs.unobserve(e.target); } }); }, { threshold: 0.1 });
+  document.querySelectorAll('.takeaway-item').forEach(el => tObs.observe(el));
+  const rObs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), parseInt(e.target.dataset.delay||0)); rObs.unobserve(e.target); } }); }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
+  document.querySelectorAll('.reveal').forEach(el => rObs.observe(el));
+  function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+</script>
+</body>
+</html>

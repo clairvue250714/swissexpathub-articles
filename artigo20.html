@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Financing Property in Switzerland as an Expat</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+:root {
+  --bg:         #f7f8fa;
+  --bg2:        #ffffff;
+  --fg:         #1a1d23;
+  --fg2:        #5a6070;
+  --border:     #e2e5ec;
+  --blue:       #1f4080;
+  --blue-mid:   #2e5fa3;
+  --blue-light: #e8eff9;
+  --green:      #1a7a4a;
+  --green-light:#e6f4ed;
+  --red:        #c22b2b;
+  --red-light:  #fceaea;
+  --gold:       #b8862a;
+  --gold-light: #fdf6e8;
+  --shadow:     0 2px 12px rgba(0,0,0,.07);
+  --shadow-md:  0 4px 20px rgba(0,0,0,.10);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:#13161c; --bg2:#1e222b; --fg:#e8ecf5; --fg2:#8892a4; --border:#2c3140;
+    --blue:#5b8dde; --blue-mid:#7aaae8; --blue-light:#1a2540;
+    --green:#3dba78; --green-light:#0d2318;
+    --red:#e05555; --red-light:#2a0d0d;
+    --gold:#d4a855; --gold-light:#2a2010;
+    --shadow:0 2px 16px rgba(0,0,0,.3); --shadow-md:0 4px 24px rgba(0,0,0,.4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:#13161c; --bg2:#1e222b; --fg:#e8ecf5; --fg2:#8892a4; --border:#2c3140;
+  --blue:#5b8dde; --blue-mid:#7aaae8; --blue-light:#1a2540;
+  --green:#3dba78; --green-light:#0d2318;
+  --red:#e05555; --red-light:#2a0d0d;
+  --gold:#d4a855; --gold-light:#2a2010;
+  --shadow:0 2px 16px rgba(0,0,0,.3); --shadow-md:0 4px 24px rgba(0,0,0,.4);
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.75;
+  padding: 40px max(16px, 5vw) 80px;
+}
+
+.article {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* ── HEADER ── */
+.article-header { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
+.article-meta {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--fg2); margin-bottom: 10px;
+}
+h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(24px, 5vw, 36px);
+  font-weight: 700; line-height: 1.2;
+  text-wrap: balance; color: var(--fg);
+}
+.header-rule {
+  height: 2px; background: var(--blue);
+  border-radius: 2px; margin-top: 20px;
+  width: 48px;
+}
+
+/* ── QUICK ANSWER ── */
+.quick-answer {
+  background: var(--blue-light);
+  border-left: 4px solid var(--blue);
+  border-radius: 0 14px 14px 0;
+  padding: 20px 24px;
+}
+.quick-answer p { font-size: 15px; color: var(--fg); margin: 0; }
+
+/* ── TAKEAWAYS ── */
+.takeaways {
+  background: var(--blue);
+  border-radius: 16px;
+  padding: 28px 32px;
+}
+.takeaways h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px; font-weight: 700;
+  color: rgba(255,255,255,.6);
+  letter-spacing: .08em; text-transform: uppercase;
+  margin-bottom: 16px; margin-top: 0;
+}
+.takeaways ul { list-style: none; }
+.takeaways ul li {
+  color: #e8ecf5;
+  font-size: 14.5px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+  display: flex; gap: 12px; align-items: flex-start;
+}
+.takeaways ul li:last-child { border-bottom: none; }
+.takeaways ul li::before {
+  content: "✓"; color: #3dba78;
+  font-weight: 700; flex-shrink: 0; margin-top: 1px;
+}
+
+/* ── HEADINGS ── */
+h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px; font-weight: 700;
+  color: var(--fg); margin-bottom: 4px;
+}
+h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px; font-weight: 700;
+  color: var(--blue-mid); margin-bottom: 6px;
+}
+p { font-size: 15.5px; color: var(--fg); margin-bottom: 12px; }
+p:last-child { margin-bottom: 0; }
+.hl-blue  { color: var(--blue-mid); font-weight: 600; }
+.hl-green { color: var(--green);    font-weight: 600; }
+.hl-red   { color: var(--red);      font-weight: 600; }
+sup { font-size: 11px; color: var(--blue-mid); }
+
+/* ── SITUATION CARDS ── */
+.situation-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+@media (max-width: 520px) { .situation-cards { grid-template-columns: 1fr; } }
+
+.sit-card {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 20px;
+  box-shadow: var(--shadow);
+  transition: border-color .2s, box-shadow .2s;
+}
+.sit-card:hover { box-shadow: var(--shadow-md); }
+.sit-card.alert { border-color: var(--red); }
+.sit-card h3 { color: var(--blue-mid); margin-bottom: 6px; }
+.sit-card.alert h3 { color: var(--red); }
+.sit-card p { font-size: 13px; color: var(--fg2); margin: 0; }
+
+/* ── CHECKLIST ── */
+.checklist {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: var(--shadow);
+}
+.checklist h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px; font-weight: 700;
+  margin-bottom: 16px; color: var(--fg);
+}
+.checklist-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+}
+.checklist-item:last-of-type { border-bottom: none; }
+.check-box {
+  width: 22px; height: 22px;
+  border: 2px solid var(--blue);
+  border-radius: 6px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .2s; margin-top: 2px;
+}
+.check-box.checked { background: var(--blue); border-color: var(--blue); }
+.check-box.checked::after { content: "✓"; color: white; font-size: 13px; font-weight: 700; }
+.checklist-item.done span { text-decoration: line-through; color: var(--fg2); }
+.checklist-item span { font-size: 14.5px; color: var(--fg); font-family: 'Inter', sans-serif; }
+.progress-bar { height: 5px; background: var(--border); border-radius: 3px; margin-top: 16px; }
+.progress-fill { height: 100%; background: var(--green); border-radius: 3px; transition: width .4s ease; }
+.progress-label { font-size: 12px; color: var(--fg2); margin-top: 6px; font-family: 'Inter', sans-serif; }
+
+/* ── FAQ ── */
+.faq-item {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 8px;
+  overflow: hidden;
+  transition: border-color .2s;
+}
+.faq-item.open { border-color: var(--blue); }
+.faq-q {
+  padding: 16px 20px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px; font-weight: 600;
+  cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 12px; color: var(--fg);
+  background: transparent;
+}
+.faq-arrow { color: var(--blue); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
+.faq-item.open .faq-arrow { transform: rotate(180deg); }
+.faq-a {
+  display: none;
+  padding: 0 20px 16px;
+  font-size: 14px; color: var(--fg2); line-height: 1.65;
+  font-family: 'Inter', sans-serif;
+}
+.faq-item.open .faq-a { display: block; }
+
+/* ── CTA ── */
+.cta-box {
+  background: var(--blue);
+  border-radius: 16px;
+  padding: 32px 36px;
+  text-align: center;
+}
+.cta-box p {
+  color: rgba(255,255,255,.8);
+  font-size: 15px; margin-bottom: 20px;
+}
+.cta-btn {
+  background: var(--gold);
+  color: #fff;
+  padding: 13px 28px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px; font-weight: 700;
+  display: inline-block;
+  transition: opacity .2s;
+}
+.cta-btn:hover { opacity: .88; }
+
+/* ── SOURCES ── */
+.sources {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 24px;
+}
+.sources h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--fg2); margin-bottom: 10px;
+}
+.sources ol { padding-left: 18px; }
+.sources ol li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; }
+
+/* ── FADE IN ── */
+.fade-in { opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 600px) {
+  h1 { font-size: 24px; }
+  .situation-cards { grid-template-columns: 1fr; }
+  .cta-box { padding: 24px 20px; }
+  .takeaways { padding: 20px 20px; }
+}
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<header class="hero">
+  <div class="hero-bg"></div>
+  
+  <div class="hero-gradient"></div>
+  <div class="hero-content">
+    <div class="hero-tag" id="heroTag">
+      <span class="hero-tag-pill">Mortgages</span>
+      <span>Geneva · Switzerland</span>
+    </div>
+    <h1 class="hero-title" id="heroTitle">Financing Property in Switzerland as an Expat</h1>
+    <p class="hero-subtitle" id="heroSubtitle">A stress test at 5%, a two-tier mortgage structure, and a tax strategy that leads Swiss residents to deliberately never pay off their mortgage. Here is how it all works.</p>
+    <div class="hero-meta" id="heroMeta">
+      <span>Updated August 2026</span>
+      <div class="hero-meta-divider"></div>
+      <span>5 min read</span>
+    </div>
+  </div>
+</header>
+
+<div class="article">
+
+  <div class="takeaways">
+    <p class="takeaways-label">Key Takeaways</p>
+    <div class="takeaway-item" data-delay="0"><span class="takeaway-num">01</span><span class="takeaway-text">Minimum 20% down payment — at least 10% must be personal savings, not Pillar 2</span></div>
+    <div class="takeaway-item" data-delay="90"><span class="takeaway-num">02</span><span class="takeaway-text">Swiss mortgages use a two-tier system — the first mortgage (up to 65%) never needs to be repaid</span></div>
+    <div class="takeaway-item" data-delay="180"><span class="takeaway-num">03</span><span class="takeaway-text">Banks stress-test at 5% even if current rates are below 2% — many applicants fail this test</span></div>
+    <div class="takeaway-item" data-delay="270"><span class="takeaway-num">04</span><span class="takeaway-text">Total housing costs cannot exceed 33% of gross income — calculated at the stress rate</span></div>
+    <div class="takeaway-item" data-delay="360"><span class="takeaway-num">05</span><span class="takeaway-text">Swiss residents deliberately never pay off the mortgage — it is a powerful wealth tax shield</span></div>
+    <div class="takeaway-item" data-delay="450"><span class="takeaway-num">06</span><span class="takeaway-text">The imputed rental value tax is being abolished in 2029 — this changes the mortgage strategy</span></div>
+  </div>
+
+  <h2 class="reveal">What Makes Swiss Financing Different</h2>
+  <p class="reveal">The Swiss mortgage system has its own rules that surprise almost every expat. There is a mandatory stress test at 5% even when current rates are below 2%, a two-tier mortgage structure with different repayment obligations, and a tax strategy that leads Swiss residents to deliberately never pay off their mortgage. Understanding these three points changes how you approach the entire purchase.</p>
+
+  <h2 class="reveal">The Minimum Down Payment</h2>
+  <p class="reveal">Swiss banks require a <span class="hl-blue">minimum of 20% of the property value</span> in equity. Of that 20%, at least <span class="hl-red">10% must be personal savings</span> — the bank will not accept the full amount from Pillar 2. The remaining 10% can come from <span class="hl-green">Pillar 2</span> (employer pension fund) or <span class="hl-green">Pillar 3a</span>. For non-residents without a Swiss residence permit, the minimum rises to <span class="hl-red">35% to 50%</span>.</p>
+
+  <div class="stat-box reveal">
+    <h3>Example — CHF 800,000 property</h3>
+    <div class="stat-row"><span class="stat-label">Minimum down payment (20%)</span><span class="stat-value">CHF 160,000</span></div>
+    <div class="stat-row"><span class="stat-label">Must be personal savings (min 10%)</span><span class="stat-value red">CHF 80,000</span></div>
+    <div class="stat-row"><span class="stat-label">Can come from Pillar 2 or 3a</span><span class="stat-value green">up to CHF 80,000</span></div>
+  </div>
+
+  <h2 class="reveal">The Two-Tier Mortgage System</h2>
+  <p class="reveal">Switzerland uses a unique system of <span class="hl-blue">two mortgages simultaneously</span> on the same property:</p>
+  <div class="tier-grid reveal">
+    <div class="tier-card first">
+      <p class="tier-label">1st Mortgage — up to 65%</p>
+      <h3>No repayment required</h3>
+      <p class="tier-body">The bank does not require you to pay this down. This is where Swiss residents keep debt active indefinitely — it is the wealth tax shield.</p>
+    </div>
+    <div class="tier-card second">
+      <p class="tier-label">2nd Mortgage — 65% to 80%</p>
+      <h3>Must be repaid in 15 years</h3>
+      <p class="tier-body">This portion must be amortised within 15 years or by retirement age, whichever comes first.</p>
+    </div>
+  </div>
+
+  <h2 class="reveal">Fixed Rate vs SARON</h2>
+  <div class="rate-grid reveal">
+    <div class="rate-card">
+      <h3>Fixed Rate (Festhypothek)</h3>
+      <div class="rate-value">1.8–2.4%</div>
+      <p class="rate-body">10-year fixed in 2026. Protects against rate rises. Terms from 2 to 15 years. Most popular choice for expats who want predictability.</p>
+    </div>
+    <div class="rate-card">
+      <h3>SARON (Variable)</h3>
+      <div class="rate-value">0.9–1.3%</div>
+      <p class="rate-body">Linked to the Swiss overnight rate. Cheaper now but rises with the market. Many buyers split — part fixed, part SARON.</p>
+    </div>
+  </div>
+
+  <h2 class="reveal">The 5% Stress Test — Why Many Expats Are Rejected</h2>
+  <p class="reveal">Even if the current rate is 1.5%, the bank <span class="hl-red">calculates your repayment capacity at 5%</span>. Total housing costs — calculated at 5% — cannot exceed <span class="hl-red">33% of gross annual income.</span></p>
+
+  <div class="stat-box reveal">
+    <h3>Stress test — CHF 1,000,000 property, 20% down</h3>
+    <div class="stat-row"><span class="stat-label">Mortgage amount</span><span class="stat-value">CHF 800,000</span></div>
+    <div class="stat-row"><span class="stat-label">Interest calculated at 5%</span><span class="stat-value red">CHF 40,000/year</span></div>
+    <div class="stat-row"><span class="stat-label">2nd mortgage amortisation</span><span class="stat-value red">CHF 8,000/year</span></div>
+    <div class="stat-row"><span class="stat-label">Maintenance costs (1%)</span><span class="stat-value red">CHF 10,000/year</span></div>
+    <div class="stat-row"><span class="stat-label">Total annual housing cost</span><span class="stat-value">CHF 58,000</span></div>
+    <div class="stat-row"><span class="stat-label">Minimum gross income required</span><span class="stat-value gold">CHF 176,000/year</span></div>
+  </div>
+
+  <div class="warning-box reveal">
+    <p>⚠ If you earn less, the bank refuses — even if the actual rate is 1.5% and you could comfortably afford the real payments. Compare 3 to 5 banks — some cantonal banks and Raiffeisen use 4.5% instead of 5%, which can lower the income threshold by CHF 10,000 to CHF 20,000.</p>
+  </div>
+
+  <h2 class="reveal">The Mortgage as a Tax Shield — Why Swiss Residents Never Pay It Off</h2>
+  <p class="reveal">The wealth tax is calculated on <span class="hl-blue">net wealth</span> — the property value <span class="hl-blue">minus the outstanding mortgage</span>. A large mortgage dramatically reduces the tax owed. And mortgage interest is deductible from taxable income on top of that. Two tax benefits simultaneously.</p>
+
+  <div class="tax-compare reveal">
+    <div class="tax-card with">
+      <p class="tax-card-title">✅ With mortgage — CHF 640,000</p>
+      <div class="tax-row">Property value: CHF 800,000</div>
+      <div class="tax-row">Mortgage outstanding: CHF 640,000</div>
+      <div class="tax-row">Taxable wealth from property: CHF 160,000</div>
+      <div class="tax-row">After Geneva exemption (~CHF 82k): ~CHF 78,000</div>
+      <div class="tax-row">Wealth tax per year: ~CHF 200–400</div>
+    </div>
+    <div class="tax-card without">
+      <p class="tax-card-title">❌ Mortgage paid off</p>
+      <div class="tax-row">Property value: CHF 800,000</div>
+      <div class="tax-row">Mortgage outstanding: CHF 0</div>
+      <div class="tax-row">Taxable wealth from property: CHF 800,000</div>
+      <div class="tax-row">After Geneva exemption: ~CHF 718,000</div>
+      <div class="tax-row">Wealth tax per year: ~CHF 2,500–3,500</div>
+    </div>
+  </div>
+
+  <div class="quote-block reveal">
+    <p class="quote-label">The Swiss Strategy</p>
+    <p class="quote-text">"Swiss residents deliberately never pay off the first mortgage. The debt is not a burden — it is a tax shield. And the interest is deductible from taxable income on top of that."</p>
+  </div>
+
+  <h2 class="reveal">The Imputed Rental Value — and Its Abolition in 2029</h2>
+  <p class="reveal">Currently Switzerland taxes a <span class="hl-red">fictitious income</span> called the imputed rental value — the amount you would receive if you rented out your property. This is added to your taxable income even though you live there yourself. In exchange, mortgage interest and maintenance costs are deductible.</p>
+
+  <div class="green-box reveal">
+    <p>✅ <strong>Big change coming:</strong> The Swiss Parliament has approved the abolition of the imputed rental value from <span class="hl-green">1 January 2029.</span> With the abolition, mortgage interest will also no longer be deductible for primary residences. Anyone buying before 2029 should model how this affects their tax situation from 2029 onwards.</p>
+  </div>
+
+  <h2 class="reveal">Three Real Situations</h2>
+  <div class="situation-list">
+    <div class="sit-card reveal" data-delay="0">
+      <div class="sit-name">Sofia, C Permit — CHF 600,000 property</div>
+      <p>Down payment: CHF 120,000 (CHF 60,000 savings + CHF 60,000 from Pillar 2)</p>
+      <p>1st mortgage: CHF 390,000 (no repayment required) · 2nd mortgage: CHF 90,000 (paid over 15 years)</p>
+      <p>Fixed rate 10 years at 2%: ~CHF 9,600/year in interest — deductible until 2029</p>
+      <p class="sit-note">Minimum gross income for stress test: ~CHF 105,000</p>
+    </div>
+    <div class="sit-card reveal" data-delay="100">
+      <div class="sit-name">James, B Permit — CHF 750,000 property</div>
+      <p>Down payment: CHF 150,000 (personal savings only — cannot use Pillar 2 easily as B permit)</p>
+      <p>1st mortgage: CHF 487,500 · 2nd mortgage: CHF 112,500</p>
+      <p>SARON current rate: ~CHF 7,000/year in interest</p>
+      <p class="sit-note">Minimum gross income for stress test: ~CHF 132,000</p>
+    </div>
+    <div class="sit-card reveal" data-delay="200">
+      <div class="sit-name">Couple, C Permit — CHF 1,200,000 property</div>
+      <p>Down payment: CHF 240,000 · Total mortgage: CHF 960,000</p>
+      <p>Split: CHF 600,000 fixed 10 years + CHF 360,000 SARON</p>
+      <p>Combined interest saving on wealth tax vs paying off mortgage: ~CHF 3,000/year</p>
+      <p class="sit-note">Minimum gross income for stress test: ~CHF 212,000 combined</p>
+    </div>
+  </div>
+
+  <h2 class="reveal">Common Mistakes</h2>
+  <div class="mistake-list reveal">
+    <div class="mistake-item">
+      <div class="mistake-icon">❌</div>
+      <div>
+        <div class="mistake-title">Paying off the mortgage</div>
+        <div class="mistake-desc">The biggest fiscal error a Swiss property owner can make. The first mortgage is a powerful wealth tax shield. Keeping it active indefinitely is strategy, not debt.</div>
+      </div>
+    </div>
+    <div class="mistake-item">
+      <div class="mistake-icon">❌</div>
+      <div>
+        <div class="mistake-title">Using all of Pillar 2 for the down payment</div>
+        <div class="mistake-desc">Drawing down Pillar 2 reduces your future pension and triggers tax at the moment of withdrawal. Use only what is necessary.</div>
+      </div>
+    </div>
+    <div class="mistake-item">
+      <div class="mistake-icon">❌</div>
+      <div>
+        <div class="mistake-title">Not comparing banks</div>
+        <div class="mistake-desc">Rates vary significantly. Some cantonal banks and Raiffeisen use a 4.5% stress test instead of 5% — this can make the difference between approval and rejection.</div>
+      </div>
+    </div>
+    <div class="mistake-item">
+      <div class="mistake-icon">❌</div>
+      <div>
+        <div class="mistake-title">Ignoring the 2029 imputed rental value abolition</div>
+        <div class="mistake-desc">Anyone buying before 2029 should model how the elimination of this deduction affects their tax situation from 2029 onwards — it changes the mortgage interest equation.</div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="reveal">Before You Ask</h2>
+  <div class="faq-list reveal">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Can I use Pillar 2 for the down payment?<span class="faq-arrow">▾</span></div>
+      <div class="faq-a">Yes. You can use up to 10% of the property value from Pillar 2. But at least another 10% must be personal savings. There is a tax on the withdrawal and you must return the funds to Pillar 2 if you sell the property.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Should I choose a fixed rate or SARON?<span class="faq-arrow">▾</span></div>
+      <div class="faq-a">It depends on your profile. SARON is cheaper now but can rise. A fixed rate gives predictability. Many expats split the mortgage — part fixed for security, part SARON to benefit from current low rates.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How much income do I need to buy a CHF 800,000 property?<span class="faq-arrow">▾</span></div>
+      <div class="faq-a">Approximately CHF 140,000 gross annually — calculated by the 5% stress test. With CHF 160,000 down payment, the mortgage is CHF 640,000. At 5%: CHF 32,000 interest + amortisation + maintenance = ~CHF 46,000. Divided by 33% = ~CHF 140,000 minimum gross income.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">When should I speak with an advisor?<span class="faq-arrow">▾</span></div>
+      <div class="faq-a">Before making any offer. The stress test, mortgage structure, Pillar 2 use, and the wealth tax strategy all depend very much on your specific situation and income.</div>
+    </div>
+  </div>
+
+  <div class="cta-box reveal">
+    <p>Swiss mortgage financing rewards those who plan ahead. The combination of the stress test, the two-tier structure, the wealth tax strategy and the 2029 imputed rental value reform means that professional advice typically pays for itself many times over.</p>
+    <a href="/directory" class="cta-btn">Find Your Advisor →</a>
+  </div>
+
+  <div class="sources reveal">
+    <p class="sources-label">Sources</p>
+    <ol>
+      <li>Swissquote — Swiss Mortgages Explained: Rates, Terms and How They Work, 2026: swissquote.com</li>
+      <li>Swiss National Bank — SARON rate 2026: snb.ch</li>
+      <li>Grundheim — Mortgage Affordability Calculator Switzerland 2026: grundheim.ch</li>
+      <li>UBS Switzerland — Abolition of imputed rental value 2029: ubs.com/ch</li>
+      <li>Taxolution Advisory — Swiss mortgage guide 2026: taxolution.ch</li>
+    </ol>
+  </div>
+
+</div>
+
+<script>
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    document.getElementById('progress-bar').style.width = Math.min(100, docHeight > 0 ? (scrollTop / docHeight) * 100 : 0) + '%';
+  }, { passive: true });
+
+  window.addEventListener('load', () => {
+    setTimeout(() => document.getElementById('heroTag').classList.add('visible'), 50);
+    setTimeout(() => document.getElementById('heroTitle').classList.add('visible'), 150);
+    setTimeout(() => document.getElementById('heroSubtitle').classList.add('visible'), 280);
+    setTimeout(() => document.getElementById('heroMeta').classList.add('visible'), 420);
+  });
+
+  const takeawayObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const delay = parseInt(entry.target.dataset.delay || 0);
+        setTimeout(() => entry.target.classList.add('visible'), delay);
+        takeawayObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.takeaway-item').forEach(el => takeawayObserver.observe(el));
+
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const delay = parseInt(entry.target.dataset.delay || 0);
+        setTimeout(() => entry.target.classList.add('visible'), delay);
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+</script>
+</body>
+</html>

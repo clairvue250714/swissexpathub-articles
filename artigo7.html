@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>US Citizens Living in Switzerland: What You Need to Know About Your Tax Obligations</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+:root {
+  --bg:         #f7f8fa;
+  --bg2:        #ffffff;
+  --fg:         #1a1d23;
+  --fg2:        #5a6070;
+  --border:     #e2e5ec;
+  --blue:       #1f4080;
+  --blue-mid:   #2e5fa3;
+  --blue-light: #e8eff9;
+  --green:      #1a7a4a;
+  --green-light:#e6f4ed;
+  --red:        #c22b2b;
+  --red-light:  #fceaea;
+  --gold:       #b8862a;
+  --gold-light: #fdf6e8;
+  --shadow:     0 2px 12px rgba(0,0,0,.07);
+  --shadow-md:  0 4px 20px rgba(0,0,0,.10);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:#13161c; --bg2:#1e222b; --fg:#e8ecf5; --fg2:#8892a4; --border:#2c3140;
+    --blue:#5b8dde; --blue-mid:#7aaae8; --blue-light:#1a2540;
+    --green:#3dba78; --green-light:#0d2318;
+    --red:#e05555; --red-light:#2a0d0d;
+    --gold:#d4a855; --gold-light:#2a2010;
+    --shadow:0 2px 16px rgba(0,0,0,.3); --shadow-md:0 4px 24px rgba(0,0,0,.4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:#13161c; --bg2:#1e222b; --fg:#e8ecf5; --fg2:#8892a4; --border:#2c3140;
+  --blue:#5b8dde; --blue-mid:#7aaae8; --blue-light:#1a2540;
+  --green:#3dba78; --green-light:#0d2318;
+  --red:#e05555; --red-light:#2a0d0d;
+  --gold:#d4a855; --gold-light:#2a2010;
+  --shadow:0 2px 16px rgba(0,0,0,.3); --shadow-md:0 4px 24px rgba(0,0,0,.4);
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.75;
+  padding: 40px max(16px, 5vw) 80px;
+}
+
+.article {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* ── HEADER ── */
+.article-header { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
+.article-meta {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--fg2); margin-bottom: 10px;
+}
+h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(24px, 5vw, 36px);
+  font-weight: 700; line-height: 1.2;
+  text-wrap: balance; color: var(--fg);
+}
+.header-rule {
+  height: 2px; background: var(--blue);
+  border-radius: 2px; margin-top: 20px;
+  width: 48px;
+}
+
+/* ── QUICK ANSWER ── */
+.quick-answer {
+  background: var(--blue-light);
+  border-left: 4px solid var(--blue);
+  border-radius: 0 14px 14px 0;
+  padding: 20px 24px;
+}
+.quick-answer p { font-size: 15px; color: var(--fg); margin: 0; }
+
+/* ── TAKEAWAYS ── */
+.takeaways {
+  background: var(--blue);
+  border-radius: 16px;
+  padding: 28px 32px;
+}
+.takeaways h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px; font-weight: 700;
+  color: rgba(255,255,255,.6);
+  letter-spacing: .08em; text-transform: uppercase;
+  margin-bottom: 16px; margin-top: 0;
+}
+.takeaways ul { list-style: none; }
+.takeaways ul li {
+  color: #e8ecf5;
+  font-size: 14.5px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+  display: flex; gap: 12px; align-items: flex-start;
+}
+.takeaways ul li:last-child { border-bottom: none; }
+.takeaways ul li::before {
+  content: "✓"; color: #3dba78;
+  font-weight: 700; flex-shrink: 0; margin-top: 1px;
+}
+
+/* ── HEADINGS ── */
+h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px; font-weight: 700;
+  color: var(--fg); margin-bottom: 4px;
+}
+h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px; font-weight: 700;
+  color: var(--blue-mid); margin-bottom: 6px;
+}
+p { font-size: 15.5px; color: var(--fg); margin-bottom: 12px; }
+p:last-child { margin-bottom: 0; }
+.hl-blue  { color: var(--blue-mid); font-weight: 600; }
+.hl-green { color: var(--green);    font-weight: 600; }
+.hl-red   { color: var(--red);      font-weight: 600; }
+sup { font-size: 11px; color: var(--blue-mid); }
+
+/* ── SITUATION CARDS ── */
+.situation-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+@media (max-width: 520px) { .situation-cards { grid-template-columns: 1fr; } }
+
+.sit-card {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 20px;
+  box-shadow: var(--shadow);
+  transition: border-color .2s, box-shadow .2s;
+}
+.sit-card:hover { box-shadow: var(--shadow-md); }
+.sit-card.alert { border-color: var(--red); }
+.sit-card h3 { color: var(--blue-mid); margin-bottom: 6px; }
+.sit-card.alert h3 { color: var(--red); }
+.sit-card p { font-size: 13px; color: var(--fg2); margin: 0; }
+
+/* ── CHECKLIST ── */
+.checklist {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: var(--shadow);
+}
+.checklist h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px; font-weight: 700;
+  margin-bottom: 16px; color: var(--fg);
+}
+.checklist-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+}
+.checklist-item:last-of-type { border-bottom: none; }
+.check-box {
+  width: 22px; height: 22px;
+  border: 2px solid var(--blue);
+  border-radius: 6px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .2s; margin-top: 2px;
+}
+.check-box.checked { background: var(--blue); border-color: var(--blue); }
+.check-box.checked::after { content: "✓"; color: white; font-size: 13px; font-weight: 700; }
+.checklist-item.done span { text-decoration: line-through; color: var(--fg2); }
+.checklist-item span { font-size: 14.5px; color: var(--fg); font-family: 'Inter', sans-serif; }
+.progress-bar { height: 5px; background: var(--border); border-radius: 3px; margin-top: 16px; }
+.progress-fill { height: 100%; background: var(--green); border-radius: 3px; transition: width .4s ease; }
+.progress-label { font-size: 12px; color: var(--fg2); margin-top: 6px; font-family: 'Inter', sans-serif; }
+
+/* ── FAQ ── */
+.faq-item {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 8px;
+  overflow: hidden;
+  transition: border-color .2s;
+}
+.faq-item.open { border-color: var(--blue); }
+.faq-q {
+  padding: 16px 20px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px; font-weight: 600;
+  cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 12px; color: var(--fg);
+  background: transparent;
+}
+.faq-arrow { color: var(--blue); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
+.faq-item.open .faq-arrow { transform: rotate(180deg); }
+.faq-a {
+  display: none;
+  padding: 0 20px 16px;
+  font-size: 14px; color: var(--fg2); line-height: 1.65;
+  font-family: 'Inter', sans-serif;
+}
+.faq-item.open .faq-a { display: block; }
+
+/* ── CTA ── */
+.cta-box {
+  background: var(--blue);
+  border-radius: 16px;
+  padding: 32px 36px;
+  text-align: center;
+}
+.cta-box p {
+  color: rgba(255,255,255,.8);
+  font-size: 15px; margin-bottom: 20px;
+}
+.cta-btn {
+  background: var(--gold);
+  color: #fff;
+  padding: 13px 28px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px; font-weight: 700;
+  display: inline-block;
+  transition: opacity .2s;
+}
+.cta-btn:hover { opacity: .88; }
+
+/* ── SOURCES ── */
+.sources {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 24px;
+}
+.sources h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--fg2); margin-bottom: 10px;
+}
+.sources ol { padding-left: 18px; }
+.sources ol li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; }
+
+/* ── FADE IN ── */
+.fade-in { opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 600px) {
+  h1 { font-size: 24px; }
+  .situation-cards { grid-template-columns: 1fr; }
+  .cta-box { padding: 24px 20px; }
+  .takeaways { padding: 20px 20px; }
+}
+</style>
+</head>
+<body>
+<div class="article">
+
+  <div class="article-header fade-in"><p class="article-meta">Tax &amp; Finance · US Expats · 5 min read</p><h1>US Citizens Living in Switzerland: What You Need to Know About Your Tax Obligations</h1></div>
+  <div class="quick-answer fade-in"><p><strong>Quick Answer:</strong> The United States is one of only two countries in the world that taxes its citizens based on citizenship rather than residence. This means that as an American living in Switzerland, you have tax obligations in <span class="hl-red">two countries simultaneously</span> — regardless of how long you have lived abroad or whether you ever plan to return to the US.</p></div>
+  <div class="takeaways fade-in"><h2>Key Takeaways</h2><ul><li>US citizens must file a US tax return every year — regardless of where they live</li><li>Swiss bank accounts and assets must be reported to the IRS under FBAR and FATCA rules</li><li>Several tools exist to reduce or eliminate double taxation — but they must be actively claimed</li><li>Swiss investment funds are often classified as PFICs, which creates significant US tax complexity</li><li>A new US-Switzerland FATCA agreement moves to automatic data exchange — the IRS is likely already receiving information about your Swiss accounts</li><li>Americans who have not filed US returns can often catch up through specific IRS procedures without penalties</li></ul></div>
+  <h2 class="fade-in">Obligation 1: Filing a US Tax Return Every Year</h2>
+  <p class="fade-in">US tax obligations always apply regardless of residence. Even with zero US tax due, <span class="hl-blue">Form 1040 must be filed annually.</span> The filing deadline for Americans abroad is automatically extended to June 15. A further extension to October 15 is available on request. This obligation applies even if you have lived outside the US for many years, have no US income, or already pay full Swiss taxes on your income.</p>
+  <h2 class="fade-in">Obligation 2: Reporting Foreign Bank Accounts — FBAR</h2>
+  <p class="fade-in">An FBAR (FinCEN Form 114) must be filed if foreign accounts exceed <span class="hl-red">$10,000 in aggregate at any point during the year.</span> Swiss banks share data with the IRS under FATCA — non-disclosure is not an option. This includes your Swiss current account, savings account, brokerage accounts, and pension funds in some cases. Penalties for non-filing reach up to <span class="hl-red">$16,536 per violation</span> for non-wilful violations, and up to $165,353 or 50% of the account balance for wilful violations.</p>
+  <h2 class="fade-in">Obligation 3: Reporting Foreign Assets — FATCA Form 8938</h2>
+  <p class="fade-in">For Americans living outside the United States, Form 8938 must be filed if foreign financial assets exceeded <span class="hl-blue">$200,000 at year-end or $300,000 at any point</span> (single filers); $400,000 at year-end or $600,000 at any point (married filing jointly). FBAR and Form 8938 overlap but are not the same — both may need to be filed.</p>
+  <h2 class="fade-in">The Tools Available to Reduce Double Taxation</h2>
+  <p class="fade-in"><strong>Foreign Earned Income Exclusion (FEIE):</strong> Allows qualifying US citizens to exclude up to <span class="hl-green">$132,900</span> of foreign earned income from US taxable income (2026). Must be elected by filing Form 2555.</p>
+  <p class="fade-in"><strong>Foreign Tax Credit (FTC):</strong> Taxes paid to Switzerland can be credited against US tax owed — reducing or eliminating double taxation. A common approach is to combine both strategies: use the FEIE for earned salary up to the limit, then the FTC for income above that threshold. You cannot apply both to the same dollar of income.</p>
+  <div class="warning-box fade-in"><p>⚠ <strong>Swiss funds and PFICs:</strong> Almost certainly, any fund registered outside the US — including those held through Swiss banks — qualifies as a Passive Foreign Investment Company (PFIC). Each requires a separate Form 8621. PFIC reporting is complex and the tax treatment can be punishing if handled incorrectly.</p></div>
+  <h2 class="fade-in">Two Americans, Two Different Situations</h2>
+  <div class="profiles fade-in">
+    <div class="profile-card">
+      <div class="profile-name">American A — Salary CHF 150,000</div>
+      <p>Swiss bank account. No US investments. Has filed a US return every year but has never filed an FBAR.</p>
+      <div class="profile-note">The FBAR obligation almost certainly applies and has been missed. The Streamlined Procedures may be available to correct this without penalties.</div>
+    </div>
+    <div class="profile-card">
+      <div class="profile-name">American B — Salary CHF 200,000</div>
+      <p>Swiss pension fund. ETF portfolio through a Swiss bank. Has not filed a US return in three years.</p>
+      <div class="profile-note">Multiple obligations likely unmet — FBAR, Form 8938, possibly PFIC reporting. Professional advice strongly recommended. Which situation sounds closer to yours?</div>
+    </div>
+  </div>
+  <h2 class="fade-in">Before You Ask</h2>
+  <div class="faq fade-in">
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Do I really need to file a US return if I pay full Swiss taxes?<span class="faq-arrow">▾</span></div><div class="faq-a">Yes. The US filing obligation is based on citizenship, not on where taxes are paid. Swiss taxes do not replace US filing requirements — though they can often be credited against US tax owed.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What happens if I have never filed an FBAR?<span class="faq-arrow">▾</span></div><div class="faq-a">The Streamlined Filing Compliance Procedures may allow you to catch up on missed FBARs without penalties, provided the IRS has not already contacted you. Professional guidance is strongly recommended before using this process.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Should I use the FEIE or the Foreign Tax Credit?<span class="faq-arrow">▾</span></div><div class="faq-a">It depends on your specific situation — income level, type of income, Swiss tax paid, and other factors. The choice can have significant long-term consequences and is one of the most important decisions in US expat tax planning.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Are my Swiss pension contributions recognized by the IRS?<span class="faq-arrow">▾</span></div><div class="faq-a">The IRS does not treat Pillar 2 and Pillar 3 contributions as tax-deferred in the same way US retirement accounts are treated. This can create unexpected US tax obligations on contributions that are fully tax-efficient in Switzerland.</div></div>
+  </div>
+  <div class="cta-box fade-in"><p>US tax compliance for Americans living in Switzerland is genuinely complex. Most Americans in Geneva are not trying to evade taxes — they simply want to be sure they are handling everything correctly. SwissExpatHub can connect you with advisors experienced in US expatriate taxation and Swiss tax compliance.</p><a href="/directory" class="cta-btn">Find Your Advisor →</a></div>
+  <div class="sources fade-in"><h3>Sources</h3><ol><li>FinCEN — FBAR filing requirements: fincen.gov</li><li>IRS — Form 8938 FATCA thresholds: irs.gov</li><li>IRS — Foreign Earned Income Exclusion (Form 2555): irs.gov</li><li>Federal Tax Administration Switzerland — FATCA agreement: estv.admin.ch</li></ol></div>
+
+</div>
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
+  function toggleFaq(el) { el.parentElement.classList.toggle("open"); }
+</script>
+</body>
+</html>

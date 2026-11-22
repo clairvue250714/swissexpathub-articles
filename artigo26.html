@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leaving Switzerland: Taxes, Pillar 2, and What to Do Before You Go</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+:root {
+  --bg:         #f7f8fa;
+  --bg2:        #ffffff;
+  --fg:         #1a1d23;
+  --fg2:        #5a6070;
+  --border:     #e2e5ec;
+  --blue:       #1f4080;
+  --blue-mid:   #2e5fa3;
+  --blue-light: #e8eff9;
+  --green:      #1a7a4a;
+  --green-light:#e6f4ed;
+  --red:        #c22b2b;
+  --red-light:  #fceaea;
+  --gold:       #b8862a;
+  --gold-light: #fdf6e8;
+  --shadow:     0 2px 12px rgba(0,0,0,.07);
+  --shadow-md:  0 4px 20px rgba(0,0,0,.10);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:#13161c; --bg2:#1e222b; --fg:#e8ecf5; --fg2:#8892a4; --border:#2c3140;
+    --blue:#5b8dde; --blue-mid:#7aaae8; --blue-light:#1a2540;
+    --green:#3dba78; --green-light:#0d2318;
+    --red:#e05555; --red-light:#2a0d0d;
+    --gold:#d4a855; --gold-light:#2a2010;
+    --shadow:0 2px 16px rgba(0,0,0,.3); --shadow-md:0 4px 24px rgba(0,0,0,.4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:#13161c; --bg2:#1e222b; --fg:#e8ecf5; --fg2:#8892a4; --border:#2c3140;
+  --blue:#5b8dde; --blue-mid:#7aaae8; --blue-light:#1a2540;
+  --green:#3dba78; --green-light:#0d2318;
+  --red:#e05555; --red-light:#2a0d0d;
+  --gold:#d4a855; --gold-light:#2a2010;
+  --shadow:0 2px 16px rgba(0,0,0,.3); --shadow-md:0 4px 24px rgba(0,0,0,.4);
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.75;
+  padding: 40px max(16px, 5vw) 80px;
+}
+
+.article {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* ── HEADER ── */
+.article-header { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
+.article-meta {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--fg2); margin-bottom: 10px;
+}
+h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(24px, 5vw, 36px);
+  font-weight: 700; line-height: 1.2;
+  text-wrap: balance; color: var(--fg);
+}
+.header-rule {
+  height: 2px; background: var(--blue);
+  border-radius: 2px; margin-top: 20px;
+  width: 48px;
+}
+
+/* ── QUICK ANSWER ── */
+.quick-answer {
+  background: var(--blue-light);
+  border-left: 4px solid var(--blue);
+  border-radius: 0 14px 14px 0;
+  padding: 20px 24px;
+}
+.quick-answer p { font-size: 15px; color: var(--fg); margin: 0; }
+
+/* ── TAKEAWAYS ── */
+.takeaways {
+  background: var(--blue);
+  border-radius: 16px;
+  padding: 28px 32px;
+}
+.takeaways h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px; font-weight: 700;
+  color: rgba(255,255,255,.6);
+  letter-spacing: .08em; text-transform: uppercase;
+  margin-bottom: 16px; margin-top: 0;
+}
+.takeaways ul { list-style: none; }
+.takeaways ul li {
+  color: #e8ecf5;
+  font-size: 14.5px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+  display: flex; gap: 12px; align-items: flex-start;
+}
+.takeaways ul li:last-child { border-bottom: none; }
+.takeaways ul li::before {
+  content: "✓"; color: #3dba78;
+  font-weight: 700; flex-shrink: 0; margin-top: 1px;
+}
+
+/* ── HEADINGS ── */
+h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px; font-weight: 700;
+  color: var(--fg); margin-bottom: 4px;
+}
+h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px; font-weight: 700;
+  color: var(--blue-mid); margin-bottom: 6px;
+}
+p { font-size: 15.5px; color: var(--fg); margin-bottom: 12px; }
+p:last-child { margin-bottom: 0; }
+.hl-blue  { color: var(--blue-mid); font-weight: 600; }
+.hl-green { color: var(--green);    font-weight: 600; }
+.hl-red   { color: var(--red);      font-weight: 600; }
+sup { font-size: 11px; color: var(--blue-mid); }
+
+/* ── SITUATION CARDS ── */
+.situation-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+@media (max-width: 520px) { .situation-cards { grid-template-columns: 1fr; } }
+
+.sit-card {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 20px;
+  box-shadow: var(--shadow);
+  transition: border-color .2s, box-shadow .2s;
+}
+.sit-card:hover { box-shadow: var(--shadow-md); }
+.sit-card.alert { border-color: var(--red); }
+.sit-card h3 { color: var(--blue-mid); margin-bottom: 6px; }
+.sit-card.alert h3 { color: var(--red); }
+.sit-card p { font-size: 13px; color: var(--fg2); margin: 0; }
+
+/* ── CHECKLIST ── */
+.checklist {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: var(--shadow);
+}
+.checklist h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px; font-weight: 700;
+  margin-bottom: 16px; color: var(--fg);
+}
+.checklist-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+}
+.checklist-item:last-of-type { border-bottom: none; }
+.check-box {
+  width: 22px; height: 22px;
+  border: 2px solid var(--blue);
+  border-radius: 6px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .2s; margin-top: 2px;
+}
+.check-box.checked { background: var(--blue); border-color: var(--blue); }
+.check-box.checked::after { content: "✓"; color: white; font-size: 13px; font-weight: 700; }
+.checklist-item.done span { text-decoration: line-through; color: var(--fg2); }
+.checklist-item span { font-size: 14.5px; color: var(--fg); font-family: 'Inter', sans-serif; }
+.progress-bar { height: 5px; background: var(--border); border-radius: 3px; margin-top: 16px; }
+.progress-fill { height: 100%; background: var(--green); border-radius: 3px; transition: width .4s ease; }
+.progress-label { font-size: 12px; color: var(--fg2); margin-top: 6px; font-family: 'Inter', sans-serif; }
+
+/* ── FAQ ── */
+.faq-item {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 8px;
+  overflow: hidden;
+  transition: border-color .2s;
+}
+.faq-item.open { border-color: var(--blue); }
+.faq-q {
+  padding: 16px 20px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px; font-weight: 600;
+  cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 12px; color: var(--fg);
+  background: transparent;
+}
+.faq-arrow { color: var(--blue); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
+.faq-item.open .faq-arrow { transform: rotate(180deg); }
+.faq-a {
+  display: none;
+  padding: 0 20px 16px;
+  font-size: 14px; color: var(--fg2); line-height: 1.65;
+  font-family: 'Inter', sans-serif;
+}
+.faq-item.open .faq-a { display: block; }
+
+/* ── CTA ── */
+.cta-box {
+  background: var(--blue);
+  border-radius: 16px;
+  padding: 32px 36px;
+  text-align: center;
+}
+.cta-box p {
+  color: rgba(255,255,255,.8);
+  font-size: 15px; margin-bottom: 20px;
+}
+.cta-btn {
+  background: var(--gold);
+  color: #fff;
+  padding: 13px 28px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px; font-weight: 700;
+  display: inline-block;
+  transition: opacity .2s;
+}
+.cta-btn:hover { opacity: .88; }
+
+/* ── SOURCES ── */
+.sources {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 24px;
+}
+.sources h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--fg2); margin-bottom: 10px;
+}
+.sources ol { padding-left: 18px; }
+.sources ol li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; }
+
+/* ── FADE IN ── */
+.fade-in { opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 600px) {
+  h1 { font-size: 24px; }
+  .situation-cards { grid-template-columns: 1fr; }
+  .cta-box { padding: 24px 20px; }
+  .takeaways { padding: 20px 20px; }
+}
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<header class="hero">
+  <div class="hero-bg"></div>
+  
+  <div class="hero-gradient"></div>
+  <div class="hero-content">
+    <div class="hero-tag" id="heroTag"><span class="hero-tag-pill">Exit Planning</span><span>Taxes · Pillar 2 · Switzerland</span></div>
+    <h1 class="hero-title" id="heroTitle">Leaving Switzerland: Taxes, Pillar 2, and What to Do Before You Go</h1>
+    <p class="hero-subtitle" id="heroSubtitle">Leaving Switzerland is one of the best moments to recover pension capital — but the canton strategy, timing, and sequence of decisions can save or cost tens of thousands of francs.</p>
+    <div class="hero-meta" id="heroMeta"><span>Updated August 2026</span><div class="hero-meta-divider"></div><span>5 min read</span></div>
+  </div>
+</header>
+<div class="article">
+  <div class="takeaways">
+    <p class="takeaways-label">Key Takeaways</p>
+    <div class="takeaway-item" data-delay="0"><span class="takeaway-num">01</span><span class="takeaway-text">In your year of departure, you file a pro-rata tax return covering only the months you were resident</span></div>
+    <div class="takeaway-item" data-delay="90"><span class="takeaway-num">02</span><span class="takeaway-text">When you permanently leave Switzerland, you can withdraw all Pillar 3a accounts — regardless of age</span></div>
+    <div class="takeaway-item" data-delay="180"><span class="takeaway-num">03</span><span class="takeaway-text">The withdrawal tax is calculated by the canton where the account is domiciled — not where you live</span></div>
+    <div class="takeaway-item" data-delay="270"><span class="takeaway-num">04</span><span class="takeaway-text">Transferring Pillar 3a to Schwyz or Appenzell before leaving can save CHF 10,000–30,000 in withdrawal tax</span></div>
+    <div class="takeaway-item" data-delay="360"><span class="takeaway-num">05</span><span class="takeaway-text">Pillar 2 can be withdrawn as capital or kept in a vested benefits account — each has different tax and financial implications</span></div>
+    <div class="takeaway-item" data-delay="450"><span class="takeaway-num">06</span><span class="takeaway-text">Plan at least 6–12 months before leaving — the canton transfer alone requires time to execute correctly</span></div>
+  </div>
+
+  <h2 class="reveal">The Exit Tax Return</h2>
+  <p class="reveal">In the year you leave Switzerland, you file a <span class="hl-blue">pro-rata tax return</span> covering only the months you were resident. If you left in June, the return covers January to June. Income is calculated proportionally to the period of residency. Wealth, however, is declared at the date of departure — not pro-rata.</p>
+  <div class="warning-box reveal">
+    <p>⚠ <strong>Do not wait for the normal 31 March deadline.</strong> The exit year return must be filed even if you leave before the normal deadline. Inform the AFC (Geneva tax authority) of your departure date and request specific instructions for the exit return.</p>
+  </div>
+
+  <h2 class="reveal">Pillar 3a — You Can Withdraw Everything When You Leave</h2>
+  <p class="reveal">When you permanently leave Switzerland, you can withdraw the total balance of all your Pillar 3a accounts — <span class="hl-green">regardless of age.</span> This is one of the most advantageous moments for withdrawal. The tax on Pillar 3a withdrawal is calculated separately from normal income, at reduced rates. In Geneva, this tax is 8%–15% depending on the amount.</p>
+
+  <div class="canton-compare reveal">
+    <div class="canton-card high">
+      <div class="canton-name">Geneva</div>
+      <div class="canton-rate">~12–15%</div>
+      <div class="canton-body">On CHF 200,000 withdrawal: ~CHF 24,000–30,000 in tax</div>
+    </div>
+    <div class="canton-card low">
+      <div class="canton-name">Schwyz</div>
+      <div class="canton-rate">~4–6%</div>
+      <div class="canton-body">On CHF 200,000 withdrawal: ~CHF 8,000–12,000 in tax</div>
+    </div>
+  </div>
+
+  <div class="gold-box reveal">
+    <p>💡 <strong>The canton strategy:</strong> The withdrawal tax is calculated by the canton where the Pillar 3a account is domiciled — not where you live. Transferring accounts to a provider domiciled in Schwyz or Appenzell Innerrhoden before leaving can save <span class="hl-gold">CHF 10,000–30,000</span> depending on the balance. This transfer takes time — plan at least 6 months in advance.</p>
+  </div>
+
+  <h2 class="reveal">Pillar 2 — Two Options When You Leave</h2>
+  <div class="option-cards reveal">
+    <div class="option-card withdraw">
+      <p class="option-label">Option 1</p>
+      <h3>Withdraw as capital</h3>
+      <p>Request the full withdrawal of accumulated capital. The same reduced tax as Pillar 3a applies — but on a typically much larger amount. For CHF 200,000–500,000, the tax can be CHF 20,000–80,000. Canton strategy applies here too — transfer the vested benefits account to Schwyz or Appenzell before withdrawing.</p>
+    </div>
+    <div class="option-card keep">
+      <p class="option-label">Option 2</p>
+      <h3>Keep in vested benefits account</h3>
+      <p>If you don't withdraw immediately, the capital transfers automatically to a vested benefits account (compte de libre passage) at a Swiss bank. It continues to grow and can be withdrawn later — at retirement age or when you emigrate definitively to a third country. Makes sense if you plan to return to Switzerland or if your destination country taxes pension withdrawals heavily.</p>
+    </div>
+  </div>
+
+  <h2 class="reveal">Source Tax Refunds — Money Most People Leave Behind</h2>
+  <div class="green-box reveal">
+    <p>✅ If you paid source tax (impôt à la source) with a B Permit and never requested a rectification, you may be entitled to a refund when you leave. Check whether deductions you were entitled to — Pillar 3a, professional expenses — were applied. If not, submit a rectification request before leaving. You can recover money from previous years.</p>
+  </div>
+
+  <h2 class="reveal">Before You Leave — Complete Checklist</h2>
+  <div class="exit-checklist reveal" id="exitChecklist">
+    <h3>Exit planning checklist</h3>
+    <div class="exit-item" onclick="toggleExit(this)"><div class="exit-check"></div><span class="exit-label">Inform Geneva tax authority (AFC) of your departure date</span></div>
+    <div class="exit-item" onclick="toggleExit(this)"><div class="exit-check"></div><span class="exit-label">Notify your employer to cease source tax withholding</span></div>
+    <div class="exit-item" onclick="toggleExit(this)"><div class="exit-check"></div><span class="exit-label">Decide whether to transfer Pillar 3a to a low-tax canton before withdrawing</span></div>
+    <div class="exit-item" onclick="toggleExit(this)"><div class="exit-check"></div><span class="exit-label">Decide whether to withdraw Pillar 2 or keep in vested benefits account</span></div>
+    <div class="exit-item" onclick="toggleExit(this)"><div class="exit-check"></div><span class="exit-label">Check whether you are entitled to a source tax refund from previous years</span></div>
+    <div class="exit-item" onclick="toggleExit(this)"><div class="exit-check"></div><span class="exit-label">Cancel LAMal health insurance (3-month notice period required)</span></div>
+    <div class="exit-item" onclick="toggleExit(this)"><div class="exit-check"></div><span class="exit-label">Deregister from your commune (contrôle des habitants)</span></div>
+    <div class="exit-item" onclick="toggleExit(this)"><div class="exit-check"></div><span class="exit-label">Keep all tax documentation from the last 5 years</span></div>
+    <div class="exit-progress">
+      <div class="exit-progress-bar"><div class="exit-progress-fill" id="exitFill" style="width:0%"></div></div>
+      <div class="exit-progress-label" id="exitLabel">0 of 8 completed</div>
+    </div>
+  </div>
+
+  <h2 class="reveal">In Your Destination Country</h2>
+  <div class="country-cards reveal">
+    <div class="country-item"><div class="country-flag">🇵🇹</div><div><div class="country-name">Portugal</div><div class="country-desc">Swiss pension withdrawals may benefit from the NHR (Non-Habitual Resident) regime with exemption or reduced rate. Always verify with a local advisor — the NHR rules have changed in recent years.</div></div></div>
+    <div class="country-item"><div class="country-flag">🇺🇸</div><div><div class="country-name">United States</div><div class="country-desc">Foreign pension withdrawals are generally taxable as ordinary income in the US. The Foreign Tax Credit may offset Swiss tax paid. Essential to consult a US tax specialist before any withdrawal.</div></div></div>
+    <div class="country-item"><div class="country-flag">🇪🇺</div><div><div class="country-name">EU countries</div><div class="country-desc">Double taxation treaties between Switzerland and each EU member state apply. The treatment varies significantly by country. Check the specific treaty before making withdrawal decisions.</div></div></div>
+  </div>
+
+  <h2 class="reveal">Before You Ask</h2>
+  <div class="faq-list reveal">
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Can I withdraw Pillar 2 if I leave temporarily and return?<span class="faq-arrow">▾</span></div><div class="faq-a">Not automatically. Withdrawal is only possible when the departure is definitive. If you return and resume professional activity in Switzerland, the capital must be returned to the pension fund. For temporary absence of up to 5 years, the capital remains in the vested benefits account.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How long do I have to withdraw Pillar 3a after leaving?<span class="faq-arrow">▾</span></div><div class="faq-a">There is no very short legal deadline, but withdrawing in the first months after departure is recommended. While the capital remains in the account it continues to grow — but the withdrawal tax continues to be calculated in Geneva (or the canton where the account is domiciled). The sooner you act, the sooner you benefit from the lower-tax canton strategy.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">When should I speak with an advisor?<span class="faq-arrow">▾</span></div><div class="faq-a">At least 6 to 12 months before you plan to leave. The canton transfer for Pillar 3a and Pillar 2, the withdrawal vs maintenance decision, and the timing all have significant tax implications that benefit from advance planning. Acting early preserves options that disappear at the last moment.</div></div>
+  </div>
+
+  <div class="cta-box reveal">
+    <p>Leaving Switzerland is one of the most tax-sensitive moments of an expat's financial life. SwissExpatHub can connect you with advisors experienced in exit planning, canton strategy, Pillar 2 decisions, and the intersection with your destination country's tax system.</p>
+    <a href="/directory" class="cta-btn">Find Your Advisor →</a>
+  </div>
+
+  <div class="sources reveal">
+    <p class="sources-label">Sources</p>
+    <ol>
+      <li>Federal Tax Administration — Leaving Switzerland and tax obligations: estv.admin.ch</li>
+      <li>Federal Social Insurance Office — Pillar 2 withdrawal on departure: bsv.admin.ch</li>
+      <li>Expat Savvy — Leaving Switzerland Guide 2026: expat-savvy.ch</li>
+      <li>Taxolution Advisory — Canton tax rates on pension withdrawals 2026: taxolution.ch</li>
+    </ol>
+  </div>
+</div>
+<script>
+  window.addEventListener('scroll', () => {
+    const s = window.scrollY, d = document.documentElement.scrollHeight - window.innerHeight;
+    document.getElementById('progress-bar').style.width = Math.min(100, d > 0 ? (s/d)*100 : 0) + '%';
+  }, { passive: true });
+  window.addEventListener('load', () => {
+    setTimeout(() => document.getElementById('heroTag').classList.add('visible'), 50);
+    setTimeout(() => document.getElementById('heroTitle').classList.add('visible'), 150);
+    setTimeout(() => document.getElementById('heroSubtitle').classList.add('visible'), 280);
+    setTimeout(() => document.getElementById('heroMeta').classList.add('visible'), 420);
+  });
+  function toggleExit(item) {
+    item.classList.toggle('checked');
+    item.querySelector('.exit-check').classList.toggle('done');
+    const total = document.querySelectorAll('.exit-item').length;
+    const done = document.querySelectorAll('.exit-item.checked').length;
+    document.getElementById('exitFill').style.width = (done/total*100) + '%';
+    document.getElementById('exitLabel').textContent = done + ' of ' + total + ' completed';
+  }
+  const tObs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), parseInt(e.target.dataset.delay||0)); tObs.unobserve(e.target); } }); }, { threshold: 0.1 });
+  document.querySelectorAll('.takeaway-item').forEach(el => tObs.observe(el));
+  const rObs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), parseInt(e.target.dataset.delay||0)); rObs.unobserve(e.target); } }); }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
+  document.querySelectorAll('.reveal').forEach(el => rObs.observe(el));
+  function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+</script>
+</body>
+</html>

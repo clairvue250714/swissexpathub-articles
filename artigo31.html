@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Insurance in Switzerland: What Every Expat Needs to Know</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+:root {
+  --bg:         #f7f8fa;
+  --bg2:        #ffffff;
+  --fg:         #1a1d23;
+  --fg2:        #5a6070;
+  --border:     #e2e5ec;
+  --blue:       #1f4080;
+  --blue-mid:   #2e5fa3;
+  --blue-light: #e8eff9;
+  --green:      #1a7a4a;
+  --green-light:#e6f4ed;
+  --red:        #c22b2b;
+  --red-light:  #fceaea;
+  --gold:       #b8862a;
+  --gold-light: #fdf6e8;
+  --shadow:     0 2px 12px rgba(0,0,0,.07);
+  --shadow-md:  0 4px 20px rgba(0,0,0,.10);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:#13161c; --bg2:#1e222b; --fg:#e8ecf5; --fg2:#8892a4; --border:#2c3140;
+    --blue:#5b8dde; --blue-mid:#7aaae8; --blue-light:#1a2540;
+    --green:#3dba78; --green-light:#0d2318;
+    --red:#e05555; --red-light:#2a0d0d;
+    --gold:#d4a855; --gold-light:#2a2010;
+    --shadow:0 2px 16px rgba(0,0,0,.3); --shadow-md:0 4px 24px rgba(0,0,0,.4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:#13161c; --bg2:#1e222b; --fg:#e8ecf5; --fg2:#8892a4; --border:#2c3140;
+  --blue:#5b8dde; --blue-mid:#7aaae8; --blue-light:#1a2540;
+  --green:#3dba78; --green-light:#0d2318;
+  --red:#e05555; --red-light:#2a0d0d;
+  --gold:#d4a855; --gold-light:#2a2010;
+  --shadow:0 2px 16px rgba(0,0,0,.3); --shadow-md:0 4px 24px rgba(0,0,0,.4);
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.75;
+  padding: 40px max(16px, 5vw) 80px;
+}
+
+.article {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* ── HEADER ── */
+.article-header { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
+.article-meta {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--fg2); margin-bottom: 10px;
+}
+h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(24px, 5vw, 36px);
+  font-weight: 700; line-height: 1.2;
+  text-wrap: balance; color: var(--fg);
+}
+.header-rule {
+  height: 2px; background: var(--blue);
+  border-radius: 2px; margin-top: 20px;
+  width: 48px;
+}
+
+/* ── QUICK ANSWER ── */
+.quick-answer {
+  background: var(--blue-light);
+  border-left: 4px solid var(--blue);
+  border-radius: 0 14px 14px 0;
+  padding: 20px 24px;
+}
+.quick-answer p { font-size: 15px; color: var(--fg); margin: 0; }
+
+/* ── TAKEAWAYS ── */
+.takeaways {
+  background: var(--blue);
+  border-radius: 16px;
+  padding: 28px 32px;
+}
+.takeaways h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px; font-weight: 700;
+  color: rgba(255,255,255,.6);
+  letter-spacing: .08em; text-transform: uppercase;
+  margin-bottom: 16px; margin-top: 0;
+}
+.takeaways ul { list-style: none; }
+.takeaways ul li {
+  color: #e8ecf5;
+  font-size: 14.5px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+  display: flex; gap: 12px; align-items: flex-start;
+}
+.takeaways ul li:last-child { border-bottom: none; }
+.takeaways ul li::before {
+  content: "✓"; color: #3dba78;
+  font-weight: 700; flex-shrink: 0; margin-top: 1px;
+}
+
+/* ── HEADINGS ── */
+h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px; font-weight: 700;
+  color: var(--fg); margin-bottom: 4px;
+}
+h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px; font-weight: 700;
+  color: var(--blue-mid); margin-bottom: 6px;
+}
+p { font-size: 15.5px; color: var(--fg); margin-bottom: 12px; }
+p:last-child { margin-bottom: 0; }
+.hl-blue  { color: var(--blue-mid); font-weight: 600; }
+.hl-green { color: var(--green);    font-weight: 600; }
+.hl-red   { color: var(--red);      font-weight: 600; }
+sup { font-size: 11px; color: var(--blue-mid); }
+
+/* ── SITUATION CARDS ── */
+.situation-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+@media (max-width: 520px) { .situation-cards { grid-template-columns: 1fr; } }
+
+.sit-card {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 20px;
+  box-shadow: var(--shadow);
+  transition: border-color .2s, box-shadow .2s;
+}
+.sit-card:hover { box-shadow: var(--shadow-md); }
+.sit-card.alert { border-color: var(--red); }
+.sit-card h3 { color: var(--blue-mid); margin-bottom: 6px; }
+.sit-card.alert h3 { color: var(--red); }
+.sit-card p { font-size: 13px; color: var(--fg2); margin: 0; }
+
+/* ── CHECKLIST ── */
+.checklist {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: var(--shadow);
+}
+.checklist h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px; font-weight: 700;
+  margin-bottom: 16px; color: var(--fg);
+}
+.checklist-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+}
+.checklist-item:last-of-type { border-bottom: none; }
+.check-box {
+  width: 22px; height: 22px;
+  border: 2px solid var(--blue);
+  border-radius: 6px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .2s; margin-top: 2px;
+}
+.check-box.checked { background: var(--blue); border-color: var(--blue); }
+.check-box.checked::after { content: "✓"; color: white; font-size: 13px; font-weight: 700; }
+.checklist-item.done span { text-decoration: line-through; color: var(--fg2); }
+.checklist-item span { font-size: 14.5px; color: var(--fg); font-family: 'Inter', sans-serif; }
+.progress-bar { height: 5px; background: var(--border); border-radius: 3px; margin-top: 16px; }
+.progress-fill { height: 100%; background: var(--green); border-radius: 3px; transition: width .4s ease; }
+.progress-label { font-size: 12px; color: var(--fg2); margin-top: 6px; font-family: 'Inter', sans-serif; }
+
+/* ── FAQ ── */
+.faq-item {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 8px;
+  overflow: hidden;
+  transition: border-color .2s;
+}
+.faq-item.open { border-color: var(--blue); }
+.faq-q {
+  padding: 16px 20px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px; font-weight: 600;
+  cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 12px; color: var(--fg);
+  background: transparent;
+}
+.faq-arrow { color: var(--blue); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
+.faq-item.open .faq-arrow { transform: rotate(180deg); }
+.faq-a {
+  display: none;
+  padding: 0 20px 16px;
+  font-size: 14px; color: var(--fg2); line-height: 1.65;
+  font-family: 'Inter', sans-serif;
+}
+.faq-item.open .faq-a { display: block; }
+
+/* ── CTA ── */
+.cta-box {
+  background: var(--blue);
+  border-radius: 16px;
+  padding: 32px 36px;
+  text-align: center;
+}
+.cta-box p {
+  color: rgba(255,255,255,.8);
+  font-size: 15px; margin-bottom: 20px;
+}
+.cta-btn {
+  background: var(--gold);
+  color: #fff;
+  padding: 13px 28px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px; font-weight: 700;
+  display: inline-block;
+  transition: opacity .2s;
+}
+.cta-btn:hover { opacity: .88; }
+
+/* ── SOURCES ── */
+.sources {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 24px;
+}
+.sources h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--fg2); margin-bottom: 10px;
+}
+.sources ol { padding-left: 18px; }
+.sources ol li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; }
+
+/* ── FADE IN ── */
+.fade-in { opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 600px) {
+  h1 { font-size: 24px; }
+  .situation-cards { grid-template-columns: 1fr; }
+  .cta-box { padding: 24px 20px; }
+  .takeaways { padding: 20px 20px; }
+}
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+
+<header class="hero">
+  <div class="hero-bg"></div>
+  
+  <div class="hero-gradient"></div>
+  <div class="hero-content">
+    <div class="hero-tag" id="heroTag"><span class="hero-tag-pill">Insurance</span><span>Switzerland · Expat Guide</span></div>
+    <h1 class="hero-title" id="heroTitle">Insurance in Switzerland: What Every Expat Needs to Know</h1>
+    <p class="hero-subtitle" id="heroSubtitle">One insurance costs CHF 80–150/year and covers up to CHF 10 million worldwide. Most expats have never heard of it. Here is what you actually need — and what is not worth it.</p>
+    <div class="hero-meta" id="heroMeta"><span>Updated August 2026</span><div class="hero-meta-divider"></div><span>5 min read</span></div>
+  </div>
+</header>
+
+<div class="article">
+  <div class="takeaways">
+    <p class="takeaways-label">Key Takeaways</p>
+    <div class="takeaway-item" data-delay="0"><span class="takeaway-num">01</span><span class="takeaway-text">LAMal health insurance is mandatory — must be contracted within 90 days of arrival in Switzerland</span></div>
+    <div class="takeaway-item" data-delay="90"><span class="takeaway-num">02</span><span class="takeaway-text">Personal liability insurance (RC) costs CHF 80–150/year and covers up to CHF 10 million in damages to third parties worldwide</span></div>
+    <div class="takeaway-item" data-delay="180"><span class="takeaway-num">03</span><span class="takeaway-text">RC covers a borrowed friend's car — but NOT your company car. The distinction surprises most expats</span></div>
+    <div class="takeaway-item" data-delay="270"><span class="takeaway-num">04</span><span class="takeaway-text">Contents insurance (mobilier) is only worth it if your personal belongings exceed CHF 20,000 in value</span></div>
+    <div class="takeaway-item" data-delay="360"><span class="takeaway-num">05</span><span class="takeaway-text">Accident insurance for non-professional accidents is covered by your employer if you work 8+ hours/week with them</span></div>
+    <div class="takeaway-item" data-delay="450"><span class="takeaway-num">06</span><span class="takeaway-text">If you work 8+ hours/week for two different employers, the insurer of the employer where you worked most recently before the accident pays</span></div>
+  </div>
+
+  <h2 class="reveal">The Most Important Insurance Nobody Mentions</h2>
+  <p class="reveal">Personal liability insurance (RC Privée / Privathaftpflichtversicherung) is the insurance with the best cost-benefit ratio in Switzerland — and it is almost unknown among newly arrived expats.</p>
+
+  <div class="rc-highlight reveal">
+    <h3>Personal Liability Insurance (RC)</h3>
+    <div class="rc-price">CHF 80–150 <span>/ year · worldwide coverage</span></div>
+    <div class="rc-covers">
+      <div class="rc-item">You break a friend's phone</div>
+      <div class="rc-item">Your dog bites someone in the park</div>
+      <div class="rc-item">Your child breaks a neighbour's window</div>
+      <div class="rc-item">You spill wine on a CHF 5,000 sofa</div>
+      <div class="rc-item">You cause a flood in the flat below</div>
+      <div class="rc-item">You injure someone accidentally</div>
+    </div>
+  </div>
+
+  <p class="reveal">In Geneva, with very high salaries and medical costs, a single accident injuring another person can generate a claim of CHF 100,000 to CHF 500,000 — covering medical costs, lost salary, and potentially long-term incapacity. The RC covers up to <span class="hl-green">CHF 10 million</span>. The annual premium is CHF 80 to CHF 150. It is the cheapest and most important insurance you can hold.</p>
+
+  <h2 class="reveal">The Distinction Everyone Gets Wrong — Personal vs Company</h2>
+  <p class="reveal">This is the most common question from expats and the answer surprises many people.</p>
+
+  <div class="rc-grid reveal">
+    <div class="rc-card covers">
+      <h3>✅ RC personal COVERS</h3>
+      <ul>
+        <li>Car borrowed from a friend or family member — YES. If you damage the friend's car, your personal RC covers the damage (if they have no casco insurance) and any third parties involved</li>
+        <li>Rental car — YES, in most cases, covers the excess and vehicle damage</li>
+        <li>Damage to third-party belongings in daily life — YES</li>
+        <li>Damage at someone else's home — YES</li>
+        <li>Valid worldwide — YES</li>
+      </ul>
+    </div>
+    <div class="rc-card not">
+      <h3>✗ RC personal does NOT cover</h3>
+      <ul>
+        <li>Company car — NO. The company car is covered by the company's insurance. If you damage the company car, your personal insurance does not intervene</li>
+        <li>Damage caused in the course of professional activity — NO</li>
+        <li>Damage to your own belongings — NO, only third-party damage</li>
+        <li>Intentional damage — NEVER</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="quote-block reveal">
+    <p class="quote-label">Simple Rule</p>
+    <p class="quote-text">"Friend's car = your RC covers. Company car = company insurance covers. Rental car = your RC covers. When in doubt — it's probably covered."</p>
+  </div>
+
+  <h2 class="reveal">Accident Insurance — The 8-Hour Rule</h2>
+  <p class="reveal">If you work <span class="hl-blue">8 or more hours per week</span> with the same employer, the employer's accident insurance covers both professional accidents and non-professional accidents (evenings, weekends, ski, cycling). In this case, you should remove the accident coverage from your LAMal — saving CHF 200–400/year.</p>
+
+  <div class="warning-box reveal">
+    <p>⚠ <strong>The rule applies per employer — not in total.</strong> If you work 6h with company A and 6h with company B, you total 12h/week — but you are not covered for private accidents by either employer. Each employer is assessed separately against the 8-hour threshold.</p>
+  </div>
+
+  <div class="blue-box reveal">
+    <p>🔵 <strong>Two employers, both above 8h/week:</strong> If you have a private accident, the insurer of the employer where you worked most recently before the accident is responsible for paying. Both employers must cover you — but only one pays per claim event.</p>
+  </div>
+
+  <h2 class="reveal">Contents Insurance — When It's Worth It</h2>
+  <p class="reveal">Covers your personal belongings inside your home — furniture, clothes, electronics, jewellery — against theft, fire, water damage, and natural disasters. The building insurance covers damage to the building itself; contents insurance covers your belongings inside the apartment.</p>
+  <p class="reveal"><strong>When it makes sense:</strong> if the total value of your belongings exceeds <span class="hl-blue">CHF 20,000</span>. Below that value, the deductible and administrative cost of a claim rarely makes the insurance worthwhile.</p>
+
+  <div class="green-box reveal">
+    <p>✅ <strong>Tip — RC + Contents as a bundle:</strong> Most insurers sell these two together for CHF 150–400/year. Digital providers like Smile (AXA subsidiary) and Simpego cost CHF 190–215/year — significantly cheaper than traditional insurers at CHF 340–345/year. For those who don't need in-person support, digital is the most efficient choice.</p>
+  </div>
+
+  <div class="warning-box reveal">
+    <p>⚠ <strong>Sub-limit on individual items:</strong> Most policies cap individual items at CHF 1,000–3,000. If you have a watch worth CHF 8,000 or a bicycle worth CHF 4,000, these must be declared separately — otherwise the policy only pays up to the standard sub-limit.</p>
+  </div>
+
+  <h2 class="reveal">Insurance Summary — What Every Expat Should Have</h2>
+  <table class="insurance-table reveal">
+    <tr><th>Insurance</th><th>Annual cost</th><th>Status</th></tr>
+    <tr><td>LAMal (health)</td><td>CHF 5,000–7,000</td><td><span class="badge mandatory">Mandatory</span></td></tr>
+    <tr><td>Personal liability (RC)</td><td>CHF 80–150</td><td><span class="badge essential">Essential</span></td></tr>
+    <tr><td>RC + Contents bundle</td><td>CHF 150–400</td><td><span class="badge essential">Strongly recommended</span></td></tr>
+    <tr><td>Legal protection insurance</td><td>CHF 150–350</td><td><span class="badge useful">Useful for tenants</span></td></tr>
+    <tr><td>Funeral / repatriation</td><td>CHF 240–720</td><td><span class="badge useful">For expats far from family</span></td></tr>
+    <tr><td>Supplementary health (LCA)</td><td>CHF 960–4,800</td><td><span class="badge useful">Dental, private room, abroad</span></td></tr>
+  </table>
+
+  <h2 class="reveal">What Is Usually Not Worth It</h2>
+  <div class="not-worth reveal">
+    <div class="not-worth-item">
+      <div class="not-worth-icon">📱</div>
+      <div>
+        <div class="not-worth-title">Phone insurance</div>
+        <div class="not-worth-desc">Deductibles are high, exclusions are many, and the claims process is complicated. The RC personal already covers accidental damage to a third party's phone — yours is a different matter, rarely worth insuring separately.</div>
+      </div>
+    </div>
+    <div class="not-worth-item">
+      <div class="not-worth-icon">✈️</div>
+      <div>
+        <div class="not-worth-title">Annual travel insurance</div>
+        <div class="not-worth-desc">If you already have personal RC (which covers worldwide) and a good credit card with travel insurance included, a separate annual travel policy is often redundant. Check what your card already covers before buying.</div>
+      </div>
+    </div>
+    <div class="not-worth-item">
+      <div class="not-worth-icon">🏠</div>
+      <div>
+        <div class="not-worth-title">Contents insurance below CHF 20,000</div>
+        <div class="not-worth-desc">The deductible and effort of documenting a claim rarely justify the insurance for low-value belongings. Basic IKEA furniture + a laptop + some clothes may well be below CHF 15,000 — in which case self-insuring is more efficient.</div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="reveal">Before You Ask</h2>
+  <div class="faq-list reveal">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Does my RC cover me if I damage my company car?<span class="faq-arrow">▾</span></div>
+      <div class="faq-a">No. The company car is covered by the company's insurance. Your personal RC does not intervene in situations related to your employment or company property. If you damage the company car, it is the company's insurer that handles the claim.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What if I damage a friend's car?<span class="faq-arrow">▾</span></div>
+      <div class="faq-a">Yes, your RC covers damage to the friend's car (if they have no casco insurance) and to any third parties involved in the accident. This is precisely why personal RC is so important — it protects you even when you are using someone else's belongings.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">I work part-time for two companies. Am I covered for private accidents?<span class="faq-arrow">▾</span></div>
+      <div class="faq-a">Only if you work 8 or more hours per week for each employer individually. If you work 6h with company A and 6h with company B, you are not covered for private accidents by either — even though your total is 12h/week. The 8-hour threshold is assessed per employer, not in total. In this case, keep accident coverage in your LAMal.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Do I need contents insurance if I live in a furnished apartment?<span class="faq-arrow">▾</span></div>
+      <div class="faq-a">The landlord's belongings are the landlord's responsibility. Your personal belongings — clothes, electronics, jewellery — are your responsibility. If the value of your personal belongings exceeds CHF 20,000, contents insurance makes sense. If it doesn't, self-insuring is usually more efficient.</div>
+    </div>
+  </div>
+
+  <div class="cta-box reveal">
+    <p>SwissExpatHub can connect you with advisors who help international residents in Geneva review their insurance coverage, identify gaps, and ensure they are not paying for protection they already have — or missing coverage they genuinely need.</p>
+    <a href="/directory" class="cta-btn">Find Your Advisor →</a>
+  </div>
+
+  <div class="sources reveal">
+    <p class="sources-label">Sources</p>
+    <ol>
+      <li>Expat Savvy — Personal Liability Insurance Switzerland 2026: expat-savvy.ch</li>
+      <li>SUVA — Accident insurance LAA, 8-hour rule: suva.ch</li>
+      <li>Federal Office of Public Health — LAMal accident coverage: bag.admin.ch</li>
+      <li>Insurance Guide Switzerland — RC and household guide 2026: insurance-guide.ch</li>
+    </ol>
+  </div>
+</div>
+
+<script>
+  window.addEventListener('scroll', () => {
+    const s = window.scrollY, d = document.documentElement.scrollHeight - window.innerHeight;
+    document.getElementById('progress-bar').style.width = Math.min(100, d > 0 ? (s/d)*100 : 0) + '%';
+  }, { passive: true });
+  window.addEventListener('load', () => {
+    setTimeout(() => document.getElementById('heroTag').classList.add('visible'), 50);
+    setTimeout(() => document.getElementById('heroTitle').classList.add('visible'), 150);
+    setTimeout(() => document.getElementById('heroSubtitle').classList.add('visible'), 280);
+    setTimeout(() => document.getElementById('heroMeta').classList.add('visible'), 420);
+  });
+  const tObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), parseInt(e.target.dataset.delay||0)); tObs.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.takeaway-item').forEach(el => tObs.observe(el));
+  const rObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), parseInt(e.target.dataset.delay||0)); rObs.unobserve(e.target); } });
+  }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
+  document.querySelectorAll('.reveal').forEach(el => rObs.observe(el));
+  function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+</script>
+</body>
+</html>

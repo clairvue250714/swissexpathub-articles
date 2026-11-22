@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cost of Living in Geneva on CHF 200,000+ a Year</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+:root {
+  --bg:         #f7f8fa;
+  --bg2:        #ffffff;
+  --fg:         #1a1d23;
+  --fg2:        #5a6070;
+  --border:     #e2e5ec;
+  --blue:       #1f4080;
+  --blue-mid:   #2e5fa3;
+  --blue-light: #e8eff9;
+  --green:      #1a7a4a;
+  --green-light:#e6f4ed;
+  --red:        #c22b2b;
+  --red-light:  #fceaea;
+  --gold:       #b8862a;
+  --gold-light: #fdf6e8;
+  --shadow:     0 2px 12px rgba(0,0,0,.07);
+  --shadow-md:  0 4px 20px rgba(0,0,0,.10);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:#13161c; --bg2:#1e222b; --fg:#e8ecf5; --fg2:#8892a4; --border:#2c3140;
+    --blue:#5b8dde; --blue-mid:#7aaae8; --blue-light:#1a2540;
+    --green:#3dba78; --green-light:#0d2318;
+    --red:#e05555; --red-light:#2a0d0d;
+    --gold:#d4a855; --gold-light:#2a2010;
+    --shadow:0 2px 16px rgba(0,0,0,.3); --shadow-md:0 4px 24px rgba(0,0,0,.4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:#13161c; --bg2:#1e222b; --fg:#e8ecf5; --fg2:#8892a4; --border:#2c3140;
+  --blue:#5b8dde; --blue-mid:#7aaae8; --blue-light:#1a2540;
+  --green:#3dba78; --green-light:#0d2318;
+  --red:#e05555; --red-light:#2a0d0d;
+  --gold:#d4a855; --gold-light:#2a2010;
+  --shadow:0 2px 16px rgba(0,0,0,.3); --shadow-md:0 4px 24px rgba(0,0,0,.4);
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.75;
+  padding: 40px max(16px, 5vw) 80px;
+}
+
+.article {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* ── HEADER ── */
+.article-header { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
+.article-meta {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--fg2); margin-bottom: 10px;
+}
+h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(24px, 5vw, 36px);
+  font-weight: 700; line-height: 1.2;
+  text-wrap: balance; color: var(--fg);
+}
+.header-rule {
+  height: 2px; background: var(--blue);
+  border-radius: 2px; margin-top: 20px;
+  width: 48px;
+}
+
+/* ── QUICK ANSWER ── */
+.quick-answer {
+  background: var(--blue-light);
+  border-left: 4px solid var(--blue);
+  border-radius: 0 14px 14px 0;
+  padding: 20px 24px;
+}
+.quick-answer p { font-size: 15px; color: var(--fg); margin: 0; }
+
+/* ── TAKEAWAYS ── */
+.takeaways {
+  background: var(--blue);
+  border-radius: 16px;
+  padding: 28px 32px;
+}
+.takeaways h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px; font-weight: 700;
+  color: rgba(255,255,255,.6);
+  letter-spacing: .08em; text-transform: uppercase;
+  margin-bottom: 16px; margin-top: 0;
+}
+.takeaways ul { list-style: none; }
+.takeaways ul li {
+  color: #e8ecf5;
+  font-size: 14.5px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+  display: flex; gap: 12px; align-items: flex-start;
+}
+.takeaways ul li:last-child { border-bottom: none; }
+.takeaways ul li::before {
+  content: "✓"; color: #3dba78;
+  font-weight: 700; flex-shrink: 0; margin-top: 1px;
+}
+
+/* ── HEADINGS ── */
+h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px; font-weight: 700;
+  color: var(--fg); margin-bottom: 4px;
+}
+h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px; font-weight: 700;
+  color: var(--blue-mid); margin-bottom: 6px;
+}
+p { font-size: 15.5px; color: var(--fg); margin-bottom: 12px; }
+p:last-child { margin-bottom: 0; }
+.hl-blue  { color: var(--blue-mid); font-weight: 600; }
+.hl-green { color: var(--green);    font-weight: 600; }
+.hl-red   { color: var(--red);      font-weight: 600; }
+sup { font-size: 11px; color: var(--blue-mid); }
+
+/* ── SITUATION CARDS ── */
+.situation-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+@media (max-width: 520px) { .situation-cards { grid-template-columns: 1fr; } }
+
+.sit-card {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 20px;
+  box-shadow: var(--shadow);
+  transition: border-color .2s, box-shadow .2s;
+}
+.sit-card:hover { box-shadow: var(--shadow-md); }
+.sit-card.alert { border-color: var(--red); }
+.sit-card h3 { color: var(--blue-mid); margin-bottom: 6px; }
+.sit-card.alert h3 { color: var(--red); }
+.sit-card p { font-size: 13px; color: var(--fg2); margin: 0; }
+
+/* ── CHECKLIST ── */
+.checklist {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: var(--shadow);
+}
+.checklist h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px; font-weight: 700;
+  margin-bottom: 16px; color: var(--fg);
+}
+.checklist-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+}
+.checklist-item:last-of-type { border-bottom: none; }
+.check-box {
+  width: 22px; height: 22px;
+  border: 2px solid var(--blue);
+  border-radius: 6px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .2s; margin-top: 2px;
+}
+.check-box.checked { background: var(--blue); border-color: var(--blue); }
+.check-box.checked::after { content: "✓"; color: white; font-size: 13px; font-weight: 700; }
+.checklist-item.done span { text-decoration: line-through; color: var(--fg2); }
+.checklist-item span { font-size: 14.5px; color: var(--fg); font-family: 'Inter', sans-serif; }
+.progress-bar { height: 5px; background: var(--border); border-radius: 3px; margin-top: 16px; }
+.progress-fill { height: 100%; background: var(--green); border-radius: 3px; transition: width .4s ease; }
+.progress-label { font-size: 12px; color: var(--fg2); margin-top: 6px; font-family: 'Inter', sans-serif; }
+
+/* ── FAQ ── */
+.faq-item {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 8px;
+  overflow: hidden;
+  transition: border-color .2s;
+}
+.faq-item.open { border-color: var(--blue); }
+.faq-q {
+  padding: 16px 20px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px; font-weight: 600;
+  cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 12px; color: var(--fg);
+  background: transparent;
+}
+.faq-arrow { color: var(--blue); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
+.faq-item.open .faq-arrow { transform: rotate(180deg); }
+.faq-a {
+  display: none;
+  padding: 0 20px 16px;
+  font-size: 14px; color: var(--fg2); line-height: 1.65;
+  font-family: 'Inter', sans-serif;
+}
+.faq-item.open .faq-a { display: block; }
+
+/* ── CTA ── */
+.cta-box {
+  background: var(--blue);
+  border-radius: 16px;
+  padding: 32px 36px;
+  text-align: center;
+}
+.cta-box p {
+  color: rgba(255,255,255,.8);
+  font-size: 15px; margin-bottom: 20px;
+}
+.cta-btn {
+  background: var(--gold);
+  color: #fff;
+  padding: 13px 28px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px; font-weight: 700;
+  display: inline-block;
+  transition: opacity .2s;
+}
+.cta-btn:hover { opacity: .88; }
+
+/* ── SOURCES ── */
+.sources {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 24px;
+}
+.sources h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--fg2); margin-bottom: 10px;
+}
+.sources ol { padding-left: 18px; }
+.sources ol li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; }
+
+/* ── FADE IN ── */
+.fade-in { opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 600px) {
+  h1 { font-size: 24px; }
+  .situation-cards { grid-template-columns: 1fr; }
+  .cta-box { padding: 24px 20px; }
+  .takeaways { padding: 20px 20px; }
+}
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<header class="hero">
+  <div class="hero-bg"></div>
+  
+  <div class="hero-gradient"></div>
+  <div class="hero-content">
+    <div class="hero-tag" id="heroTag">
+      <span class="hero-tag-pill">CHF 200k+</span>
+      <span>Cost of Living · Geneva</span>
+    </div>
+    <h1 class="hero-title" id="heroTitle">Cost of Living in Geneva on CHF 200,000+ a Year</h1>
+    <p class="hero-subtitle" id="heroSubtitle">Day-to-day costs are no longer the priority. Taxes, wealth tax, property ownership, and long-term financial structure are where the real decisions happen.</p>
+    <div class="hero-meta" id="heroMeta">
+      <span>Updated August 2026</span>
+      <div class="hero-meta-divider"></div>
+      <span>5 min read</span>
+    </div>
+  </div>
+</header>
+
+<div class="article">
+
+  <div class="takeaways">
+    <p class="takeaways-label">Key Takeaways</p>
+    <div class="takeaway-item" data-delay="0"><span class="takeaway-num">01</span><span class="takeaway-text">Geneva's marginal tax rate reaches ~43% above CHF 200,000 — one of the highest in Switzerland</span></div>
+    <div class="takeaway-item" data-delay="90"><span class="takeaway-num">02</span><span class="takeaway-text">A Pillar 2 buy-in of CHF 200,000 at 40% marginal rate saves CHF 80,000 in tax</span></div>
+    <div class="takeaway-item" data-delay="180"><span class="takeaway-num">03</span><span class="takeaway-text">Wealth tax in Geneva on CHF 2,000,000 net: ~CHF 10,000–14,000/year — the highest in Switzerland</span></div>
+    <div class="takeaway-item" data-delay="270"><span class="takeaway-num">04</span><span class="takeaway-text">At this level, buying property begins to make clear financial sense over renting long-term</span></div>
+    <div class="takeaway-item" data-delay="360"><span class="takeaway-num">05</span><span class="takeaway-text">International school is no longer a budget constraint — it is a lifestyle choice</span></div>
+    <div class="takeaway-item" data-delay="450"><span class="takeaway-num">06</span><span class="takeaway-text">The difference between optimised and basic tax planning at this level: CHF 20,000–50,000/year</span></div>
+  </div>
+
+  <h2 class="reveal">First: What Stays in Your Pocket</h2>
+  <p class="reveal">Above CHF 200,000, Geneva's progressive tax rates are significant. Each additional franc earned is taxed at an increasingly higher marginal rate — reaching approximately 43% at the top. Understanding your real net income is the foundation of everything else.</p>
+
+  <div class="salary-box reveal">
+    <h3>Estimated monthly net salary — Geneva, single</h3>
+    <div class="salary-row"><span class="salary-label">CHF 200,000 gross/year</span><span class="salary-value" id="cnt200">CHF 0</span></div>
+    <div class="salary-row"><span class="salary-label">CHF 300,000 gross/year</span><span class="salary-value" id="cnt300">CHF 0</span></div>
+    <div class="salary-row"><span class="salary-label">CHF 500,000 gross/year</span><span class="salary-value" id="cnt500">CHF 0</span></div>
+  </div>
+
+  <h2 class="reveal">Taxes — The Number One Priority</h2>
+  <p class="reveal">At this income level, tax optimisation is not optional — it is the single most important financial decision of the year. Geneva's effective rates climb steeply:</p>
+
+  <div class="tax-bars reveal" id="taxBars">
+    <div class="tax-bar-item">
+      <div class="tax-bar-label">CHF 200,000 gross <span>~34% effective rate</span></div>
+      <div class="tax-bar-track"><div class="tax-bar-fill" data-width="68"></div></div>
+    </div>
+    <div class="tax-bar-item">
+      <div class="tax-bar-label">CHF 300,000 gross <span>~38% effective rate</span></div>
+      <div class="tax-bar-track"><div class="tax-bar-fill" data-width="76"></div></div>
+    </div>
+    <div class="tax-bar-item">
+      <div class="tax-bar-label">CHF 500,000 gross <span>~42% effective rate</span></div>
+      <div class="tax-bar-track"><div class="tax-bar-fill" data-width="84"></div></div>
+    </div>
+  </div>
+
+  <h2 class="reveal">The Levers That Actually Move the Needle</h2>
+  <div class="lever-cards reveal">
+    <div class="lever-card">
+      <h3>Pillar 3a</h3>
+      <div class="lever-amount">CHF 7,258/year</div>
+      <p class="lever-body">Small relative to salary but never skip it. Fully deductible. Grows tax-free. At 40% marginal rate:</p>
+      <p class="lever-saving">Tax saved: ~CHF 2,900/year</p>
+    </div>
+    <div class="lever-card">
+      <h3>Pillar 2 Buy-In</h3>
+      <div class="lever-amount">No fixed limit</div>
+      <p class="lever-body">The most powerful tool available. If you arrived in Switzerland mid-career, your pension gap may be CHF 100,000–300,000. At 40% marginal rate:</p>
+      <p class="lever-saving">CHF 200,000 buy-in → ~CHF 80,000 saved</p>
+    </div>
+    <div class="lever-card">
+      <h3>Package Structure</h3>
+      <div class="lever-amount">Variable</div>
+      <p class="lever-body">Bonus vs base salary, benefits in kind, international school, supplementary insurance, company car — each has different tax treatment.</p>
+      <p class="lever-saving">Worth reviewing annually with an advisor</p>
+    </div>
+    <div class="lever-card">
+      <h3>Professional Expenses</h3>
+      <div class="lever-amount">Variable</div>
+      <p class="lever-body">Executive travel, training, home office, professional memberships. At this level these can be substantial and are fully deductible.</p>
+      <p class="lever-saving">Often CHF 5,000–20,000 deductible/year</p>
+    </div>
+  </div>
+
+  <div class="gold-box reveal">
+    <p>💡 <strong>Combined impact:</strong> Maximising Pillar 3a + a CHF 100,000 Pillar 2 buy-in + professional expenses reduces taxable income by CHF 110,000+ in a single year. At a 40% marginal rate, that is <span class="hl-gold">CHF 44,000+ in tax saved</span> — money that stays in your pension and pocket, not with the government.</p>
+  </div>
+
+  <h2 class="reveal">Wealth Tax — When It Starts to Matter</h2>
+  <p class="reveal">As high incomes accumulate into investments, property, and savings, wealth tax in Geneva becomes a meaningful annual expense. Geneva has <span class="hl-red">one of the highest wealth tax rates in Switzerland.</span></p>
+
+  <table class="wealth-table reveal">
+    <tr><th>Net taxable wealth</th><th>Annual wealth tax — Geneva</th></tr>
+    <tr><td>CHF 500,000</td><td class="amount">~CHF 1,500 – 2,000</td></tr>
+    <tr><td>CHF 1,000,000</td><td class="amount">~CHF 4,500 – 6,000</td></tr>
+    <tr><td>CHF 2,000,000</td><td class="amount">~CHF 10,000 – 14,000</td></tr>
+    <tr><td>CHF 5,000,000</td><td class="amount">~CHF 38,000</td></tr>
+  </table>
+
+  <div class="warning-box reveal">
+    <p>⚠ <strong>The canton gap:</strong> At CHF 5,000,000 net wealth, the difference between Geneva (~CHF 38,000/year) and Zug (~CHF 7,000/year) is over <span class="hl-red">CHF 31,000 per year</span>. For those with flexibility over where they live, canton selection is one of the highest-value financial decisions available. For those tied to Geneva professionally, optimising within the Geneva system is the focus.</p>
+  </div>
+
+  <h2 class="reveal">Property — Buying Begins to Make Sense</h2>
+  <p class="reveal">At this income level, buying property in Geneva transitions from aspiration to a clear financial decision. Mortgage interest is deductible until 2029, the first mortgage need never be repaid, and any future appreciation is tax-free.</p>
+
+  <div class="property-grid reveal">
+    <div class="prop-card">
+      <div class="prop-type">City Centre</div>
+      <div class="prop-desc">3-bed in Champel or Eaux-Vives</div>
+      <div class="prop-price">CHF 1,200,000 – 1,800,000</div>
+    </div>
+    <div class="prop-card">
+      <div class="prop-type">Premium Location</div>
+      <div class="prop-desc">4-bed in Cologny or Collonge-Bellerive</div>
+      <div class="prop-price">CHF 1,800,000 – 3,000,000</div>
+    </div>
+    <div class="prop-card">
+      <div class="prop-type">Villa</div>
+      <div class="prop-desc">Villa with garden, Vandoeuvres or Genthod</div>
+      <div class="prop-price">CHF 3,000,000 – 6,000,000+</div>
+    </div>
+    <div class="prop-card">
+      <div class="prop-type">Lake View</div>
+      <div class="prop-desc">Premium apartment, lake-facing Rive Gauche</div>
+      <div class="prop-price">CHF 2,500,000 – 5,000,000+</div>
+    </div>
+  </div>
+
+  <div class="quote-block reveal">
+    <p class="quote-label">The Shift</p>
+    <p class="quote-text">"Above CHF 200,000, the question is no longer how to cover expenses. It is how to structure wealth efficiently — and what Geneva costs in tax compared to what it gives back in quality of life."</p>
+  </div>
+
+  <h2 class="reveal">Three Real Monthly Budgets</h2>
+  <div class="budget-cards">
+    <div class="budget-card reveal" data-delay="0">
+      <div class="budget-header">
+        <div class="budget-name">Profile 1 — Single person</div>
+        <div class="budget-salary">CHF 200,000 gross</div>
+      </div>
+      <div class="budget-body">
+        <div class="budget-row"><span class="budget-label">Net monthly salary</span><span class="budget-amount">~CHF 12,000</span></div>
+        <div class="budget-divider"></div>
+        <div class="budget-row"><span class="budget-label">Rent — 2-bed Champel</span><span class="budget-amount expense">− CHF 3,500</span></div>
+        <div class="budget-row"><span class="budget-label">Health insurance + supplementary</span><span class="budget-amount expense">− CHF 750</span></div>
+        <div class="budget-row"><span class="budget-label">Food (restaurants included)</span><span class="budget-amount expense">− CHF 1,200</span></div>
+        <div class="budget-row"><span class="budget-label">Transport (pass + car)</span><span class="budget-amount expense">− CHF 500</span></div>
+        <div class="budget-row"><span class="budget-label">Phone + internet</span><span class="budget-amount expense">− CHF 80</span></div>
+        <div class="budget-row"><span class="budget-label">Leisure, travel, culture</span><span class="budget-amount expense">− CHF 1,500</span></div>
+        <div class="budget-row"><span class="budget-label">Pillar 3a</span><span class="budget-amount expense">− CHF 605</span></div>
+        <div class="budget-divider"></div>
+        <div class="budget-row"><span class="budget-label">Available to invest/save</span><span class="budget-amount saving">~CHF 3,865/month</span></div>
+      </div>
+    </div>
+
+    <div class="budget-card reveal" data-delay="100">
+      <div class="budget-header">
+        <div class="budget-name">Profile 2 — Couple, no children</div>
+        <div class="budget-salary">CHF 500,000 combined</div>
+      </div>
+      <div class="budget-body">
+        <div class="budget-row"><span class="budget-label">Net monthly salary (combined)</span><span class="budget-amount">~CHF 27,000</span></div>
+        <div class="budget-divider"></div>
+        <div class="budget-row"><span class="budget-label">Mortgage interest (CHF 2M property at 2%)</span><span class="budget-amount expense">− CHF 3,333</span></div>
+        <div class="budget-row"><span class="budget-label">Health insurance + supplementary (×2)</span><span class="budget-amount expense">− CHF 1,500</span></div>
+        <div class="budget-row"><span class="budget-label">Food + premium restaurants</span><span class="budget-amount expense">− CHF 2,000</span></div>
+        <div class="budget-row"><span class="budget-label">Transport (2 cars)</span><span class="budget-amount expense">− CHF 1,200</span></div>
+        <div class="budget-row"><span class="budget-label">Leisure, travel, culture</span><span class="budget-amount expense">− CHF 4,000</span></div>
+        <div class="budget-row"><span class="budget-label">Pillar 3a (both)</span><span class="budget-amount expense">− CHF 1,210</span></div>
+        <div class="budget-divider"></div>
+        <div class="budget-row"><span class="budget-label">Available to invest/save</span><span class="budget-amount saving">~CHF 13,757/month</span></div>
+      </div>
+    </div>
+
+    <div class="budget-card reveal" data-delay="200">
+      <div class="budget-header">
+        <div class="budget-name">Profile 3 — Family with 2 children</div>
+        <div class="budget-salary">CHF 600,000 combined</div>
+      </div>
+      <div class="budget-body">
+        <div class="budget-row"><span class="budget-label">Net monthly salary (combined)</span><span class="budget-amount">~CHF 32,000</span></div>
+        <div class="budget-divider"></div>
+        <div class="budget-row"><span class="budget-label">Mortgage interest (CHF 2.5M property)</span><span class="budget-amount expense">− CHF 4,167</span></div>
+        <div class="budget-row"><span class="budget-label">Health insurance (family)</span><span class="budget-amount expense">− CHF 2,000</span></div>
+        <div class="budget-row"><span class="budget-label">International school (2 children)</span><span class="budget-amount expense">− CHF 6,000</span></div>
+        <div class="budget-row"><span class="budget-label">Food + restaurants</span><span class="budget-amount expense">− CHF 2,500</span></div>
+        <div class="budget-row"><span class="budget-label">Transport (2 cars)</span><span class="budget-amount expense">− CHF 1,200</span></div>
+        <div class="budget-row"><span class="budget-label">Activities, holidays, leisure</span><span class="budget-amount expense">− CHF 5,000</span></div>
+        <div class="budget-row"><span class="budget-label">Pillar 3a (both)</span><span class="budget-amount expense">− CHF 1,210</span></div>
+        <div class="budget-divider"></div>
+        <div class="budget-row"><span class="budget-label">Available to invest/save</span><span class="budget-amount saving">~CHF 9,923/month</span></div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="reveal">The Questions That Matter at This Level</h2>
+  <div class="strategy-list reveal">
+    <div class="strategy-item">
+      <div class="strategy-icon">🏛️</div>
+      <div>
+        <div class="strategy-title">When to buy property — and how to structure it</div>
+        <div class="strategy-desc">The first mortgage need never be repaid. The second must be amortised in 15 years. Structuring the split correctly, and timing the purchase relative to your Pillar 2 buy-in strategy, matters significantly.</div>
+      </div>
+    </div>
+    <div class="strategy-item">
+      <div class="strategy-icon">📈</div>
+      <div>
+        <div class="strategy-title">How to invest the surplus tax-efficiently</div>
+        <div class="strategy-desc">Swiss capital gains on private wealth are tax-free. But wealth tax applies to the portfolio value. The balance between maximising returns and minimising wealth tax requires ongoing strategy.</div>
+      </div>
+    </div>
+    <div class="strategy-item">
+      <div class="strategy-icon">🏔️</div>
+      <div>
+        <div class="strategy-title">Whether canton relocation makes sense</div>
+        <div class="strategy-desc">The difference between Geneva and Zug at CHF 300,000 is over CHF 60,000/year in income tax alone. For those with geographic flexibility, this is one of the highest-value financial decisions available.</div>
+      </div>
+    </div>
+    <div class="strategy-item">
+      <div class="strategy-icon">🎯</div>
+      <div>
+        <div class="strategy-title">Pillar 2 in annuity or lump sum at retirement</div>
+        <div class="strategy-desc">Taking Pillar 2 as a lump sum is taxed at a reduced rate. Taking it as a monthly pension is taxed as income. The right choice depends on your overall financial picture and post-retirement plans.</div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="reveal">Before You Ask</h2>
+  <div class="faq-list reveal">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Is it worth moving cantons to pay less tax?<span class="faq-arrow">▾</span></div>
+      <div class="faq-a">At CHF 300,000+, the difference between Geneva (~38% effective) and Zug (~22%) is over CHF 60,000/year in income tax alone. But moving means changing home, children's schools, and daily life. For those professionally tied to Geneva, optimising within the Geneva system is the focus. For founders, freelancers, or those with geographic flexibility, it can be transformative.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">At CHF 500,000, how significant is the wealth tax?<span class="faq-arrow">▾</span></div>
+      <div class="faq-a">After several years at this salary, total net assets can easily reach CHF 2,000,000–5,000,000. At that level, Geneva wealth tax is CHF 10,000–38,000/year — a permanent, growing annual cost that justifies dedicated planning. The two most effective tools: keeping the mortgage active (deducts from taxable wealth) and maximising Pillar 3a and Pillar 2 (fully exempt from wealth tax).</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">When should I speak with an advisor?<span class="faq-arrow">▾</span></div>
+      <div class="faq-a">Immediately, if you have not already. At this income level, the cost of not having professional advice is measured in tens of thousands of francs per year — not just in taxes owed, but in Pillar 2 buy-in opportunities missed, wealth tax not optimised, and property timing not planned. The earlier you engage, the more options remain open.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Does international school still matter at this salary?<span class="faq-arrow">▾</span></div>
+      <div class="faq-a">It is no longer a budget constraint — it is a lifestyle and educational choice. At CHF 200,000+, one or two children in international school at CHF 30,000–40,000 each represents 6–12% of gross salary. That is significant but manageable. The question shifts from "can we afford it?" to "is this the right school for our children?"</div>
+    </div>
+  </div>
+
+  <div class="cta-box reveal">
+    <p>At CHF 200,000+, professional financial advice is not a cost — it is an investment with a measurable return. SwissExpatHub can connect you with advisors experienced in tax optimisation, Pillar 2 strategy, wealth planning, and property structuring for senior international professionals in Geneva.</p>
+    <a href="/directory" class="cta-btn">Find Your Advisor →</a>
+  </div>
+
+  <div class="sources reveal">
+    <p class="sources-label">Sources</p>
+    <ol>
+      <li>Taxolution Advisory — Swiss Wealth Tax rates by canton 2026: taxolution.ch</li>
+      <li>Federal Tax Administration — Income tax Geneva 2026: estv.admin.ch</li>
+      <li>Investropa — Property prices Geneva 2026: investropa.com</li>
+      <li>Swiss Relocation Portal — How Much Money to Live in Switzerland 2026: swiss-relocation.com</li>
+      <li>Expat Savvy — Health Insurance Geneva 2026: expat-savvy.ch</li>
+    </ol>
+  </div>
+
+</div>
+
+<script>
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    document.getElementById('progress-bar').style.width = Math.min(100, docHeight > 0 ? (scrollTop / docHeight) * 100 : 0) + '%';
+  }, { passive: true });
+
+  window.addEventListener('load', () => {
+    setTimeout(() => document.getElementById('heroTag').classList.add('visible'), 50);
+    setTimeout(() => document.getElementById('heroTitle').classList.add('visible'), 150);
+    setTimeout(() => document.getElementById('heroSubtitle').classList.add('visible'), 280);
+    setTimeout(() => document.getElementById('heroMeta').classList.add('visible'), 420);
+  });
+
+  function animateCount(el, target, prefix, duration) {
+    let start = 0;
+    const step = target / (duration / 16);
+    const timer = setInterval(() => {
+      start = Math.min(start + step, target);
+      el.textContent = prefix + Math.round(start).toLocaleString();
+      if (start >= target) clearInterval(timer);
+    }, 16);
+  }
+
+  const salaryObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setTimeout(() => animateCount(document.getElementById('cnt200'), 12000, 'CHF ', 1200), 100);
+        setTimeout(() => animateCount(document.getElementById('cnt300'), 16000, 'CHF ', 1400), 300);
+        setTimeout(() => animateCount(document.getElementById('cnt500'), 24500, 'CHF ', 1600), 500);
+        salaryObserver.disconnect();
+      }
+    });
+  }, { threshold: 0.3 });
+  const salaryBox = document.querySelector('.salary-box');
+  if (salaryBox) salaryObserver.observe(salaryBox);
+
+  const taxObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.tax-bar-fill').forEach((bar, i) => {
+          setTimeout(() => { bar.style.width = bar.dataset.width + '%'; }, i * 200);
+        });
+        taxObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  const taxBars = document.getElementById('taxBars');
+  if (taxBars) taxObserver.observe(taxBars);
+
+  const takeawayObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const delay = parseInt(entry.target.dataset.delay || 0);
+        setTimeout(() => entry.target.classList.add('visible'), delay);
+        takeawayObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.takeaway-item').forEach(el => takeawayObserver.observe(el));
+
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const delay = parseInt(entry.target.dataset.delay || 0);
+        setTimeout(() => entry.target.classList.add('visible'), delay);
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+</script>
+</body>
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Working for an International Organization in Geneva: What It Means for Your Taxes</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+:root {
+  --bg:         #f7f8fa;
+  --bg2:        #ffffff;
+  --fg:         #1a1d23;
+  --fg2:        #5a6070;
+  --border:     #e2e5ec;
+  --blue:       #1f4080;
+  --blue-mid:   #2e5fa3;
+  --blue-light: #e8eff9;
+  --green:      #1a7a4a;
+  --green-light:#e6f4ed;
+  --red:        #c22b2b;
+  --red-light:  #fceaea;
+  --gold:       #b8862a;
+  --gold-light: #fdf6e8;
+  --shadow:     0 2px 12px rgba(0,0,0,.07);
+  --shadow-md:  0 4px 20px rgba(0,0,0,.10);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:#13161c; --bg2:#1e222b; --fg:#e8ecf5; --fg2:#8892a4; --border:#2c3140;
+    --blue:#5b8dde; --blue-mid:#7aaae8; --blue-light:#1a2540;
+    --green:#3dba78; --green-light:#0d2318;
+    --red:#e05555; --red-light:#2a0d0d;
+    --gold:#d4a855; --gold-light:#2a2010;
+    --shadow:0 2px 16px rgba(0,0,0,.3); --shadow-md:0 4px 24px rgba(0,0,0,.4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:#13161c; --bg2:#1e222b; --fg:#e8ecf5; --fg2:#8892a4; --border:#2c3140;
+  --blue:#5b8dde; --blue-mid:#7aaae8; --blue-light:#1a2540;
+  --green:#3dba78; --green-light:#0d2318;
+  --red:#e05555; --red-light:#2a0d0d;
+  --gold:#d4a855; --gold-light:#2a2010;
+  --shadow:0 2px 16px rgba(0,0,0,.3); --shadow-md:0 4px 24px rgba(0,0,0,.4);
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.75;
+  padding: 40px max(16px, 5vw) 80px;
+}
+
+.article {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* ── HEADER ── */
+.article-header { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
+.article-meta {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--fg2); margin-bottom: 10px;
+}
+h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(24px, 5vw, 36px);
+  font-weight: 700; line-height: 1.2;
+  text-wrap: balance; color: var(--fg);
+}
+.header-rule {
+  height: 2px; background: var(--blue);
+  border-radius: 2px; margin-top: 20px;
+  width: 48px;
+}
+
+/* ── QUICK ANSWER ── */
+.quick-answer {
+  background: var(--blue-light);
+  border-left: 4px solid var(--blue);
+  border-radius: 0 14px 14px 0;
+  padding: 20px 24px;
+}
+.quick-answer p { font-size: 15px; color: var(--fg); margin: 0; }
+
+/* ── TAKEAWAYS ── */
+.takeaways {
+  background: var(--blue);
+  border-radius: 16px;
+  padding: 28px 32px;
+}
+.takeaways h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px; font-weight: 700;
+  color: rgba(255,255,255,.6);
+  letter-spacing: .08em; text-transform: uppercase;
+  margin-bottom: 16px; margin-top: 0;
+}
+.takeaways ul { list-style: none; }
+.takeaways ul li {
+  color: #e8ecf5;
+  font-size: 14.5px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+  display: flex; gap: 12px; align-items: flex-start;
+}
+.takeaways ul li:last-child { border-bottom: none; }
+.takeaways ul li::before {
+  content: "✓"; color: #3dba78;
+  font-weight: 700; flex-shrink: 0; margin-top: 1px;
+}
+
+/* ── HEADINGS ── */
+h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px; font-weight: 700;
+  color: var(--fg); margin-bottom: 4px;
+}
+h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px; font-weight: 700;
+  color: var(--blue-mid); margin-bottom: 6px;
+}
+p { font-size: 15.5px; color: var(--fg); margin-bottom: 12px; }
+p:last-child { margin-bottom: 0; }
+.hl-blue  { color: var(--blue-mid); font-weight: 600; }
+.hl-green { color: var(--green);    font-weight: 600; }
+.hl-red   { color: var(--red);      font-weight: 600; }
+sup { font-size: 11px; color: var(--blue-mid); }
+
+/* ── SITUATION CARDS ── */
+.situation-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+@media (max-width: 520px) { .situation-cards { grid-template-columns: 1fr; } }
+
+.sit-card {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 20px;
+  box-shadow: var(--shadow);
+  transition: border-color .2s, box-shadow .2s;
+}
+.sit-card:hover { box-shadow: var(--shadow-md); }
+.sit-card.alert { border-color: var(--red); }
+.sit-card h3 { color: var(--blue-mid); margin-bottom: 6px; }
+.sit-card.alert h3 { color: var(--red); }
+.sit-card p { font-size: 13px; color: var(--fg2); margin: 0; }
+
+/* ── CHECKLIST ── */
+.checklist {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: var(--shadow);
+}
+.checklist h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px; font-weight: 700;
+  margin-bottom: 16px; color: var(--fg);
+}
+.checklist-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+}
+.checklist-item:last-of-type { border-bottom: none; }
+.check-box {
+  width: 22px; height: 22px;
+  border: 2px solid var(--blue);
+  border-radius: 6px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .2s; margin-top: 2px;
+}
+.check-box.checked { background: var(--blue); border-color: var(--blue); }
+.check-box.checked::after { content: "✓"; color: white; font-size: 13px; font-weight: 700; }
+.checklist-item.done span { text-decoration: line-through; color: var(--fg2); }
+.checklist-item span { font-size: 14.5px; color: var(--fg); font-family: 'Inter', sans-serif; }
+.progress-bar { height: 5px; background: var(--border); border-radius: 3px; margin-top: 16px; }
+.progress-fill { height: 100%; background: var(--green); border-radius: 3px; transition: width .4s ease; }
+.progress-label { font-size: 12px; color: var(--fg2); margin-top: 6px; font-family: 'Inter', sans-serif; }
+
+/* ── FAQ ── */
+.faq-item {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 8px;
+  overflow: hidden;
+  transition: border-color .2s;
+}
+.faq-item.open { border-color: var(--blue); }
+.faq-q {
+  padding: 16px 20px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px; font-weight: 600;
+  cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 12px; color: var(--fg);
+  background: transparent;
+}
+.faq-arrow { color: var(--blue); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
+.faq-item.open .faq-arrow { transform: rotate(180deg); }
+.faq-a {
+  display: none;
+  padding: 0 20px 16px;
+  font-size: 14px; color: var(--fg2); line-height: 1.65;
+  font-family: 'Inter', sans-serif;
+}
+.faq-item.open .faq-a { display: block; }
+
+/* ── CTA ── */
+.cta-box {
+  background: var(--blue);
+  border-radius: 16px;
+  padding: 32px 36px;
+  text-align: center;
+}
+.cta-box p {
+  color: rgba(255,255,255,.8);
+  font-size: 15px; margin-bottom: 20px;
+}
+.cta-btn {
+  background: var(--gold);
+  color: #fff;
+  padding: 13px 28px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px; font-weight: 700;
+  display: inline-block;
+  transition: opacity .2s;
+}
+.cta-btn:hover { opacity: .88; }
+
+/* ── SOURCES ── */
+.sources {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 24px;
+}
+.sources h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--fg2); margin-bottom: 10px;
+}
+.sources ol { padding-left: 18px; }
+.sources ol li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; }
+
+/* ── FADE IN ── */
+.fade-in { opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 600px) {
+  h1 { font-size: 24px; }
+  .situation-cards { grid-template-columns: 1fr; }
+  .cta-box { padding: 24px 20px; }
+  .takeaways { padding: 20px 20px; }
+}
+</style>
+</head>
+<body>
+<div class="article">
+
+  <div class="article-header fade-in"><p class="article-meta">Tax &amp; Finance · International Organizations · 5 min read</p><h1>Working for an International Organization in Geneva: What It Means for Your Taxes</h1></div>
+  <div class="quick-answer fade-in"><p><strong>Quick Answer:</strong> Geneva is home to over 40 international organizations — the UN, WHO, ILO, WTO, ICRC, CERN and hundreds more. If you work for one of them, your salary is almost certainly <span class="hl-green">exempt from Swiss income tax.</span> But that exemption does not cover everything — and many IO employees are surprised by what they still owe.</p></div>
+  <div class="takeaways fade-in"><h2>Key Takeaways</h2><ul><li>Salaries paid by the UN and most international organizations are exempt from Swiss income tax</li><li>The tax exemption covers your IO salary only — investment income, rental income, and other private income are fully taxable</li><li>Wealth tax still applies to your private assets — investments, property, cryptocurrency, and savings outside the IO pension fund</li><li>A February 2026 Geneva court ruling confirmed that IO salary cannot be factored into wealth tax calculations</li><li>Most IO employees cannot contribute to Pillar 3a — eligibility depends on AHV contributions</li></ul></div>
+  <h2 class="fade-in">The Core Exemption: What It Covers</h2>
+  <p class="fade-in">Officials of the UN, WHO, ILO and other specialized agencies are <span class="hl-green">exempt from Swiss income tax</span> on professional income received from the organization. This exemption is based on headquarters agreements signed between Switzerland and each international organization. In practical terms: a tax-free P-3 package of approximately USD 130,000 per year net is roughly equivalent to CHF 200,000 gross in the private sector.</p>
+  <h2 class="fade-in">What the Exemption Does NOT Cover</h2>
+  <div class="sit-grid fade-in">
+    <div class="sit-card alert"><h3>📈 Investment income</h3><p>Dividends, interest, and capital gains from private investments are fully taxable. Your IO status does not protect them.</p></div>
+    <div class="sit-card alert"><h3>🏠 Rental income</h3><p>If you own a property and rent it out — in Switzerland or abroad — that income is taxable.</p></div>
+    <div class="sit-card alert"><h3>₿ Cryptocurrency</h3><p>Holdings and gains from cryptocurrency are subject to Swiss wealth tax and may generate taxable income.</p></div>
+    <div class="sit-card alert"><h3>💰 Private savings</h3><p>Money held in private bank accounts outside the IO pension system is subject to Swiss wealth tax.</p></div>
+  </div>
+  <div class="warning-box fade-in"><p>⚠ <strong>Wealth Tax: No Exemption.</strong> Even with full income tax exemption, <span class="hl-red">wealth tax always applies</span> to IO staff residing in Switzerland. In February 2026, a Geneva court ruling confirmed that IO salary cannot be factored into the canton's wealth tax calculations — this is a significant protection. But it applies to the salary, not to private assets accumulated independently.</p></div>
+  <h2 class="fade-in">Two IO Employees, Two Different Situations</h2>
+  <div class="profiles fade-in">
+    <div class="profile-card">
+      <div class="profile-name">IO Employee A — P-4, WHO</div>
+      <p>Salary USD 150,000 — fully tax-free. No private investments. No property. No cryptocurrency.</p>
+      <div class="profile-note">Tax situation straightforward. The exemption covers everything. No Swiss tax return required.</div>
+    </div>
+    <div class="profile-card">
+      <div class="profile-name">IO Employee B — P-5, ILO</div>
+      <p>Salary USD 190,000 — fully tax-free. Private investment portfolio CHF 400,000. Apartment in Geneva. CHF 30,000 in cryptocurrency.</p>
+      <div class="profile-note">Complex situation. The IO salary is exempt but investment portfolio, property, and crypto are all subject to Swiss wealth tax. A tax return is required. Which situation sounds closer to yours?</div>
+    </div>
+  </div>
+  <h2 class="fade-in">Before You Ask</h2>
+  <div class="faq fade-in">
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Is my entire financial life tax-free because I work for an IO?<span class="faq-arrow">▾</span></div><div class="faq-a">No. Only your salary from the organization is exempt. Private investments, savings, rental income, cryptocurrency, and property are all subject to normal Swiss taxation.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Do I need to file a Swiss tax return?<span class="faq-arrow">▾</span></div><div class="faq-a">If your only income is from the IO and you have no private assets above the cantonal threshold — generally no. If you have private investments, property, or other income — yes.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Can I contribute to Pillar 3a?<span class="faq-arrow">▾</span></div><div class="faq-a">Generally no — if you are covered by the IO pension system and do not pay Swiss AHV. There are exceptions. Verify with a professional.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">My spouse works for a private company. Are they also exempt?<span class="faq-arrow">▾</span></div><div class="faq-a">No. The tax exemption is personal — it applies only to the IO staff member's salary from the IO. A spouse working for a private Swiss employer pays normal Swiss income tax on their salary.</div></div>
+  </div>
+  <div class="cta-box fade-in"><p>Working for an international organization in Geneva provides one of the most attractive tax positions available. But the private financial lives of IO employees are not tax-free. SwissExpatHub can connect you with advisors experienced in the specific intersection of international organization status and Swiss private wealth taxation in Geneva.</p><a href="/directory" class="cta-btn">Find Your Advisor →</a></div>
+  <div class="sources fade-in"><h3>Sources</h3><ol><li>Federal Tax Administration — International organizations and Swiss tax: estv.admin.ch</li><li>Geneva Canton Tax Authority (AFC) — IO staff wealth tax ruling February 2026: ge.ch/impots</li><li>Swiss Federal Council — Host country agreements with IOs: admin.ch</li><li>CAGI — Tax regime for IO employees in Geneva: cagi.ch</li></ol></div>
+
+</div>
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
+  function toggleFaq(el) { el.parentElement.classList.toggle("open"); }
+</script>
+</body>
+</html>

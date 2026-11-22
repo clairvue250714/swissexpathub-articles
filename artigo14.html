@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How Stock Options and RSUs Are Taxed in Switzerland</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+:root {
+  --bg:         #f7f8fa;
+  --bg2:        #ffffff;
+  --fg:         #1a1d23;
+  --fg2:        #5a6070;
+  --border:     #e2e5ec;
+  --blue:       #1f4080;
+  --blue-mid:   #2e5fa3;
+  --blue-light: #e8eff9;
+  --green:      #1a7a4a;
+  --green-light:#e6f4ed;
+  --red:        #c22b2b;
+  --red-light:  #fceaea;
+  --gold:       #b8862a;
+  --gold-light: #fdf6e8;
+  --shadow:     0 2px 12px rgba(0,0,0,.07);
+  --shadow-md:  0 4px 20px rgba(0,0,0,.10);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:#13161c; --bg2:#1e222b; --fg:#e8ecf5; --fg2:#8892a4; --border:#2c3140;
+    --blue:#5b8dde; --blue-mid:#7aaae8; --blue-light:#1a2540;
+    --green:#3dba78; --green-light:#0d2318;
+    --red:#e05555; --red-light:#2a0d0d;
+    --gold:#d4a855; --gold-light:#2a2010;
+    --shadow:0 2px 16px rgba(0,0,0,.3); --shadow-md:0 4px 24px rgba(0,0,0,.4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:#13161c; --bg2:#1e222b; --fg:#e8ecf5; --fg2:#8892a4; --border:#2c3140;
+  --blue:#5b8dde; --blue-mid:#7aaae8; --blue-light:#1a2540;
+  --green:#3dba78; --green-light:#0d2318;
+  --red:#e05555; --red-light:#2a0d0d;
+  --gold:#d4a855; --gold-light:#2a2010;
+  --shadow:0 2px 16px rgba(0,0,0,.3); --shadow-md:0 4px 24px rgba(0,0,0,.4);
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.75;
+  padding: 40px max(16px, 5vw) 80px;
+}
+
+.article {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* ── HEADER ── */
+.article-header { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
+.article-meta {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--fg2); margin-bottom: 10px;
+}
+h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(24px, 5vw, 36px);
+  font-weight: 700; line-height: 1.2;
+  text-wrap: balance; color: var(--fg);
+}
+.header-rule {
+  height: 2px; background: var(--blue);
+  border-radius: 2px; margin-top: 20px;
+  width: 48px;
+}
+
+/* ── QUICK ANSWER ── */
+.quick-answer {
+  background: var(--blue-light);
+  border-left: 4px solid var(--blue);
+  border-radius: 0 14px 14px 0;
+  padding: 20px 24px;
+}
+.quick-answer p { font-size: 15px; color: var(--fg); margin: 0; }
+
+/* ── TAKEAWAYS ── */
+.takeaways {
+  background: var(--blue);
+  border-radius: 16px;
+  padding: 28px 32px;
+}
+.takeaways h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px; font-weight: 700;
+  color: rgba(255,255,255,.6);
+  letter-spacing: .08em; text-transform: uppercase;
+  margin-bottom: 16px; margin-top: 0;
+}
+.takeaways ul { list-style: none; }
+.takeaways ul li {
+  color: #e8ecf5;
+  font-size: 14.5px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+  display: flex; gap: 12px; align-items: flex-start;
+}
+.takeaways ul li:last-child { border-bottom: none; }
+.takeaways ul li::before {
+  content: "✓"; color: #3dba78;
+  font-weight: 700; flex-shrink: 0; margin-top: 1px;
+}
+
+/* ── HEADINGS ── */
+h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px; font-weight: 700;
+  color: var(--fg); margin-bottom: 4px;
+}
+h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px; font-weight: 700;
+  color: var(--blue-mid); margin-bottom: 6px;
+}
+p { font-size: 15.5px; color: var(--fg); margin-bottom: 12px; }
+p:last-child { margin-bottom: 0; }
+.hl-blue  { color: var(--blue-mid); font-weight: 600; }
+.hl-green { color: var(--green);    font-weight: 600; }
+.hl-red   { color: var(--red);      font-weight: 600; }
+sup { font-size: 11px; color: var(--blue-mid); }
+
+/* ── SITUATION CARDS ── */
+.situation-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+@media (max-width: 520px) { .situation-cards { grid-template-columns: 1fr; } }
+
+.sit-card {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 20px;
+  box-shadow: var(--shadow);
+  transition: border-color .2s, box-shadow .2s;
+}
+.sit-card:hover { box-shadow: var(--shadow-md); }
+.sit-card.alert { border-color: var(--red); }
+.sit-card h3 { color: var(--blue-mid); margin-bottom: 6px; }
+.sit-card.alert h3 { color: var(--red); }
+.sit-card p { font-size: 13px; color: var(--fg2); margin: 0; }
+
+/* ── CHECKLIST ── */
+.checklist {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: var(--shadow);
+}
+.checklist h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px; font-weight: 700;
+  margin-bottom: 16px; color: var(--fg);
+}
+.checklist-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+}
+.checklist-item:last-of-type { border-bottom: none; }
+.check-box {
+  width: 22px; height: 22px;
+  border: 2px solid var(--blue);
+  border-radius: 6px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .2s; margin-top: 2px;
+}
+.check-box.checked { background: var(--blue); border-color: var(--blue); }
+.check-box.checked::after { content: "✓"; color: white; font-size: 13px; font-weight: 700; }
+.checklist-item.done span { text-decoration: line-through; color: var(--fg2); }
+.checklist-item span { font-size: 14.5px; color: var(--fg); font-family: 'Inter', sans-serif; }
+.progress-bar { height: 5px; background: var(--border); border-radius: 3px; margin-top: 16px; }
+.progress-fill { height: 100%; background: var(--green); border-radius: 3px; transition: width .4s ease; }
+.progress-label { font-size: 12px; color: var(--fg2); margin-top: 6px; font-family: 'Inter', sans-serif; }
+
+/* ── FAQ ── */
+.faq-item {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 8px;
+  overflow: hidden;
+  transition: border-color .2s;
+}
+.faq-item.open { border-color: var(--blue); }
+.faq-q {
+  padding: 16px 20px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px; font-weight: 600;
+  cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 12px; color: var(--fg);
+  background: transparent;
+}
+.faq-arrow { color: var(--blue); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
+.faq-item.open .faq-arrow { transform: rotate(180deg); }
+.faq-a {
+  display: none;
+  padding: 0 20px 16px;
+  font-size: 14px; color: var(--fg2); line-height: 1.65;
+  font-family: 'Inter', sans-serif;
+}
+.faq-item.open .faq-a { display: block; }
+
+/* ── CTA ── */
+.cta-box {
+  background: var(--blue);
+  border-radius: 16px;
+  padding: 32px 36px;
+  text-align: center;
+}
+.cta-box p {
+  color: rgba(255,255,255,.8);
+  font-size: 15px; margin-bottom: 20px;
+}
+.cta-btn {
+  background: var(--gold);
+  color: #fff;
+  padding: 13px 28px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px; font-weight: 700;
+  display: inline-block;
+  transition: opacity .2s;
+}
+.cta-btn:hover { opacity: .88; }
+
+/* ── SOURCES ── */
+.sources {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 24px;
+}
+.sources h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--fg2); margin-bottom: 10px;
+}
+.sources ol { padding-left: 18px; }
+.sources ol li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; }
+
+/* ── FADE IN ── */
+.fade-in { opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 600px) {
+  h1 { font-size: 24px; }
+  .situation-cards { grid-template-columns: 1fr; }
+  .cta-box { padding: 24px 20px; }
+  .takeaways { padding: 20px 20px; }
+}
+</style>
+</head>
+<body>
+<div class="article">
+
+  <div class="article-header fade-in"><p class="article-meta">Tax &amp; Finance · Equity Compensation · 5 min read</p><h1>How Stock Options and RSUs Are Taxed in Switzerland</h1></div>
+  <div class="quick-answer fade-in"><p><strong>Quick Answer:</strong> Stock options and RSUs are among the most valuable — and most misunderstood — parts of a compensation package in Switzerland. The good news: once shares vest and are taxed as employment income, any further growth is <span class="hl-green">completely tax-free</span> when you sell. Switzerland has no capital gains tax on private wealth. The challenge: the tax event on vesting or exercise can be significant, and AHV social security contributions apply on top.</p></div>
+  <div class="takeaways fade-in"><h2>Key Takeaways</h2><ul><li>RSUs are taxed at vesting; stock options are taxed at exercise — these are the two key trigger points</li><li>Once vested shares are taxed as employment income, any further appreciation is completely tax-free when sold</li><li>If you moved to Switzerland mid-vesting period, only the Swiss portion of the vesting period is taxable here</li><li>For B Permit holders, employer withholding applies to RSUs and stock options at the taxable event</li><li>AHV social security contributions apply to equity income with no cap</li></ul></div>
+  <h2 class="fade-in">The Two Types of Equity — and When They Are Taxed</h2>
+  <p class="fade-in"><strong>RSUs — Taxed at Vesting:</strong> On the day your RSUs vest, the market value of the shares is treated as employment income and taxed accordingly — combined with your salary for that period. Example: you receive 500 RSUs. They vest when the share price is CHF 80. The CHF 40,000 value is added to your taxable income for that year.</p>
+  <p class="fade-in"><strong>Stock Options — Taxed at Exercise:</strong> Taxation generally occurs at exercise. The taxable amount is the difference between the market price on the day you exercise and the exercise price you paid. Example: options on 1,000 shares with an exercise price of CHF 30, market price CHF 75 at exercise. The CHF 45,000 gain is taxable employment income.</p>
+  <div class="green-box fade-in"><p>✅ <strong>What happens after vesting?</strong> Switzerland does not levy capital gains tax on the sale of shares held as private wealth. Once RSU shares have vested and been taxed as employment income, any further appreciation is completely tax-free when sold. This is one of the most attractive features of Switzerland for equity holders.</p></div>
+  <h2 class="fade-in">The Hidden Complexity: AHV on Equity Income</h2>
+  <p class="fade-in">This is the part most expats do not anticipate. AHV — Switzerland's social security contribution — applies to equity income at the same rates as salary. <span class="hl-red">Unlike many countries, Switzerland has no cap on AHV contributions.</span> If you have a large RSU vesting in a single year — say CHF 200,000 — the AHV contribution alone adds approximately CHF 10,600 on top of the income tax. Spreading equity events across multiple years where possible reduces total AHV exposure significantly.</p>
+  <h2 class="fade-in">If You Moved to Switzerland Mid-Vesting Period</h2>
+  <p class="fade-in">This is where equity taxation becomes genuinely complex. In international cases involving a move of tax residency to Switzerland during the lifetime of an equity instrument, a <span class="hl-blue">pro rata temporis taxation</span> based on the Swiss portion of the vesting period generally applies. Only the Swiss working days as a proportion of total vesting period working days are taxable in Switzerland. This calculation needs to be done correctly — errors are common and can result in either overpaying or underpaying Swiss tax.</p>
+  <h2 class="fade-in">Two Expats, Two Different Situations</h2>
+  <div class="profiles fade-in">
+    <div class="profile-card">
+      <div class="profile-name">Expat A — Full vesting in Switzerland</div>
+      <p>Receives 1,000 RSUs from a US tech employer. Has lived in Switzerland for the entire 3-year vesting period. All vesting income is fully taxable in Switzerland.</p>
+      <div class="profile-note">The tax event is straightforward — but the AHV contribution on top of the income tax surprises them at year end.</div>
+    </div>
+    <div class="profile-card">
+      <div class="profile-name">Expat B — Moved mid-vesting</div>
+      <p>Receives 2,000 RSUs. Spent the first year of the vesting period in the UK before moving to Switzerland. Only the Swiss portion of the vesting period is taxable here.</p>
+      <div class="profile-note">Without correctly calculating the pro-rata allocation, risks either overpaying Swiss tax or underpaying — both create problems. Which situation sounds closer to yours?</div>
+    </div>
+  </div>
+  <h2 class="fade-in">Before You Ask</h2>
+  <div class="faq fade-in">
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Are capital gains on shares taxable in Switzerland?<span class="faq-arrow">▾</span></div><div class="faq-a">No. Switzerland does not levy capital gains tax on shares held as private wealth. Once RSU shares have vested and been taxed as employment income, any further appreciation is completely tax-free when sold. This applies as long as you are not classified as a professional trader.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">I moved to Switzerland two years into a four-year vesting. How is my tax calculated?<span class="faq-arrow">▾</span></div><div class="faq-a">Only the Swiss portion of the vesting period is taxable in Switzerland. The calculation is based on the ratio of Swiss working days to total working days during the full vesting period. Professional advice is strongly recommended to ensure the allocation is correct.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Does my employer handle the tax automatically?<span class="faq-arrow">▾</span></div><div class="faq-a">Withholding is required for B Permit holders and cross-border employees. For C Permit holders, the tax is settled through the annual tax return. In both cases, reviewing whether the calculation was done correctly is always recommended.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">I am a US citizen. How does Swiss RSU taxation interact with US taxes?<span class="faq-arrow">▾</span></div><div class="faq-a">RSU income is taxed as employment income in both Switzerland and the US. The Foreign Tax Credit should generally cover most or all of the US liability on vesting income. However, the capital gains exemption in Switzerland does not translate to the US — appreciation after vesting is still taxable in the US when sold.</div></div>
+  </div>
+  <div class="cta-box fade-in"><p>Equity compensation is one of the areas where Swiss taxation most rewards those who plan ahead. SwissExpatHub can connect you with advisors experienced in equity compensation taxation and international pro-rata calculations.</p><a href="/directory" class="cta-btn">Find Your Advisor →</a></div>
+  <div class="sources fade-in"><h3>Sources</h3><ol><li>Federal Tax Administration — Circular No. 37 on employee equity compensation: estv.admin.ch</li><li>Swiss Federal Council — Law on equity compensation taxation (in force since 2013): admin.ch</li><li>Federal Social Insurance Office — AHV contributions on equity income: bsv.admin.ch</li></ol></div>
+
+</div>
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
+  function toggleFaq(el) { el.parentElement.classList.toggle("open"); }
+</script>
+</body>
+</html>

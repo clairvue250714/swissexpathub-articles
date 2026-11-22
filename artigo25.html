@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Early Retirement in Switzerland (FIRE): What Expats Need to Know</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+:root {
+  --bg:         #f7f8fa;
+  --bg2:        #ffffff;
+  --fg:         #1a1d23;
+  --fg2:        #5a6070;
+  --border:     #e2e5ec;
+  --blue:       #1f4080;
+  --blue-mid:   #2e5fa3;
+  --blue-light: #e8eff9;
+  --green:      #1a7a4a;
+  --green-light:#e6f4ed;
+  --red:        #c22b2b;
+  --red-light:  #fceaea;
+  --gold:       #b8862a;
+  --gold-light: #fdf6e8;
+  --shadow:     0 2px 12px rgba(0,0,0,.07);
+  --shadow-md:  0 4px 20px rgba(0,0,0,.10);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:#13161c; --bg2:#1e222b; --fg:#e8ecf5; --fg2:#8892a4; --border:#2c3140;
+    --blue:#5b8dde; --blue-mid:#7aaae8; --blue-light:#1a2540;
+    --green:#3dba78; --green-light:#0d2318;
+    --red:#e05555; --red-light:#2a0d0d;
+    --gold:#d4a855; --gold-light:#2a2010;
+    --shadow:0 2px 16px rgba(0,0,0,.3); --shadow-md:0 4px 24px rgba(0,0,0,.4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:#13161c; --bg2:#1e222b; --fg:#e8ecf5; --fg2:#8892a4; --border:#2c3140;
+  --blue:#5b8dde; --blue-mid:#7aaae8; --blue-light:#1a2540;
+  --green:#3dba78; --green-light:#0d2318;
+  --red:#e05555; --red-light:#2a0d0d;
+  --gold:#d4a855; --gold-light:#2a2010;
+  --shadow:0 2px 16px rgba(0,0,0,.3); --shadow-md:0 4px 24px rgba(0,0,0,.4);
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.75;
+  padding: 40px max(16px, 5vw) 80px;
+}
+
+.article {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* ── HEADER ── */
+.article-header { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
+.article-meta {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--fg2); margin-bottom: 10px;
+}
+h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(24px, 5vw, 36px);
+  font-weight: 700; line-height: 1.2;
+  text-wrap: balance; color: var(--fg);
+}
+.header-rule {
+  height: 2px; background: var(--blue);
+  border-radius: 2px; margin-top: 20px;
+  width: 48px;
+}
+
+/* ── QUICK ANSWER ── */
+.quick-answer {
+  background: var(--blue-light);
+  border-left: 4px solid var(--blue);
+  border-radius: 0 14px 14px 0;
+  padding: 20px 24px;
+}
+.quick-answer p { font-size: 15px; color: var(--fg); margin: 0; }
+
+/* ── TAKEAWAYS ── */
+.takeaways {
+  background: var(--blue);
+  border-radius: 16px;
+  padding: 28px 32px;
+}
+.takeaways h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px; font-weight: 700;
+  color: rgba(255,255,255,.6);
+  letter-spacing: .08em; text-transform: uppercase;
+  margin-bottom: 16px; margin-top: 0;
+}
+.takeaways ul { list-style: none; }
+.takeaways ul li {
+  color: #e8ecf5;
+  font-size: 14.5px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+  display: flex; gap: 12px; align-items: flex-start;
+}
+.takeaways ul li:last-child { border-bottom: none; }
+.takeaways ul li::before {
+  content: "✓"; color: #3dba78;
+  font-weight: 700; flex-shrink: 0; margin-top: 1px;
+}
+
+/* ── HEADINGS ── */
+h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px; font-weight: 700;
+  color: var(--fg); margin-bottom: 4px;
+}
+h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px; font-weight: 700;
+  color: var(--blue-mid); margin-bottom: 6px;
+}
+p { font-size: 15.5px; color: var(--fg); margin-bottom: 12px; }
+p:last-child { margin-bottom: 0; }
+.hl-blue  { color: var(--blue-mid); font-weight: 600; }
+.hl-green { color: var(--green);    font-weight: 600; }
+.hl-red   { color: var(--red);      font-weight: 600; }
+sup { font-size: 11px; color: var(--blue-mid); }
+
+/* ── SITUATION CARDS ── */
+.situation-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+@media (max-width: 520px) { .situation-cards { grid-template-columns: 1fr; } }
+
+.sit-card {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 20px;
+  box-shadow: var(--shadow);
+  transition: border-color .2s, box-shadow .2s;
+}
+.sit-card:hover { box-shadow: var(--shadow-md); }
+.sit-card.alert { border-color: var(--red); }
+.sit-card h3 { color: var(--blue-mid); margin-bottom: 6px; }
+.sit-card.alert h3 { color: var(--red); }
+.sit-card p { font-size: 13px; color: var(--fg2); margin: 0; }
+
+/* ── CHECKLIST ── */
+.checklist {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: var(--shadow);
+}
+.checklist h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px; font-weight: 700;
+  margin-bottom: 16px; color: var(--fg);
+}
+.checklist-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+}
+.checklist-item:last-of-type { border-bottom: none; }
+.check-box {
+  width: 22px; height: 22px;
+  border: 2px solid var(--blue);
+  border-radius: 6px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .2s; margin-top: 2px;
+}
+.check-box.checked { background: var(--blue); border-color: var(--blue); }
+.check-box.checked::after { content: "✓"; color: white; font-size: 13px; font-weight: 700; }
+.checklist-item.done span { text-decoration: line-through; color: var(--fg2); }
+.checklist-item span { font-size: 14.5px; color: var(--fg); font-family: 'Inter', sans-serif; }
+.progress-bar { height: 5px; background: var(--border); border-radius: 3px; margin-top: 16px; }
+.progress-fill { height: 100%; background: var(--green); border-radius: 3px; transition: width .4s ease; }
+.progress-label { font-size: 12px; color: var(--fg2); margin-top: 6px; font-family: 'Inter', sans-serif; }
+
+/* ── FAQ ── */
+.faq-item {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 8px;
+  overflow: hidden;
+  transition: border-color .2s;
+}
+.faq-item.open { border-color: var(--blue); }
+.faq-q {
+  padding: 16px 20px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px; font-weight: 600;
+  cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 12px; color: var(--fg);
+  background: transparent;
+}
+.faq-arrow { color: var(--blue); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
+.faq-item.open .faq-arrow { transform: rotate(180deg); }
+.faq-a {
+  display: none;
+  padding: 0 20px 16px;
+  font-size: 14px; color: var(--fg2); line-height: 1.65;
+  font-family: 'Inter', sans-serif;
+}
+.faq-item.open .faq-a { display: block; }
+
+/* ── CTA ── */
+.cta-box {
+  background: var(--blue);
+  border-radius: 16px;
+  padding: 32px 36px;
+  text-align: center;
+}
+.cta-box p {
+  color: rgba(255,255,255,.8);
+  font-size: 15px; margin-bottom: 20px;
+}
+.cta-btn {
+  background: var(--gold);
+  color: #fff;
+  padding: 13px 28px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px; font-weight: 700;
+  display: inline-block;
+  transition: opacity .2s;
+}
+.cta-btn:hover { opacity: .88; }
+
+/* ── SOURCES ── */
+.sources {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 24px;
+}
+.sources h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--fg2); margin-bottom: 10px;
+}
+.sources ol { padding-left: 18px; }
+.sources ol li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; }
+
+/* ── FADE IN ── */
+.fade-in { opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 600px) {
+  h1 { font-size: 24px; }
+  .situation-cards { grid-template-columns: 1fr; }
+  .cta-box { padding: 24px 20px; }
+  .takeaways { padding: 20px 20px; }
+}
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<header class="hero">
+  <div class="hero-bg"></div>
+  
+  <div class="hero-gradient"></div>
+  <div class="hero-content">
+    <div class="hero-tag" id="heroTag">
+      <span class="hero-tag-pill">FIRE · Switzerland</span>
+      <span>Financial Independence · Early Retirement</span>
+    </div>
+    <h1 class="hero-title" id="heroTitle">Early Retirement in Switzerland: What Expats Need to Know About FIRE</h1>
+    <p class="hero-subtitle" id="heroSubtitle">High salaries make FIRE faster here than almost anywhere in Europe. But Pillar 2, wealth tax, and canton strategy change the playbook completely.</p>
+    <div class="hero-meta" id="heroMeta">
+      <span>Updated August 2026</span>
+      <div class="hero-meta-divider"></div>
+      <span>5 min read</span>
+    </div>
+  </div>
+</header>
+
+<div class="article">
+
+  <div class="takeaways">
+    <p class="takeaways-label">Key Takeaways</p>
+    <div class="takeaway-item" data-delay="0"><span class="takeaway-num">01</span><span class="takeaway-text">The FIRE rule: accumulate 25× your annual expenses. In Geneva on CHF 60,000/year that is CHF 1,500,000</span></div>
+    <div class="takeaway-item" data-delay="90"><span class="takeaway-num">02</span><span class="takeaway-text">Pillar 2 is locked until age 60 — unless you permanently leave Switzerland, where it can be withdrawn at any age</span></div>
+    <div class="takeaway-item" data-delay="180"><span class="takeaway-num">03</span><span class="takeaway-text">Multiple Pillar 3a accounts (up to 5) allow staggered withdrawals — each taxed separately at a lower rate</span></div>
+    <div class="takeaway-item" data-delay="270"><span class="takeaway-num">04</span><span class="takeaway-text">The canton where you live at withdrawal determines the tax — Schwyz and Appenzell are significantly cheaper than Geneva</span></div>
+    <div class="takeaway-item" data-delay="360"><span class="takeaway-num">05</span><span class="takeaway-text">Geneva wealth tax on CHF 2,000,000 in liquid assets: ~CHF 10,000–14,000/year — a permanent cost to include in FIRE calculations</span></div>
+    <div class="takeaway-item" data-delay="450"><span class="takeaway-num">06</span><span class="takeaway-text">A couple earning CHF 300,000 combined and spending CHF 120,000/year can reach FIRE in 10–12 years</span></div>
+  </div>
+
+  <h2 class="reveal">The 25× Rule — Where to Start</h2>
+  <p class="reveal">The core FIRE rule: accumulate 25 times your annual expenses. With a 4% annual withdrawal rate, the capital lasts indefinitely (statistically). The good news in Geneva: salaries are very high compared to the rest of Europe. A couple earning CHF 300,000 combined, living on CHF 120,000/year, saves CHF 180,000/year — and can reach FIRE in 10 to 12 years.</p>
+
+  <!-- Interactive FIRE Calculator -->
+  <div class="fire-calc reveal">
+    <h3>Your FIRE Number — Geneva Calculator</h3>
+    <p class="fire-calc-sub">Drag to set your annual expenses</p>
+    <div class="fire-slider-label">
+      <span>Annual expenses</span>
+      <span id="expenseLabel">CHF 80,000</span>
+    </div>
+    <input type="range" class="fire-slider" min="40000" max="200000" step="5000" value="80000" id="expenseSlider">
+    <div class="fire-result">
+      <div class="fire-result-box">
+        <div class="fire-result-label">FIRE Number (25×)</div>
+        <div class="fire-result-value" id="fireNumber">CHF 2,000,000</div>
+      </div>
+      <div class="fire-result-box">
+        <div class="fire-result-label">Monthly withdrawal (4%)</div>
+        <div class="fire-result-value" id="monthlyWithdrawal">CHF 6,667</div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="reveal">The Pillar 2 Problem — The Biggest Obstacle</h2>
+  <p class="reveal">Pillar 2 — the mandatory employer pension fund — accumulates significant capital over a career, but is <span class="hl-red">locked until 5 years before the legal retirement age</span> (currently age 60 for early withdrawal as capital). For those wanting to retire at 45 or 50, Pillar 2 is not immediately available. You need liquid capital outside of Pillar 2 to cover the interim years.</p>
+
+  <div class="timeline reveal">
+    <div class="timeline-item">
+      <div class="timeline-dot locked"></div>
+      <div class="timeline-content locked">
+        <h3>Before age 60 — Locked (if staying in Switzerland)</h3>
+        <p>Capital remains in a vested benefits account (compte de libre passage). Continues to grow with investment returns. Cannot be accessed.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot available"></div>
+      <div class="timeline-content available">
+        <h3>At any age — Available if you permanently leave Switzerland</h3>
+        <p>If you permanently emigrate, you can withdraw the full Pillar 2 balance regardless of age. Many FIRE planners in Switzerland build their exit strategy around this.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot partial"></div>
+      <div class="timeline-content partial">
+        <h3>From age 60 — Available in Switzerland</h3>
+        <p>Can be taken as capital (taxed at reduced rate) or as monthly pension (taxed as income). The choice has significant long-term tax implications.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="reveal">Pillar 3a Strategy for FIRE</h2>
+  <p class="reveal">Pillar 3a can be withdrawn 5 years before legal retirement age, when you leave Switzerland, when you buy your primary residence, or when you start self-employment. The key FIRE strategy: open multiple Pillar 3a accounts — up to 5 — and contribute the annual maximum (CHF 7,258 in 2026).</p>
+
+  <div class="green-box reveal">
+    <p>✅ <strong>The staggered withdrawal strategy:</strong> At the point of early retirement, withdraw one Pillar 3a account per year over multiple years. Each account is taxed separately — keeping the taxable amount per year lower and therefore the tax rate lower. The difference between withdrawing CHF 200,000 in one year vs CHF 40,000/year over 5 years can be CHF 10,000–20,000 in total tax saved.</p>
+  </div>
+
+  <h2 class="reveal">The Canton Strategy — Where You Live at Withdrawal Matters</h2>
+  <p class="reveal">The canton where you are resident at the moment of withdrawal determines the tax rate on Pillar 2 and 3a capital. This is one of the most underused strategies in Swiss FIRE planning.</p>
+
+  <div class="canton-grid reveal">
+    <div class="canton-card expensive">
+      <p class="canton-label">❌ High withdrawal tax</p>
+      <p class="canton-name">Geneva</p>
+      <p class="canton-rate">~12–15%</p>
+      <p class="canton-body">On CHF 300,000 withdrawal: ~CHF 36,000–45,000 in tax</p>
+    </div>
+    <div class="canton-card cheap">
+      <p class="canton-label">✅ Low withdrawal tax</p>
+      <p class="canton-name">Schwyz</p>
+      <p class="canton-rate">~4–6%</p>
+      <p class="canton-body">On CHF 300,000 withdrawal: ~CHF 12,000–18,000 in tax</p>
+    </div>
+    <div class="canton-card cheap">
+      <p class="canton-label">✅ Low withdrawal tax</p>
+      <p class="canton-name">Appenzell</p>
+      <p class="canton-rate">~4–5%</p>
+      <p class="canton-body">Among the lowest rates in Switzerland for pension capital withdrawals</p>
+    </div>
+    <div class="canton-card expensive">
+      <p class="canton-label">❌ High withdrawal tax</p>
+      <p class="canton-name">Vaud / Basel</p>
+      <p class="canton-rate">~10–13%</p>
+      <p class="canton-body">Similar range to Geneva — worth planning around if possible</p>
+    </div>
+  </div>
+
+  <div class="gold-box reveal">
+    <p>💡 <strong>The canton move:</strong> Some expats transfer their Pillar 3a accounts to a provider domiciled in Schwyz or Appenzell — and/or temporarily change residence to a low-tax canton — before withdrawing. The Pillar 3a tax is calculated based on the canton where the <em>account is domiciled</em>, not necessarily where you live. This can save CHF 20,000–40,000 on a large withdrawal.</p>
+  </div>
+
+  <h2 class="reveal">Three FIRE Profiles in Switzerland</h2>
+  <div class="profile-cards reveal">
+    <div class="profile-card">
+      <div class="profile-header">
+        <div class="profile-name">Profile 1 — Single, CHF 150,000 gross</div>
+        <div class="profile-goal">FIRE at 50</div>
+      </div>
+      <div class="profile-body">
+        <div class="profile-stat"><div class="profile-stat-label">Monthly savings</div><div class="profile-stat-value highlight">CHF 4,500</div></div>
+        <div class="profile-stat"><div class="profile-stat-label">FIRE number</div><div class="profile-stat-value">CHF 1,500,000</div></div>
+        <div class="profile-stat"><div class="profile-stat-label">Time to FIRE</div><div class="profile-stat-value highlight">~16 years</div></div>
+      </div>
+    </div>
+    <div class="profile-card">
+      <div class="profile-header">
+        <div class="profile-name">Profile 2 — Couple, CHF 300,000 combined</div>
+        <div class="profile-goal">FIRE at 48, leave Switzerland</div>
+      </div>
+      <div class="profile-body">
+        <div class="profile-stat"><div class="profile-stat-label">Monthly savings</div><div class="profile-stat-value highlight">CHF 10,000</div></div>
+        <div class="profile-stat"><div class="profile-stat-label">FIRE number</div><div class="profile-stat-value">CHF 2,700,000</div></div>
+        <div class="profile-stat"><div class="profile-stat-label">Time to FIRE</div><div class="profile-stat-value highlight">~15 years</div></div>
+      </div>
+    </div>
+    <div class="profile-card">
+      <div class="profile-header">
+        <div class="profile-name">Profile 3 — "Coast FIRE" at 40</div>
+        <div class="profile-goal">Keep working, but with freedom</div>
+      </div>
+      <div class="profile-body">
+        <div class="profile-stat"><div class="profile-stat-label">Strategy</div><div class="profile-stat-value highlight">Stop contributing</div></div>
+        <div class="profile-stat"><div class="profile-stat-label">Let compound growth</div><div class="profile-stat-value">do the work</div></div>
+        <div class="profile-stat"><div class="profile-stat-label">Freedom gained</div><div class="profile-stat-value highlight">Career change</div></div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="reveal">Wealth Tax — The Permanent Annual Cost</h2>
+  <p class="reveal">During the FIRE accumulation phase, wealth tax in Geneva grows as the portfolio grows. With CHF 2,000,000 in liquid assets, the annual wealth tax in Geneva is approximately <span class="hl-red">CHF 10,000–14,000/year</span> — a permanent, compounding cost that must be included in all FIRE calculations.</p>
+  <p class="reveal">Many who reach FIRE in Switzerland choose to leave partly for this reason — eliminating wealth tax by moving to a country without it (Portugal, Spain, Italy, etc.).</p>
+
+  <div class="quote-block reveal">
+    <p class="quote-label">The Swiss FIRE Reality</p>
+    <p class="quote-text">"Geneva's salaries make FIRE faster than almost anywhere in Europe. But if you stay, wealth tax keeps growing with you. Many FIRE planners here build their exit from Switzerland into the plan from day one."</p>
+  </div>
+
+  <h2 class="reveal">Before You Ask</h2>
+  <div class="faq-list reveal">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Can I stay in Switzerland after reaching FIRE?<span class="faq-arrow">▾</span></div>
+      <div class="faq-a">Yes — but you must continue paying LAMal health insurance (mandatory for all residents), declare your investment portfolio annually for wealth tax, and be careful about the distinction between active income (taxable) and passive income (investments, dividends — more favourable). Many FIRE expats in Switzerland live on investment returns with no issues, but the wealth tax accumulates.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What happens to Pillar 2 if I do FIRE and stay in Switzerland?<span class="faq-arrow">▾</span></div>
+      <div class="faq-a">The capital is transferred to a vested benefits account (Freizügigkeitsstiftung / compte de libre passage) and remains locked until age 60. It continues to grow with investment returns inside the account. You cannot access it until 60 — unless you permanently leave Switzerland.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Are ETFs a good FIRE vehicle in Switzerland?<span class="faq-arrow">▾</span></div>
+      <div class="faq-a">Yes — Switzerland has no capital gains tax on shares held as private wealth. ETFs and stocks grow entirely tax-free until you sell. The only annual cost is wealth tax on the portfolio value. For US citizens, avoid non-US domiciled ETFs (PFIC rules) — use US-domiciled funds through a US broker instead.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">When should I speak with an advisor?<span class="faq-arrow">▾</span></div>
+      <div class="faq-a">Before making any major FIRE decision — especially about Pillar 2 early withdrawal, canton strategy, and investment structure. The tax implications are significant and vary considerably with individual circumstances. A plan made 5–10 years before the target date is far more effective than one made at the last moment.</div>
+    </div>
+  </div>
+
+  <div class="cta-box reveal">
+    <p>FIRE in Switzerland rewards those who plan early and plan well. SwissExpatHub can connect you with advisors experienced in Pillar 2 and 3a strategy, canton optimisation, and long-term wealth planning for international professionals in Geneva.</p>
+    <a href="/directory" class="cta-btn">Find Your Advisor →</a>
+  </div>
+
+  <div class="sources reveal">
+    <p class="sources-label">Sources</p>
+    <ol>
+      <li>Federal Tax Administration — Early withdrawal Pillar 2 and 3a: estv.admin.ch</li>
+      <li>Federal Social Insurance Office — Retirement and pensions Switzerland: bsv.admin.ch</li>
+      <li>Expat Savvy — FIRE in Switzerland 2026: expat-savvy.ch</li>
+      <li>Taxolution Advisory — Wealth tax by canton 2026: taxolution.ch</li>
+    </ol>
+  </div>
+
+</div>
+
+<script>
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    document.getElementById('progress-bar').style.width = Math.min(100, docHeight > 0 ? (scrollTop / docHeight) * 100 : 0) + '%';
+  }, { passive: true });
+
+  window.addEventListener('load', () => {
+    setTimeout(() => document.getElementById('heroTag').classList.add('visible'), 50);
+    setTimeout(() => document.getElementById('heroTitle').classList.add('visible'), 150);
+    setTimeout(() => document.getElementById('heroSubtitle').classList.add('visible'), 280);
+    setTimeout(() => document.getElementById('heroMeta').classList.add('visible'), 420);
+  });
+
+  // FIRE Calculator
+  const slider = document.getElementById('expenseSlider');
+  function updateFire() {
+    const expenses = parseInt(slider.value);
+    const fireNum = expenses * 25;
+    const monthly = Math.round(fireNum * 0.04 / 12);
+    document.getElementById('expenseLabel').textContent = 'CHF ' + expenses.toLocaleString();
+    document.getElementById('fireNumber').textContent = 'CHF ' + fireNum.toLocaleString();
+    document.getElementById('monthlyWithdrawal').textContent = 'CHF ' + monthly.toLocaleString();
+  }
+  slider.addEventListener('input', updateFire);
+  updateFire();
+
+  const takeawayObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const delay = parseInt(entry.target.dataset.delay || 0);
+        setTimeout(() => entry.target.classList.add('visible'), delay);
+        takeawayObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.takeaway-item').forEach(el => takeawayObserver.observe(el));
+
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const delay = parseInt(entry.target.dataset.delay || 0);
+        setTimeout(() => entry.target.classList.add('visible'), delay);
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+</script>
+</body>
+</html>

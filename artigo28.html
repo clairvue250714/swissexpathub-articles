@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Health Insurance in Switzerland: The Complete Guide for Expats</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+:root {
+  --bg:         #f7f8fa;
+  --bg2:        #ffffff;
+  --fg:         #1a1d23;
+  --fg2:        #5a6070;
+  --border:     #e2e5ec;
+  --blue:       #1f4080;
+  --blue-mid:   #2e5fa3;
+  --blue-light: #e8eff9;
+  --green:      #1a7a4a;
+  --green-light:#e6f4ed;
+  --red:        #c22b2b;
+  --red-light:  #fceaea;
+  --gold:       #b8862a;
+  --gold-light: #fdf6e8;
+  --shadow:     0 2px 12px rgba(0,0,0,.07);
+  --shadow-md:  0 4px 20px rgba(0,0,0,.10);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:#13161c; --bg2:#1e222b; --fg:#e8ecf5; --fg2:#8892a4; --border:#2c3140;
+    --blue:#5b8dde; --blue-mid:#7aaae8; --blue-light:#1a2540;
+    --green:#3dba78; --green-light:#0d2318;
+    --red:#e05555; --red-light:#2a0d0d;
+    --gold:#d4a855; --gold-light:#2a2010;
+    --shadow:0 2px 16px rgba(0,0,0,.3); --shadow-md:0 4px 24px rgba(0,0,0,.4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:#13161c; --bg2:#1e222b; --fg:#e8ecf5; --fg2:#8892a4; --border:#2c3140;
+  --blue:#5b8dde; --blue-mid:#7aaae8; --blue-light:#1a2540;
+  --green:#3dba78; --green-light:#0d2318;
+  --red:#e05555; --red-light:#2a0d0d;
+  --gold:#d4a855; --gold-light:#2a2010;
+  --shadow:0 2px 16px rgba(0,0,0,.3); --shadow-md:0 4px 24px rgba(0,0,0,.4);
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.75;
+  padding: 40px max(16px, 5vw) 80px;
+}
+
+.article {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* ── HEADER ── */
+.article-header { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
+.article-meta {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--fg2); margin-bottom: 10px;
+}
+h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(24px, 5vw, 36px);
+  font-weight: 700; line-height: 1.2;
+  text-wrap: balance; color: var(--fg);
+}
+.header-rule {
+  height: 2px; background: var(--blue);
+  border-radius: 2px; margin-top: 20px;
+  width: 48px;
+}
+
+/* ── QUICK ANSWER ── */
+.quick-answer {
+  background: var(--blue-light);
+  border-left: 4px solid var(--blue);
+  border-radius: 0 14px 14px 0;
+  padding: 20px 24px;
+}
+.quick-answer p { font-size: 15px; color: var(--fg); margin: 0; }
+
+/* ── TAKEAWAYS ── */
+.takeaways {
+  background: var(--blue);
+  border-radius: 16px;
+  padding: 28px 32px;
+}
+.takeaways h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px; font-weight: 700;
+  color: rgba(255,255,255,.6);
+  letter-spacing: .08em; text-transform: uppercase;
+  margin-bottom: 16px; margin-top: 0;
+}
+.takeaways ul { list-style: none; }
+.takeaways ul li {
+  color: #e8ecf5;
+  font-size: 14.5px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+  display: flex; gap: 12px; align-items: flex-start;
+}
+.takeaways ul li:last-child { border-bottom: none; }
+.takeaways ul li::before {
+  content: "✓"; color: #3dba78;
+  font-weight: 700; flex-shrink: 0; margin-top: 1px;
+}
+
+/* ── HEADINGS ── */
+h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px; font-weight: 700;
+  color: var(--fg); margin-bottom: 4px;
+}
+h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px; font-weight: 700;
+  color: var(--blue-mid); margin-bottom: 6px;
+}
+p { font-size: 15.5px; color: var(--fg); margin-bottom: 12px; }
+p:last-child { margin-bottom: 0; }
+.hl-blue  { color: var(--blue-mid); font-weight: 600; }
+.hl-green { color: var(--green);    font-weight: 600; }
+.hl-red   { color: var(--red);      font-weight: 600; }
+sup { font-size: 11px; color: var(--blue-mid); }
+
+/* ── SITUATION CARDS ── */
+.situation-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+@media (max-width: 520px) { .situation-cards { grid-template-columns: 1fr; } }
+
+.sit-card {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 20px;
+  box-shadow: var(--shadow);
+  transition: border-color .2s, box-shadow .2s;
+}
+.sit-card:hover { box-shadow: var(--shadow-md); }
+.sit-card.alert { border-color: var(--red); }
+.sit-card h3 { color: var(--blue-mid); margin-bottom: 6px; }
+.sit-card.alert h3 { color: var(--red); }
+.sit-card p { font-size: 13px; color: var(--fg2); margin: 0; }
+
+/* ── CHECKLIST ── */
+.checklist {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: var(--shadow);
+}
+.checklist h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px; font-weight: 700;
+  margin-bottom: 16px; color: var(--fg);
+}
+.checklist-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+}
+.checklist-item:last-of-type { border-bottom: none; }
+.check-box {
+  width: 22px; height: 22px;
+  border: 2px solid var(--blue);
+  border-radius: 6px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .2s; margin-top: 2px;
+}
+.check-box.checked { background: var(--blue); border-color: var(--blue); }
+.check-box.checked::after { content: "✓"; color: white; font-size: 13px; font-weight: 700; }
+.checklist-item.done span { text-decoration: line-through; color: var(--fg2); }
+.checklist-item span { font-size: 14.5px; color: var(--fg); font-family: 'Inter', sans-serif; }
+.progress-bar { height: 5px; background: var(--border); border-radius: 3px; margin-top: 16px; }
+.progress-fill { height: 100%; background: var(--green); border-radius: 3px; transition: width .4s ease; }
+.progress-label { font-size: 12px; color: var(--fg2); margin-top: 6px; font-family: 'Inter', sans-serif; }
+
+/* ── FAQ ── */
+.faq-item {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 8px;
+  overflow: hidden;
+  transition: border-color .2s;
+}
+.faq-item.open { border-color: var(--blue); }
+.faq-q {
+  padding: 16px 20px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px; font-weight: 600;
+  cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 12px; color: var(--fg);
+  background: transparent;
+}
+.faq-arrow { color: var(--blue); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
+.faq-item.open .faq-arrow { transform: rotate(180deg); }
+.faq-a {
+  display: none;
+  padding: 0 20px 16px;
+  font-size: 14px; color: var(--fg2); line-height: 1.65;
+  font-family: 'Inter', sans-serif;
+}
+.faq-item.open .faq-a { display: block; }
+
+/* ── CTA ── */
+.cta-box {
+  background: var(--blue);
+  border-radius: 16px;
+  padding: 32px 36px;
+  text-align: center;
+}
+.cta-box p {
+  color: rgba(255,255,255,.8);
+  font-size: 15px; margin-bottom: 20px;
+}
+.cta-btn {
+  background: var(--gold);
+  color: #fff;
+  padding: 13px 28px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px; font-weight: 700;
+  display: inline-block;
+  transition: opacity .2s;
+}
+.cta-btn:hover { opacity: .88; }
+
+/* ── SOURCES ── */
+.sources {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 24px;
+}
+.sources h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--fg2); margin-bottom: 10px;
+}
+.sources ol { padding-left: 18px; }
+.sources ol li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; }
+
+/* ── FADE IN ── */
+.fade-in { opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 600px) {
+  h1 { font-size: 24px; }
+  .situation-cards { grid-template-columns: 1fr; }
+  .cta-box { padding: 24px 20px; }
+  .takeaways { padding: 20px 20px; }
+}
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<header class="hero">
+  <div class="hero-bg"></div>
+  
+  <div class="hero-gradient"></div>
+  <div class="hero-content">
+    <div class="hero-tag" id="heroTag"><span class="hero-tag-pill">LAMal · Health</span><span>Geneva · Switzerland</span></div>
+    <h1 class="hero-title" id="heroTitle">Health Insurance in Switzerland: The Complete Guide for Expats</h1>
+    <p class="hero-subtitle" id="heroSubtitle">Mandatory within 90 days. No employer contribution. Geneva has the highest premiums in Switzerland. Here is everything you need to know to choose correctly and pay less.</p>
+    <div class="hero-meta" id="heroMeta"><span>Updated August 2026</span><div class="hero-meta-divider"></div><span>5 min read</span></div>
+  </div>
+</header>
+<div class="article">
+  <div class="takeaways">
+    <p class="takeaways-label">Key Takeaways</p>
+    <div class="takeaway-item" data-delay="0"><span class="takeaway-num">01</span><span class="takeaway-text">LAMal is mandatory for everyone living in Switzerland — must be contracted within 90 days of arrival</span></div>
+    <div class="takeaway-item" data-delay="90"><span class="takeaway-num">02</span><span class="takeaway-text">There is no employer contribution — you pay the full premium yourself, every month</span></div>
+    <div class="takeaway-item" data-delay="180"><span class="takeaway-num">03</span><span class="takeaway-text">Average LAMal premium in Geneva 2026: CHF 562/month per adult — the highest in Switzerland</span></div>
+    <div class="takeaway-item" data-delay="270"><span class="takeaway-num">04</span><span class="takeaway-text">All insurers offer the same basic coverage — only the premium varies. Compare annually at priminfo.admin.ch</span></div>
+    <div class="takeaway-item" data-delay="360"><span class="takeaway-num">05</span><span class="takeaway-text">If you work 8+ hours/week for the same employer, remove accident coverage from LAMal — saves CHF 200–400/year</span></div>
+    <div class="takeaway-item" data-delay="450"><span class="takeaway-num">06</span><span class="takeaway-text">Geneva's cantonal subsidy (IPV) can cover part or all of the premium — many eligible expats never apply</span></div>
+  </div>
+
+  <h2 class="reveal">How Much It Costs in Geneva</h2>
+  <div class="premium-box reveal">
+    <div class="prem-item"><div class="prem-label">Average premium 2026</div><div class="prem-value">CHF 562</div><div class="prem-sub">per adult/month</div></div>
+    <div class="prem-item"><div class="prem-label">For a couple</div><div class="prem-value">CHF 1,124</div><div class="prem-sub">per month / CHF 13,488/year</div></div>
+    <div class="prem-item"><div class="prem-label">Child (0–18)</div><div class="prem-value">CHF 120–180</div><div class="prem-sub">per month</div></div>
+  </div>
+
+  <h2 class="reveal">The Deductible — The Single Most Impactful Decision</h2>
+  <p class="reveal">The deductible (franchise) is the amount you pay out of pocket each year before the insurer starts paying. The higher the deductible, the lower the monthly premium. In 2026, the options are CHF 300 (minimum), CHF 500, CHF 1,000, CHF 1,500, CHF 2,000, and CHF 2,500 (maximum).</p>
+  <p class="reveal">After the deductible is exhausted, you still pay 10% of all costs up to a maximum of <span class="hl-blue">CHF 700/year</span> per adult. So your maximum annual out-of-pocket exposure is: deductible + CHF 700.</p>
+
+  <div class="ded-calc reveal">
+    <h3>Your maximum annual exposure — select your deductible</h3>
+    <div class="ded-slider-label"><span>Annual deductible</span><span id="dedLabel">CHF 300</span></div>
+    <input type="range" class="ded-slider" min="0" max="5" value="0" id="dedSlider">
+    <div class="ded-results">
+      <div class="ded-result"><div class="ded-result-label">Max out-of-pocket/year</div><div class="ded-result-value" id="dedMax">CHF 1,000</div></div>
+      <div class="ded-result"><div class="ded-result-label">Estimated monthly saving vs min</div><div class="ded-result-value" id="dedSaving">CHF 0</div></div>
+    </div>
+  </div>
+
+  <h2 class="reveal">Models That Reduce Your Premium</h2>
+  <p class="reveal">Beyond the deductible, you can reduce your premium by choosing a restricted model:</p>
+  <div class="model-cards reveal">
+    <div class="model-card">
+      <span class="model-saving">Save 10–15%</span>
+      <h3>Family Doctor (Médecin de famille)</h3>
+      <p>Always consult the same GP first. Insurers reward the loyalty and predictability with lower premiums. Most common model in Switzerland.</p>
+    </div>
+    <div class="model-card">
+      <span class="model-saving">Save 15–20%</span>
+      <h3>HMO</h3>
+      <p>Belongs to a healthcare network — care is coordinated within the network. The strongest premium reduction available.</p>
+    </div>
+    <div class="model-card">
+      <span class="model-saving">Save 10–15%</span>
+      <h3>Telmed</h3>
+      <p>Call a health advice line before seeing a doctor. Convenient for straightforward situations and available in English with some insurers.</p>
+    </div>
+    <div class="model-card">
+      <span class="model-saving">No saving</span>
+      <h3>Standard</h3>
+      <p>Complete freedom of choice of any doctor in Switzerland. Most expensive model — worth it only if flexibility is genuinely important to you.</p>
+    </div>
+  </div>
+
+  <h2 class="reveal">What LAMal Does NOT Cover</h2>
+  <div class="not-covered reveal">
+    <div class="not-item">Dental care (except emergencies)</div>
+    <div class="not-item">Glasses and contact lenses for adults</div>
+    <div class="not-item">Most alternative medicine</div>
+    <div class="not-item">Abroad care above double the Swiss equivalent cost</div>
+    <div class="not-item">Cosmetic surgery without medical indication</div>
+    <div class="not-item">Some newer brand-name medications</div>
+  </div>
+
+  <h2 class="reveal">Accident Coverage — The 8-Hour Rule</h2>
+  <p class="reveal">This is one of the most misunderstood aspects of Swiss health insurance. If you work <span class="hl-blue">8 or more hours per week</span> for the same employer, your employer's accident insurance (LAA) covers both professional and non-professional accidents — including evenings, weekends, and holidays. In this case, you must remove the accident coverage from your LAMal to avoid paying twice.</p>
+
+  <div class="eight-hour reveal">
+    <h3>Who covers your private accident?</h3>
+    <div class="eight-row"><span class="eight-situation">You work 100% for one employer (40h/week)</span><span class="eight-result covered">Employer's LAA ✓</span></div>
+    <div class="eight-row"><span class="eight-situation">You work 50% for one employer (20h/week)</span><span class="eight-result covered">Employer's LAA ✓</span></div>
+    <div class="eight-row"><span class="eight-situation">You work 8h/week for one employer</span><span class="eight-result covered">Employer's LAA ✓</span></div>
+    <div class="eight-row"><span class="eight-situation">You work 6h/week for one employer</span><span class="eight-result not">Your LAMal ✗</span></div>
+    <div class="eight-row"><span class="eight-situation">You work 6h for employer A + 6h for employer B (total 12h)</span><span class="eight-result not">Your LAMal ✗ — rule applies per employer</span></div>
+    <div class="eight-row"><span class="eight-situation">You work 10h for employer A + 10h for employer B</span><span class="eight-result covered">Employer where you last worked before the accident ✓</span></div>
+  </div>
+
+  <div class="warning-box reveal">
+    <p>⚠ <strong>The 8-hour threshold is assessed per employer — not in total.</strong> Working 6h for two employers gives you 12h total — but you are not covered for private accidents by either. Always check the payslip line "Assurance-accidents non professionnels (AANP)" — if it is there, your employer covers accidents and you should remove this coverage from LAMal.</p>
+  </div>
+
+  <h2 class="reveal">The Subsidy Most Expats Never Claim</h2>
+  <div class="green-box reveal">
+    <p>✅ <strong>Geneva's cantonal health insurance subsidy (IPV):</strong> If your income is below approximately CHF 80,000–120,000 gross, you may be entitled to a partial or full subsidy of your LAMal premium. Geneva's subsidy programme is the most generous in Switzerland. The application is made online at ge.ch — but it is not automatic. Many eligible expats never receive it simply because they did not know it existed.</p>
+  </div>
+
+  <h2 class="reveal">Switching Insurers</h2>
+  <p class="reveal">You can switch LAMal insurer once per year, with 3 months notice before year-end (deadline: 30 November to switch from 1 January). No penalties, no health checks — the basic coverage is identical everywhere. Only the premium changes. Compare annually at <span class="hl-blue">priminfo.admin.ch</span> — in Geneva, the difference between the most expensive and cheapest insurer for the same plan can be CHF 100–150/month.</p>
+
+  <h2 class="reveal">Before You Ask</h2>
+  <div class="faq-list reveal">
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Can I keep my home country's insurance instead of LAMal?<span class="faq-arrow">▾</span></div><div class="faq-a">No. LAMal is mandatory for all Swiss residents regardless of any other insurance you hold. You can have both — but LAMal is required. The only exceptions are certain cross-border workers and diplomats with specific arrangements.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Should I choose the highest deductible to save money?<span class="faq-arrow">▾</span></div><div class="faq-a">If you are young and healthy and rarely visit the doctor — yes, the highest deductible (CHF 2,500) plus the lowest premium model is almost always cheaper on an annual total. If you use healthcare regularly, the lower deductible may cost less overall. Use the calculator above to see your maximum exposure at each level.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">My employer works less than 8 hours with me. Am I covered for accidents?<span class="faq-arrow">▾</span></div><div class="faq-a">Only for professional accidents (at work and commuting). Private accidents — evenings, weekends, sport — are covered by your LAMal. Make sure accident coverage is active in your LAMal policy. If you are unsure, check with your insurer.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Can I deduct LAMal premiums from Swiss taxes?<span class="faq-arrow">▾</span></div><div class="faq-a">Yes — partially. In Geneva, there is a flat-rate deduction for health insurance premiums in the annual tax return. It is not the full amount paid but a fixed cantonal amount. Check the current figure in the Geneva tax declaration guide.</div></div>
+  </div>
+
+  <div class="cta-box reveal">
+    <p>SwissExpatHub can connect you with advisors who help international residents choose the right LAMal model, check eligibility for the cantonal subsidy, and optimise supplementary coverage based on their specific health and financial situation.</p>
+    <a href="/directory" class="cta-btn">Find Your Advisor →</a>
+  </div>
+
+  <div class="sources reveal">
+    <p class="sources-label">Sources</p>
+    <ol>
+      <li>Federal Office of Public Health — LAMal premiums and system 2026: bag.admin.ch</li>
+      <li>Priminfo — Official LAMal premium comparison tool: priminfo.admin.ch</li>
+      <li>Canton de Genève — Health insurance subsidy IPV 2026: ge.ch</li>
+      <li>SUVA — Accident insurance LAA, 8-hour rule: suva.ch</li>
+      <li>Expat Savvy — Health Insurance Switzerland Complete Guide 2026: expat-savvy.ch</li>
+    </ol>
+  </div>
+</div>
+<script>
+  window.addEventListener('scroll', () => {
+    const s = window.scrollY, d = document.documentElement.scrollHeight - window.innerHeight;
+    document.getElementById('progress-bar').style.width = Math.min(100, d > 0 ? (s/d)*100 : 0) + '%';
+  }, { passive: true });
+  window.addEventListener('load', () => {
+    setTimeout(() => document.getElementById('heroTag').classList.add('visible'), 50);
+    setTimeout(() => document.getElementById('heroTitle').classList.add('visible'), 150);
+    setTimeout(() => document.getElementById('heroSubtitle').classList.add('visible'), 280);
+    setTimeout(() => document.getElementById('heroMeta').classList.add('visible'), 420);
+  });
+  const deductibles = [300, 500, 1000, 1500, 2000, 2500];
+  const savings = [0, 30, 55, 75, 90, 100];
+  const slider = document.getElementById('dedSlider');
+  function updateDed() {
+    const i = parseInt(slider.value);
+    const ded = deductibles[i];
+    document.getElementById('dedLabel').textContent = 'CHF ' + ded.toLocaleString();
+    document.getElementById('dedMax').textContent = 'CHF ' + (ded + 700).toLocaleString();
+    document.getElementById('dedSaving').textContent = savings[i] > 0 ? '~CHF ' + savings[i] + '/month' : 'CHF 0';
+  }
+  slider.addEventListener('input', updateDed);
+  updateDed();
+  const yearsSlider = document.getElementById('yearsSlider');
+  if (yearsSlider) {
+    yearsSlider.addEventListener('input', () => {
+      const years = parseInt(yearsSlider.value);
+      const pension = Math.round((years / 44) * 2450);
+      document.getElementById('yearsLabel').textContent = years + ' years';
+      document.getElementById('yearsResult').textContent = 'CHF ' + pension.toLocaleString() + '/month';
+    });
+  }
+  const tObs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), parseInt(e.target.dataset.delay||0)); tObs.unobserve(e.target); } }); }, { threshold: 0.1 });
+  document.querySelectorAll('.takeaway-item').forEach(el => tObs.observe(el));
+  const rObs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), parseInt(e.target.dataset.delay||0)); rObs.unobserve(e.target); } }); }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
+  document.querySelectorAll('.reveal').forEach(el => rObs.observe(el));
+  function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+</script>
+</body>
+</html>
