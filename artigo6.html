@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>5 Tax Deductions Many Expats in Switzerland Overlook</title>
+<meta name="description" content="Pillar 3a, pension fund buy-ins, professional expenses, childcare and training: five legal Swiss tax deductions expats in Geneva often miss — with the 2026 figures.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
 <style>
 :root {
@@ -47,283 +48,562 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 body {
-  background: var(--bg);
-  color: var(--fg);
+  background: var(--bg); color: var(--fg);
   font-family: 'Inter', system-ui, sans-serif;
-  font-size: 16px;
-  line-height: 1.75;
-  padding: 40px max(16px, 5vw) 80px;
+  font-size: 16px; line-height: 1.75;
+  padding: 48px max(16px, 5vw) 80px;
 }
+.article { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 36px; }
 
-.article {
-  max-width: 720px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
+#progress-bar {
+  position: fixed; top: 0; left: 0; height: 3px;
+  background: var(--blue-mid); width: 0%;
+  z-index: 1000; transition: width .1s linear;
+  border-radius: 0 2px 2px 0;
 }
 
 /* ── HEADER ── */
-.article-header { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
 .article-meta {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: .12em; text-transform: uppercase;
-  color: var(--fg2); margin-bottom: 10px;
+  font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--fg2); margin-bottom: 12px;
+  opacity: 0; transform: translateY(-8px); transition: opacity .5s ease, transform .5s ease;
 }
+.article-meta.visible { opacity: 1; transform: translateY(0); }
 h1 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(24px, 5vw, 36px);
-  font-weight: 700; line-height: 1.2;
-  text-wrap: balance; color: var(--fg);
+  font-family: 'Space Grotesk', sans-serif; font-size: clamp(24px, 5vw, 36px);
+  font-weight: 700; line-height: 1.2; text-wrap: balance; color: var(--fg);
+  opacity: 0; transform: translateY(12px);
+  transition: opacity .6s ease .15s, transform .6s ease .15s;
 }
+h1.visible { opacity: 1; transform: translateY(0); }
 .header-rule {
-  height: 2px; background: var(--blue);
-  border-radius: 2px; margin-top: 20px;
-  width: 48px;
+  height: 3px; background: var(--blue); border-radius: 2px; margin-top: 20px;
+  width: 0; transition: width .8s cubic-bezier(.16,1,.3,1) .5s;
 }
+.header-rule.visible { width: 48px; }
 
-/* ── QUICK ANSWER ── */
-.quick-answer {
-  background: var(--blue-light);
-  border-left: 4px solid var(--blue);
-  border-radius: 0 14px 14px 0;
-  padding: 20px 24px;
-}
-.quick-answer p { font-size: 15px; color: var(--fg); margin: 0; }
-
-/* ── TAKEAWAYS ── */
-.takeaways {
-  background: var(--blue);
-  border-radius: 16px;
-  padding: 28px 32px;
-}
-.takeaways h2 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 16px; font-weight: 700;
-  color: rgba(255,255,255,.6);
-  letter-spacing: .08em; text-transform: uppercase;
-  margin-bottom: 16px; margin-top: 0;
-}
-.takeaways ul { list-style: none; }
-.takeaways ul li {
-  color: #e8ecf5;
-  font-size: 14.5px;
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(255,255,255,.1);
-  display: flex; gap: 12px; align-items: flex-start;
-}
-.takeaways ul li:last-child { border-bottom: none; }
-.takeaways ul li::before {
-  content: "✓"; color: #3dba78;
-  font-weight: 700; flex-shrink: 0; margin-top: 1px;
-}
-
-/* ── HEADINGS ── */
-h2 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 20px; font-weight: 700;
-  color: var(--fg); margin-bottom: 4px;
-}
-h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  color: var(--blue-mid); margin-bottom: 6px;
-}
+/* ── TYPE ── */
+h2 { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; color: var(--fg); margin-bottom: 8px; }
+h3 { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; color: var(--blue-mid); margin-bottom: 6px; }
 p { font-size: 15.5px; color: var(--fg); margin-bottom: 12px; }
 p:last-child { margin-bottom: 0; }
 .hl-blue  { color: var(--blue-mid); font-weight: 600; }
 .hl-green { color: var(--green);    font-weight: 600; }
 .hl-red   { color: var(--red);      font-weight: 600; }
-sup { font-size: 11px; color: var(--blue-mid); }
+.num { font-variant-numeric: tabular-nums; }
+.viz-label {
+  font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--fg2); margin-bottom: 12px;
+}
+.viz-note { font-size: 12px; color: var(--fg2); margin-top: 10px; }
 
-/* ── SITUATION CARDS ── */
-.situation-cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
+/* ── QUICK ANSWER / TAKEAWAYS ── */
+.quick-answer { background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 14px 14px 0; padding: 20px 24px; }
+.quick-answer p { font-size: 15px; margin: 0; }
+.takeaways { background: var(--blue); border-radius: 16px; padding: 28px 32px; }
+.takeaways h2 {
+  font-size: 13px; color: rgba(255,255,255,.55); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 18px;
 }
-@media (max-width: 520px) { .situation-cards { grid-template-columns: 1fr; } }
+.takeaways ul { list-style: none; }
+.takeaway-item {
+  color: #e8ecf5; font-size: 14.5px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.1);
+  display: flex; gap: 12px; align-items: flex-start;
+  opacity: 0; transform: translateX(-10px); transition: opacity .45s ease, transform .45s ease;
+}
+.takeaway-item:last-child { border-bottom: none; }
+.takeaway-item.visible { opacity: 1; transform: translateX(0); }
+.takeaway-item::before { content: "✓"; color: #3dba78; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
 
-.sit-card {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 14px;
-  padding: 18px 20px;
-  box-shadow: var(--shadow);
-  transition: border-color .2s, box-shadow .2s;
+/* ── DEDUCTION CARDS ── */
+.ded {
+  position: relative; overflow: hidden;
+  background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px;
+  padding: 24px 26px; box-shadow: var(--shadow);
+  opacity: 0; transform: translateY(16px);
+  transition: opacity .5s ease, transform .5s ease, box-shadow .2s;
 }
-.sit-card:hover { box-shadow: var(--shadow-md); }
-.sit-card.alert { border-color: var(--red); }
-.sit-card h3 { color: var(--blue-mid); margin-bottom: 6px; }
-.sit-card.alert h3 { color: var(--red); }
-.sit-card p { font-size: 13px; color: var(--fg2); margin: 0; }
+.ded.visible { opacity: 1; transform: none; }
+.ded:hover { box-shadow: var(--shadow-md); }
+.ded::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--green);
+  transform: scaleY(0); transform-origin: top; transition: transform .6s cubic-bezier(.16,1,.3,1) .25s;
+}
+.ded.visible::before { transform: scaleY(1); }
+.ded-head { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+.ded-num {
+  font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; color: var(--green);
+  background: var(--green-light); border-radius: 8px; padding: 4px 10px; flex-shrink: 0;
+  transform: scale(.6); opacity: 0; transition: transform .5s cubic-bezier(.34,1.56,.64,1) .2s, opacity .4s ease .2s;
+}
+.ded.visible .ded-num { transform: scale(1); opacity: 1; }
+.ded-head h2 { margin: 0; font-size: 18px; }
+.ded p { font-size: 15px; }
+.viz { margin-top: 18px; padding-top: 16px; border-top: 1px dashed var(--border); }
 
-/* ── CHECKLIST ── */
-.checklist {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 16px;
-  padding: 24px 28px;
-  box-shadow: var(--shadow);
+/* ── NOTE BOXES ── */
+.note { border-radius: 0 12px 12px 0; padding: 14px 18px; margin-top: 16px; font-size: 14.5px; }
+.note p { font-size: 14.5px; }
+.note.new  { background: var(--green-light); border-left: 4px solid var(--green); }
+.note.warn { background: var(--gold-light);  border-left: 4px solid var(--gold); }
+.note.new strong  { color: var(--green); }
+.note.warn strong { color: var(--gold); }
+
+/* ── 1: Pillar 3a ── */
+.p3a { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px; }
+.stat { text-align: center; border-radius: 12px; padding: 14px 10px; }
+.stat .k { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--fg2); }
+.stat .v { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1.3; }
+.stat.in  { background: var(--blue-light); } .stat.in .v { color: var(--blue-mid); }
+.stat.out { background: var(--green-light); } .stat.out .v { color: var(--green); }
+.p3a-arrow { font-size: 22px; color: var(--fg2); }
+.calc-line { font-size: 13px; color: var(--fg2); text-align: center; margin-top: 8px; font-variant-numeric: tabular-nums; }
+.years { display: flex; gap: 6px; margin-top: 14px; }
+.yr {
+  flex: 1; text-align: center; padding: 8px 0; border-radius: 8px; font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px; font-weight: 700; border: 1.5px solid var(--border); color: var(--fg2); background: var(--bg);
+  opacity: 0; transform: translateY(6px); transition: opacity .35s ease, transform .35s ease, background .4s, color .4s, border-color .4s;
 }
-.checklist h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  margin-bottom: 16px; color: var(--fg);
+.yr.visible { opacity: 1; transform: none; }
+.yr small { display: block; font-family: 'Inter', sans-serif; font-weight: 500; font-size: 10.5px; }
+.yr.locked.lit { background: var(--red-light); color: var(--red); border-color: var(--red); }
+.yr.open.lit   { background: var(--green-light); color: var(--green); border-color: var(--green); }
+
+/* ── 2: buy-in bars ── */
+.bars { display: flex; flex-direction: column; gap: 10px; }
+.bar-row { display: grid; grid-template-columns: 110px 1fr; gap: 12px; align-items: center; font-size: 13px; color: var(--fg2); }
+.bar-track { height: 26px; background: var(--border); border-radius: 7px; overflow: hidden; position: relative; }
+.bar-fill {
+  height: 100%; width: 0; border-radius: 7px; background: var(--blue-mid);
+  color: #fff; font-size: 12.5px; font-weight: 600; display: flex; align-items: center; justify-content: flex-end;
+  padding-right: 10px; white-space: nowrap; transition: width 1.2s cubic-bezier(.16,1,.3,1);
+  font-variant-numeric: tabular-nums;
 }
-.checklist-item {
-  display: flex; align-items: flex-start; gap: 12px;
-  padding: 11px 0;
-  border-bottom: 1px solid var(--border);
-  cursor: pointer;
+.bar-fill.after { background: var(--green); }
+.bar-gap {
+  position: absolute; top: 0; bottom: 0; right: 0; width: 0;
+  background: repeating-linear-gradient(45deg, var(--gold-light), var(--gold-light) 5px, transparent 5px, transparent 10px);
+  border-left: 2px dashed var(--gold); transition: width .8s ease 1.2s;
 }
-.checklist-item:last-of-type { border-bottom: none; }
-.check-box {
-  width: 22px; height: 22px;
-  border: 2px solid var(--blue);
-  border-radius: 6px; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  transition: all .2s; margin-top: 2px;
+
+/* ── 3: car calculator ── */
+.car { background: var(--bg); border-radius: 12px; padding: 16px 18px; }
+.car-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.car-inputs label { font-size: 12.5px; color: var(--fg2); display: block; }
+.car-inputs .val { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--fg); font-size: 15px; }
+.car-inputs input[type=range] { width: 100%; accent-color: var(--blue-mid); }
+.car-formula { font-size: 13.5px; color: var(--fg2); margin: 12px 0 14px; font-variant-numeric: tabular-nums; }
+.car-formula strong { color: var(--fg); }
+.cap-row { display: grid; grid-template-columns: 130px 1fr 90px; gap: 10px; align-items: center; margin-bottom: 10px; font-size: 13px; }
+.cap-row .lbl { color: var(--fg2); line-height: 1.3; }
+.cap-row .lbl b { color: var(--fg); display: block; font-size: 13.5px; }
+.cap-track { position: relative; height: 22px; background: var(--border); border-radius: 6px; overflow: hidden; }
+.cap-calc { position: absolute; inset: 0 auto 0 0; background: var(--gold-light); border-right: 2px dashed var(--gold); transition: width .5s ease; }
+.cap-ok { position: absolute; inset: 0 auto 0 0; background: var(--blue-mid); transition: width .5s ease; }
+.cap-row.icc .cap-ok { background: var(--red); }
+.cap-row .out { text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
+.cap-legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 12px; color: var(--fg2); margin-top: 4px; }
+.cap-legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+.cond { margin-top: 14px; font-size: 13.5px; color: var(--fg2); }
+.cond strong { color: var(--fg); }
+@media (max-width: 540px) { .cap-row { grid-template-columns: 1fr 80px; } .cap-row .lbl { grid-column: 1 / -1; } }
+
+/* ── 4: child cards ── */
+.kids { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.kid {
+  border-radius: 12px; padding: 16px 18px; border: 1.5px solid var(--border); background: var(--bg);
+  opacity: 0; transform: translateY(10px) scale(.98); transition: opacity .45s ease, transform .45s ease;
 }
-.check-box.checked { background: var(--blue); border-color: var(--blue); }
-.check-box.checked::after { content: "✓"; color: white; font-size: 13px; font-weight: 700; }
-.checklist-item.done span { text-decoration: line-through; color: var(--fg2); }
-.checklist-item span { font-size: 14.5px; color: var(--fg); font-family: 'Inter', sans-serif; }
-.progress-bar { height: 5px; background: var(--border); border-radius: 3px; margin-top: 16px; }
-.progress-fill { height: 100%; background: var(--green); border-radius: 3px; transition: width .4s ease; }
-.progress-label { font-size: 12px; color: var(--fg2); margin-top: 6px; font-family: 'Inter', sans-serif; }
+.kid.visible { opacity: 1; transform: none; }
+.kid .tag { font-size: 11px; font-weight: 700; font-family: 'Space Grotesk', sans-serif; letter-spacing: .06em; text-transform: uppercase; padding: 3px 8px; border-radius: 6px; display: inline-block; margin-bottom: 8px; }
+.kid.auto .tag { background: var(--blue-light); color: var(--blue-mid); }
+.kid.miss { border-color: var(--gold); }
+.kid.miss .tag { background: var(--gold-light); color: var(--gold); }
+.kid h3 { color: var(--fg); margin-bottom: 4px; }
+.kid .big { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; color: var(--fg); font-variant-numeric: tabular-nums; }
+.kid p { font-size: 13px; color: var(--fg2); margin: 4px 0 0; }
+@media (max-width: 540px) { .kids { grid-template-columns: 1fr; } }
+
+/* ── 5: training chips ── */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  font-size: 13px; font-weight: 600; padding: 6px 13px; border-radius: 999px; background: var(--blue-light); color: var(--blue-mid);
+  opacity: 0; transform: scale(.85); transition: opacity .35s ease, transform .35s cubic-bezier(.34,1.56,.64,1);
+}
+.chip.visible { opacity: 1; transform: none; }
+.chip.cond-chip { background: var(--gold-light); color: var(--gold); }
+
+/* ── COMPARISON: waterfall ── */
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.cmp {
+  border-radius: 16px; padding: 20px 22px; background: var(--bg2); border: 1.5px solid var(--border); box-shadow: var(--shadow);
+}
+.cmp.a { border-color: var(--red); }
+.cmp.b { border-color: var(--green); }
+.cmp h3 { font-size: 14px; margin-bottom: 12px; }
+.cmp.a h3 { color: var(--red); } .cmp.b h3 { color: var(--green); }
+.wf-row {
+  display: flex; justify-content: space-between; font-size: 13.5px; padding: 7px 0; border-bottom: 1px solid var(--border);
+  font-variant-numeric: tabular-nums; opacity: 0; transform: translateX(8px); transition: opacity .4s ease, transform .4s ease;
+}
+.wf-row.visible { opacity: 1; transform: none; }
+.wf-row .minus { color: var(--green); font-weight: 600; }
+.wf-row.none span:last-child { color: var(--fg2); }
+.wf-total {
+  display: flex; justify-content: space-between; margin-top: 10px; padding: 10px 12px; border-radius: 9px; font-weight: 700;
+  font-variant-numeric: tabular-nums; font-size: 14px;
+}
+.cmp.a .wf-total { background: var(--red-light); color: var(--red); }
+.cmp.b .wf-total { background: var(--green-light); color: var(--green); }
+.saving {
+  margin-top: 14px; text-align: center; border-radius: 14px; padding: 16px; background: var(--green-light); border: 1.5px solid var(--green);
+  opacity: 0; transform: scale(.96); transition: opacity .5s ease, transform .5s cubic-bezier(.34,1.56,.64,1);
+}
+.saving.visible { opacity: 1; transform: none; }
+.saving .big { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; color: var(--green); }
+.saving p { font-size: 13px; color: var(--fg2); margin: 4px 0 0; }
+@media (max-width: 560px) { .compare { grid-template-columns: 1fr; } }
 
 /* ── FAQ ── */
-.faq-item {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  margin-bottom: 8px;
-  overflow: hidden;
-  transition: border-color .2s;
-}
-.faq-item.open { border-color: var(--blue); }
-.faq-q {
-  padding: 16px 20px;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 14px; font-weight: 600;
-  cursor: pointer;
-  display: flex; justify-content: space-between; align-items: center;
-  gap: 12px; color: var(--fg);
-  background: transparent;
-}
-.faq-arrow { color: var(--blue); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
+.faq-item { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; margin-bottom: 8px; overflow: hidden; transition: border-color .2s; }
+.faq-item.open { border-color: var(--blue-mid); }
+.faq-q { padding: 16px 20px; font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; color: var(--fg); user-select: none; }
+.faq-arrow { color: var(--blue-mid); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
 .faq-item.open .faq-arrow { transform: rotate(180deg); }
-.faq-a {
-  display: none;
-  padding: 0 20px 16px;
-  font-size: 14px; color: var(--fg2); line-height: 1.65;
-  font-family: 'Inter', sans-serif;
-}
-.faq-item.open .faq-a { display: block; }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .35s ease; font-size: 14px; color: var(--fg2); line-height: 1.65; padding: 0 20px; }
+.faq-item.open .faq-a { max-height: 400px; padding: 0 20px 16px; }
 
-/* ── CTA ── */
-.cta-box {
-  background: var(--blue);
-  border-radius: 16px;
-  padding: 32px 36px;
-  text-align: center;
-}
-.cta-box p {
-  color: rgba(255,255,255,.8);
-  font-size: 15px; margin-bottom: 20px;
-}
-.cta-btn {
-  background: var(--gold);
-  color: #fff;
-  padding: 13px 28px;
-  border-radius: 10px;
-  text-decoration: none;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  display: inline-block;
-  transition: opacity .2s;
-}
-.cta-btn:hover { opacity: .88; }
-
-/* ── SOURCES ── */
-.sources {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  padding: 20px 24px;
-}
-.sources h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: .1em; text-transform: uppercase;
-  color: var(--fg2); margin-bottom: 10px;
-}
+/* ── CTA / SOURCES ── */
+.cta-box { background: var(--blue); border-radius: 16px; padding: 32px 36px; text-align: center; }
+.cta-box p { color: rgba(255,255,255,.85); font-size: 15px; margin-bottom: 20px; }
+.cta-btn { background:var(--gold); color:#fff; padding:13px 28px; border-radius:10px; text-decoration:none; font-family:'Space Grotesk',sans-serif; font-size:15px; font-weight:700; display:inline-block; transition:opacity .2s,transform .2s; }
+.cta-btn:hover { opacity:.88; transform:translateY(-1px); }
+.sources { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; padding: 20px 24px; }
+.sources h3 { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--fg2); margin-bottom: 10px; }
 .sources ol { padding-left: 18px; }
-.sources ol li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; }
+.sources li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; }
 
-/* ── FADE IN ── */
-.fade-in { opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
-.fade-in.visible { opacity: 1; transform: translateY(0); }
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
 
 @media (max-width: 600px) {
-  h1 { font-size: 24px; }
-  .situation-cards { grid-template-columns: 1fr; }
+  body { padding-top: 36px; }
+  .takeaways { padding: 22px 20px; }
   .cta-box { padding: 24px 20px; }
-  .takeaways { padding: 20px 20px; }
+  .ded { padding: 18px 18px; }
+  .stat .v { font-size: 19px; }
+  .bar-row { grid-template-columns: 84px 1fr; }
 }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; } }
 </style>
 </head>
 <body>
+<div id="progress-bar"></div>
 <div class="article">
 
-  <div class="article-header fade-in"><p class="article-meta">Tax &amp; Finance · Deductions · 4 min read</p><h1>5 Tax Deductions Many Expats in Switzerland Overlook</h1></div>
-  <div class="quick-answer fade-in"><p><strong>Quick Answer:</strong> Many expats file their Swiss tax return every year and assume everything is in order. What fewer people ask is whether they are claiming every deduction available to them. Some of the most valuable deductions in the Swiss system are entirely legal, well-established — and consistently missed by international residents who were simply never told they existed.</p></div>
-  <div class="takeaways fade-in"><h2>Key Takeaways</h2><ul><li>Pillar 3a contribution limit for 2026: CHF 7,258 for employees — fully deductible from taxable income</li><li>Pension fund buy-ins can create significant one-year deductions with no upper limit in principle</li><li>In Geneva, families can deduct CHF 6,800 per child plus up to CHF 25,000 in childcare costs</li><li>Professional expense deductions are not always applied automatically — they often need to be claimed</li><li>From 2026, missed Pillar 3a contributions from 2025 onward can be retroactively recovered</li></ul></div>
-  <h2 class="fade-in">Deduction #1: Pillar 3a Contributions</h2>
-  <p class="fade-in">This is the most widely available tax deduction in Switzerland — and one of the most underused among expats. The Pillar 3a cap for 2026 is <span class="hl-blue">CHF 7,258 for employees</span>, or 20% of net earned income up to CHF 36,288 for the self-employed. In Geneva, contributing the full CHF 7,258 saves approximately <span class="hl-green">CHF 2,418 in tax that year.</span></p>
-  <div class="green-box fade-in"><p>🆕 <strong>New from 2026:</strong> Swiss law now allows retroactive contributions to Pillar 3a for years when you did not pay the full maximum — but only for gaps from 2025 onward. Gaps from 2024 and earlier cannot be filled.</p></div>
-  <h2 class="fade-in">Deduction #2: Voluntary Pension Fund Buy-Ins</h2>
-  <p class="fade-in">If you arrived mid-career, you likely have a <span class="hl-blue">buy-in gap</span> in your Pillar 2 fund. You can fill that gap voluntarily, and every franc contributed is fully deductible. Example: you contribute CHF 20,000 into your pension fund this year — your taxable income drops by CHF 20,000. At Geneva marginal rates, that saves approximately <span class="hl-green">CHF 6,000 to CHF 8,000 in tax</span> in a single year.</p>
-  <div class="warning-box fade-in"><p>⚠ After a buy-in contribution, there is a <span class="hl-red">three-year waiting period</span> before you can withdraw that money as a lump sum. Timing matters — review this with an advisor before proceeding.</p></div>
-  <h2 class="fade-in">Deduction #3: Professional Expenses</h2>
-  <p class="fade-in">Many employees assume work-related expenses are handled automatically. Often they are not. The professional expenses flat rate is 3% of net salary (minimum CHF 2,000, maximum CHF 4,000 federal). Also deductible: <span class="hl-blue">commuting costs</span> (capped at CHF 3,300), meals away from home, home office costs, work equipment, and work-related training.</p>
-  <h2 class="fade-in">Deduction #4: Childcare Expenses</h2>
-  <p class="fade-in">In Geneva, two separate child-related deductions exist: a child deduction of <span class="hl-green">CHF 6,800 per child per year</span> applied automatically, and a third-party childcare deduction of up to <span class="hl-green">CHF 25,000 per child per year</span> for documented costs paid to nurseries and childminders. The second is the one most commonly missed.</p>
-  <h2 class="fade-in">Deduction #5: Training and Continuing Education</h2>
-  <p class="fade-in">Professional development costs are deductible when they relate to your current field of work. This includes courses, certifications, professional memberships, and in some cases language training relevant to your role. The deduction is often missed because many expats assume it only applies to formal academic programmes.</p>
-  <div class="profiles fade-in">
-    <div class="profile-card">
-      <div class="profile-name">Expat A — CHF 150,000 salary</div>
-      <p>No Pillar 3a. No buy-in. No professional expenses claimed.</p>
-      <div class="profile-note">Pays tax on the full CHF 150,000.</div>
+  <!-- HEADER -->
+  <div class="article-header">
+    <p class="article-meta">Tax &amp; Finance · Deductions · 5 min read</p>
+    <h1>5 Tax Deductions Many Expats in Switzerland Overlook</h1>
+    <div class="header-rule"></div>
+  </div>
+
+  <!-- QUICK ANSWER -->
+  <div class="quick-answer reveal">
+    <p><strong>Quick Answer:</strong> Many expats file their Swiss tax return every year and assume everything is in order. What fewer people ask is whether they are claiming every deduction available to them. Some of the most valuable deductions in the Swiss system are entirely legal, well-established — and consistently missed by international residents who were simply never told they existed.</p>
+  </div>
+
+  <!-- TAKEAWAYS -->
+  <div class="takeaways">
+    <h2>Key Takeaways</h2>
+    <ul>
+      <li class="takeaway-item" data-delay="0">Pillar 3a contribution limit for 2026: CHF 7,258 for employees — fully deductible from taxable income</li>
+      <li class="takeaway-item" data-delay="100">Pension fund buy-ins can create significant one-year deductions with no fixed upper limit — your personal buy-in gap is the limit</li>
+      <li class="takeaway-item" data-delay="200">In Geneva, families get an automatic child deduction plus a separate deduction of up to around CHF 26,000 per child for childcare costs</li>
+      <li class="takeaway-item" data-delay="300">Professional expense deductions are not always applied automatically — and commuting by car is deducted per kilometre, not per litre of fuel</li>
+      <li class="takeaway-item" data-delay="400">From 2026, missed Pillar 3a contributions from 2025 onward can be retroactively recovered</li>
+    </ul>
+  </div>
+
+  <!-- #1 PILLAR 3A -->
+  <div class="ded">
+    <div class="ded-head"><span class="ded-num">#1</span><h2>Pillar 3a Contributions</h2></div>
+    <p>This is the most widely available tax deduction in Switzerland — and one of the most underused among expats. The Pillar 3a cap for 2026 is <span class="hl-blue">CHF 7,258</span> for employees, or 20% of net earned income up to CHF 36,288 for the self-employed. In Geneva, contributing the full CHF 7,258 saves approximately <span class="hl-green">CHF 2,418</span> in tax that year.</p>
+    <div class="viz" id="v3a">
+      <div class="p3a">
+        <div class="stat in"><div class="k">You contribute</div><div class="v" id="p3a-in">CHF 0</div></div>
+        <div class="p3a-arrow">→</div>
+        <div class="stat out"><div class="k">Tax saved</div><div class="v" id="p3a-out">CHF 0</div></div>
+      </div>
+      <p class="calc-line">CHF 7,258 × ~33% marginal rate ≈ CHF&nbsp;2,418 · over 10 years: 10 × 2,418 = CHF&nbsp;24,180</p>
     </div>
-    <div class="profile-card">
-      <div class="profile-name">Expat B — CHF 150,000 salary</div>
-      <p>Pillar 3a: CHF 7,258. Buy-in: CHF 20,000. Professional expenses: CHF 3,000.</p>
-      <div class="profile-note">Pays tax on approximately CHF 119,742 — saving CHF 8,000–12,000 in tax using entirely legal deductions.</div>
+    <div class="note new">
+      <p><strong>🆕 New from 2026:</strong> Swiss law now allows retroactive contributions to Pillar 3a for years when you did not pay the full maximum — but only for gaps from 2025 onward. Gaps from 2024 and earlier cannot be filled.</p>
+      <div class="years" id="years">
+        <div class="yr locked" data-delay="0">2023<small>locked</small></div>
+        <div class="yr locked" data-delay="120">2024<small>locked</small></div>
+        <div class="yr open" data-delay="240">2025<small>can be filled</small></div>
+        <div class="yr open" data-delay="360">2026<small>can be filled</small></div>
+      </div>
     </div>
   </div>
-  <h2 class="fade-in">Before You Ask</h2>
-  <div class="faq fade-in">
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Do these deductions apply to B Permit holders?<span class="faq-arrow">▾</span></div><div class="faq-a">Some do, depending on income level and circumstances. Pillar 3a is available to most employees with Swiss earned income. Pension buy-ins and some professional expense deductions typically become more relevant after obtaining a C Permit and filing a full tax return.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How much can Pillar 3a actually save?<span class="faq-arrow">▾</span></div><div class="faq-a">In Geneva, at a typical professional salary, the full CHF 7,258 contribution saves approximately CHF 2,418 per year. Over ten years, that is more than CHF 24,000 in tax savings from a single deduction.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Is a pension fund buy-in always worth it?<span class="faq-arrow">▾</span></div><div class="faq-a">Not always. The three-year blocking period and your specific pension fund situation need to be considered. A review with an advisor is strongly recommended before proceeding.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Can I open a Pillar 3a account as a foreign national?<span class="faq-arrow">▾</span></div><div class="faq-a">Yes. Any person living and working in Switzerland with AHV-liable income can open a Pillar 3a account and claim the deduction — regardless of nationality or permit type.</div></div>
+
+  <!-- #2 BUY-INS -->
+  <div class="ded">
+    <div class="ded-head"><span class="ded-num">#2</span><h2>Voluntary Pension Fund Buy-Ins</h2></div>
+    <p>If you arrived mid-career, you likely have a buy-in gap in your Pillar 2 fund — the difference between what your pension fund holds for you and what it would hold had you always worked in Switzerland on your current salary. The exact amount is shown on your annual pension fund certificate. You can fill that gap voluntarily, and every franc contributed is fully deductible.</p>
+    <p>Example: you contribute <span class="hl-blue">CHF 20,000</span> into your pension fund this year — your taxable income drops by CHF 20,000. At Geneva marginal rates, that saves approximately <span class="hl-green">CHF 6,000 to CHF 8,000</span> in tax in a single year.</p>
+    <div class="viz" id="vbuy">
+      <div class="viz-label">Taxable income — example on a CHF 150,000 salary</div>
+      <div class="bars">
+        <div class="bar-row"><span>Without buy-in</span><div class="bar-track"><div class="bar-fill" id="bar-before">CHF 150,000</div></div></div>
+        <div class="bar-row"><span>With CHF 20,000 buy-in</span><div class="bar-track"><div class="bar-fill after" id="bar-after">CHF 130,000</div><div class="bar-gap" id="bar-gap"></div></div></div>
+      </div>
+      <p class="calc-line" style="text-align:left">CHF 20,000 deducted × 30–40% marginal rate = CHF 6,000–8,000 less tax</p>
+    </div>
+    <div class="note warn">
+      <p><strong>⚠ Three-year rule:</strong> after a buy-in contribution, there is a three-year waiting period before you can withdraw that money as a lump sum. Timing matters — review this with an advisor before proceeding.</p>
+    </div>
   </div>
-  <div class="cta-box fade-in"><p>Most expats are not overpaying taxes because they are doing something wrong. They are overpaying because they have never taken the time to understand what they are entitled to claim. SwissExpatHub can connect you with advisors who regularly assist international residents with Swiss tax planning and deductions in Geneva.</p><a href="/directory" class="cta-btn">Find Your Advisor →</a></div>
-  <div class="sources fade-in"><h3>Sources</h3><ol><li>Federal Tax Administration — Deduction rules 2026: estv.admin.ch</li><li>Geneva Tax Authority — Child deduction and childcare costs: ge.ch/impots</li><li>Federal Social Insurance Office — Pillar 3a limits: bsv.admin.ch</li></ol></div>
+
+  <!-- #3 PROFESSIONAL EXPENSES -->
+  <div class="ded">
+    <div class="ded-head"><span class="ded-num">#3</span><h2>Professional Expenses</h2></div>
+    <p>Many employees assume work-related expenses are handled automatically. Often they are not. The federal flat rate for professional expenses is 3% of net salary (minimum CHF 2,000, maximum CHF 4,000). Also deductible: commuting costs, meals away from home, home office costs, work equipment, and work-related training.</p>
+    <div class="viz" id="vcar">
+      <div class="viz-label">🚗 Commuting by car? It's deducted per kilometre — not per litre of fuel</div>
+      <div class="car">
+        <div class="car-inputs">
+          <div><label>Distance home → work <span class="val" id="km-val">15 km</span></label><input type="range" id="km" min="2" max="40" step="1" value="15" aria-label="Distance home to work in km"></div>
+          <div><label>Working days per year <span class="val" id="days-val">220</span></label><input type="range" id="days" min="100" max="230" step="5" value="220" aria-label="Working days per year"></div>
+        </div>
+        <p class="car-formula" id="car-formula"></p>
+        <div class="cap-row ifd">
+          <div class="lbl"><b>Federal tax</b>capped at CHF 3,300</div>
+          <div class="cap-track"><div class="cap-calc" id="ifd-calc"></div><div class="cap-ok" id="ifd-ok"></div></div>
+          <div class="out" id="ifd-out">CHF 0</div>
+        </div>
+        <div class="cap-row icc">
+          <div class="lbl"><b>Geneva cantonal tax</b>capped at CHF 536</div>
+          <div class="cap-track"><div class="cap-calc" id="icc-calc"></div><div class="cap-ok" id="icc-ok"></div></div>
+          <div class="out" id="icc-out">CHF 0</div>
+        </div>
+        <div class="cap-legend"><span><i style="background:var(--gold-light);border:1.5px dashed var(--gold)"></i>Calculated amount</span><span><i style="background:var(--blue-mid)"></i>What you can actually deduct</span></div>
+        <p class="cond"><strong>The condition:</strong> the car is only accepted if public transport is not a reasonable option — for example, if it would cost you well over an hour more per day, or your working hours fall outside the timetable. Otherwise, only the cost of a TPG/CFF pass is deductible. Keep a screenshot of both journey times as proof.</p>
+      </div>
+      <p class="viz-note">2026 rates: CHF 0.75 per km. Geneva's cantonal cap applies whatever the means of transport.</p>
+    </div>
+  </div>
+
+  <!-- #4 CHILDCARE -->
+  <div class="ded">
+    <div class="ded-head"><span class="ded-num">#4</span><h2>Childcare Expenses</h2></div>
+    <p>In Geneva, two separate child-related deductions exist. The first is a child deduction applied automatically. The second is a deduction for third-party childcare — documented costs paid to nurseries and childminders. The second is the one most commonly missed.</p>
+    <div class="viz">
+      <div class="kids">
+        <div class="kid auto" data-delay="0">
+          <span class="tag">Automatic</span>
+          <h3>Child deduction</h3>
+          <div class="big">CHF 13,698</div>
+          <p>per child, Geneva cantonal tax (CHF 6,800 federal). Reduced to CHF 10,536 cantonal when you also claim childcare costs.</p>
+        </div>
+        <div class="kid miss" data-delay="200">
+          <span class="tag">Often missed</span>
+          <h3>Third-party childcare</h3>
+          <div class="big">up to CHF 26,320</div>
+          <p>per child, Geneva cantonal tax (up to CHF 25,800 federal) — documented nursery and childminder costs.</p>
+        </div>
+      </div>
+      <p class="viz-note">Amounts for the latest published tax period; they are indexed periodically.</p>
+    </div>
+  </div>
+
+  <!-- #5 TRAINING -->
+  <div class="ded">
+    <div class="ded-head"><span class="ded-num">#5</span><h2>Training and Continuing Education</h2></div>
+    <p>Professional development costs are deductible when they relate to your current field of work. This includes courses, certifications, professional memberships, and in some cases language training relevant to your role. The deduction is often missed because many expats assume it only applies to formal academic programmes.</p>
+    <div class="viz">
+      <div class="chips">
+        <span class="chip" data-delay="0">Courses</span>
+        <span class="chip" data-delay="100">Certifications</span>
+        <span class="chip" data-delay="200">Professional memberships</span>
+        <span class="chip cond-chip" data-delay="300">Language training — if relevant to your role</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPARISON -->
+  <div>
+    <h2 class="reveal">Same Salary, Different Tax Bill</h2>
+    <div class="compare reveal" id="compare" style="margin-top:14px">
+      <div class="cmp a">
+        <h3>Expat A — CHF 150,000 salary</h3>
+        <div class="wf-row" data-delay="0"><span>Salary</span><span>CHF 150,000</span></div>
+        <div class="wf-row none" data-delay="200"><span>Pillar 3a</span><span>—</span></div>
+        <div class="wf-row none" data-delay="400"><span>Pension buy-in</span><span>—</span></div>
+        <div class="wf-row none" data-delay="600"><span>Professional expenses</span><span>—</span></div>
+        <div class="wf-total"><span>Taxed on</span><span id="tot-a">CHF 150,000</span></div>
+      </div>
+      <div class="cmp b">
+        <h3>Expat B — CHF 150,000 salary</h3>
+        <div class="wf-row" data-delay="0"><span>Salary</span><span>CHF 150,000</span></div>
+        <div class="wf-row" data-delay="200"><span>Pillar 3a</span><span class="minus">− CHF 7,258</span></div>
+        <div class="wf-row" data-delay="400"><span>Pension buy-in</span><span class="minus">− CHF 20,000</span></div>
+        <div class="wf-row" data-delay="600"><span>Professional expenses</span><span class="minus">− CHF 3,000</span></div>
+        <div class="wf-total"><span>Taxed on</span><span id="tot-b">CHF 150,000</span></div>
+      </div>
+    </div>
+    <div class="saving" id="saving">
+      <div class="big">CHF 8,000–12,000 less tax</div>
+      <p>CHF 30,258 of deductions × roughly 26–40% marginal rate — using entirely legal deductions.</p>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div>
+    <h2 class="reveal">Before You Ask</h2>
+    <div style="margin-top:12px">
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">Do these deductions apply to B Permit holders?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">Some do, depending on income level and circumstances. Pillar 3a is available to most employees with Swiss earned income. Pension buy-ins and some professional expense deductions typically become more relevant after obtaining a C Permit and filing a full tax return.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">How much can Pillar 3a actually save?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">In Geneva, at a typical professional salary, the full CHF 7,258 contribution saves approximately CHF 2,418 per year. Over ten years, that is more than CHF 24,000 in tax savings from a single deduction.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">Is a pension fund buy-in always worth it?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">Not always. The three-year blocking period and your specific pension fund situation need to be considered. A review with an advisor is strongly recommended before proceeding.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">Can I deduct the fuel I spend driving to work?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">Not the fuel itself. Commuting by car is deducted per kilometre (CHF 0.75 per km in 2026), and only if public transport is not a reasonable alternative. In Geneva, the deduction is capped at CHF 3,300 for federal tax and CHF 536 for cantonal tax.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">Can I open a Pillar 3a account as a foreign national?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">Yes. Any person living and working in Switzerland with AHV-liable income can open a Pillar 3a account and claim the deduction — regardless of nationality or permit type.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-box reveal">
+    <p>Most expats are not overpaying taxes because they are doing something wrong. They are overpaying because they have never taken the time to understand what they are entitled to claim. SwissExpatHub can connect you with advisors who regularly assist international residents with Swiss tax planning and deductions in Geneva.</p>
+    <a href="/directory" class="cta-btn">Find Your Advisor →</a>
+  </div>
+
+  <!-- SOURCES -->
+  <div class="sources reveal">
+    <h3>Sources</h3>
+    <ol>
+      <li>Federal Tax Administration — Deduction rules and amounts 2026: estv.admin.ch</li>
+      <li>Geneva Tax Authority — Child deduction, childcare costs and commuting cap: ge.ch/impots</li>
+      <li>Federal Social Insurance Office — Pillar 3a limits: bsv.admin.ch</li>
+    </ol>
+  </div>
 
 </div>
+
 <script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); });
-  }, { threshold: 0.1 });
-  document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
-  function toggleFaq(el) { el.parentElement.classList.toggle("open"); }
+// Progress bar
+window.addEventListener('scroll', () => {
+  const docH = document.documentElement.scrollHeight - window.innerHeight;
+  document.getElementById('progress-bar').style.width = (docH > 0 ? window.scrollY / docH * 100 : 0) + '%';
+});
+
+// Header entrance
+window.addEventListener('load', () => {
+  setTimeout(() => document.querySelector('.article-meta').classList.add('visible'), 80);
+  setTimeout(() => document.querySelector('h1').classList.add('visible'), 220);
+  setTimeout(() => document.querySelector('.header-rule').classList.add('visible'), 420);
+});
+
+function stagger(selector, threshold) {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), parseInt(e.target.dataset.delay || 0));
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold });
+  document.querySelectorAll(selector).forEach(el => obs.observe(el));
+}
+stagger('.takeaway-item', 0.15);
+stagger('.ded', 0.06);
+stagger('.reveal', 0.08);
+stagger('.yr', 0.3);
+stagger('.kid', 0.3);
+stagger('.chip', 0.3);
+
+function onView(id, fn, threshold = 0.4) {
+  const el = document.getElementById(id);
+  const obs = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) { fn(); obs.disconnect(); }
+  }, { threshold });
+  obs.observe(el);
+}
+const fmt = n => 'CHF ' + Math.round(n).toLocaleString('en-US');
+function countUp(el, to, ms, from = 0) {
+  const t0 = performance.now();
+  const step = t => {
+    const k = Math.min(1, (t - t0) / ms), e = 1 - Math.pow(1 - k, 3);
+    el.textContent = fmt(from + (to - from) * e);
+    if (k < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+// #1 Pillar 3a counters + year tiles
+onView('v3a', () => {
+  countUp(document.getElementById('p3a-in'), 7258, 1000);
+  setTimeout(() => countUp(document.getElementById('p3a-out'), 2418, 1000), 700);
+});
+onView('years', () => {
+  document.querySelectorAll('.yr').forEach(y => setTimeout(() => y.classList.add('lit'), parseInt(y.dataset.delay) + 500));
+}, 0.5);
+
+// #2 Buy-in bars
+onView('vbuy', () => {
+  document.getElementById('bar-before').style.width = '100%';
+  setTimeout(() => {
+    document.getElementById('bar-after').style.width = (130000 / 150000 * 100) + '%';
+    document.getElementById('bar-gap').style.width = (20000 / 150000 * 100) + '%';
+  }, 400);
+});
+
+// #3 Car calculator
+const RATE = 0.75, CAP_IFD = 3300, CAP_ICC = 536;
+const km = document.getElementById('km'), days = document.getElementById('days');
+function updCar() {
+  const k = +km.value, d = +days.value, calc = k * 2 * d * RATE;
+  document.getElementById('km-val').textContent = k + ' km';
+  document.getElementById('days-val').textContent = d;
+  document.getElementById('car-formula').innerHTML =
+    `${k} km × 2 (there and back) × ${d} days × CHF 0.75 = <strong>${fmt(calc)}</strong> calculated`;
+  const scale = Math.max(calc, CAP_IFD) * 1.05;
+  const ifd = Math.min(calc, CAP_IFD), icc = Math.min(calc, CAP_ICC);
+  document.getElementById('ifd-calc').style.width = (calc / scale * 100) + '%';
+  document.getElementById('icc-calc').style.width = (calc / scale * 100) + '%';
+  document.getElementById('ifd-ok').style.width = (ifd / scale * 100) + '%';
+  document.getElementById('icc-ok').style.width = (icc / scale * 100) + '%';
+  document.getElementById('ifd-out').textContent = fmt(ifd);
+  document.getElementById('icc-out').textContent = fmt(icc);
+}
+km.addEventListener('input', updCar); days.addEventListener('input', updCar);
+onView('vcar', updCar, 0.3);
+
+// Comparison waterfall
+onView('compare', () => {
+  document.querySelectorAll('.wf-row').forEach(r => setTimeout(() => r.classList.add('visible'), parseInt(r.dataset.delay)));
+  const tb = document.getElementById('tot-b');
+  const steps = [[200, 150000, 142742], [400, 142742, 122742], [600, 122742, 119742]];
+  steps.forEach(([t, from, to]) => setTimeout(() => countUp(tb, to, 450, from), t + 150));
+  setTimeout(() => document.getElementById('saving').classList.add('visible'), 1400);
+}, 0.3);
+
+// FAQ
+function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
 </script>
 </body>
 </html>
