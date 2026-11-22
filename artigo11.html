@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pillar 3a: What It Is, How It Works, and Why Every Expat Should Open One</title>
+<title>Pillar 3a in Switzerland: What It Is, How It Works and When You Can Take the Money Out</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
 <style>
 :root {
@@ -48,357 +48,812 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+#progress-bar {
+  position: fixed; top: 0; left: 0; height: 3px;
+  background: var(--blue-mid); width: 0%;
+  z-index: 1000; transition: width .1s linear;
+  border-radius: 0 2px 2px 0;
+}
+
 body {
-  background: var(--bg);
-  color: var(--fg);
+  background: var(--bg); color: var(--fg);
   font-family: 'Inter', system-ui, sans-serif;
-  font-size: 16px;
-  line-height: 1.75;
-  padding: 40px max(16px, 5vw) 80px;
+  font-size: 16px; line-height: 1.75;
+  padding: 48px max(16px, 5vw) 80px;
 }
+.article { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 36px; }
 
-.article {
-  max-width: 720px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-
-/* ── HEADER ── */
-.article-header { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
+/* HEADER */
 .article-meta {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: .12em; text-transform: uppercase;
-  color: var(--fg2); margin-bottom: 10px;
+  font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--fg2); margin-bottom: 12px;
+  opacity: 0; transform: translateY(-8px); transition: opacity .5s ease, transform .5s ease;
 }
+.article-meta.visible { opacity: 1; transform: translateY(0); }
 h1 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(24px, 5vw, 36px);
-  font-weight: 700; line-height: 1.2;
-  text-wrap: balance; color: var(--fg);
+  font-family: 'Space Grotesk', sans-serif; font-size: clamp(24px, 5vw, 36px);
+  font-weight: 700; line-height: 1.2; text-wrap: balance; color: var(--fg);
+  opacity: 0; transform: translateY(12px); transition: opacity .6s ease .15s, transform .6s ease .15s;
 }
+h1.visible { opacity: 1; transform: translateY(0); }
 .header-rule {
-  height: 2px; background: var(--blue);
-  border-radius: 2px; margin-top: 20px;
-  width: 48px;
+  height: 3px; background: var(--blue); border-radius: 2px; margin-top: 20px;
+  width: 0; transition: width .8s cubic-bezier(.16,1,.3,1) .5s;
 }
+.header-rule.visible { width: 48px; }
 
-/* ── QUICK ANSWER ── */
-.quick-answer {
-  background: var(--blue-light);
-  border-left: 4px solid var(--blue);
-  border-radius: 0 14px 14px 0;
-  padding: 20px 24px;
-}
+/* QUICK ANSWER */
+.quick-answer { background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 14px 14px 0; padding: 20px 24px; }
 .quick-answer p { font-size: 15px; color: var(--fg); margin: 0; }
 
-/* ── TAKEAWAYS ── */
-.takeaways {
-  background: var(--blue);
-  border-radius: 16px;
-  padding: 28px 32px;
-}
+/* TAKEAWAYS */
+.takeaways { background: var(--blue); border-radius: 16px; padding: 28px 32px; }
 .takeaways h2 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 16px; font-weight: 700;
-  color: rgba(255,255,255,.6);
-  letter-spacing: .08em; text-transform: uppercase;
-  margin-bottom: 16px; margin-top: 0;
+  font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700;
+  color: rgba(255,255,255,.55); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 18px; margin-top: 0;
 }
 .takeaways ul { list-style: none; }
-.takeaways ul li {
-  color: #e8ecf5;
-  font-size: 14.5px;
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(255,255,255,.1);
+.takeaway-item {
+  color: #e8ecf5; font-size: 14.5px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.1);
   display: flex; gap: 12px; align-items: flex-start;
+  opacity: 0; transform: translateX(-10px); transition: opacity .45s ease, transform .45s ease;
 }
-.takeaways ul li:last-child { border-bottom: none; }
-.takeaways ul li::before {
-  content: "✓"; color: #3dba78;
-  font-weight: 700; flex-shrink: 0; margin-top: 1px;
-}
+.takeaway-item.visible { opacity: 1; transform: translateX(0); }
+.takeaway-item:last-child { border-bottom: none; }
+.takeaway-item::before { content: "✓"; color: #3dba78; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
 
-/* ── HEADINGS ── */
-h2 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 20px; font-weight: 700;
-  color: var(--fg); margin-bottom: 4px;
-}
-h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  color: var(--blue-mid); margin-bottom: 6px;
-}
+/* HEADINGS */
+h2 { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; color: var(--fg); margin-bottom: 4px; }
+h3 { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; color: var(--blue-mid); margin-bottom: 6px; }
 p { font-size: 15.5px; color: var(--fg); margin-bottom: 12px; }
 p:last-child { margin-bottom: 0; }
 .hl-blue  { color: var(--blue-mid); font-weight: 600; }
 .hl-green { color: var(--green);    font-weight: 600; }
 .hl-red   { color: var(--red);      font-weight: 600; }
-sup { font-size: 11px; color: var(--blue-mid); }
+.hl-gold  { color: var(--gold);     font-weight: 600; }
+.viz { margin-top: 18px; padding-top: 16px; border-top: 1px dashed var(--border); }
+.viz-label {
+  font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--fg2); margin-bottom: 12px;
+}
+.viz-note { font-size: 12px; color: var(--fg2); margin-top: 10px; }
+.card {
+  background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px;
+  padding: 22px 24px; box-shadow: var(--shadow);
+}
 
-/* ── SITUATION CARDS ── */
-.situation-cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
+/* ── DUAL OBLIGATION (situation) ── */
+.dual { display: grid; grid-template-columns: 1fr auto 1fr; gap: 14px; align-items: center; margin-top: 16px; }
+.flag {
+  border-radius: 14px; padding: 16px; text-align: center; border: 1.5px solid var(--border); background: var(--bg2);
+  opacity: 0; transform: translateY(10px); transition: opacity .45s ease, transform .45s ease;
 }
-@media (max-width: 520px) { .situation-cards { grid-template-columns: 1fr; } }
+.flag.visible { opacity: 1; transform: none; }
+.flag .t { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 15px; }
+.flag .s { font-size: 12.5px; color: var(--fg2); }
+.flag.ch { border-color: var(--red); } .flag.ch .t { color: var(--red); }
+.flag.us { border-color: var(--blue-mid); } .flag.us .t { color: var(--blue-mid); }
+.dual-mid { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--fg2); font-size: 13px; text-align: center; opacity: 0; transition: opacity .4s ease; }
+.dual-mid.visible { opacity: 1; }
+.dual-mid span { display: block; font-size: 22px; color: var(--fg); }
 
-.sit-card {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 14px;
-  padding: 18px 20px;
-  box-shadow: var(--shadow);
-  transition: border-color .2s, box-shadow .2s;
+/* OBLIGATION CARDS */
+.obligation-item {
+  background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px; padding: 24px 28px;
+  box-shadow: var(--shadow); opacity: 0; transform: translateX(-14px);
+  transition: opacity .5s ease, transform .5s ease, box-shadow .2s; position: relative; overflow: hidden;
 }
-.sit-card:hover { box-shadow: var(--shadow-md); }
-.sit-card.alert { border-color: var(--red); }
-.sit-card h3 { color: var(--blue-mid); margin-bottom: 6px; }
-.sit-card.alert h3 { color: var(--red); }
-.sit-card p { font-size: 13px; color: var(--fg2); margin: 0; }
+.obligation-item::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--blue-mid);
+  transform: scaleY(0); transform-origin: top; transition: transform .6s cubic-bezier(.16,1,.3,1) .25s;
+}
+.obligation-item.visible { opacity: 1; transform: translateX(0); }
+.obligation-item.visible::before { transform: scaleY(1); }
+.obligation-item:hover { box-shadow: var(--shadow-md); }
+.obligation-num {
+  font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--blue-mid); margin-bottom: 6px;
+}
+.obligation-item h3 { color: var(--fg); font-size: 16px; margin-bottom: 10px; }
+.obligation-item p { font-size: 14.5px; color: var(--fg2); margin: 0; line-height: 1.65; }
+.obligation-item p + p { margin-top: 10px; }
 
-/* ── CHECKLIST ── */
-.checklist {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 16px;
-  padding: 24px 28px;
-  box-shadow: var(--shadow);
+/* still-applies chips */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  font-size: 12.5px; font-weight: 600; padding: 6px 12px; border-radius: 999px; background: var(--bg); border: 1.5px solid var(--border); color: var(--fg2);
+  opacity: 0; transform: scale(.85); transition: opacity .35s ease, transform .35s cubic-bezier(.34,1.56,.64,1), background .4s, color .4s, border-color .4s;
 }
-.checklist h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  margin-bottom: 16px; color: var(--fg);
-}
-.checklist-item {
-  display: flex; align-items: flex-start; gap: 12px;
-  padding: 11px 0;
-  border-bottom: 1px solid var(--border);
-  cursor: pointer;
-}
-.checklist-item:last-of-type { border-bottom: none; }
-.check-box {
-  width: 22px; height: 22px;
-  border: 2px solid var(--blue);
-  border-radius: 6px; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  transition: all .2s; margin-top: 2px;
-}
-.check-box.checked { background: var(--blue); border-color: var(--blue); }
-.check-box.checked::after { content: "✓"; color: white; font-size: 13px; font-weight: 700; }
-.checklist-item.done span { text-decoration: line-through; color: var(--fg2); }
-.checklist-item span { font-size: 14.5px; color: var(--fg); font-family: 'Inter', sans-serif; }
-.progress-bar { height: 5px; background: var(--border); border-radius: 3px; margin-top: 16px; }
-.progress-fill { height: 100%; background: var(--green); border-radius: 3px; transition: width .4s ease; }
-.progress-label { font-size: 12px; color: var(--fg2); margin-top: 6px; font-family: 'Inter', sans-serif; }
+.chip.visible { opacity: 1; transform: none; }
+.chip.lit { background: var(--blue-light); color: var(--blue-mid); border-color: var(--blue-mid); }
+.chip.lit::after { content: " → still file"; font-weight: 700; }
 
-/* ── FAQ ── */
-.faq-item {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  margin-bottom: 8px;
-  overflow: hidden;
-  transition: border-color .2s;
+/* FBAR meter */
+.meter-row { display: grid; grid-template-columns: 1fr; gap: 6px; }
+.stack { position: relative; display: flex; height: 30px; border-radius: 8px; overflow: visible; background: var(--border); }
+.seg {
+  height: 100%; width: 0; color: #fff; font-size: 11.5px; font-weight: 600; display: flex; align-items: center; justify-content: center;
+  white-space: nowrap; overflow: hidden; transition: width .7s cubic-bezier(.16,1,.3,1);
 }
-.faq-item.open { border-color: var(--blue); }
-.faq-q {
-  padding: 16px 20px;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 14px; font-weight: 600;
-  cursor: pointer;
-  display: flex; justify-content: space-between; align-items: center;
-  gap: 12px; color: var(--fg);
-  background: transparent;
+.seg:first-child { border-radius: 8px 0 0 8px; }
+.seg.s1 { background: var(--blue-mid); } .seg.s2 { background: #4a78b8; } .seg.s3 { background: var(--gold); border-radius: 0 8px 8px 0; }
+.mark { position: absolute; top: -8px; bottom: -8px; width: 2px; background: var(--red); }
+.mark span { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 11.5px; font-weight: 700; color: var(--red); white-space: nowrap; font-family: 'Space Grotesk', sans-serif; }
+.meter-legend { display: flex; flex-wrap: wrap; gap: 12px; font-size: 12.5px; color: var(--fg2); margin-top: 6px; font-variant-numeric: tabular-nums; }
+.meter-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 5px; }
+.meter-sum { font-size: 13.5px; margin-top: 8px; color: var(--fg2); font-variant-numeric: tabular-nums; }
+.meter-sum strong { color: var(--red); }
+.penalty { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+.pen { border-radius: 12px; padding: 12px 14px; text-align: center; background: var(--red-light); }
+.pen .k { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--fg2); font-family: 'Space Grotesk', sans-serif; }
+.pen .v { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 20px; color: var(--red); font-variant-numeric: tabular-nums; }
+.pen .d { font-size: 11.5px; color: var(--fg2); }
+
+/* 8938 thresholds */
+.thr { display: flex; flex-direction: column; gap: 10px; }
+.thr-row { display: grid; grid-template-columns: 120px 1fr; gap: 12px; align-items: center; font-size: 12.5px; color: var(--fg2); }
+.thr-row b { color: var(--fg); display: block; font-size: 13px; }
+.thr-track { height: 22px; background: var(--border); border-radius: 6px; position: relative; }
+.thr-fill {
+  position: absolute; inset: 0 auto 0 0; width: 0; border-radius: 6px; display: flex; align-items: center; justify-content: flex-end;
+  padding-right: 8px; color: #fff; font-size: 11.5px; font-weight: 700; white-space: nowrap; transition: width 1s cubic-bezier(.16,1,.3,1);
 }
-.faq-arrow { color: var(--blue); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
+.thr-fill.ye { background: var(--blue-mid); }
+.thr-fill.ap { background: var(--blue); opacity: .55; }
+.versus { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+.vs-col { border-radius: 12px; padding: 12px 14px; background: var(--bg); border: 1.5px solid var(--border); font-size: 12.5px; color: var(--fg2); }
+.vs-col b { display: block; font-family: 'Space Grotesk', sans-serif; color: var(--fg); font-size: 13.5px; margin-bottom: 4px; }
+
+/* deadlines timeline */
+.tl { position: relative; height: 112px; margin: 6px 8px 0; }
+.tl-line { position: absolute; top: 44px; left: 0; right: 0; height: 4px; background: var(--border); border-radius: 2px; }
+.tl-prog { position: absolute; top: 44px; left: 0; height: 4px; width: 0; background: var(--blue-mid); border-radius: 2px; transition: width 2s cubic-bezier(.4,0,.2,1); }
+.tl-pt { position: absolute; top: 0; transform: translateX(-50%); text-align: center; opacity: 0; transition: opacity .4s ease; width: 110px; }
+.tl-pt.visible { opacity: 1; }
+.tl-pt .lbl { font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700; color: var(--fg); height: 32px; line-height: 1.3; display: flex; align-items: flex-end; justify-content: center; }
+.tl-dot { width: 16px; height: 16px; border-radius: 50%; background: var(--bg2); border: 3px solid var(--blue-mid); margin: 4px auto 0; }
+.tl-pt .sub { font-size: 11.5px; color: var(--fg2); margin-top: 6px; line-height: 1.35; }
+.tl-pt.last .tl-dot { background: var(--blue-mid); }
+
+/* TOOL CARDS */
+.tools-grid { display: flex; flex-direction: column; gap: 12px; }
+.tool-card {
+  background: var(--bg2); border: 1.5px solid var(--border); border-radius: 14px; padding: 20px 24px;
+  opacity: 0; transform: translateY(10px); transition: opacity .4s ease, transform .4s ease;
+}
+.tool-card.visible { opacity: 1; transform: translateY(0); }
+.tool-card h3 { color: var(--blue-mid); font-size: 15px; margin-bottom: 8px; }
+.tool-card p { font-size: 14.5px; color: var(--fg2); margin: 0; line-height: 1.6; }
+
+/* FEIE + FTC split */
+.split-bar { display: flex; height: 40px; border-radius: 10px; overflow: hidden; background: var(--border); }
+.split-bar div {
+  width: 0; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 12.5px; font-weight: 700;
+  white-space: nowrap; overflow: hidden; transition: width 1s cubic-bezier(.16,1,.3,1);
+}
+.sb-feie { background: var(--green); }
+.sb-ftc  { background: var(--blue-mid); transition-delay: .9s !important; }
+.split-legend { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+.sl { border-radius: 10px; padding: 10px 12px; font-size: 12.5px; color: var(--fg2); opacity: 0; transition: opacity .4s ease; }
+.sl.visible { opacity: 1; }
+.sl b { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-variant-numeric: tabular-nums; }
+.sl.feie { background: var(--green-light); } .sl.feie b { color: var(--green); }
+.sl.ftc  { background: var(--blue-light); }  .sl.ftc b  { color: var(--blue-mid); }
+.split-calc { font-size: 13px; color: var(--fg2); margin-top: 10px; font-variant-numeric: tabular-nums; }
+.salary-pick { display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap; }
+.salary-pick button {
+  font-family: 'Space Grotesk', sans-serif; font-size: 12.5px; font-weight: 700; padding: 6px 12px; border-radius: 8px;
+  border: 1.5px solid var(--border); background: var(--bg); color: var(--fg2); cursor: pointer; transition: all .2s;
+}
+.salary-pick button.active { background: var(--blue-mid); color: #fff; border-color: var(--blue-mid); }
+
+/* WARNING / PFIC */
+.warning-box { background: var(--gold-light); border-left: 4px solid var(--gold); border-radius: 0 14px 14px 0; padding: 20px 24px; }
+.warning-box p { font-size: 15px; color: var(--fg); margin-bottom: 10px; }
+.warning-box p:last-child { margin-bottom: 0; }
+.pfic { display: flex; flex-direction: column; gap: 8px; margin-top: 14px; }
+.pfic-row { display: grid; grid-template-columns: 1fr auto auto; gap: 10px; align-items: center; opacity: 0; transform: translateX(-8px); transition: opacity .4s ease, transform .4s ease; }
+.pfic-row.visible { opacity: 1; transform: none; }
+.fund { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 9px; padding: 7px 12px; font-size: 13px; color: var(--fg); }
+.stamp {
+  font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .08em; color: var(--red);
+  border: 2px solid var(--red); border-radius: 6px; padding: 2px 8px; transform: rotate(-6deg) scale(1.8); opacity: 0;
+  transition: transform .35s cubic-bezier(.34,1.56,.64,1), opacity .2s;
+}
+.pfic-row.stamped .stamp { opacity: 1; transform: rotate(-6deg) scale(1); }
+.form-tag {
+  font-size: 12px; font-weight: 600; background: var(--bg2); border: 1.5px dashed var(--gold); color: var(--gold); border-radius: 7px; padding: 4px 9px;
+  opacity: 0; transform: translateX(-6px); transition: opacity .35s ease .15s, transform .35s ease .15s; white-space: nowrap;
+}
+.pfic-row.stamped .form-tag { opacity: 1; transform: none; }
+.pfic-count { font-size: 13px; color: var(--fg2); margin-top: 6px; }
+.pfic-count b { color: var(--gold); font-variant-numeric: tabular-nums; }
+
+/* STREAMLINED year grid */
+.ygrid { display: grid; grid-template-columns: 90px repeat(6, 1fr); gap: 5px; align-items: center; font-size: 12px; }
+.ygrid .h { font-family: 'Space Grotesk', sans-serif; font-weight: 700; text-align: center; color: var(--fg2); }
+.ygrid .rl { color: var(--fg2); font-weight: 600; }
+.yc {
+  height: 28px; border-radius: 6px; background: var(--border); transform: scale(.6); opacity: 0;
+  transition: transform .35s cubic-bezier(.34,1.56,.64,1), opacity .3s ease;
+}
+.yc.visible { transform: scale(1); opacity: 1; }
+.yc.on.ret  { background: var(--blue-mid); }
+.yc.on.fbar { background: var(--gold); }
+.yc.off { opacity: 0; }
+.yc.off.visible { opacity: .45; }
+.cond-box { margin-top: 14px; display: flex; align-items: center; gap: 10px; font-size: 13px; padding: 10px 14px; border-radius: 10px; background: var(--red-light); color: var(--red); font-weight: 600; opacity: 0; transition: opacity .5s ease; }
+.cond-box.visible { opacity: 1; }
+
+/* FATCA flow */
+.fflow { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: center; gap: 8px; }
+.node {
+  border-radius: 12px; padding: 12px 10px; text-align: center; font-size: 12.5px; color: var(--fg2); background: var(--bg2); border: 1.5px solid var(--border);
+  transition: border-color .4s, background .4s;
+}
+.node b { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 13.5px; color: var(--fg); }
+.node.on { border-color: var(--blue-mid); background: var(--blue-light); }
+.pipe { width: 44px; height: 4px; border-radius: 2px; background: var(--border); position: relative; overflow: hidden; }
+.pipe::after { content: ""; position: absolute; inset: 0; background: var(--blue-mid); transform: scaleX(0); transform-origin: left; transition: transform .6s ease; }
+.pipe.on::after { transform: scaleX(1); }
+.packet { position: absolute; top: -3px; width: 10px; height: 10px; border-radius: 50%; background: var(--gold); left: -12px; }
+.dates { display: flex; justify-content: space-between; gap: 10px; margin-top: 14px; font-size: 12.5px; color: var(--fg2); }
+.dates b { font-family: 'Space Grotesk', sans-serif; color: var(--fg); }
+
+/* PROFILE CARDS */
+.profile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.profile-card {
+  background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px; padding: 20px 22px; box-shadow: var(--shadow);
+  opacity: 0; transform: translateY(12px) scale(.98); transition: opacity .4s ease, transform .4s ease;
+}
+.profile-card.visible { opacity: 1; transform: translateY(0) scale(1); }
+.profile-card.ok  { border-color: var(--gold); }
+.profile-card.warn { border-color: var(--red); }
+.profile-label { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 10px; }
+.profile-card.ok   .profile-label { color: var(--gold); }
+.profile-card.warn .profile-label { color: var(--red); }
+.profile-card h3 { font-size: 14px; color: var(--fg); margin-bottom: 8px; }
+.profile-card ul { list-style: none; padding: 0; }
+.profile-card ul li { font-size: 13.5px; color: var(--fg2); padding: 4px 0; border-bottom: 1px solid var(--border); line-height: 1.5; }
+.profile-card ul li:last-child { border-bottom: none; }
+.status-list { margin-top: 12px; display: flex; flex-direction: column; gap: 5px; }
+.st {
+  display: flex; justify-content: space-between; font-size: 12.5px; padding: 5px 10px; border-radius: 7px; background: var(--bg);
+  opacity: 0; transform: translateX(8px); transition: opacity .35s ease, transform .35s ease;
+}
+.st.visible { opacity: 1; transform: none; }
+.st .y { color: var(--green); font-weight: 700; } .st .n { color: var(--red); font-weight: 700; }
+.profile-verdict { margin-top: 12px; font-size: 13px; font-weight: 600; padding: 8px 12px; border-radius: 8px; }
+.profile-card.ok   .profile-verdict { background: var(--gold-light); color: var(--gold); }
+.profile-card.warn .profile-verdict { background: var(--red-light);  color: var(--red); }
+
+/* MISTAKES */
+.mistake-item {
+  position: relative; overflow: hidden;
+  background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px; padding: 20px 24px; box-shadow: var(--shadow);
+  display: flex; gap: 16px; align-items: flex-start;
+  opacity: 0; transform: translateX(-14px); transition: opacity .5s ease, transform .5s ease;
+}
+.mistake-item.visible { opacity: 1; transform: translateX(0); }
+.mistake-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--red); flex-shrink: 0; margin-top: 6px; transform: scale(0); transition: transform .4s cubic-bezier(.34,1.56,.64,1) .25s; }
+.mistake-item.visible .mistake-dot { transform: scale(1); animation: pulse 1.6s ease .7s 2; }
+@keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(194,43,43,.45); } 50% { box-shadow: 0 0 0 7px rgba(194,43,43,0); } }
+.mistake-item h3 { color: var(--red); font-size: 14.5px; margin-bottom: 6px; }
+.mistake-item p { font-size: 14px; color: var(--fg2); margin: 0; line-height: 1.6; }
+
+/* FAQ */
+.faq-item { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; margin-bottom: 8px; overflow: hidden; transition: border-color .2s; }
+.faq-item.open { border-color: var(--blue-mid); }
+.faq-q { padding: 16px 20px; font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; color: var(--fg); user-select: none; }
+.faq-arrow { color: var(--blue-mid); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
 .faq-item.open .faq-arrow { transform: rotate(180deg); }
-.faq-a {
-  display: none;
-  padding: 0 20px 16px;
-  font-size: 14px; color: var(--fg2); line-height: 1.65;
-  font-family: 'Inter', sans-serif;
-}
-.faq-item.open .faq-a { display: block; }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .35s ease; font-size: 14px; color: var(--fg2); line-height: 1.65; padding: 0 20px; }
+.faq-item.open .faq-a { max-height: 300px; padding: 0 20px 16px; }
 
-/* ── CTA ── */
-.cta-box {
-  background: var(--blue);
-  border-radius: 16px;
-  padding: 32px 36px;
-  text-align: center;
-}
-.cta-box p {
-  color: rgba(255,255,255,.8);
-  font-size: 15px; margin-bottom: 20px;
-}
+/* CTA */
+.cta-box { background: var(--blue); border-radius: 16px; padding: 32px 36px; text-align: center; }
+.cta-box p { color: rgba(255,255,255,.85); font-size: 15px; margin-bottom: 20px; }
 .cta-btn {
-  background: var(--gold);
-  color: #fff;
-  padding: 13px 28px;
-  border-radius: 10px;
-  text-decoration: none;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  display: inline-block;
-  transition: opacity .2s;
+  background: var(--gold); color: #fff; padding: 13px 28px; border-radius: 10px; text-decoration: none;
+  font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; display: inline-block; transition: opacity .2s, transform .2s;
 }
-.cta-btn:hover { opacity: .88; }
+.cta-btn:hover { opacity: .88; transform: translateY(-1px); }
 
-/* ── SOURCES ── */
-.sources {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  padding: 20px 24px;
-}
-.sources h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: .1em; text-transform: uppercase;
-  color: var(--fg2); margin-bottom: 10px;
-}
+/* SOURCES */
+.sources { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; padding: 20px 24px; }
+.sources h3 { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--fg2); margin-bottom: 10px; }
 .sources ol { padding-left: 18px; }
 .sources ol li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; }
 
-/* ── FADE IN ── */
-.fade-in { opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
-.fade-in.visible { opacity: 1; transform: translateY(0); }
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
 
-@media (max-width: 600px) {
-  h1 { font-size: 24px; }
-  .situation-cards { grid-template-columns: 1fr; }
+@media (max-width: 580px) {
+  body { padding-top: 36px; }
+  .takeaways { padding: 20px; }
   .cta-box { padding: 24px 20px; }
-  .takeaways { padding: 20px 20px; }
+  .profile-grid { grid-template-columns: 1fr; }
+  .obligation-item { padding: 20px 18px; }
+  .dual { grid-template-columns: 1fr; }
+  .fflow { grid-template-columns: 1fr; }
+  .pipe { width: 4px; height: 26px; margin: 0 auto; }
+  .pipe::after { transform: scaleY(0); transform-origin: top; }
+  .pipe.on::after { transform: scaleY(1); }
+  .thr-row { grid-template-columns: 1fr; gap: 4px; }
+  .tl-pt { width: 84px; } .tl-pt .sub { font-size: 10.5px; } .tl-pt .lbl { font-size: 11px; }
+  .ygrid { grid-template-columns: 62px repeat(6, 1fr); font-size: 10.5px; }
+  .versus, .penalty, .split-legend { grid-template-columns: 1fr; }
+  .seg { font-size: 10px; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } }
+/* ── ARTICLE 11 EXTRA ── */
+.sec { display: flex; flex-direction: column; }
+.sec > h2 { margin-bottom: 10px; }
+.blk {
+  position: relative; overflow: hidden; background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px;
+  padding: 24px 26px; box-shadow: var(--shadow); opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease;
+}
+.blk.visible { opacity: 1; transform: none; }
+.blk::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--green); transform: scaleY(0); transform-origin: top; transition: transform .6s cubic-bezier(.16,1,.3,1) .25s; }
+.blk.visible::before { transform: scaleY(1); }
+.blk h2 { margin-bottom: 12px; font-size: 19px; }
+.blk p { font-size: 15px; }
+.num { font-variant-numeric: tabular-nums; }
+
+/* pillars */
+.pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; align-items: end; height: 230px; margin-top: 6px; }
+.pil { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; }
+.pil-col { width: 78%; height: 0; border-radius: 10px 10px 0 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 10px; color: #fff; transition: height 1s cubic-bezier(.16,1,.3,1); overflow: hidden; }
+.pil-col b { font-family: 'Space Grotesk', sans-serif; font-size: 15px; }
+.pil-col small { font-size: 11.5px; opacity: .9; text-align: center; padding: 0 6px; line-height: 1.3; }
+.pil.p1 .pil-col { background: #6b7a96; } .pil.p2 .pil-col { background: var(--blue-mid); } .pil.p3 .pil-col { background: var(--green); }
+.pil-base { width: 100%; height: 6px; background: var(--border); border-radius: 3px; }
+.pil-cap { font-size: 12px; color: var(--fg2); text-align: center; margin-top: 8px; line-height: 1.4; min-height: 34px; }
+.pil-cap b { color: var(--fg); }
+.pil.p3 .pil-cap b { color: var(--green); }
+.tag-vol { display: inline-block; margin-top: 4px; font-size: 10.5px; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: var(--green-light); color: var(--green); opacity: 0; transition: opacity .4s ease; }
+.tag-vol.visible { opacity: 1; }
+
+/* three advantages */
+.adv { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 6px 0 16px; }
+.adv-card { border-radius: 12px; padding: 14px; background: var(--green-light); text-align: center; opacity: 0; transform: translateY(10px); transition: opacity .4s ease, transform .4s ease; }
+.adv-card.visible { opacity: 1; transform: none; }
+.adv-card .n { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--green); font-size: 20px; }
+.adv-card .t { font-size: 13px; color: var(--fg); line-height: 1.4; }
+.save { display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: center; }
+.stat { text-align: center; border-radius: 12px; padding: 14px 10px; }
+.stat .k { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--fg2); }
+.stat .v { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1.3; }
+.stat.in { background: var(--blue-light); } .stat.in .v { color: var(--blue-mid); }
+.stat.out { background: var(--green-light); } .stat.out .v { color: var(--green); }
+.arrow { font-size: 22px; color: var(--fg2); }
+.ten { margin-top: 14px; }
+.ten-lbl { display: flex; justify-content: space-between; font-size: 12.5px; color: var(--fg2); margin-bottom: 6px; }
+.ten-lbl b { color: var(--green); font-family: 'Space Grotesk', sans-serif; font-variant-numeric: tabular-nums; }
+.ten-row { display: grid; grid-template-columns: repeat(10, 1fr); gap: 4px; }
+.yr { height: 26px; border-radius: 5px; background: var(--border); transition: background .3s ease; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #fff; font-weight: 700; }
+.yr.on { background: var(--green); }
+
+/* limits */
+.limits { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 6px 0 14px; }
+.lim { border-radius: 14px; padding: 16px; border: 1.5px solid var(--border); background: var(--bg); opacity: 0; transform: translateY(10px); transition: opacity .4s ease, transform .4s ease; }
+.lim.visible { opacity: 1; transform: none; }
+.lim .k { font-size: 12.5px; color: var(--fg2); line-height: 1.4; }
+.lim .k b { display: block; color: var(--fg); font-size: 13.5px; font-family: 'Space Grotesk', sans-serif; }
+.lim .v { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 24px; color: var(--blue-mid); font-variant-numeric: tabular-nums; margin-top: 6px; }
+.lim .d { font-size: 12px; color: var(--fg2); }
+.permits { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.permit { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 13px; width: 38px; height: 38px; border-radius: 9px; display: flex; align-items: center; justify-content: center; background: var(--blue-light); color: var(--blue-mid); border: 1.5px solid var(--blue-mid); opacity: 0; transform: scale(.6); transition: opacity .3s ease, transform .35s cubic-bezier(.34,1.56,.64,1); }
+.permit.visible { opacity: 1; transform: none; }
+.dl { display: flex; align-items: center; gap: 14px; margin-top: 4px; }
+.cal { width: 64px; border-radius: 10px; overflow: hidden; border: 1.5px solid var(--border); text-align: center; background: var(--bg2); flex-shrink: 0; transform: rotateX(70deg); transform-origin: top; opacity: 0; transition: transform .6s cubic-bezier(.34,1.56,.64,1), opacity .3s; }
+.cal.run { transform: none; opacity: 1; }
+.cal .m { background: var(--red); color: #fff; font-family: 'Space Grotesk', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .1em; padding: 3px 0; }
+.cal .d { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700; color: var(--fg); line-height: 1.4; }
+.dl p { margin: 0; font-size: 14.5px; }
+
+/* retroactive */
+.retro { background: var(--green-light); border-left: 4px solid var(--green); border-radius: 0 14px 14px 0; padding: 18px 20px; margin-top: 4px; }
+.retro p { font-size: 14.5px; }
+.retro strong { color: var(--green); }
+.rgrid { display: grid; grid-template-columns: 70px 1fr; gap: 8px 10px; align-items: center; margin-top: 12px; font-size: 12.5px; }
+.rgrid .y { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--fg); }
+.rtrack { position: relative; height: 26px; background: var(--bg2); border-radius: 6px; overflow: hidden; display: flex; border: 1px solid var(--border); }
+.rseg { width: 0; height: 100%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 11px; font-weight: 700; white-space: nowrap; overflow: hidden; transition: width .8s cubic-bezier(.16,1,.3,1); }
+.rseg.paid { background: var(--blue-mid); }
+.rseg.gap { background: repeating-linear-gradient(45deg, var(--gold-light), var(--gold-light) 5px, transparent 5px, transparent 10px); color: var(--gold); border-left: 2px dashed var(--gold); }
+.rseg.gap.filled { background: var(--green); color: #fff; border-left: none; transition: background .5s ease; }
+.rseg.locked { background: var(--red-light); color: var(--red); }
+.rnote { font-size: 12.5px; color: var(--fg2); margin-top: 10px; font-variant-numeric: tabular-nums; min-height: 20px; }
+.rnote strong { color: var(--fg); }
+
+/* lock + exits */
+.lockwrap { display: grid; grid-template-columns: 90px 1fr; gap: 18px; align-items: center; }
+.lock-ico { width: 74px; height: 74px; border-radius: 18px; background: var(--red-light); border: 2px solid var(--red); display: flex; align-items: center; justify-content: center; font-size: 34px; transition: background .5s, border-color .5s; }
+.lock-ico.open { background: var(--green-light); border-color: var(--green); }
+.exits { display: flex; flex-direction: column; gap: 7px; }
+.exit { display: grid; grid-template-columns: 26px 1fr; gap: 10px; align-items: start; padding: 10px 12px; border-radius: 10px; background: var(--bg); border: 1.5px solid var(--border); font-size: 14px; opacity: 0; transform: translateX(10px); transition: opacity .35s ease, transform .35s ease, border-color .35s, background .35s; }
+.exit.visible { opacity: 1; transform: none; }
+.exit.lit { border-color: var(--green); background: var(--green-light); }
+.exit .ic { width: 24px; height: 24px; border-radius: 50%; background: var(--border); color: #fff; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; transition: background .3s; }
+.exit.lit .ic { background: var(--green); }
+.exit b { color: var(--fg); }
+.exit span.t { color: var(--fg2); line-height: 1.5; }
+
+/* canton scale */
+.scale-wrap { margin-top: 16px; }
+.scale { position: relative; height: 14px; border-radius: 7px; background: linear-gradient(90deg, var(--green), var(--gold), var(--red)); transform: scaleX(0); transform-origin: left; transition: transform 1.2s cubic-bezier(.16,1,.3,1); }
+.scale.run { transform: scaleX(1); }
+.scale-labels { display: flex; justify-content: space-between; font-size: 12px; color: var(--fg2); margin-top: 6px; }
+.scale-labels b { color: var(--fg); font-family: 'Space Grotesk', sans-serif; }
+
+/* 5-year waterfall */
+.wf { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; align-items: end; height: 220px; border-bottom: 2px solid var(--border); padding: 0 10px; }
+.wf-col { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; position: relative; }
+.wf-bar { width: 72%; height: 0; border-radius: 8px 8px 0 0; transition: height 1s cubic-bezier(.16,1,.3,1); display: flex; align-items: flex-start; justify-content: center; padding-top: 6px; color: #fff; font-size: 12px; font-weight: 700; font-variant-numeric: tabular-nums; text-align: center; line-height: 1.2; }
+.wf-col.s .wf-bar { background: var(--green); }
+.wf-col.t .wf-bar { background: var(--red); }
+.wf-col.n .wf-bar { background: var(--blue-mid); }
+.wf-caps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 0 10px; margin-top: 8px; }
+.wf-caps div { font-size: 12.5px; color: var(--fg2); text-align: center; line-height: 1.35; }
+.wf-caps b { color: var(--fg); display: block; }
+.wf-calc { font-size: 13px; color: var(--fg2); margin-top: 12px; font-variant-numeric: tabular-nums; }
+.deposit-line { font-size: 13px; color: var(--fg2); margin-bottom: 14px; font-variant-numeric: tabular-nums; }
+.deposit-line strong { color: var(--fg); }
+
+/* providers */
+.prov { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 12px; }
+.pv { border-radius: 12px; padding: 14px; text-align: center; border: 1.5px solid var(--border); background: var(--bg); opacity: 0; transform: translateY(8px); transition: opacity .35s ease, transform .35s ease; }
+.pv.visible { opacity: 1; transform: none; }
+.pv .i { font-size: 22px; }
+.pv b { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 14px; color: var(--fg); margin-top: 4px; }
+.pv small { font-size: 12px; color: var(--fg2); }
+
+/* multiple accounts */
+.multi { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px; }
+.mcase { border-radius: 14px; padding: 16px; border: 1.5px solid var(--border); background: var(--bg); }
+.mcase.one { border-color: var(--red); } .mcase.many { border-color: var(--green); }
+.mcase h3 { font-size: 13.5px; margin-bottom: 10px; }
+.mcase.one h3 { color: var(--red); } .mcase.many h3 { color: var(--green); }
+.mrow { display: flex; align-items: flex-end; gap: 8px; height: 110px; }
+.mbar { flex: 1; height: 0; border-radius: 6px 6px 0 0; transition: height .9s cubic-bezier(.16,1,.3,1); display: flex; align-items: flex-start; justify-content: center; color: #fff; font-size: 10.5px; font-weight: 700; padding-top: 4px; }
+.mcase.one .mbar { background: var(--red); }
+.mcase.many .mbar { background: var(--green); }
+.myrs { display: flex; gap: 8px; margin-top: 6px; font-size: 11px; color: var(--fg2); }
+.myrs span { flex: 1; text-align: center; }
+.mres { margin-top: 10px; font-size: 12.5px; font-weight: 600; }
+.mcase.one .mres { color: var(--red); } .mcase.many .mres { color: var(--green); }
+
+/* mistakes */
+.mk { position: relative; overflow: hidden; background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px; padding: 20px 24px; box-shadow: var(--shadow); display: flex; gap: 16px; opacity: 0; transform: translateX(-14px); transition: opacity .5s ease, transform .5s ease; }
+.mk.visible { opacity: 1; transform: none; }
+.mk-num { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; color: var(--red); opacity: 0; line-height: 1; min-width: 26px; transform: scale(1.6); transition: opacity .5s ease .2s, transform .5s cubic-bezier(.34,1.56,.64,1) .2s; }
+.mk.visible .mk-num { opacity: .25; transform: scale(1); }
+.mk h3 { color: var(--red); font-size: 15px; margin-bottom: 6px; }
+.mk p { font-size: 14.5px; color: var(--fg2); margin: 0; line-height: 1.6; }
+.days { display: flex; gap: 6px; margin-top: 12px; }
+.day { flex: 1; text-align: center; border-radius: 8px; padding: 6px 0; border: 1.5px solid var(--border); font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 13px; color: var(--fg2); background: var(--bg); transition: all .35s ease; }
+.day small { display: block; font-family: 'Inter', sans-serif; font-weight: 500; font-size: 10px; }
+.day.ok { border-color: var(--green); color: var(--green); background: var(--green-light); }
+.day.risk { border-color: var(--gold); color: var(--gold); background: var(--gold-light); }
+.day.late { border-color: var(--red); color: var(--red); background: var(--red-light); }
+.order { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+.ord { border-radius: 10px; padding: 10px 12px; font-size: 12.5px; line-height: 1.5; opacity: 0; transition: opacity .4s ease; }
+.ord.visible { opacity: 1; }
+.ord.bad { background: var(--red-light); color: var(--red); } .ord.good { background: var(--green-light); color: var(--green); }
+.ord b { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 13px; margin-bottom: 2px; }
+
+@media (max-width: 580px) {
+  .blk { padding: 20px 18px; }
+  .pillars { height: 210px; gap: 8px; } .pil-col b { font-size: 13px; } .pil-col small { font-size: 10px; }
+  .adv, .prov { grid-template-columns: 1fr; }
+  .limits, .multi, .order { grid-template-columns: 1fr; }
+  .lockwrap { grid-template-columns: 1fr; } .lock-ico { margin: 0 auto; }
+  .wf { height: 200px; gap: 8px; padding: 0; } .wf-caps { gap: 8px; padding: 0; } .wf-bar { font-size: 10.5px; }
+  .stat .v { font-size: 18px; }
+  .rgrid { grid-template-columns: 56px 1fr; }
+  .scale-labels .mid { display: none; }
 }
 </style>
 </head>
 <body>
+<div id="progress-bar"></div>
 <div class="article">
-  <div class="article-header fade-in">
-    <p class="article-meta">Pensions · Tax Savings · 5 min read</p>
-    <h1>Pillar 3a: What It Is, How It Works, and Why Every Expat Should Open One</h1>
+
+  <!-- HEADER -->
+  <div class="article-header">
+    <p class="article-meta">Tax &amp; Finance · Pensions · 5 min read</p>
+    <h1>Pillar 3a in Switzerland: What It Is, How It Works and When You Can Take the Money Out</h1>
+    <div class="header-rule"></div>
   </div>
 
-  <div class="quick-answer fade-in">
-    <p><strong>Quick Answer:</strong> Pillar 3a is Switzerland's voluntary private pension account. Every franc you contribute is deducted from your taxable income. For an expat earning CHF 120,000 in Geneva, contributing the maximum <span class="hl-green">CHF 7,258 saves roughly CHF 2,100 in tax</span> — this year, every year. You can open one at any Swiss bank. Deadline: 31 December.</p>
+  <!-- QUICK ANSWER -->
+  <div class="quick-answer reveal">
+    <p><strong>Quick Answer:</strong> Pillar 3a is a retirement savings account that the Swiss state itself encourages: everything you put in comes off your taxable income, so you pay less tax every year. In return, the money is locked until one of several situations set out in law — one of which is leaving Switzerland. For most expats it pays off, even if they only stay a few years.</p>
   </div>
 
-  <div class="takeaways fade-in">
-    <h2>Key Takeaways</h2>
-    <ul>
-      <li>Pillar 3a contributions are fully deductible from taxable income</li>
-      <li>2026 limit: CHF 7,258 for employees, CHF 36,288 for self-employed</li>
-      <li>New in 2026: retroactive contributions possible for gaps from 2025 onwards</li>
-      <li>Gains inside Pillar 3a are tax-free until withdrawal</li>
-      <li>Available to all B and C permit holders with Swiss earned income</li>
-    </ul>
+  <!-- WHAT IS -->
+  <div class="blk">
+    <h2>What Is Pillar 3a?</h2>
+    <p>The Swiss pension system rests on three pillars:</p>
+    <div class="pillars" id="pillars">
+      <div class="pil p1"><div class="pil-col" data-h="62"><b>Pillar 1</b><small>AHV — state pension</small></div><div class="pil-base"></div><div class="pil-cap"><b>Mandatory</b><br>paid through salary deductions</div></div>
+      <div class="pil p2"><div class="pil-col" data-h="80"><b>Pillar 2</b><small>company pension fund</small></div><div class="pil-base"></div><div class="pil-cap"><b>Mandatory</b> above a salary threshold<br>paid by you and your employer</div></div>
+      <div class="pil p3"><div class="pil-col" data-h="98"><b>Pillar 3a</b><small>private savings</small></div><div class="pil-base"></div><div class="pil-cap"><b>Voluntary</b><br>paid only by you</div></div>
+    </div>
+    <p style="margin-top:16px">The first two pillars rarely cover enough to keep the same standard of living in retirement. Pillar 3a exists to close that gap — and it's the only one where you decide how much to put in, where to invest it and, within the rules, when to take it out.</p>
   </div>
 
-  <h2 class="fade-in">Switzerland's Three Pillars</h2>
-  <div class="pillars fade-in">
-    <div class="pillar-card p1">
-      <div class="pillar-label">Pillar 1</div>
-      <h3>AHV/AVS State Pension</h3>
-      <p>Mandatory. Funded by payroll deductions. Covers basic needs in retirement.</p>
+  <!-- TAX ADVANTAGE -->
+  <div class="blk">
+    <h2>The Tax Advantage</h2>
+    <p>In exchange for locking the money away, you get three advantages:</p>
+    <div class="adv">
+      <div class="adv-card" data-delay="0"><div class="n">1</div><div class="t">What you deposit is <b>deducted</b> from your taxable income</div></div>
+      <div class="adv-card" data-delay="150"><div class="n">2</div><div class="t">Gains inside the account are <b>tax-free</b></div></div>
+      <div class="adv-card" data-delay="300"><div class="n">3</div><div class="t">When you withdraw, a <b>separate, lower</b> tax applies</div></div>
     </div>
-    <div class="pillar-card p2">
-      <div class="pillar-label">Pillar 2</div>
-      <h3>BVG/LPP Occupational</h3>
-      <p>Mandatory for employees. Managed by employer's pension fund.</p>
-    </div>
-    <div class="pillar-card p3">
-      <div class="pillar-label">Pillar 3a ← You decide</div>
-      <h3>Private Pension</h3>
-      <p>Voluntary. Fully tax-deductible. You choose the bank and investments.</p>
-    </div>
-  </div>
-
-  <p class="fade-in">Pillars 1 and 2 together replace roughly 60–70% of your last salary. Pillar 3a closes the gap — and gives you a tax deduction every year while doing it.<sup>1</sup></p>
-
-  <div class="saving-box fade-in">
-    <p>Tax saved by contributing CHF 7,258 — Geneva, CHF 120,000 income</p>
-    <div class="saving-num" id="savingCounter">CHF 0</div>
-    <small>Approximate saving at ~29% marginal rate. Higher earners save more.</small>
-  </div>
-
-  <h2 class="fade-in">The Rules in Plain Language</h2>
-  <div class="rules-grid fade-in">
-    <div class="rule-card">
-      <h3>Who can contribute?</h3>
-      <p>Anyone with Swiss-taxable earned income — employees, self-employed, B and C permit holders, cross-border workers who opt for ordinary assessment.</p>
-    </div>
-    <div class="rule-card">
-      <h3>How much?</h3>
-      <p>Employees with Pillar 2: CHF 7,258/year (2026). Self-employed without Pillar 2: up to 20% of net income, max CHF 36,288.</p>
-    </div>
-    <div class="rule-card">
-      <h3>When is the deadline?</h3>
-      <p>31 December of each year. Bank transfers take 1–2 days — don't leave it to the last minute.</p>
-    </div>
-    <div class="rule-card">
-      <h3>When can I withdraw?</h3>
-      <p>From age 60 (5 years before retirement). Earlier withdrawal possible when leaving Switzerland permanently, buying a primary residence, or starting a business.</p>
-    </div>
-    <div class="rule-card">
-      <h3>Are investment gains taxed?</h3>
-      <p>No. Capital gains and interest inside Pillar 3a are tax-free until withdrawal. At withdrawal, a reduced flat tax applies (varies by canton).</p>
-    </div>
-    <div class="rule-card">
-      <h3>Can I have multiple accounts?</h3>
-      <p>Yes. You can split contributions across up to 5 separate Pillar 3a accounts. This reduces the tax hit on withdrawal by staggering them across different years.</p>
+    <div class="viz" id="save">
+      <div class="viz-label">Example: you deposit CHF 7,258 in 2026 (Geneva, upper-middle salary)</div>
+      <div class="save">
+        <div class="stat in"><div class="k">Taxable income</div><div class="v" id="sv-in">− CHF 0</div></div>
+        <div class="arrow">→</div>
+        <div class="stat out"><div class="k">Less tax that year</div><div class="v" id="sv-out">CHF 0</div></div>
+      </div>
+      <div class="ten">
+        <div class="ten-lbl"><span>Over 10 years</span><b id="ten-total">CHF 0</b></div>
+        <div class="ten-row" id="ten-row"></div>
+      </div>
+      <p class="viz-note">About CHF 2,000–2,500 a year (midpoint 2,250 shown) → 10 × 2,250 ≈ CHF 22,500 over 10 years. Estimate; depends on your income and canton.</p>
     </div>
   </div>
 
-  <div class="new-rule fade-in">
-    <h3>🆕 New in 2026: Retroactive Contributions</h3>
-    <p>Starting January 2026, you can top up missed Pillar 3a contributions from previous years — up to 10 years back. <span class="hl-red">Important:</span> this only applies to gaps from 2025 onwards. Missed contributions from 2024 and earlier cannot be recovered. You must first pay the full 2026 contribution (CHF 7,258) before making any retroactive top-up.<sup>2</sup></p>
+  <!-- WHO / HOW MUCH -->
+  <div class="blk">
+    <h2>Who Can Contribute, and How Much?</h2>
+    <p>Anyone working in Switzerland with a salary subject to AHV deductions — with a B, C, L or G permit, whatever their nationality and with no minimum time in the country. In a couple, each partner can pay in their own maximum, as long as both are working.</p>
+    <div class="permits" id="permits">
+      <span class="permit" data-delay="0">B</span><span class="permit" data-delay="100">C</span><span class="permit" data-delay="200">L</span><span class="permit" data-delay="300">G</span>
+    </div>
+    <div class="limits" id="limits">
+      <div class="lim" data-delay="0"><div class="k"><b>With a company pension fund</b>(Pillar 2)</div><div class="v" id="lim1">CHF 0</div><div class="d">per year — same in 2025 and 2026</div></div>
+      <div class="lim" data-delay="150"><div class="k"><b>Self-employed, no Pillar 2</b>20% of net income, up to</div><div class="v" id="lim2">CHF 0</div><div class="d">per year</div></div>
+    </div>
+    <div class="dl" id="dl"><div class="cal"><div class="m">DEC</div><div class="d">31</div></div><p>The money must reach your account by <b>31 December</b> to count for that year.</p></div>
+
+    <div class="retro" id="retro" style="margin-top:18px">
+      <p><strong>New since 2026: missed years can now be made up.</strong> If you didn't pay in the maximum one year, you can top it up later — up to 10 years afterwards — and deduct it from your taxes. The conditions: it only applies to years from 2025 onward; in the year you catch up, you must first pay in that year's maximum; and each year you can add at most CHF 7,258 extra. In 2026, for example, you can deposit 2026's CHF 7,258 and also what you missed in 2025.</p>
+      <div class="rgrid">
+        <span class="y">2024</span><div class="rtrack"><div class="rseg locked" id="r24">Gap can't be recovered</div></div>
+        <span class="y">2025</span><div class="rtrack"><div class="rseg paid" id="r25a">Paid 3,500</div><div class="rseg gap" id="r25b">Gap 3,758</div></div>
+        <span class="y">2026</span><div class="rtrack"><div class="rseg paid" id="r26">Full 7,258 first</div></div>
+      </div>
+      <p class="rnote" id="rnote">&nbsp;</p>
+    </div>
   </div>
 
-  <h2 class="fade-in">Before You Ask</h2>
-  <div class="faq fade-in">
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">I pay withholding tax (impôt à la source). Can I still use Pillar 3a?<span class="faq-arrow">▾</span></div>
-      <div class="faq-a">Yes, but you need to file a tax return to claim the deduction. If you earn above CHF 120,000 (B permit), you must file anyway. Below that threshold, you can request ordinary assessment to claim the Pillar 3a deduction — but once you opt in, you cannot go back to withholding tax.</div>
+  <!-- LOCKED -->
+  <div class="blk">
+    <h2>The Money Is Locked — and When It Can Come Out</h2>
+    <p>This is the most important part: once deposited, you can't withdraw the money whenever you like. It only comes out in one of these situations:</p>
+    <div class="lockwrap" id="lockwrap">
+      <div class="lock-ico" id="lock-ico">🔒</div>
+      <div class="exits">
+        <div class="exit" data-delay="0"><span class="ic">✓</span><span class="t"><b>Retirement:</b> from 5 years before the official retirement age — currently from age 60.</span></div>
+        <div class="exit" data-delay="250"><span class="ic">✓</span><span class="t"><b>Leaving Switzerland for good:</b> you withdraw the full balance, with no penalty and no minimum holding period.</span></div>
+        <div class="exit" data-delay="500"><span class="ic">✓</span><span class="t"><b>Buying the home you'll live in:</b> not for investment property, and only once every five years.</span></div>
+        <div class="exit" data-delay="750"><span class="ic">✓</span><span class="t"><b>Becoming self-employed:</b> as long as you're genuinely independent, not employed by a company.</span></div>
+        <div class="exit" data-delay="1000"><span class="ic">✓</span><span class="t"><b>Disability or death:</b> the money can be paid to you or your beneficiaries, under specific rules.</span></div>
+      </div>
     </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">What happens to my Pillar 3a if I leave Switzerland?<span class="faq-arrow">▾</span></div>
-      <div class="faq-a">You can withdraw it when you permanently leave Switzerland. A withholding tax is applied at the cantonal rate — this varies significantly by canton, which is why some expats transfer their 3a to a canton with a low exit tax before leaving (e.g. Schwyz or Appenzell).</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Bank 3a or investment 3a — which is better?<span class="faq-arrow">▾</span></div>
-      <div class="faq-a">The tax deduction is identical. The difference is return. A bank account earns minimal interest. An investment account (e.g. VIAC, Frankly, finpension) puts your money in equity funds — historically returning 5–7% per year. For expats staying 3+ years, investment 3a generally makes more sense.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Can my spouse also contribute?<span class="faq-arrow">▾</span></div>
-      <div class="faq-a">Yes. Each working spouse has their own CHF 7,258 limit. A dual-income couple can contribute CHF 14,516 together and save CHF 3,000–5,000 in tax depending on income and canton.</div>
+    <p style="margin-top:16px"><b>When you withdraw, you pay withdrawal tax:</b> a tax separate from your salary, calculated only on the amount you take out. If you already live outside Switzerland, the rate depends on the canton where your Pillar 3a provider is based — not where you used to live. Schwyz has the lowest rate; Geneva and Vaud are among the highest.</p>
+    <div class="scale-wrap" id="scale-wrap">
+      <div class="scale" id="scale"></div>
+      <div class="scale-labels"><span><b>Schwyz</b> · lowest</span><span class="mid">Withholding tax on leaving</span><span><b>Geneva, Vaud</b> · among the highest</span></div>
     </div>
   </div>
 
-  <div class="sources fade-in">
+  <!-- 5 YEARS -->
+  <div class="blk">
+    <h2>Is It Worth It If You Only Stay 5 Years?</h2>
+    <div id="five">
+      <p class="deposit-line">Example: 5 years at CHF 7,258 a year → 5 × 7,258 = <strong>CHF 36,290 deposited</strong> (plus investment returns)</p>
+      <div class="wf">
+        <div class="wf-col s"><div class="wf-bar" data-h="100">≈ CHF 10,900</div></div>
+        <div class="wf-col t"><div class="wf-bar" data-h="27">− 1,800 to 2,900</div></div>
+        <div class="wf-col n"><div class="wf-bar" data-h="78">≈ CHF 8,000–9,000</div></div>
+      </div>
+      <div class="wf-caps">
+        <div><b>Tax saved</b>over the 5 years</div>
+        <div><b>Withdrawal tax</b>on leaving: ~5–8% of 36,290</div>
+        <div><b>Net gain</b>in tax alone</div>
+      </div>
+      <p class="wf-calc">10,900 − 2,900 ≈ 8,000 · 10,900 − 1,800 ≈ 9,100</p>
+    </div>
+    <p style="margin-top:12px">In other words: even if you leave after a few years, what you save while contributing is well above the tax you pay on the way out.</p>
+  </div>
+
+  <!-- PROVIDER -->
+  <div class="blk">
+    <h2>Bank, Insurer or ETFs?</h2>
+    <p>Your Pillar 3a can sit in a bank savings account, a retirement insurance policy, or an ETF portfolio (low-cost stock-market funds) through a digital platform. Costs and long-term returns differ a lot — it's one of the most important Pillar 3a decisions. We cover it in full in our article Pillar 3a: Bank, Insurance or ETF Portfolio?</p>
+    <div class="prov">
+      <div class="pv" data-delay="0"><div class="i">🏦</div><b>Bank account</b><small>savings interest</small></div>
+      <div class="pv" data-delay="150"><div class="i">🛡️</div><b>Insurance</b><small>long-term commitment</small></div>
+      <div class="pv" data-delay="300"><div class="i">📈</div><b>ETF portfolio</b><small>invested, low cost</small></div>
+    </div>
+  </div>
+
+  <!-- MULTIPLE ACCOUNTS -->
+  <div class="blk">
+    <h2>Several Accounts: A Strategy Worth Knowing</h2>
+    <p>You can hold several Pillar 3a accounts — and there's a good reason to. When you withdraw, you must take each account's full balance at once, and the withdrawal tax rises with the amount. With several smaller accounts, you can withdraw them in different years and pay less tax overall. A rule of thumb: when one account approaches CHF 50,000, open another.</p>
+    <div class="multi" id="multi">
+      <div class="mcase one"><h3>One account</h3>
+        <div class="mrow"><div class="mbar" data-h="100">all at once</div></div>
+        <div class="myrs"><span>Year 1</span></div>
+        <div class="mres">One big amount → higher rate</div></div>
+      <div class="mcase many"><h3>Three accounts</h3>
+        <div class="mrow"><div class="mbar" data-h="34">1</div><div class="mbar" data-h="34">2</div><div class="mbar" data-h="34">3</div></div>
+        <div class="myrs"><span>Year 1</span><span>Year 2</span><span>Year 3</span></div>
+        <div class="mres">Smaller amounts → lower rate each year</div></div>
+    </div>
+  </div>
+
+  <!-- MISTAKES -->
+  <div class="sec">
+    <h2 class="reveal">Common Mistakes</h2>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div class="mk" data-delay="0">
+        <div class="mk-num">1</div>
+        <div style="flex:1;min-width:0"><h3>Leaving your deposit to the last days of December</h3>
+        <p>The legal deadline is 31 December, but many banks close earlier — some on the morning of the 30th. A deposit that arrives on 2 January counts for the following year.</p>
+        <div class="days" id="days">
+          <div class="day" data-c="ok">27<small>safe</small></div>
+          <div class="day" data-c="ok">28<small>safe</small></div>
+          <div class="day" data-c="risk">29<small>risky</small></div>
+          <div class="day" data-c="risk">30<small>bank cut-off?</small></div>
+          <div class="day" data-c="late">31<small>too late?</small></div>
+          <div class="day" data-c="late">2 Jan<small>next year</small></div>
+        </div></div>
+      </div>
+      <div class="mk" data-delay="100">
+        <div class="mk-num">2</div>
+        <div style="flex:1;min-width:0"><h3>Withdrawing before officially moving your address abroad</h3>
+        <p>If you withdraw while still registered in Switzerland, you pay tax as a resident. Waiting until you're registered in your new country means the provider's canton withholding tax applies instead — often lower.</p>
+        <div class="order" id="order">
+          <div class="ord bad"><b>✕ Withdraw → then deregister</b>taxed as a Swiss resident</div>
+          <div class="ord good"><b>✓ Deregister → then withdraw</b>provider's canton withholding tax, often lower</div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div>
+    <h2 class="reveal">Before You Ask</h2>
+    <div style="margin-top:12px">
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">Is there a minimum amount to deposit?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">There's no legal minimum. You can pay in any amount up to the annual maximum, all at once or bit by bit through the year.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">Can I move my Pillar 3a to another provider?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">Yes. You can transfer the balance to another Pillar 3a provider without paying tax, as long as it goes directly from one 3a account to another.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">I'm American. Can I have a Pillar 3a?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">You can, but the US tax authority doesn't treat it as a tax-advantaged retirement account — and if you invest in funds, PFIC rules may apply. We explain this in our article on US citizens in Switzerland. Speak to an advisor before opening one.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-box reveal">
+    <p>Pillar 3a is one of the simplest and most valuable tools in Switzerland. But how much to pay in, where, how many accounts to open and when to withdraw depend on your salary, how long you plan to stay and, sometimes, your obligations in another country. SwissExpatHub connects you with advisors who help international residents make the most of the Swiss pension system.</p>
+    <a href="/directory" class="cta-btn">Find Your Advisor →</a>
+  </div>
+
+  <!-- SOURCES -->
+  <div class="sources reveal">
     <h3>Sources</h3>
     <ol>
-      <li>Federal Social Insurance Office — Three-pillar pension system: bsv.admin.ch</li>
-      <li>Federal Tax Administration — Pillar 3a contribution limits and retroactive rules 2026: estv.admin.ch</li>
-      <li>Federal Council — Ordinance on Pillar 3a (BVV3 Art. 7): admin.ch</li>
+      <li>Federal Social Insurance Office — Pillar 3a and retroactive contributions: bsv.admin.ch</li>
+      <li>Geneva Tax Authority — Retroactive Pillar 3a buy-ins from 2026: ge.ch</li>
+      <li>Federal Tax Administration — Pillar 3a deduction limits 2026: estv.admin.ch</li>
     </ol>
   </div>
+
 </div>
+
 <script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-  function animateCounter(el, target, prefix, duration) {
-    let start = 0; const step = target / (duration / 16);
-    const timer = setInterval(() => { start = Math.min(start + step, target); el.textContent = prefix + Math.round(start).toLocaleString(); if (start >= target) clearInterval(timer); }, 16);
-  }
-  setTimeout(() => animateCounter(document.getElementById('savingCounter'), 2100, 'CHF ', 1500), 600);
-  function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+window.addEventListener('scroll', () => {
+  const docH = document.documentElement.scrollHeight - window.innerHeight;
+  document.getElementById('progress-bar').style.width = (docH > 0 ? window.scrollY / docH * 100 : 0) + '%';
+});
+window.addEventListener('load', () => {
+  setTimeout(() => document.querySelector('.article-meta').classList.add('visible'), 80);
+  setTimeout(() => document.querySelector('h1').classList.add('visible'), 220);
+  setTimeout(() => document.querySelector('.header-rule').classList.add('visible'), 420);
+});
+function stagger(selector, threshold) {
+  const obs = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), parseInt(e.target.dataset.delay || 0)); obs.unobserve(e.target); }
+  }), { threshold });
+  document.querySelectorAll(selector).forEach(el => obs.observe(el));
+}
+function onView(id, fn, threshold = 0.4) {
+  const el = document.getElementById(id);
+  const obs = new IntersectionObserver(en => { if (en[0].isIntersecting) { fn(); obs.disconnect(); } }, { threshold });
+  obs.observe(el);
+}
+const chf = n => 'CHF ' + Math.round(n).toLocaleString('en-US');
+function countUp(el, to, ms, fmt = chf) {
+  const t0 = performance.now();
+  const step = t => { const k = Math.min(1, (t - t0) / ms), e = 1 - Math.pow(1 - k, 3);
+    el.textContent = fmt(to * e); if (k < 1) requestAnimationFrame(step); };
+  requestAnimationFrame(step);
+}
+stagger('.reveal', 0.08);
+stagger('.blk', 0.05);
+stagger('.adv-card', 0.3);
+stagger('.permit', 0.5);
+stagger('.lim', 0.3);
+stagger('.exit', 0.2);
+stagger('.pv', 0.3);
+stagger('.mk', 0.1);
+
+// Pillars
+onView('pillars', () => {
+  document.querySelectorAll('.pil-col').forEach((c, i) => setTimeout(() => c.style.height = c.dataset.h + '%', i * 350));
+});
+
+// Tax saving
+(function () { const row = document.getElementById('ten-row'); for (let i = 1; i <= 10; i++) row.innerHTML += `<div class="yr">${i}</div>`; })();
+onView('save', () => {
+  countUp(document.getElementById('sv-in'), 7258, 900, n => '− ' + chf(n));
+  setTimeout(() => countUp(document.getElementById('sv-out'), 2250, 900, n => '≈ ' + chf(n)), 600);
+  const yrs = document.querySelectorAll('#ten-row .yr'), tot = document.getElementById('ten-total');
+  yrs.forEach((y, i) => setTimeout(() => { y.classList.add('on'); tot.textContent = '≈ ' + chf((i + 1) * 2250); }, 1600 + i * 180));
+});
+
+// Limits
+onView('limits', () => { countUp(document.getElementById('lim1'), 7258, 1000); setTimeout(() => countUp(document.getElementById('lim2'), 36288, 1100), 150); });
+onView('dl', () => document.querySelector('#dl .cal').classList.add('run'), 0.6);
+
+// Retroactive
+onView('retro', () => {
+  const w = (id, pct) => document.getElementById(id).style.width = pct + '%';
+  const note = document.getElementById('rnote');
+  w('r24', 100);
+  setTimeout(() => { w('r25a', 3500 / 7258 * 100); w('r25b', 3758 / 7258 * 100); note.innerHTML = '2025: paid CHF 3,500 of 7,258 → gap of <strong>CHF 3,758</strong>'; }, 600);
+  setTimeout(() => { w('r26', 100); note.innerHTML = '2026: pay the full CHF 7,258 first…'; }, 1700);
+  setTimeout(() => { const g = document.getElementById('r25b'); g.classList.add('filled'); g.textContent = '+3,758 in 2026';
+    note.innerHTML = '…then add the 2025 gap: 7,258 + 3,758 = <strong>CHF 11,016 deducted in 2026</strong>'; }, 2900);
+}, 0.35);
+
+// Lock + exits
+onView('lockwrap', () => {
+  document.querySelectorAll('.exit').forEach(e => setTimeout(() => e.classList.add('lit'), parseInt(e.dataset.delay) + 500));
+  setTimeout(() => { const l = document.getElementById('lock-ico'); l.classList.add('open'); l.textContent = '🔓'; }, 1800);
+}, 0.3);
+onView('scale-wrap', () => document.getElementById('scale').classList.add('run'), 0.6);
+
+// 5 years
+onView('five', () => document.querySelectorAll('#five .wf-bar').forEach((b, i) => setTimeout(() => b.style.height = b.dataset.h + '%', i * 600)), 0.35);
+
+// Multiple accounts
+onView('multi', () => {
+  document.querySelectorAll('.mcase.one .mbar').forEach(b => b.style.height = b.dataset.h + '%');
+  document.querySelectorAll('.mcase.many .mbar').forEach((b, i) => setTimeout(() => b.style.height = b.dataset.h + '%', 600 + i * 400));
+}, 0.4);
+
+// Mistakes visuals
+onView('days', () => document.querySelectorAll('#days .day').forEach((d, i) => setTimeout(() => d.classList.add(d.dataset.c), i * 220)), 0.6);
+onView('order', () => document.querySelectorAll('#order .ord').forEach((o, i) => setTimeout(() => o.classList.add('visible'), i * 500)), 0.6);
+
+function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
 </script>
 </body>
 </html>
