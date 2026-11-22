@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FBAR and FATCA Explained: What Americans in Switzerland Must File Every Year</title>
+<title>FBAR and FATCA Explained: What Americans in Switzerland Must Report Every Year</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
 <style>
 :root {
@@ -48,280 +48,806 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+#progress-bar {
+  position: fixed; top: 0; left: 0; height: 3px;
+  background: var(--blue-mid); width: 0%;
+  z-index: 1000; transition: width .1s linear;
+  border-radius: 0 2px 2px 0;
+}
+
 body {
-  background: var(--bg);
-  color: var(--fg);
+  background: var(--bg); color: var(--fg);
   font-family: 'Inter', system-ui, sans-serif;
-  font-size: 16px;
-  line-height: 1.75;
-  padding: 40px max(16px, 5vw) 80px;
+  font-size: 16px; line-height: 1.75;
+  padding: 48px max(16px, 5vw) 80px;
 }
+.article { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 36px; }
 
-.article {
-  max-width: 720px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-
-/* ── HEADER ── */
-.article-header { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
+/* HEADER */
 .article-meta {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: .12em; text-transform: uppercase;
-  color: var(--fg2); margin-bottom: 10px;
+  font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--fg2); margin-bottom: 12px;
+  opacity: 0; transform: translateY(-8px); transition: opacity .5s ease, transform .5s ease;
 }
+.article-meta.visible { opacity: 1; transform: translateY(0); }
 h1 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(24px, 5vw, 36px);
-  font-weight: 700; line-height: 1.2;
-  text-wrap: balance; color: var(--fg);
+  font-family: 'Space Grotesk', sans-serif; font-size: clamp(24px, 5vw, 36px);
+  font-weight: 700; line-height: 1.2; text-wrap: balance; color: var(--fg);
+  opacity: 0; transform: translateY(12px); transition: opacity .6s ease .15s, transform .6s ease .15s;
 }
+h1.visible { opacity: 1; transform: translateY(0); }
 .header-rule {
-  height: 2px; background: var(--blue);
-  border-radius: 2px; margin-top: 20px;
-  width: 48px;
+  height: 3px; background: var(--blue); border-radius: 2px; margin-top: 20px;
+  width: 0; transition: width .8s cubic-bezier(.16,1,.3,1) .5s;
 }
+.header-rule.visible { width: 48px; }
 
-/* ── QUICK ANSWER ── */
-.quick-answer {
-  background: var(--blue-light);
-  border-left: 4px solid var(--blue);
-  border-radius: 0 14px 14px 0;
-  padding: 20px 24px;
-}
+/* QUICK ANSWER */
+.quick-answer { background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 14px 14px 0; padding: 20px 24px; }
 .quick-answer p { font-size: 15px; color: var(--fg); margin: 0; }
 
-/* ── TAKEAWAYS ── */
-.takeaways {
-  background: var(--blue);
-  border-radius: 16px;
-  padding: 28px 32px;
-}
+/* TAKEAWAYS */
+.takeaways { background: var(--blue); border-radius: 16px; padding: 28px 32px; }
 .takeaways h2 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 16px; font-weight: 700;
-  color: rgba(255,255,255,.6);
-  letter-spacing: .08em; text-transform: uppercase;
-  margin-bottom: 16px; margin-top: 0;
+  font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700;
+  color: rgba(255,255,255,.55); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 18px; margin-top: 0;
 }
 .takeaways ul { list-style: none; }
-.takeaways ul li {
-  color: #e8ecf5;
-  font-size: 14.5px;
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(255,255,255,.1);
+.takeaway-item {
+  color: #e8ecf5; font-size: 14.5px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.1);
   display: flex; gap: 12px; align-items: flex-start;
+  opacity: 0; transform: translateX(-10px); transition: opacity .45s ease, transform .45s ease;
 }
-.takeaways ul li:last-child { border-bottom: none; }
-.takeaways ul li::before {
-  content: "✓"; color: #3dba78;
-  font-weight: 700; flex-shrink: 0; margin-top: 1px;
-}
+.takeaway-item.visible { opacity: 1; transform: translateX(0); }
+.takeaway-item:last-child { border-bottom: none; }
+.takeaway-item::before { content: "✓"; color: #3dba78; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
 
-/* ── HEADINGS ── */
-h2 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 20px; font-weight: 700;
-  color: var(--fg); margin-bottom: 4px;
-}
-h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  color: var(--blue-mid); margin-bottom: 6px;
-}
+/* HEADINGS */
+h2 { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; color: var(--fg); margin-bottom: 4px; }
+h3 { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; color: var(--blue-mid); margin-bottom: 6px; }
 p { font-size: 15.5px; color: var(--fg); margin-bottom: 12px; }
 p:last-child { margin-bottom: 0; }
 .hl-blue  { color: var(--blue-mid); font-weight: 600; }
 .hl-green { color: var(--green);    font-weight: 600; }
 .hl-red   { color: var(--red);      font-weight: 600; }
-sup { font-size: 11px; color: var(--blue-mid); }
+.hl-gold  { color: var(--gold);     font-weight: 600; }
+.viz { margin-top: 18px; padding-top: 16px; border-top: 1px dashed var(--border); }
+.viz-label {
+  font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--fg2); margin-bottom: 12px;
+}
+.viz-note { font-size: 12px; color: var(--fg2); margin-top: 10px; }
+.card {
+  background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px;
+  padding: 22px 24px; box-shadow: var(--shadow);
+}
 
-/* ── SITUATION CARDS ── */
-.situation-cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
+/* ── DUAL OBLIGATION (situation) ── */
+.dual { display: grid; grid-template-columns: 1fr auto 1fr; gap: 14px; align-items: center; margin-top: 16px; }
+.flag {
+  border-radius: 14px; padding: 16px; text-align: center; border: 1.5px solid var(--border); background: var(--bg2);
+  opacity: 0; transform: translateY(10px); transition: opacity .45s ease, transform .45s ease;
 }
-@media (max-width: 520px) { .situation-cards { grid-template-columns: 1fr; } }
+.flag.visible { opacity: 1; transform: none; }
+.flag .t { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 15px; }
+.flag .s { font-size: 12.5px; color: var(--fg2); }
+.flag.ch { border-color: var(--red); } .flag.ch .t { color: var(--red); }
+.flag.us { border-color: var(--blue-mid); } .flag.us .t { color: var(--blue-mid); }
+.dual-mid { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--fg2); font-size: 13px; text-align: center; opacity: 0; transition: opacity .4s ease; }
+.dual-mid.visible { opacity: 1; }
+.dual-mid span { display: block; font-size: 22px; color: var(--fg); }
 
-.sit-card {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 14px;
-  padding: 18px 20px;
-  box-shadow: var(--shadow);
-  transition: border-color .2s, box-shadow .2s;
+/* OBLIGATION CARDS */
+.obligation-item {
+  background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px; padding: 24px 28px;
+  box-shadow: var(--shadow); opacity: 0; transform: translateX(-14px);
+  transition: opacity .5s ease, transform .5s ease, box-shadow .2s; position: relative; overflow: hidden;
 }
-.sit-card:hover { box-shadow: var(--shadow-md); }
-.sit-card.alert { border-color: var(--red); }
-.sit-card h3 { color: var(--blue-mid); margin-bottom: 6px; }
-.sit-card.alert h3 { color: var(--red); }
-.sit-card p { font-size: 13px; color: var(--fg2); margin: 0; }
+.obligation-item::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--blue-mid);
+  transform: scaleY(0); transform-origin: top; transition: transform .6s cubic-bezier(.16,1,.3,1) .25s;
+}
+.obligation-item.visible { opacity: 1; transform: translateX(0); }
+.obligation-item.visible::before { transform: scaleY(1); }
+.obligation-item:hover { box-shadow: var(--shadow-md); }
+.obligation-num {
+  font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--blue-mid); margin-bottom: 6px;
+}
+.obligation-item h3 { color: var(--fg); font-size: 16px; margin-bottom: 10px; }
+.obligation-item p { font-size: 14.5px; color: var(--fg2); margin: 0; line-height: 1.65; }
+.obligation-item p + p { margin-top: 10px; }
 
-/* ── CHECKLIST ── */
-.checklist {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 16px;
-  padding: 24px 28px;
-  box-shadow: var(--shadow);
+/* still-applies chips */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  font-size: 12.5px; font-weight: 600; padding: 6px 12px; border-radius: 999px; background: var(--bg); border: 1.5px solid var(--border); color: var(--fg2);
+  opacity: 0; transform: scale(.85); transition: opacity .35s ease, transform .35s cubic-bezier(.34,1.56,.64,1), background .4s, color .4s, border-color .4s;
 }
-.checklist h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  margin-bottom: 16px; color: var(--fg);
-}
-.checklist-item {
-  display: flex; align-items: flex-start; gap: 12px;
-  padding: 11px 0;
-  border-bottom: 1px solid var(--border);
-  cursor: pointer;
-}
-.checklist-item:last-of-type { border-bottom: none; }
-.check-box {
-  width: 22px; height: 22px;
-  border: 2px solid var(--blue);
-  border-radius: 6px; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  transition: all .2s; margin-top: 2px;
-}
-.check-box.checked { background: var(--blue); border-color: var(--blue); }
-.check-box.checked::after { content: "✓"; color: white; font-size: 13px; font-weight: 700; }
-.checklist-item.done span { text-decoration: line-through; color: var(--fg2); }
-.checklist-item span { font-size: 14.5px; color: var(--fg); font-family: 'Inter', sans-serif; }
-.progress-bar { height: 5px; background: var(--border); border-radius: 3px; margin-top: 16px; }
-.progress-fill { height: 100%; background: var(--green); border-radius: 3px; transition: width .4s ease; }
-.progress-label { font-size: 12px; color: var(--fg2); margin-top: 6px; font-family: 'Inter', sans-serif; }
+.chip.visible { opacity: 1; transform: none; }
+.chip.lit { background: var(--blue-light); color: var(--blue-mid); border-color: var(--blue-mid); }
+.chip.lit::after { content: " → still file"; font-weight: 700; }
 
-/* ── FAQ ── */
-.faq-item {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  margin-bottom: 8px;
-  overflow: hidden;
-  transition: border-color .2s;
+/* FBAR meter */
+.meter-row { display: grid; grid-template-columns: 1fr; gap: 6px; }
+.stack { position: relative; display: flex; height: 30px; border-radius: 8px; overflow: visible; background: var(--border); }
+.seg {
+  height: 100%; width: 0; color: #fff; font-size: 11.5px; font-weight: 600; display: flex; align-items: center; justify-content: center;
+  white-space: nowrap; overflow: hidden; transition: width .7s cubic-bezier(.16,1,.3,1);
 }
-.faq-item.open { border-color: var(--blue); }
-.faq-q {
-  padding: 16px 20px;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 14px; font-weight: 600;
-  cursor: pointer;
-  display: flex; justify-content: space-between; align-items: center;
-  gap: 12px; color: var(--fg);
-  background: transparent;
+.seg:first-child { border-radius: 8px 0 0 8px; }
+.seg.s1 { background: var(--blue-mid); } .seg.s2 { background: #4a78b8; } .seg.s3 { background: var(--gold); border-radius: 0 8px 8px 0; }
+.mark { position: absolute; top: -8px; bottom: -8px; width: 2px; background: var(--red); }
+.mark span { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 11.5px; font-weight: 700; color: var(--red); white-space: nowrap; font-family: 'Space Grotesk', sans-serif; }
+.meter-legend { display: flex; flex-wrap: wrap; gap: 12px; font-size: 12.5px; color: var(--fg2); margin-top: 6px; font-variant-numeric: tabular-nums; }
+.meter-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 5px; }
+.meter-sum { font-size: 13.5px; margin-top: 8px; color: var(--fg2); font-variant-numeric: tabular-nums; }
+.meter-sum strong { color: var(--red); }
+.penalty { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+.pen { border-radius: 12px; padding: 12px 14px; text-align: center; background: var(--red-light); }
+.pen .k { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--fg2); font-family: 'Space Grotesk', sans-serif; }
+.pen .v { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 20px; color: var(--red); font-variant-numeric: tabular-nums; }
+.pen .d { font-size: 11.5px; color: var(--fg2); }
+
+/* 8938 thresholds */
+.thr { display: flex; flex-direction: column; gap: 10px; }
+.thr-row { display: grid; grid-template-columns: 120px 1fr; gap: 12px; align-items: center; font-size: 12.5px; color: var(--fg2); }
+.thr-row b { color: var(--fg); display: block; font-size: 13px; }
+.thr-track { height: 22px; background: var(--border); border-radius: 6px; position: relative; }
+.thr-fill {
+  position: absolute; inset: 0 auto 0 0; width: 0; border-radius: 6px; display: flex; align-items: center; justify-content: flex-end;
+  padding-right: 8px; color: #fff; font-size: 11.5px; font-weight: 700; white-space: nowrap; transition: width 1s cubic-bezier(.16,1,.3,1);
 }
-.faq-arrow { color: var(--blue); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
+.thr-fill.ye { background: var(--blue-mid); }
+.thr-fill.ap { background: var(--blue); opacity: .55; }
+.versus { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+.vs-col { border-radius: 12px; padding: 12px 14px; background: var(--bg); border: 1.5px solid var(--border); font-size: 12.5px; color: var(--fg2); }
+.vs-col b { display: block; font-family: 'Space Grotesk', sans-serif; color: var(--fg); font-size: 13.5px; margin-bottom: 4px; }
+
+/* deadlines timeline */
+.tl { position: relative; height: 112px; margin: 6px 8px 0; }
+.tl-line { position: absolute; top: 44px; left: 0; right: 0; height: 4px; background: var(--border); border-radius: 2px; }
+.tl-prog { position: absolute; top: 44px; left: 0; height: 4px; width: 0; background: var(--blue-mid); border-radius: 2px; transition: width 2s cubic-bezier(.4,0,.2,1); }
+.tl-pt { position: absolute; top: 0; transform: translateX(-50%); text-align: center; opacity: 0; transition: opacity .4s ease; width: 110px; }
+.tl-pt.visible { opacity: 1; }
+.tl-pt .lbl { font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700; color: var(--fg); height: 32px; line-height: 1.3; display: flex; align-items: flex-end; justify-content: center; }
+.tl-dot { width: 16px; height: 16px; border-radius: 50%; background: var(--bg2); border: 3px solid var(--blue-mid); margin: 4px auto 0; }
+.tl-pt .sub { font-size: 11.5px; color: var(--fg2); margin-top: 6px; line-height: 1.35; }
+.tl-pt.last .tl-dot { background: var(--blue-mid); }
+
+/* TOOL CARDS */
+.tools-grid { display: flex; flex-direction: column; gap: 12px; }
+.tool-card {
+  background: var(--bg2); border: 1.5px solid var(--border); border-radius: 14px; padding: 20px 24px;
+  opacity: 0; transform: translateY(10px); transition: opacity .4s ease, transform .4s ease;
+}
+.tool-card.visible { opacity: 1; transform: translateY(0); }
+.tool-card h3 { color: var(--blue-mid); font-size: 15px; margin-bottom: 8px; }
+.tool-card p { font-size: 14.5px; color: var(--fg2); margin: 0; line-height: 1.6; }
+
+/* FEIE + FTC split */
+.split-bar { display: flex; height: 40px; border-radius: 10px; overflow: hidden; background: var(--border); }
+.split-bar div {
+  width: 0; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 12.5px; font-weight: 700;
+  white-space: nowrap; overflow: hidden; transition: width 1s cubic-bezier(.16,1,.3,1);
+}
+.sb-feie { background: var(--green); }
+.sb-ftc  { background: var(--blue-mid); transition-delay: .9s !important; }
+.split-legend { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+.sl { border-radius: 10px; padding: 10px 12px; font-size: 12.5px; color: var(--fg2); opacity: 0; transition: opacity .4s ease; }
+.sl.visible { opacity: 1; }
+.sl b { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-variant-numeric: tabular-nums; }
+.sl.feie { background: var(--green-light); } .sl.feie b { color: var(--green); }
+.sl.ftc  { background: var(--blue-light); }  .sl.ftc b  { color: var(--blue-mid); }
+.split-calc { font-size: 13px; color: var(--fg2); margin-top: 10px; font-variant-numeric: tabular-nums; }
+.salary-pick { display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap; }
+.salary-pick button {
+  font-family: 'Space Grotesk', sans-serif; font-size: 12.5px; font-weight: 700; padding: 6px 12px; border-radius: 8px;
+  border: 1.5px solid var(--border); background: var(--bg); color: var(--fg2); cursor: pointer; transition: all .2s;
+}
+.salary-pick button.active { background: var(--blue-mid); color: #fff; border-color: var(--blue-mid); }
+
+/* WARNING / PFIC */
+.warning-box { background: var(--gold-light); border-left: 4px solid var(--gold); border-radius: 0 14px 14px 0; padding: 20px 24px; }
+.warning-box p { font-size: 15px; color: var(--fg); margin-bottom: 10px; }
+.warning-box p:last-child { margin-bottom: 0; }
+.pfic { display: flex; flex-direction: column; gap: 8px; margin-top: 14px; }
+.pfic-row { display: grid; grid-template-columns: 1fr auto auto; gap: 10px; align-items: center; opacity: 0; transform: translateX(-8px); transition: opacity .4s ease, transform .4s ease; }
+.pfic-row.visible { opacity: 1; transform: none; }
+.fund { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 9px; padding: 7px 12px; font-size: 13px; color: var(--fg); }
+.stamp {
+  font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .08em; color: var(--red);
+  border: 2px solid var(--red); border-radius: 6px; padding: 2px 8px; transform: rotate(-6deg) scale(1.8); opacity: 0;
+  transition: transform .35s cubic-bezier(.34,1.56,.64,1), opacity .2s;
+}
+.pfic-row.stamped .stamp { opacity: 1; transform: rotate(-6deg) scale(1); }
+.form-tag {
+  font-size: 12px; font-weight: 600; background: var(--bg2); border: 1.5px dashed var(--gold); color: var(--gold); border-radius: 7px; padding: 4px 9px;
+  opacity: 0; transform: translateX(-6px); transition: opacity .35s ease .15s, transform .35s ease .15s; white-space: nowrap;
+}
+.pfic-row.stamped .form-tag { opacity: 1; transform: none; }
+.pfic-count { font-size: 13px; color: var(--fg2); margin-top: 6px; }
+.pfic-count b { color: var(--gold); font-variant-numeric: tabular-nums; }
+
+/* STREAMLINED year grid */
+.ygrid { display: grid; grid-template-columns: 90px repeat(6, 1fr); gap: 5px; align-items: center; font-size: 12px; }
+.ygrid .h { font-family: 'Space Grotesk', sans-serif; font-weight: 700; text-align: center; color: var(--fg2); }
+.ygrid .rl { color: var(--fg2); font-weight: 600; }
+.yc {
+  height: 28px; border-radius: 6px; background: var(--border); transform: scale(.6); opacity: 0;
+  transition: transform .35s cubic-bezier(.34,1.56,.64,1), opacity .3s ease;
+}
+.yc.visible { transform: scale(1); opacity: 1; }
+.yc.on.ret  { background: var(--blue-mid); }
+.yc.on.fbar { background: var(--gold); }
+.yc.off { opacity: 0; }
+.yc.off.visible { opacity: .45; }
+.cond-box { margin-top: 14px; display: flex; align-items: center; gap: 10px; font-size: 13px; padding: 10px 14px; border-radius: 10px; background: var(--red-light); color: var(--red); font-weight: 600; opacity: 0; transition: opacity .5s ease; }
+.cond-box.visible { opacity: 1; }
+
+/* FATCA flow */
+.fflow { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: center; gap: 8px; }
+.node {
+  border-radius: 12px; padding: 12px 10px; text-align: center; font-size: 12.5px; color: var(--fg2); background: var(--bg2); border: 1.5px solid var(--border);
+  transition: border-color .4s, background .4s;
+}
+.node b { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 13.5px; color: var(--fg); }
+.node.on { border-color: var(--blue-mid); background: var(--blue-light); }
+.pipe { width: 44px; height: 4px; border-radius: 2px; background: var(--border); position: relative; overflow: hidden; }
+.pipe::after { content: ""; position: absolute; inset: 0; background: var(--blue-mid); transform: scaleX(0); transform-origin: left; transition: transform .6s ease; }
+.pipe.on::after { transform: scaleX(1); }
+.packet { position: absolute; top: -3px; width: 10px; height: 10px; border-radius: 50%; background: var(--gold); left: -12px; }
+.dates { display: flex; justify-content: space-between; gap: 10px; margin-top: 14px; font-size: 12.5px; color: var(--fg2); }
+.dates b { font-family: 'Space Grotesk', sans-serif; color: var(--fg); }
+
+/* PROFILE CARDS */
+.profile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.profile-card {
+  background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px; padding: 20px 22px; box-shadow: var(--shadow);
+  opacity: 0; transform: translateY(12px) scale(.98); transition: opacity .4s ease, transform .4s ease;
+}
+.profile-card.visible { opacity: 1; transform: translateY(0) scale(1); }
+.profile-card.ok  { border-color: var(--gold); }
+.profile-card.warn { border-color: var(--red); }
+.profile-label { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 10px; }
+.profile-card.ok   .profile-label { color: var(--gold); }
+.profile-card.warn .profile-label { color: var(--red); }
+.profile-card h3 { font-size: 14px; color: var(--fg); margin-bottom: 8px; }
+.profile-card ul { list-style: none; padding: 0; }
+.profile-card ul li { font-size: 13.5px; color: var(--fg2); padding: 4px 0; border-bottom: 1px solid var(--border); line-height: 1.5; }
+.profile-card ul li:last-child { border-bottom: none; }
+.status-list { margin-top: 12px; display: flex; flex-direction: column; gap: 5px; }
+.st {
+  display: flex; justify-content: space-between; font-size: 12.5px; padding: 5px 10px; border-radius: 7px; background: var(--bg);
+  opacity: 0; transform: translateX(8px); transition: opacity .35s ease, transform .35s ease;
+}
+.st.visible { opacity: 1; transform: none; }
+.st .y { color: var(--green); font-weight: 700; } .st .n { color: var(--red); font-weight: 700; }
+.profile-verdict { margin-top: 12px; font-size: 13px; font-weight: 600; padding: 8px 12px; border-radius: 8px; }
+.profile-card.ok   .profile-verdict { background: var(--gold-light); color: var(--gold); }
+.profile-card.warn .profile-verdict { background: var(--red-light);  color: var(--red); }
+
+/* MISTAKES */
+.mistake-item {
+  position: relative; overflow: hidden;
+  background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px; padding: 20px 24px; box-shadow: var(--shadow);
+  display: flex; gap: 16px; align-items: flex-start;
+  opacity: 0; transform: translateX(-14px); transition: opacity .5s ease, transform .5s ease;
+}
+.mistake-item.visible { opacity: 1; transform: translateX(0); }
+.mistake-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--red); flex-shrink: 0; margin-top: 6px; transform: scale(0); transition: transform .4s cubic-bezier(.34,1.56,.64,1) .25s; }
+.mistake-item.visible .mistake-dot { transform: scale(1); animation: pulse 1.6s ease .7s 2; }
+@keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(194,43,43,.45); } 50% { box-shadow: 0 0 0 7px rgba(194,43,43,0); } }
+.mistake-item h3 { color: var(--red); font-size: 14.5px; margin-bottom: 6px; }
+.mistake-item p { font-size: 14px; color: var(--fg2); margin: 0; line-height: 1.6; }
+
+/* FAQ */
+.faq-item { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; margin-bottom: 8px; overflow: hidden; transition: border-color .2s; }
+.faq-item.open { border-color: var(--blue-mid); }
+.faq-q { padding: 16px 20px; font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; color: var(--fg); user-select: none; }
+.faq-arrow { color: var(--blue-mid); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
 .faq-item.open .faq-arrow { transform: rotate(180deg); }
-.faq-a {
-  display: none;
-  padding: 0 20px 16px;
-  font-size: 14px; color: var(--fg2); line-height: 1.65;
-  font-family: 'Inter', sans-serif;
-}
-.faq-item.open .faq-a { display: block; }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .35s ease; font-size: 14px; color: var(--fg2); line-height: 1.65; padding: 0 20px; }
+.faq-item.open .faq-a { max-height: 300px; padding: 0 20px 16px; }
 
-/* ── CTA ── */
-.cta-box {
-  background: var(--blue);
-  border-radius: 16px;
-  padding: 32px 36px;
-  text-align: center;
-}
-.cta-box p {
-  color: rgba(255,255,255,.8);
-  font-size: 15px; margin-bottom: 20px;
-}
+/* CTA */
+.cta-box { background: var(--blue); border-radius: 16px; padding: 32px 36px; text-align: center; }
+.cta-box p { color: rgba(255,255,255,.85); font-size: 15px; margin-bottom: 20px; }
 .cta-btn {
-  background: var(--gold);
-  color: #fff;
-  padding: 13px 28px;
-  border-radius: 10px;
-  text-decoration: none;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  display: inline-block;
-  transition: opacity .2s;
+  background: var(--gold); color: #fff; padding: 13px 28px; border-radius: 10px; text-decoration: none;
+  font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; display: inline-block; transition: opacity .2s, transform .2s;
 }
-.cta-btn:hover { opacity: .88; }
+.cta-btn:hover { opacity: .88; transform: translateY(-1px); }
 
-/* ── SOURCES ── */
-.sources {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  padding: 20px 24px;
-}
-.sources h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: .1em; text-transform: uppercase;
-  color: var(--fg2); margin-bottom: 10px;
-}
+/* SOURCES */
+.sources { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; padding: 20px 24px; }
+.sources h3 { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--fg2); margin-bottom: 10px; }
 .sources ol { padding-left: 18px; }
 .sources ol li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; }
 
-/* ── FADE IN ── */
-.fade-in { opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
-.fade-in.visible { opacity: 1; transform: translateY(0); }
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
 
-@media (max-width: 600px) {
-  h1 { font-size: 24px; }
-  .situation-cards { grid-template-columns: 1fr; }
+@media (max-width: 580px) {
+  body { padding-top: 36px; }
+  .takeaways { padding: 20px; }
   .cta-box { padding: 24px 20px; }
-  .takeaways { padding: 20px 20px; }
+  .profile-grid { grid-template-columns: 1fr; }
+  .obligation-item { padding: 20px 18px; }
+  .dual { grid-template-columns: 1fr; }
+  .fflow { grid-template-columns: 1fr; }
+  .pipe { width: 4px; height: 26px; margin: 0 auto; }
+  .pipe::after { transform: scaleY(0); transform-origin: top; }
+  .pipe.on::after { transform: scaleY(1); }
+  .thr-row { grid-template-columns: 1fr; gap: 4px; }
+  .tl-pt { width: 84px; } .tl-pt .sub { font-size: 10.5px; } .tl-pt .lbl { font-size: 11px; }
+  .ygrid { grid-template-columns: 62px repeat(6, 1fr); font-size: 10.5px; }
+  .versus, .penalty, .split-legend { grid-template-columns: 1fr; }
+  .seg { font-size: 10px; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } }
+/* ── ARTICLE 8 EXTRA ── */
+.sec { display: flex; flex-direction: column; }
+.sec > h2 { margin-bottom: 10px; }
+.blk {
+  position: relative; overflow: hidden; background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px;
+  padding: 24px 26px; box-shadow: var(--shadow); opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease;
+}
+.blk.visible { opacity: 1; transform: none; }
+.blk::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--blue-mid); transform: scaleY(0); transform-origin: top; transition: transform .6s cubic-bezier(.16,1,.3,1) .25s; }
+.blk.visible::before { transform: scaleY(1); }
+.blk h2 { margin-bottom: 12px; font-size: 19px; }
+.blk p { font-size: 15px; }
+.plain { background: var(--blue-light); border-radius: 10px; padding: 10px 14px; font-size: 14.5px; margin-bottom: 12px; }
+.plain b { color: var(--blue-mid); font-family: 'Space Grotesk', sans-serif; }
+
+/* FBAR aggregate */
+.agg { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: end; }
+.agg-col { text-align: center; }
+.agg-col .lbl { font-size: 12.5px; color: var(--fg2); margin-top: 6px; }
+.agg-col .lbl b { display: block; color: var(--fg); font-size: 13.5px; font-family: 'Space Grotesk', sans-serif; }
+.single { display: flex; gap: 8px; justify-content: center; align-items: flex-end; height: 150px; position: relative; }
+.single .acc { width: 46px; height: 0; border-radius: 6px 6px 0 0; background: var(--blue-mid); transition: height .8s cubic-bezier(.16,1,.3,1); display: flex; align-items: flex-start; justify-content: center; color: #fff; font-size: 10.5px; font-weight: 700; padding-top: 4px; }
+.stacked { display: flex; flex-direction: column-reverse; align-items: center; height: 150px; position: relative; }
+.stacked .acc { width: 70px; height: 0; background: var(--blue-mid); transition: height .8s cubic-bezier(.16,1,.3,1); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 10.5px; font-weight: 700; overflow: hidden; }
+.stacked .acc:first-child { border-radius: 0; }
+.stacked .acc:last-child { border-radius: 6px 6px 0 0; background: #4a78b8; }
+.limit { position: absolute; left: 0; right: 0; border-top: 2px dashed var(--red); }
+.limit span { position: absolute; right: 0; top: -18px; font-size: 11px; font-weight: 700; color: var(--red); font-family: 'Space Grotesk', sans-serif; }
+.verdict-chip { display: inline-block; margin-top: 8px; font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px; opacity: 0; transition: opacity .4s; }
+.verdict-chip.visible { opacity: 1; }
+.verdict-chip.no { background: var(--bg); color: var(--fg2); border: 1.5px solid var(--border); }
+.verdict-chip.yes { background: var(--red-light); color: var(--red); border: 1.5px solid var(--red); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font-size: 12.5px; font-weight: 600; padding: 6px 12px; border-radius: 999px; background: var(--blue-light); color: var(--blue-mid); opacity: 0; transform: scale(.85); transition: opacity .35s ease, transform .35s cubic-bezier(.34,1.56,.64,1); }
+.chip.visible { opacity: 1; transform: none; }
+.chip.part { background: var(--gold-light); color: var(--gold); }
+.mini-tl { display: flex; align-items: center; gap: 10px; margin-top: 14px; font-size: 13px; color: var(--fg2); }
+.mini-tl .d { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--fg); background: var(--bg); border: 1.5px solid var(--border); border-radius: 8px; padding: 4px 10px; white-space: nowrap; }
+.mini-tl .ln { flex: 1; height: 4px; background: var(--border); border-radius: 2px; position: relative; overflow: hidden; }
+.mini-tl .ln::after { content: ""; position: absolute; inset: 0; background: var(--green); transform: scaleX(0); transform-origin: left; transition: transform 1.2s ease; }
+.mini-tl.run .ln::after { transform: scaleX(1); }
+
+/* FATCA flow + thresholds */
+.fflow { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: center; gap: 8px; margin-bottom: 18px; }
+.node { border-radius: 12px; padding: 12px 10px; text-align: center; font-size: 12.5px; color: var(--fg2); background: var(--bg); border: 1.5px solid var(--border); transition: border-color .4s, background .4s; }
+.node b { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 13.5px; color: var(--fg); }
+.node.on { border-color: var(--blue-mid); background: var(--blue-light); }
+.pipe { width: 40px; height: 4px; border-radius: 2px; background: var(--border); position: relative; overflow: hidden; }
+.pipe::after { content: ""; position: absolute; inset: 0; background: var(--blue-mid); transform: scaleX(0); transform-origin: left; transition: transform .6s ease; }
+.pipe.on::after { transform: scaleX(1); }
+.thr { display: flex; flex-direction: column; gap: 10px; }
+.thr-row { display: grid; grid-template-columns: 150px 1fr; gap: 12px; align-items: center; font-size: 12.5px; color: var(--fg2); }
+.thr-row b { color: var(--fg); display: block; font-size: 13px; }
+.thr-track { height: 22px; background: var(--border); border-radius: 6px; position: relative; }
+.thr-fill { position: absolute; inset: 0 auto 0 0; width: 0; border-radius: 6px; display: flex; align-items: center; justify-content: flex-end; padding-right: 8px; color: #fff; font-size: 11.5px; font-weight: 700; white-space: nowrap; transition: width 1s cubic-bezier(.16,1,.3,1); }
+.thr-fill.ye { background: var(--blue-mid); }
+.thr-fill.ap { background: var(--blue); opacity: .6; }
+
+/* ladder */
+.ladder-card { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px; padding: 22px 24px; box-shadow: var(--shadow); }
+.ladder-top { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.ladder-top .val { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 24px; color: var(--fg); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ladder-card input[type=range] { width: 100%; accent-color: var(--blue-mid); margin: 10px 0 14px; }
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.step { border-radius: 12px; padding: 12px; text-align: center; border: 1.5px solid var(--border); background: var(--bg); color: var(--fg2); transition: all .35s ease; }
+.step .r { font-size: 11.5px; } .step .o { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 14.5px; margin-top: 2px; }
+.step.on.s0 { border-color: var(--fg2); color: var(--fg); transform: translateY(-3px); box-shadow: var(--shadow); }
+.step.on.s1 { border-color: var(--gold); background: var(--gold-light); color: var(--gold); transform: translateY(-3px); box-shadow: var(--shadow); }
+.step.on.s2 { border-color: var(--red); background: var(--red-light); color: var(--red); transform: translateY(-3px); box-shadow: var(--shadow); }
+.ladder-msg { margin-top: 12px; font-size: 14px; color: var(--fg2); min-height: 22px; }
+.ladder-msg strong { color: var(--fg); }
+
+/* comparison table */
+.cmp-table { border-radius: 14px; overflow: hidden; border: 1.5px solid var(--border); background: var(--bg2); box-shadow: var(--shadow); }
+.cmp-row { display: grid; grid-template-columns: 150px 1fr 1fr; border-bottom: 1px solid var(--border); opacity: 0; transform: translateY(6px); transition: opacity .4s ease, transform .4s ease; }
+.cmp-row.visible { opacity: 1; transform: none; }
+.cmp-row:last-child { border-bottom: none; }
+.cmp-row > div { padding: 11px 14px; font-size: 13.5px; color: var(--fg2); }
+.cmp-row > div:first-child { font-weight: 600; color: var(--fg); background: var(--bg); }
+.cmp-row.head > div { background: var(--blue); color: #fff; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 13px; }
+.cmp-row.head > div:first-child { background: var(--blue); }
+
+/* penalties */
+.pens { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.pen { border-radius: 14px; padding: 16px 14px; text-align: center; opacity: 0; transform: translateY(10px); transition: opacity .4s ease, transform .4s ease; }
+.pen.visible { opacity: 1; transform: none; }
+.pen.a { background: var(--gold-light); } .pen.b { background: var(--red-light); } .pen.c { background: var(--blue-light); }
+.pen .k { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--fg2); }
+.pen .v { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 22px; font-variant-numeric: tabular-nums; line-height: 1.3; }
+.pen.a .v { color: var(--gold); } .pen.b .v { color: var(--red); } .pen.c .v { color: var(--blue-mid); }
+.pen .d { font-size: 12px; color: var(--fg2); line-height: 1.4; }
+.pen-list { margin-top: 12px; }
+
+/* two Americans */
+.amer { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.am { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px; padding: 20px 22px; box-shadow: var(--shadow); opacity: 0; transform: translateY(12px) scale(.98); transition: opacity .4s ease, transform .4s ease; }
+.am.visible { opacity: 1; transform: none; }
+.am.a { border-color: var(--gold); } .am.b { border-color: var(--red); }
+.am .tag { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 6px; }
+.am.a .tag { color: var(--gold); } .am.b .tag { color: var(--red); }
+.am h3 { font-size: 15px; color: var(--fg); margin-bottom: 6px; }
+.am p { font-size: 13.5px; color: var(--fg2); margin-bottom: 10px; }
+.am .st { display: flex; justify-content: space-between; font-size: 12.5px; padding: 6px 10px; border-radius: 7px; background: var(--bg); margin-bottom: 5px; opacity: 0; transform: translateX(8px); transition: opacity .35s ease, transform .35s ease; }
+.am .st.visible { opacity: 1; transform: none; }
+.y { color: var(--green); font-weight: 700; } .n { color: var(--red); font-weight: 700; }
+.am .verdict { margin-top: 10px; font-size: 13px; font-weight: 600; padding: 8px 12px; border-radius: 8px; }
+.am.a .verdict { background: var(--gold-light); color: var(--gold); } .am.b .verdict { background: var(--red-light); color: var(--red); }
+
+/* before / after */
+.ba { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0; align-items: stretch; }
+.ba-side { border-radius: 14px; padding: 18px 18px; opacity: 0; transition: opacity .5s ease; }
+.ba-side.visible { opacity: 1; }
+.ba-side.before { background: var(--green-light); border: 1.5px solid var(--green); }
+.ba-side.after  { background: var(--red-light);   border: 1.5px solid var(--red); }
+.ba-side .k { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.ba-side.before .k { color: var(--green); } .ba-side.after .k { color: var(--red); }
+.ba-side .big { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px; margin: 4px 0 8px; color: var(--fg); }
+.ba-side p { font-size: 13.5px; color: var(--fg2); margin: 0; line-height: 1.55; }
+.gate { width: 56px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
+.gate .bar { width: 6px; height: 0; background: var(--red); border-radius: 3px; transition: height .7s cubic-bezier(.34,1.56,.64,1); }
+.gate.shut .bar { height: 90px; }
+.gate .lbl { font-size: 10.5px; font-weight: 700; color: var(--red); text-align: center; line-height: 1.2; opacity: 0; transition: opacity .4s ease .5s; font-family: 'Space Grotesk', sans-serif; }
+.gate.shut .lbl { opacity: 1; }
+.notice { background: var(--gold-light); border-left: 4px solid var(--gold); border-radius: 0 14px 14px 0; padding: 16px 20px; margin-top: 14px; }
+.notice p { font-size: 14.5px; margin: 0; }
+.notice strong { color: var(--gold); }
+.req { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.req span { font-size: 11.5px; font-weight: 600; background: var(--bg2); border-radius: 999px; padding: 3px 9px; color: var(--green); border: 1px solid var(--green); }
+
+/* mistakes */
+.mk { position: relative; overflow: hidden; background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px; padding: 20px 24px; box-shadow: var(--shadow); display: flex; gap: 16px; opacity: 0; transform: translateX(-14px); transition: opacity .5s ease, transform .5s ease; }
+.mk.visible { opacity: 1; transform: none; }
+.mk-num { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; color: var(--red); opacity: 0; line-height: 1; min-width: 26px; transform: scale(1.6); transition: opacity .5s ease .2s, transform .5s cubic-bezier(.34,1.56,.64,1) .2s; }
+.mk.visible .mk-num { opacity: .25; transform: scale(1); }
+.mk h3 { color: var(--red); font-size: 15px; margin-bottom: 6px; }
+.mk p { font-size: 14.5px; color: var(--fg2); margin: 0; line-height: 1.6; }
+.joint { margin-top: 12px; }
+.joint-row { display: grid; grid-template-columns: 80px 1fr; gap: 10px; align-items: center; font-size: 12.5px; color: var(--fg2); margin-bottom: 6px; }
+.joint-track { height: 20px; border-radius: 6px; background: var(--border); overflow: hidden; }
+.joint-fill { height: 100%; width: 0; border-radius: 6px; display: flex; align-items: center; justify-content: flex-end; padding-right: 8px; color: #fff; font-size: 11px; font-weight: 700; white-space: nowrap; transition: width 1s cubic-bezier(.16,1,.3,1); }
+.joint-row.wrong .joint-fill { background: var(--red); }
+.joint-row.right .joint-fill { background: var(--green); }
+
+@media (max-width: 580px) {
+  .blk { padding: 20px 18px; }
+  .fflow { grid-template-columns: 1fr; }
+  .pipe { width: 4px; height: 22px; margin: 0 auto; }
+  .pipe::after { transform: scaleY(0); transform-origin: top; } .pipe.on::after { transform: scaleY(1); }
+  .thr-row { grid-template-columns: 1fr; gap: 4px; }
+  .cmp-row { grid-template-columns: 1fr 1fr; } .cmp-row > div:first-child { grid-column: 1 / -1; }
+  .pens, .amer { grid-template-columns: 1fr; }
+  .ba { grid-template-columns: 1fr; }
+  .gate { width: 100%; flex-direction: row; height: 40px; }
+  .gate .bar { width: 0; height: 6px !important; transition: width .7s cubic-bezier(.34,1.56,.64,1); }
+  .gate.shut .bar { width: 70%; }
+  .steps .o { font-size: 13px; }
 }
 </style>
 </head>
 <body>
+<div id="progress-bar"></div>
 <div class="article">
 
-  <div class="article-header fade-in"><p class="article-meta">Tax &amp; Finance · US Expats · 4 min read</p><h1>FBAR and FATCA Explained: What Americans in Switzerland Must File Every Year</h1></div>
-  <div class="quick-answer fade-in"><p><strong>Quick Answer:</strong> Most Americans in Switzerland know they need to file a US tax return every year. Fewer know that two separate reporting obligations — FBAR and FATCA — exist entirely apart from the tax return itself. <span class="hl-red">You can owe zero US tax and still face tens of thousands of dollars in penalties for missing these filings.</span></p></div>
-  <div class="takeaways fade-in"><h2>Key Takeaways</h2><ul><li>FBAR applies if your foreign accounts exceed $10,000 combined at any point during the year</li><li>FATCA Form 8938 applies to higher thresholds — starting at $200,000 at year-end for single filers living abroad</li><li>FBAR and FATCA are separate filings with different deadlines and different agencies</li><li>You can owe zero US tax and still face tens of thousands of dollars in FBAR penalties</li><li>If you have never filed FBAR, catch-up options exist — but acting before the IRS contacts you means zero penalties</li></ul></div>
-  <h2 class="fade-in">What Is FBAR?</h2>
-  <p class="fade-in">FBAR stands for Report of Foreign Bank and Financial Accounts — officially FinCEN Form 114. You must file if the total of all your foreign account balances combined exceeds <span class="hl-red">$10,000 at any point during the year.</span> The threshold applies to the total of all accounts combined, not to each account individually. This means two accounts of $6,000 each trigger the filing — even though neither individually exceeds the threshold. FBAR covers bank accounts, foreign brokerage accounts, insurance or annuity plans with cash value, and retirement accounts.</p>
-  <h2 class="fade-in">What Is FATCA Form 8938?</h2>
-  <p class="fade-in">FATCA requires a separate form filed directly with the IRS as part of your annual tax return. For Americans living outside the United States: <span class="hl-blue">single filers</span> — file if total foreign financial assets exceeded $200,000 at year-end or $300,000 at any point. <span class="hl-blue">Married filing jointly</span> — file if total exceeded $400,000 at year-end or $600,000 at any point. Filing one does not satisfy the other — both may need to be filed.</p>
-  <h2 class="fade-in">The Penalties Are Severe</h2>
-  <p class="fade-in"><span class="hl-red">FBAR non-wilful violation:</span> up to $16,536 per annual report. <span class="hl-red">Wilful violation:</span> the greater of $165,353 or 50% of the account balance — assessed per account, per year. Criminal penalties can reach $250,000 and five years imprisonment. Your Swiss bank reports to the IRS that your account had a maximum balance of CHF 150,000 in 2025. Your FBAR reports only CHF 80,000. This mismatch automatically triggers a review.</p>
-  <h2 class="fade-in">Two Americans, Two Different Situations</h2>
-  <div class="profiles fade-in">
-    <div class="profile-card">
-      <div class="profile-name">American A — 3 years in Switzerland</div>
-      <p>Swiss bank account CHF 45,000 + brokerage CHF 30,000. Files US tax return every year but has never filed an FBAR.</p>
-      <div class="profile-note">Three years of missed filings. The Streamlined Procedures may allow catch-up without penalties — but only if the IRS has not already initiated contact.</div>
+  <!-- HEADER -->
+  <div class="article-header">
+    <p class="article-meta">Tax &amp; Finance · US Expats · 5 min read</p>
+    <h1>FBAR and FATCA Explained: What Americans in Switzerland Must Report Every Year</h1>
+    <div class="header-rule"></div>
+  </div>
+
+  <!-- QUICK ANSWER -->
+  <div class="quick-answer reveal">
+    <p><strong>Quick Answer:</strong> Yes — on top of your tax return, almost every American in Switzerland has to file a list of their foreign accounts every year (the FBAR), and those with more assets a second one (Form 8938, under FATCA). They are not taxes: they are reports of what you hold. Forgetting them can cost thousands of dollars in penalties, even with not a cent of tax owed.</p>
+  </div>
+
+  <!-- FBAR -->
+  <div class="blk">
+    <h2>What Is the FBAR?</h2>
+    <p class="plain"><b>In plain terms:</b> an annual list of your accounts outside the US, sent to FinCEN — a department of the US Treasury that fights financial crime. Its official name is FinCEN Form 114.</p>
+    <p>It is required when the combined total of all your accounts outside the US goes above $10,000 at any point in the year. It is the total that counts, not each account: two accounts of $6,000 make $12,000 — and already require an FBAR, even though neither crosses the limit on its own. With a Swiss current account and savings account, the limit is crossed almost every year.</p>
+    <div class="viz" id="agg">
+      <div class="agg">
+        <div class="agg-col">
+          <div class="single"><div class="acc" data-h="50">$6k</div><div class="acc" data-h="50">$6k</div><div class="limit" style="bottom:83.3%"><span>$10,000</span></div></div>
+          <div class="lbl"><b>Looked at one by one</b>each below $10,000</div>
+          <span class="verdict-chip no" id="vc-no">Looks like no FBAR…</span>
+        </div>
+        <div class="agg-col">
+          <div class="stacked"><div class="acc" data-h="50">$6,000</div><div class="acc" data-h="50">$6,000</div><div class="limit" style="bottom:83.3%"><span>$10,000</span></div></div>
+          <div class="lbl"><b>Added together</b>$6,000 + $6,000 = $12,000</div>
+          <span class="verdict-chip yes" id="vc-yes">FBAR required</span>
+        </div>
+      </div>
     </div>
-    <div class="profile-card">
-      <div class="profile-name">American B — 8 years in Switzerland</div>
-      <p>Swiss bank account + pension fund + investment portfolio totalling CHF 380,000. Has never filed FBAR or Form 8938.</p>
-      <div class="profile-note">Both obligations likely unmet. Eight years of missed filings. Professional advice is essential before attempting to catch up independently. Which situation sounds closer to yours?</div>
+    <p style="margin-top:16px">It's not just bank accounts. Investment accounts (where you buy shares or funds), insurance or savings plans with a cash surrender value and, with some exceptions, retirement accounts are included too.</p>
+    <div class="chips" id="covers">
+      <span class="chip" data-delay="0">Bank accounts</span>
+      <span class="chip" data-delay="100">Investment accounts</span>
+      <span class="chip" data-delay="200">Insurance with cash value</span>
+      <span class="chip part" data-delay="300">Retirement accounts — some exceptions</span>
+    </div>
+    <p style="margin-top:14px">The deadline is 15 April of the following year, with an automatic extension to 15 October — no request needed.</p>
+    <div class="mini-tl" id="fbar-tl"><span class="d">15 April</span><span class="ln"></span><span class="d">15 October</span><span>automatic</span></div>
+  </div>
+
+  <!-- FATCA -->
+  <div class="blk">
+    <h2>What Are FATCA and Form 8938?</h2>
+    <p class="plain"><b>In plain terms:</b> FATCA is a US law that requires banks worldwide — Swiss banks included — to report their American clients' accounts to the IRS (the US tax authority). On your side, the law created Form 8938: a list of your financial assets abroad, attached to your tax return.</p>
+    <div class="fflow" id="fatca-flow">
+      <div class="node" id="n1"><b>Your Swiss bank</b>reports your accounts</div>
+      <div class="pipe" id="p1"></div>
+      <div class="node" id="n2"><b>IRS</b>compares</div>
+      <div class="pipe" id="p2"></div>
+      <div class="node" id="n3"><b>Your Form 8938</b>what you declare</div>
+    </div>
+    <p>It only applies above much higher amounts than the FBAR. For people living outside the US:</p>
+    <div class="thr" id="thr">
+      <div class="thr-row"><span><b>Single</b>at year-end</span><div class="thr-track"><div class="thr-fill ye" data-w="33.33">$200,000</div></div></div>
+      <div class="thr-row"><span><b>Single</b>at any point</span><div class="thr-track"><div class="thr-fill ap" data-w="50">$300,000</div></div></div>
+      <div class="thr-row"><span><b>Married, joint</b>at year-end</span><div class="thr-track"><div class="thr-fill ye" data-w="66.67">$400,000</div></div></div>
+      <div class="thr-row"><span><b>Married, joint</b>at any point</span><div class="thr-track"><div class="thr-fill ap" data-w="100">$600,000</div></div></div>
+    </div>
+    <p class="viz-note">"Single" also covers married people filing separately.</p>
+    <p style="margin-top:12px">In practice, people with ordinary savings and a modest investment portfolio only have the FBAR. Form 8938 comes in as wealth grows.</p>
+  </div>
+
+  <!-- SIDE BY SIDE -->
+  <div class="sec">
+    <h2 class="reveal">FBAR and Form 8938 Side by Side</h2>
+    <p class="reveal">They look like the same thing with different limits, but they are not. They are two different laws, filed at two different "counters" — and each one requires its own form. So once you pass $200,000, you don't swap one for the other: you file both.</p>
+    <div class="ladder-card reveal" id="ladder">
+      <div class="ladder-top"><span class="viz-label" style="margin:0">Total of your accounts outside the US</span><span class="val" id="lad-val">$50,000</span></div>
+      <input type="range" id="lad" min="0" max="9" step="1" value="3" aria-label="Total of your accounts outside the US">
+      <div class="steps">
+        <div class="step s0" id="st0"><div class="r">Up to $10,000</div><div class="o">Nothing</div></div>
+        <div class="step s1" id="st1"><div class="r">$10,000 – $200,000</div><div class="o">FBAR only</div></div>
+        <div class="step s2" id="st2"><div class="r">Over $200,000*</div><div class="o">FBAR + Form 8938</div></div>
+      </div>
+      <p class="ladder-msg" id="lad-msg"></p>
+      <p class="viz-note">*Single, living abroad. Move the slider to see what applies.</p>
+    </div>
+    <div class="cmp-table" id="cmp" style="margin-top:14px">
+      <div class="cmp-row head" data-delay="0"><div></div><div>FBAR</div><div>Form 8938 (FATCA)</div></div>
+      <div class="cmp-row" data-delay="120"><div>Filed with</div><div>FinCEN (Treasury), separately</div><div>IRS, with your tax return</div></div>
+      <div class="cmp-row" data-delay="240"><div>Required from</div><div>$10,000 in total</div><div>$200,000 (single, abroad)</div></div>
+      <div class="cmp-row" data-delay="360"><div>Deadline</div><div>15 April → 15 October, automatic</div><div>Same as your tax return</div></div>
+      <div class="cmp-row" data-delay="480"><div>What it covers</div><div>Financial accounts — including accounts where you only have signing authority (e.g. your employer's)</div><div>Broader financial assets (e.g. shares held directly)</div></div>
     </div>
   </div>
-  <h2 class="fade-in">What If You Have Never Filed FBAR?</h2>
-  <p class="fade-in"><strong>Before the IRS contacts you — zero penalties:</strong> If you have properly reported all income from foreign accounts on your US tax returns, the Delinquent FBAR Submission Procedures allow you to file back FBARs with no penalty. The Streamlined Foreign Offshore Program waives all penalties for eligible taxpayers who come forward voluntarily.</p>
-  <p class="fade-in"><strong>After the IRS contacts you — full penalties apply.</strong> Once the IRS initiates contact, the voluntary programs are no longer available. Acting proactively is always the better and less expensive option.</p>
-  <h2 class="fade-in">Before You Ask</h2>
-  <div class="faq fade-in">
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Do I need to file FBAR if I owe no US tax?<span class="faq-arrow">▾</span></div><div class="faq-a">Yes. FBAR is a reporting requirement — not a tax. It exists regardless of whether any US tax is owed. Many expats mistakenly believe that paying foreign taxes removes reporting obligations. It does not.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Does my Swiss pension fund count for FBAR?<span class="faq-arrow">▾</span></div><div class="faq-a">FBAR covers retirement accounts with some exceptions. Whether your specific Swiss pension fund triggers the FBAR depends on its structure. Professional advice is recommended to confirm.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Can the IRS already see my Swiss accounts?<span class="faq-arrow">▾</span></div><div class="faq-a">In most cases, yes. Swiss banks report account information to the Swiss Federal Tax Administration under FATCA agreements, which then shares it with the IRS. Assuming non-disclosure goes unnoticed is increasingly unrealistic.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What if my accounts are jointly held with a non-US spouse?<span class="faq-arrow">▾</span></div><div class="faq-a">Joint accounts are still reportable. The FBAR threshold applies to your share of the account. If you have signature authority over accounts you do not own, those may also need to be reported.</div></div>
+
+  <!-- PENALTIES -->
+  <div class="sec">
+    <h2 class="reveal">The Penalties Are Severe</h2>
+    <p class="reveal">The law distinguishes between people who didn't know and people who hid on purpose:</p>
+    <div class="pens" id="pens">
+      <div class="pen a" data-delay="0"><div class="k">Non-wilful</div><div class="v" id="pv1">$0</div><div class="d">per missing FBAR — per year, not per account. Forgetting or not knowing.</div></div>
+      <div class="pen b" data-delay="150"><div class="k">Wilful</div><div class="v" id="pv2">$0</div><div class="d">or 50% of the balance, whichever is greater — per account, per year. Knew and didn't report.</div></div>
+      <div class="pen c" data-delay="300"><div class="k">Form 8938 missing</div><div class="v" id="pv3">$0</div><div class="d">plus up to $50,000 more if you still don't file after the IRS notifies you</div></div>
+    </div>
+    <p class="reveal pen-list">In the most serious cases there is criminal prosecution: up to $250,000 and five years in prison.</p>
+    <p class="reveal">And don't count on going unnoticed: your Swiss bank reports balances to the IRS under FATCA. An account that shows up on the bank's side but not on your FBAR is easy to spot.</p>
   </div>
-  <div class="cta-box fade-in"><p>FBAR and FATCA compliance is one of the areas where Americans in Switzerland most commonly discover they have an unresolved problem — not because they were trying to hide anything, but simply because they did not know these obligations existed. SwissExpatHub can connect you with advisors experienced in US expat tax compliance and FBAR filings.</p><a href="/directory" class="cta-btn">Find Your Advisor →</a></div>
-  <div class="sources fade-in"><h3>Sources</h3><ol><li>FinCEN — FBAR penalties and filing requirements: fincen.gov</li><li>IRS — Form 8938 FATCA instructions: irs.gov</li><li>Federal Tax Administration Switzerland — FATCA agreement: estv.admin.ch</li></ol></div>
+
+  <!-- TWO AMERICANS -->
+  <div class="sec">
+    <h2 class="reveal">Two Americans, Two Different Situations</h2>
+    <div class="amer" id="amer">
+      <div class="am a" data-delay="0">
+        <div class="tag">Fixable</div>
+        <h3>American A</h3>
+        <p>Has lived in Switzerland for three years. Bank account with CHF 45,000 and investment account with CHF 30,000. Filed a US tax return every year, but never the FBAR.</p>
+        <div class="st" data-delay="300"><span>Tax returns</span><span class="y">✓ filed</span></div>
+        <div class="st" data-delay="450"><span>FBAR</span><span class="n">✕ 3 years missing</span></div>
+        <div class="verdict">Since all income was reported, the Streamlined program should allow catching up without penalties — if acting before the IRS makes contact.</div>
+      </div>
+      <div class="am b" data-delay="150">
+        <div class="tag">Needs professional advice</div>
+        <h3>American B</h3>
+        <p>Has lived in Switzerland for eight years. Bank account, pension fund and investment portfolio: CHF 380,000 in total. Never filed the FBAR or Form 8938.</p>
+        <div class="st" data-delay="450"><span>FBAR</span><span class="n">✕ 8 years missing</span></div>
+        <div class="st" data-delay="600"><span>Form 8938</span><span class="n">✕ 8 years missing</span></div>
+        <div class="verdict">Professional advice is essential before trying to fix this alone.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEVER FILED -->
+  <div class="sec">
+    <h2 class="reveal">What If You Have Never Filed an FBAR?</h2>
+    <p class="reveal">You can always catch up. What changes everything is the timing.</p>
+    <div class="ba" id="ba">
+      <div class="ba-side before">
+        <div class="k">Before the IRS contacts you</div>
+        <div class="big">No penalties — if you qualify</div>
+        <p>If you live outside the US (at least 330 days abroad in one of the last three years) and the failure was not intentional, you can use the Streamlined Foreign Offshore Procedures: file the last three years of tax returns and the last six years of FBARs, and the IRS applies no penalties.</p>
+        <div class="req"><span>3 years of returns</span><span>6 years of FBARs</span><span>$0 penalty</span></div>
+      </div>
+      <div class="gate" id="gate"><div class="bar"></div><div class="lbl">IRS<br>contact</div></div>
+      <div class="ba-side after">
+        <div class="k">After the IRS contacts you</div>
+        <div class="big">Standard penalties</div>
+        <p>The voluntary programs close, the penalties described above apply, and the process becomes a formal audit.</p>
+      </div>
+    </div>
+    <div class="notice reveal">
+      <p><strong>Note:</strong> until June 2026 there was an even simpler route for people who had only forgotten the FBAR. The IRS removed it from its website in July 2026, without explanation. That makes choosing the right path today even more worth a conversation with an advisor.</p>
+    </div>
+  </div>
+
+  <!-- MISTAKES -->
+  <div class="sec">
+    <h2 class="reveal">Common Mistakes</h2>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div class="mk" data-delay="0">
+        <div class="mk-num">1</div>
+        <div><h3>Thinking a Swiss account isn't "foreign" because you live in Switzerland</h3>
+        <p>For the US, any account outside the US is foreign — including the account where your salary is paid in Geneva.</p></div>
+      </div>
+      <div class="mk" data-delay="100">
+        <div class="mk-num">2</div>
+        <div style="flex:1;min-width:0"><h3>Reporting only half of a joint account</h3>
+        <p>For a joint account — even with a spouse who isn't American — you report the full value of the account, not your half.</p>
+        <div class="joint" id="joint">
+          <div class="joint-row wrong"><span>✕ Wrong</span><div class="joint-track"><div class="joint-fill" data-w="50">50% — your half</div></div></div>
+          <div class="joint-row right"><span>✓ Right</span><div class="joint-track"><div class="joint-fill" data-w="100">100% — the full balance</div></div></div>
+        </div></div>
+      </div>
+      <div class="mk" data-delay="200">
+        <div class="mk-num">3</div>
+        <div><h3>Forgetting accounts where you only have signing authority</h3>
+        <p>If you can move money in an account that isn't yours — for example, your employer's company account — it may also need to go on your FBAR.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div>
+    <h2 class="reveal">Before You Ask</h2>
+    <div style="margin-top:12px">
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">Does my Swiss pension fund count for the FBAR?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">It can. Retirement accounts are included in the FBAR with some exceptions, and it depends on how your fund is structured (Pillar 2 or Pillar 3a). It is worth confirming with an advisor.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">Can the IRS already see my Swiss accounts?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">In most cases, yes. Today Swiss banks report their American clients' accounts to the IRS under FATCA. Under the new agreement between Switzerland and the US, expected in 2027, this exchange becomes automatic, through the Swiss Federal Tax Administration.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">When should I speak with an advisor?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">As soon as possible — especially if you have missing FBARs, if your assets are above the Form 8938 thresholds, or if you are not sure everything has been reported.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-box reveal">
+    <p>FBAR and FATCA are among the areas where Americans in Switzerland most often discover a problem — not because they wanted to hide anything, but because they didn't know these obligations existed. The good news is that there is still a way to catch up without penalties. The bad news is that it disappears once the IRS contacts you. SwissExpatHub connects you with advisors experienced in US expatriate obligations, FBAR and FATCA.</p>
+    <a href="/directory" class="cta-btn">Find Your Advisor →</a>
+  </div>
+
+  <!-- SOURCES -->
+  <div class="sources reveal">
+    <h3>Sources</h3>
+    <ol>
+      <li>IRS — Report of Foreign Bank and Financial Accounts (FBAR): irs.gov</li>
+      <li>FinCEN — FBAR filing instructions and penalty adjustments: fincen.gov</li>
+      <li>IRS — Form 8938 and comparison with FBAR: irs.gov</li>
+      <li>IRS — Streamlined Filing Compliance Procedures: irs.gov</li>
+    </ol>
+  </div>
 
 </div>
+
 <script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); });
-  }, { threshold: 0.1 });
-  document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
-  function toggleFaq(el) { el.parentElement.classList.toggle("open"); }
+window.addEventListener('scroll', () => {
+  const docH = document.documentElement.scrollHeight - window.innerHeight;
+  document.getElementById('progress-bar').style.width = (docH > 0 ? window.scrollY / docH * 100 : 0) + '%';
+});
+window.addEventListener('load', () => {
+  setTimeout(() => document.querySelector('.article-meta').classList.add('visible'), 80);
+  setTimeout(() => document.querySelector('h1').classList.add('visible'), 220);
+  setTimeout(() => document.querySelector('.header-rule').classList.add('visible'), 420);
+});
+function stagger(selector, threshold) {
+  const obs = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), parseInt(e.target.dataset.delay || 0)); obs.unobserve(e.target); }
+  }), { threshold });
+  document.querySelectorAll(selector).forEach(el => obs.observe(el));
+}
+function onView(id, fn, threshold = 0.4) {
+  const el = document.getElementById(id);
+  const obs = new IntersectionObserver(en => { if (en[0].isIntersecting) { fn(); obs.disconnect(); } }, { threshold });
+  obs.observe(el);
+}
+const usd = n => '$' + Math.round(n).toLocaleString('en-US');
+function countUp(el, to, ms) {
+  const t0 = performance.now();
+  const step = t => { const k = Math.min(1, (t - t0) / ms), e = 1 - Math.pow(1 - k, 3);
+    el.textContent = usd(to * e); if (k < 1) requestAnimationFrame(step); };
+  requestAnimationFrame(step);
+}
+stagger('.reveal', 0.08);
+stagger('.blk', 0.05);
+stagger('.chip', 0.3);
+stagger('.cmp-row', 0.2);
+stagger('.pen', 0.2);
+stagger('.am', 0.15);
+stagger('.am .st', 0.5);
+stagger('.mk', 0.1);
+
+// FBAR aggregate: scale 12,000 = 100% of 150px
+onView('agg', () => {
+  document.querySelectorAll('.single .acc').forEach((a, i) => setTimeout(() => a.style.height = a.dataset.h + '%', i * 250));
+  setTimeout(() => document.getElementById('vc-no').classList.add('visible'), 900);
+  document.querySelectorAll('.stacked .acc').forEach((a, i) => setTimeout(() => a.style.height = a.dataset.h + '%', 1300 + i * 600));
+  setTimeout(() => document.getElementById('vc-yes').classList.add('visible'), 2700);
+});
+onView('fbar-tl', () => document.getElementById('fbar-tl').classList.add('run'), 0.6);
+
+// FATCA flow + thresholds
+onView('fatca-flow', () => {
+  const on = (id, t) => setTimeout(() => document.getElementById(id).classList.add('on'), t);
+  on('n1', 0); on('p1', 400); on('n2', 900); on('p2', 1300); on('n3', 1800);
+});
+onView('thr', () => document.querySelectorAll('#thr .thr-fill').forEach((f, i) => setTimeout(() => f.style.width = f.dataset.w + '%', i * 200)));
+
+// Ladder
+const LAD = [5000, 10000, 25000, 50000, 100000, 150000, 200000, 250000, 300000, 400000];
+const lad = document.getElementById('lad');
+function updLadder() {
+  const v = LAD[+lad.value];
+  const tier = v > 200000 ? 2 : v > 10000 ? 1 : 0;
+  document.getElementById('lad-val').textContent = usd(v);
+  [0, 1, 2].forEach(i => document.getElementById('st' + i).classList.toggle('on', i === tier));
+  document.getElementById('lad-msg').innerHTML = [
+    `${usd(v)} is not above $10,000 — <strong>nothing to file</strong>.`,
+    `${usd(v)} is above $10,000 but not above $200,000 — <strong>FBAR only</strong>.`,
+    `${usd(v)} is above $200,000 — <strong>file both</strong>. Missing either one carries its own penalty.`][tier];
+}
+lad.addEventListener('input', updLadder);
+updLadder();
+
+// Penalties
+onView('pens', () => {
+  setTimeout(() => countUp(document.getElementById('pv1'), 16536, 1000), 200);
+  setTimeout(() => countUp(document.getElementById('pv2'), 165353, 1300), 350);
+  setTimeout(() => countUp(document.getElementById('pv3'), 10000, 900), 500);
+}, 0.3);
+
+// Before / after gate
+onView('ba', () => {
+  document.querySelector('.ba-side.before').classList.add('visible');
+  setTimeout(() => document.getElementById('gate').classList.add('shut'), 900);
+  setTimeout(() => document.querySelector('.ba-side.after').classList.add('visible'), 1500);
+}, 0.3);
+
+// Joint account
+onView('joint', () => document.querySelectorAll('.joint-fill').forEach((f, i) => setTimeout(() => f.style.width = f.dataset.w + '%', i * 600)), 0.5);
+
+function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
 </script>
 </body>
 </html>
