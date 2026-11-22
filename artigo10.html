@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Moving to Switzerland: Financial Checklist for Expats</title>
+<meta name="description" content="The two deadlines, the canton decision, banking, Pillar 3a, your permit and US obligations: the financial checklist for your first year in Switzerland — with 2026 figures.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
 <style>
 :root {
@@ -47,390 +48,671 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 body {
-  background: var(--bg);
-  color: var(--fg);
+  background: var(--bg); color: var(--fg);
   font-family: 'Inter', system-ui, sans-serif;
-  font-size: 16px;
-  line-height: 1.75;
-  padding: 40px max(16px, 5vw) 80px;
+  font-size: 16px; line-height: 1.75;
+  padding: 48px max(16px, 5vw) 80px;
 }
+.article { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 36px; }
 
-.article {
-  max-width: 720px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
+#progress-bar {
+  position: fixed; top: 0; left: 0; height: 3px;
+  background: var(--blue-mid); width: 0%;
+  z-index: 1000; transition: width .1s linear;
+  border-radius: 0 2px 2px 0;
 }
 
 /* ── HEADER ── */
-.article-header { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
 .article-meta {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: .12em; text-transform: uppercase;
-  color: var(--fg2); margin-bottom: 10px;
+  font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--fg2); margin-bottom: 12px;
+  opacity: 0; transform: translateY(-8px); transition: opacity .5s ease, transform .5s ease;
 }
+.article-meta.visible { opacity: 1; transform: translateY(0); }
 h1 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(24px, 5vw, 36px);
-  font-weight: 700; line-height: 1.2;
-  text-wrap: balance; color: var(--fg);
+  font-family: 'Space Grotesk', sans-serif; font-size: clamp(24px, 5vw, 36px);
+  font-weight: 700; line-height: 1.2; text-wrap: balance; color: var(--fg);
+  opacity: 0; transform: translateY(12px);
+  transition: opacity .6s ease .15s, transform .6s ease .15s;
 }
+h1.visible { opacity: 1; transform: translateY(0); }
 .header-rule {
-  height: 2px; background: var(--blue);
-  border-radius: 2px; margin-top: 20px;
-  width: 48px;
+  height: 3px; background: var(--blue); border-radius: 2px; margin-top: 20px;
+  width: 0; transition: width .8s cubic-bezier(.16,1,.3,1) .5s;
 }
+.header-rule.visible { width: 48px; }
 
-/* ── QUICK ANSWER ── */
-.quick-answer {
-  background: var(--blue-light);
-  border-left: 4px solid var(--blue);
-  border-radius: 0 14px 14px 0;
-  padding: 20px 24px;
-}
-.quick-answer p { font-size: 15px; color: var(--fg); margin: 0; }
-
-/* ── TAKEAWAYS ── */
-.takeaways {
-  background: var(--blue);
-  border-radius: 16px;
-  padding: 28px 32px;
-}
-.takeaways h2 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 16px; font-weight: 700;
-  color: rgba(255,255,255,.6);
-  letter-spacing: .08em; text-transform: uppercase;
-  margin-bottom: 16px; margin-top: 0;
-}
-.takeaways ul { list-style: none; }
-.takeaways ul li {
-  color: #e8ecf5;
-  font-size: 14.5px;
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(255,255,255,.1);
-  display: flex; gap: 12px; align-items: flex-start;
-}
-.takeaways ul li:last-child { border-bottom: none; }
-.takeaways ul li::before {
-  content: "✓"; color: #3dba78;
-  font-weight: 700; flex-shrink: 0; margin-top: 1px;
-}
-
-/* ── HEADINGS ── */
-h2 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 20px; font-weight: 700;
-  color: var(--fg); margin-bottom: 4px;
-}
-h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  color: var(--blue-mid); margin-bottom: 6px;
-}
+/* ── TYPE ── */
+h2 { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; color: var(--fg); margin-bottom: 8px; }
+h3 { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; color: var(--blue-mid); margin-bottom: 6px; }
 p { font-size: 15.5px; color: var(--fg); margin-bottom: 12px; }
 p:last-child { margin-bottom: 0; }
 .hl-blue  { color: var(--blue-mid); font-weight: 600; }
 .hl-green { color: var(--green);    font-weight: 600; }
 .hl-red   { color: var(--red);      font-weight: 600; }
-sup { font-size: 11px; color: var(--blue-mid); }
-
-/* ── SITUATION CARDS ── */
-.situation-cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
+.viz-label {
+  font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--fg2); margin-bottom: 12px;
 }
-@media (max-width: 520px) { .situation-cards { grid-template-columns: 1fr; } }
+.viz-note { font-size: 12px; color: var(--fg2); margin-top: 10px; }
+.calc-line { font-size: 13px; color: var(--fg2); text-align: center; margin-top: 10px; font-variant-numeric: tabular-nums; }
 
-.sit-card {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 14px;
-  padding: 18px 20px;
-  box-shadow: var(--shadow);
-  transition: border-color .2s, box-shadow .2s;
+/* ── QUICK ANSWER / TAKEAWAYS ── */
+.quick-answer { background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 14px 14px 0; padding: 20px 24px; }
+.quick-answer p { font-size: 15px; }
+.takeaways { background: #1f4080; border-radius: 16px; padding: 28px 32px; }
+.takeaways h2 { font-size: 13px; color: rgba(255,255,255,.55); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 18px; }
+.takeaways ul { list-style: none; }
+.takeaway-item {
+  color: #e8ecf5; font-size: 14.5px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.1);
+  display: flex; gap: 12px; align-items: flex-start;
+  opacity: 0; transform: translateX(-10px); transition: opacity .45s ease, transform .45s ease;
 }
-.sit-card:hover { box-shadow: var(--shadow-md); }
-.sit-card.alert { border-color: var(--red); }
-.sit-card h3 { color: var(--blue-mid); margin-bottom: 6px; }
-.sit-card.alert h3 { color: var(--red); }
-.sit-card p { font-size: 13px; color: var(--fg2); margin: 0; }
+.takeaway-item:last-child { border-bottom: none; }
+.takeaway-item.visible { opacity: 1; transform: translateX(0); }
+.takeaway-item::before { content: "✓"; color: #3dba78; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+
+/* ── SECTION CARDS ── */
+.card {
+  position: relative; overflow: hidden;
+  background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px;
+  padding: 24px 26px; box-shadow: var(--shadow);
+  opacity: 0; transform: translateY(16px);
+  transition: opacity .5s ease, transform .5s ease, box-shadow .2s;
+}
+.card.visible { opacity: 1; transform: none; }
+.card:hover { box-shadow: var(--shadow-md); }
+.card::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--c, var(--blue-mid));
+  transform: scaleY(0); transform-origin: top; transition: transform .6s cubic-bezier(.16,1,.3,1) .25s;
+}
+.card.visible::before { transform: scaleY(1); }
+.card-head { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+.card-num {
+  font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; color: var(--c, var(--blue-mid));
+  background: var(--cl, var(--blue-light)); border-radius: 8px; padding: 4px 10px; flex-shrink: 0;
+  transform: scale(.6); opacity: 0; transition: transform .5s cubic-bezier(.34,1.56,.64,1) .2s, opacity .4s ease .2s;
+}
+.card.visible .card-num { transform: scale(1); opacity: 1; }
+.card-head h2 { margin: 0; font-size: 18px; }
+.card p { font-size: 15px; }
+.c-red   { --c: var(--red);   --cl: var(--red-light); }
+.c-green { --c: var(--green); --cl: var(--green-light); }
+.c-gold  { --c: var(--gold);  --cl: var(--gold-light); }
+.viz { margin-top: 18px; padding-top: 16px; border-top: 1px dashed var(--border); }
+
+/* ── NOTE BOXES ── */
+.note { border-radius: 0 12px 12px 0; padding: 14px 18px; margin-top: 16px; }
+.note p { font-size: 14.5px; }
+.note.warn { background: var(--gold-light); border-left: 4px solid var(--gold); }
+.note.warn strong { color: var(--gold); }
+.note.new { background: var(--green-light); border-left: 4px solid var(--green); }
+.note.new strong { color: var(--green); }
+
+/* ── 1: deadline timeline ── */
+.tl { position: relative; height: 92px; margin: 6px 8px 0; }
+.tl-track { position: absolute; left: 0; right: 0; top: 40px; height: 6px; background: var(--border); border-radius: 3px; }
+.tl-fill { position: absolute; left: 0; top: 40px; height: 6px; width: 0; background: var(--blue-mid); border-radius: 3px; transition: width 1.8s cubic-bezier(.45,0,.2,1); }
+.tl-pt { position: absolute; top: 0; transform: translateX(-50%); text-align: center; width: 120px; }
+.tl-pt .lab { font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700; color: var(--fg2); height: 22px; }
+.tl-pt .dot {
+  width: 18px; height: 18px; border-radius: 50%; margin: 13px auto 0; background: var(--bg2);
+  border: 3px solid var(--border); transition: border-color .3s, background .3s, transform .4s cubic-bezier(.34,1.56,.64,1);
+}
+.tl-pt .what { font-size: 12.5px; color: var(--fg2); margin-top: 6px; line-height: 1.3; opacity: 0; transition: opacity .4s; }
+.tl-pt.lit .dot { transform: scale(1.25); }
+.tl-pt.lit .what { opacity: 1; color: var(--fg); font-weight: 600; }
+.tl-pt.blue.lit .dot { border-color: var(--blue-mid); background: var(--blue-light); }
+.tl-pt.red.lit .dot { border-color: var(--red); background: var(--red-light); }
+.tl-pt.start .dot { border-color: var(--fg2); }
+.tl-pt.first { transform: translateX(-9px); text-align: left; }
+.tl-pt.first .dot { margin-left: 0; }
+.tl-pt.last { transform: translateX(calc(-100% + 9px)); text-align: right; }
+.tl-pt.last .dot { margin-right: 0; }
+.late { margin-top: 18px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.mo {
+  text-align: center; border-radius: 8px; padding: 8px 4px; font-size: 12.5px; font-weight: 600;
+  border: 1.5px solid var(--border); color: var(--fg2); background: var(--bg);
+  opacity: 0; transform: translateY(6px); transition: opacity .35s ease, transform .35s ease, background .4s, color .4s, border-color .4s;
+}
+.mo small { display: block; font-weight: 500; font-size: 11px; }
+.mo.visible { opacity: 1; transform: none; background: var(--red-light); color: var(--red); border-color: var(--red); }
+.bill {
+  margin-top: 12px; display: flex; justify-content: space-between; align-items: center; gap: 12px;
+  background: var(--red-light); border-radius: 10px; padding: 10px 14px; font-size: 13.5px; color: var(--fg2);
+}
+.bill b { font-family: 'Space Grotesk', sans-serif; font-size: 19px; color: var(--red); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+/* ── 2: canton ── */
+.canton { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.stat { text-align: center; border-radius: 12px; padding: 16px 10px; }
+.stat .k { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--fg2); }
+.stat .v { font-family: 'Space Grotesk', sans-serif; font-size: 25px; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1.3; }
+.stat.blue { background: var(--blue-light); } .stat.blue .v { color: var(--blue-mid); }
+.stat.red  { background: var(--red-light); }  .stat.red .v  { color: var(--red); }
+.stat.green{ background: var(--green-light); } .stat.green .v{ color: var(--green); }
+.mult { display: flex; gap: 8px; justify-content: center; margin-top: 14px; flex-wrap: wrap; }
+.mult span {
+  font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 14px; padding: 6px 14px; border-radius: 999px;
+  background: var(--gold-light); color: var(--gold); border: 1.5px solid var(--gold);
+  opacity: 0; transform: scale(.8); transition: opacity .35s ease, transform .4s cubic-bezier(.34,1.56,.64,1);
+}
+.mult span.visible { opacity: 1; transform: none; }
+
+/* ── 3: IBAN hub ── */
+.hub { display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center; }
+.flows { display: flex; flex-direction: column; gap: 7px; }
+.flow {
+  display: flex; align-items: center; gap: 10px; font-size: 13.5px;
+  opacity: 0; transform: translateX(-10px); transition: opacity .4s ease, transform .4s ease;
+}
+.flow.visible { opacity: 1; transform: none; }
+.flow .ic { width: 30px; height: 30px; border-radius: 8px; background: var(--blue-light); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.flow .line { flex: 1; height: 2px; background: repeating-linear-gradient(90deg, var(--blue-mid) 0 6px, transparent 6px 11px); opacity: .5; }
+.iban {
+  font-family: 'Space Grotesk', sans-serif; text-align: center; border-radius: 14px; padding: 16px 18px;
+  background: #1f4080; color: #fff; min-width: 140px;
+  transform: scale(.85); opacity: 0; transition: transform .5s cubic-bezier(.34,1.56,.64,1), opacity .4s;
+}
+.iban.visible { transform: none; opacity: 1; }
+.iban small { display: block; font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; opacity: .7; }
+.iban b { font-size: 16px; }
+.bank-types { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+.bt { border: 1.5px solid var(--border); border-radius: 12px; padding: 12px 14px; font-size: 13px; color: var(--fg2); background: var(--bg); }
+.bt b { display: block; font-family: 'Space Grotesk', sans-serif; color: var(--fg); font-size: 13.5px; margin-bottom: 2px; }
+@media (max-width: 560px) { .hub { grid-template-columns: 1fr; } .iban { justify-self: center; } .bank-types { grid-template-columns: 1fr; } }
+
+/* ── 4: Pillar 3a calculator ── */
+.p3a { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px; }
+.p3a-arrow { font-size: 22px; color: var(--fg2); }
+.rate { margin-top: 14px; background: var(--bg); border-radius: 12px; padding: 12px 16px; }
+.rate label { font-size: 12.5px; color: var(--fg2); display: flex; justify-content: space-between; }
+.rate label b { font-family: 'Space Grotesk', sans-serif; color: var(--fg); font-size: 15px; }
+.rate input { width: 100%; accent-color: var(--green); }
+.start-cmp { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+.sc-row { display: grid; grid-template-columns: 132px repeat(3, 1fr) 96px; gap: 6px; align-items: center; font-size: 13px; }
+.sc-row .who { color: var(--fg2); line-height: 1.3; }
+.sc-row .who b { color: var(--fg); display: block; }
+.yr {
+  text-align: center; padding: 7px 0; border-radius: 8px; font-family: 'Space Grotesk', sans-serif;
+  font-size: 12.5px; font-weight: 700; border: 1.5px solid var(--border); color: var(--fg2); background: var(--bg);
+  transition: background .4s, color .4s, border-color .4s;
+}
+.yr.on  { background: var(--green-light); color: var(--green); border-color: var(--green); }
+.yr.off { background: var(--red-light); color: var(--red); border-color: var(--red); }
+.sc-row .tot { text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
+.sc-row.a .tot { color: var(--green); } .sc-row.b .tot { color: var(--red); }
+@media (max-width: 560px) { .sc-row { grid-template-columns: repeat(3, 1fr) 84px; } .sc-row .who { grid-column: 1 / -1; } .stat .v { font-size: 20px; } }
+
+/* ── 5: permit table ── */
+.ptable { border: 1.5px solid var(--border); border-radius: 14px; overflow: hidden; }
+.prow { display: grid; grid-template-columns: 1.2fr 1fr 1fr; font-size: 13.5px; border-bottom: 1px solid var(--border);
+  opacity: 0; transform: translateX(10px); transition: opacity .4s ease, transform .4s ease; }
+.prow:last-child { border-bottom: none; }
+.prow.visible { opacity: 1; transform: none; }
+.prow > div { padding: 10px 14px; }
+.prow.head { background: #1f4080; color: #fff; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 12.5px; letter-spacing: .04em; }
+.prow .lbl { font-weight: 600; background: var(--bg); }
+.yes { color: var(--green); font-weight: 600; } .opt { color: var(--gold); font-weight: 600; } .no { color: var(--fg2); }
+.deadline-chip {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; padding: 8px 14px; border-radius: 10px;
+  background: var(--gold-light); border: 1.5px solid var(--gold); color: var(--gold); font-weight: 700; font-size: 13.5px;
+  font-family: 'Space Grotesk', sans-serif; opacity: 0; transform: scale(.9); transition: opacity .4s, transform .45s cubic-bezier(.34,1.56,.64,1);
+}
+.deadline-chip.visible { opacity: 1; transform: none; }
+@media (max-width: 540px) { .prow { grid-template-columns: 1fr 1fr; } .prow .lbl { grid-column: 1 / -1; } .prow.head .lbl { display: none; } }
+
+/* ── 6: US stamps ── */
+.stamps { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.stamp {
+  border: 1.5px dashed var(--border); border-radius: 12px; padding: 12px 14px; font-size: 13px; color: var(--fg2);
+  opacity: .35; transform: scale(.97); transition: opacity .4s, transform .4s cubic-bezier(.34,1.56,.64,1), border-color .4s, background .4s;
+}
+.stamp b { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 14px; color: var(--fg); margin-bottom: 2px; }
+.stamp.lit { opacity: 1; transform: none; border-style: solid; border-color: var(--blue-mid); background: var(--blue-light); }
+.stamp.cond.lit { border-color: var(--gold); background: var(--gold-light); }
+@media (max-width: 540px) { .stamps { grid-template-columns: 1fr; } }
 
 /* ── CHECKLIST ── */
-.checklist {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 16px;
-  padding: 24px 28px;
-  box-shadow: var(--shadow);
+.checklist { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px; padding: 22px 24px; box-shadow: var(--shadow); }
+.cl-progress { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.cl-track { flex: 1; height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
+.cl-fill { height: 100%; width: 0; background: var(--green); border-radius: 4px; transition: width .4s ease; }
+.cl-count { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 13px; color: var(--fg2); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.cl-group { margin-bottom: 14px; }
+.cl-group:last-child { margin-bottom: 0; }
+.cl-when {
+  font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--blue-mid); margin-bottom: 6px;
 }
-.checklist h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  margin-bottom: 16px; color: var(--fg);
+.cl-item {
+  display: flex; gap: 10px; align-items: flex-start; padding: 8px 10px; border-radius: 9px; cursor: pointer; font-size: 14.5px;
+  transition: background .2s; user-select: none;
 }
-.checklist-item {
-  display: flex; align-items: flex-start; gap: 12px;
-  padding: 11px 0;
-  border-bottom: 1px solid var(--border);
-  cursor: pointer;
+.cl-item:hover { background: var(--bg); }
+.cl-item input { appearance: none; -webkit-appearance: none; width: 20px; height: 20px; border-radius: 6px; border: 2px solid var(--border); flex-shrink: 0; margin-top: 2px; cursor: pointer; display: grid; place-content: center; transition: background .2s, border-color .2s; }
+.cl-item input::after { content: "✓"; color: #fff; font-size: 13px; font-weight: 700; transform: scale(0); transition: transform .25s cubic-bezier(.34,1.56,.64,1); }
+.cl-item input:checked { background: var(--green); border-color: var(--green); }
+.cl-item input:checked::after { transform: scale(1); }
+.cl-item input:focus-visible { outline: 2px solid var(--blue-mid); outline-offset: 2px; }
+.cl-item.done span { color: var(--fg2); text-decoration: line-through; text-decoration-color: var(--fg2); }
+
+/* ── MISTAKES ── */
+.mistakes { display: flex; flex-direction: column; gap: 12px; margin-top: 12px; }
+.mistake-item {
+  background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px; padding: 20px 24px; box-shadow: var(--shadow);
+  display: flex; gap: 18px; align-items: flex-start;
+  opacity: 0; transform: translateX(-14px); transition: opacity .45s ease, transform .45s ease, box-shadow .2s;
 }
-.checklist-item:last-of-type { border-bottom: none; }
-.check-box {
-  width: 22px; height: 22px;
-  border: 2px solid var(--blue);
-  border-radius: 6px; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  transition: all .2s; margin-top: 2px;
-}
-.check-box.checked { background: var(--blue); border-color: var(--blue); }
-.check-box.checked::after { content: "✓"; color: white; font-size: 13px; font-weight: 700; }
-.checklist-item.done span { text-decoration: line-through; color: var(--fg2); }
-.checklist-item span { font-size: 14.5px; color: var(--fg); font-family: 'Inter', sans-serif; }
-.progress-bar { height: 5px; background: var(--border); border-radius: 3px; margin-top: 16px; }
-.progress-fill { height: 100%; background: var(--green); border-radius: 3px; transition: width .4s ease; }
-.progress-label { font-size: 12px; color: var(--fg2); margin-top: 6px; font-family: 'Inter', sans-serif; }
+.mistake-item.visible { opacity: 1; transform: translateX(0); }
+.mistake-item:hover { box-shadow: var(--shadow-md); }
+.mistake-number { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; color: var(--red); line-height: 1; flex-shrink: 0; min-width: 32px; opacity: .25; }
+.mistake-content h3 { color: var(--red); font-size: 15px; margin-bottom: 6px; }
+.mistake-content p { font-size: 14.5px; color: var(--fg2); margin: 0; line-height: 1.6; }
 
 /* ── FAQ ── */
-.faq-item {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  margin-bottom: 8px;
-  overflow: hidden;
-  transition: border-color .2s;
-}
-.faq-item.open { border-color: var(--blue); }
-.faq-q {
-  padding: 16px 20px;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 14px; font-weight: 600;
-  cursor: pointer;
-  display: flex; justify-content: space-between; align-items: center;
-  gap: 12px; color: var(--fg);
-  background: transparent;
-}
-.faq-arrow { color: var(--blue); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
+.faq-item { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; margin-bottom: 8px; overflow: hidden; transition: border-color .2s; }
+.faq-item.open { border-color: var(--blue-mid); }
+.faq-q { padding: 16px 20px; font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; color: var(--fg); user-select: none; }
+.faq-arrow { color: var(--blue-mid); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
 .faq-item.open .faq-arrow { transform: rotate(180deg); }
-.faq-a {
-  display: none;
-  padding: 0 20px 16px;
-  font-size: 14px; color: var(--fg2); line-height: 1.65;
-  font-family: 'Inter', sans-serif;
-}
-.faq-item.open .faq-a { display: block; }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .35s ease; font-size: 14px; color: var(--fg2); line-height: 1.65; padding: 0 20px; }
+.faq-item.open .faq-a { max-height: 400px; padding: 0 20px 16px; }
 
-/* ── CTA ── */
-.cta-box {
-  background: var(--blue);
-  border-radius: 16px;
-  padding: 32px 36px;
-  text-align: center;
-}
-.cta-box p {
-  color: rgba(255,255,255,.8);
-  font-size: 15px; margin-bottom: 20px;
-}
-.cta-btn {
-  background: var(--gold);
-  color: #fff;
-  padding: 13px 28px;
-  border-radius: 10px;
-  text-decoration: none;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  display: inline-block;
-  transition: opacity .2s;
-}
-.cta-btn:hover { opacity: .88; }
-
-/* ── SOURCES ── */
-.sources {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  padding: 20px 24px;
-}
-.sources h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: .1em; text-transform: uppercase;
-  color: var(--fg2); margin-bottom: 10px;
-}
+/* ── CTA / SOURCES ── */
+.cta-box { background: #1f4080; border-radius: 16px; padding: 32px 36px; text-align: center; }
+.cta-box p { color: rgba(255,255,255,.85); font-size: 15px; margin-bottom: 14px; }
+.cta-box p:last-of-type { margin-bottom: 20px; }
+.cta-btn { background:var(--gold); color:#fff; padding:13px 28px; border-radius:10px; text-decoration:none; font-family:'Space Grotesk',sans-serif; font-size:15px; font-weight:700; display:inline-block; transition:opacity .2s,transform .2s; }
+.cta-btn:hover { opacity:.88; transform:translateY(-1px); }
+.sources { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; padding: 20px 24px; }
+.sources h3 { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--fg2); margin-bottom: 10px; }
 .sources ol { padding-left: 18px; }
-.sources ol li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; }
+.sources li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; }
 
-/* ── FADE IN ── */
-.fade-in { opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
-.fade-in.visible { opacity: 1; transform: translateY(0); }
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
 
 @media (max-width: 600px) {
-  h1 { font-size: 24px; }
-  .situation-cards { grid-template-columns: 1fr; }
+  body { padding-top: 36px; }
+  .takeaways { padding: 22px 20px; }
   .cta-box { padding: 24px 20px; }
-  .takeaways { padding: 20px 20px; }
+  .card { padding: 18px 18px; }
+  .checklist { padding: 18px 16px; }
+  .tl-pt { width: 92px; }
+  .tl-pt.first .what { visibility: hidden; }
 }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; } }
 </style>
 </head>
 <body>
+<div id="progress-bar"></div>
 <div class="article">
 
-  <div class="article-header fade-in">
-    <p class="article-meta">Moving to Switzerland · Financial Planning · 6 min read</p>
+  <!-- HEADER -->
+  <div class="article-header">
+    <p class="article-meta">Tax &amp; Finance · Relocation · 5 min read</p>
     <h1>Moving to Switzerland: Financial Checklist for Expats</h1>
+    <div class="header-rule"></div>
   </div>
 
-  <div class="quick-answer fade-in">
-    <p><strong>Quick Answer:</strong> Moving to Switzerland involves three financial priorities you cannot postpone: <span class="hl-red">register within 14 days</span>, <span class="hl-red">get health insurance within 90 days</span>, and <span class="hl-blue">open a Swiss bank account immediately</span>. Missing these deadlines has real financial penalties. Everything else can follow.</p>
+  <!-- QUICK ANSWER -->
+  <div class="quick-answer reveal">
+    <p><strong>Quick Answer:</strong> Switzerland has two deadlines that define your first months — and missing either one is expensive.</p>
+    <p>Beyond that, the financial decisions you make in the first few weeks after arrival have a larger long-term impact than most newcomers realise — from which canton you live in to how you set up your banking and pension contributions. This article covers the financial essentials for anyone arriving in Switzerland.</p>
   </div>
 
-  <div class="takeaways fade-in">
+  <!-- TAKEAWAYS -->
+  <div class="takeaways">
     <h2>Key Takeaways</h2>
     <ul>
-      <li>Register with local authorities within 14 days of arrival — mandatory</li>
-      <li>Health insurance must be arranged within 90 days — retroactive if missed</li>
-      <li>Bank account needed immediately for salary, rent, and bills</li>
-      <li>Your employer enrolls you in Pillar 2 — verify this in your first payslip</li>
-      <li>Open a Pillar 3a account before 31 December of your first year</li>
+      <li class="takeaway-item" data-delay="0">Register with your municipality within 14 days of arrival — this triggers the creation of your B or L permit</li>
+      <li class="takeaway-item" data-delay="100">Sign up for health insurance within 90 days — missing this deadline means being assigned a random provider with premiums backdated to your arrival date</li>
+      <li class="takeaway-item" data-delay="200">Income and wealth taxes can double or even triple depending on the canton and municipality where you settle</li>
+      <li class="takeaway-item" data-delay="300">You need a Swiss bank account almost immediately — your employer, landlord, and insurers all expect a Swiss IBAN</li>
+      <li class="takeaway-item" data-delay="400">Starting Pillar 3a contributions early is one of the best financial decisions a new arrival can make</li>
     </ul>
   </div>
 
-  <h2 class="fade-in">Critical Deadlines</h2>
-  <div class="deadlines fade-in">
-    <div class="deadline-card">
-      <div class="deadline-days">14</div>
-      <div class="deadline-label">days after arrival</div>
-      <div class="deadline-task">Register with local authorities</div>
-    </div>
-    <div class="deadline-card">
-      <div class="deadline-days">90</div>
-      <div class="deadline-label">days after arrival</div>
-      <div class="deadline-task">Get health insurance</div>
-    </div>
-    <div class="deadline-card">
-      <div class="deadline-days">31</div>
-      <div class="deadline-label">December each year</div>
-      <div class="deadline-task">Contribute to Pillar 3a</div>
-    </div>
-  </div>
-
-  <!-- Progress bar -->
-  <div class="progress-section fade-in">
-    <div class="progress-label">Your overall progress: <strong id="progressText">0 of 18 completed</strong></div>
-    <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
-  </div>
-
-  <!-- Phase tabs -->
-  <h2 class="fade-in">Your Checklist by Phase</h2>
-  <div class="phase-tabs fade-in">
-    <div class="phase-tab active" onclick="switchPhase('p1', this)">Before Arrival</div>
-    <div class="phase-tab" onclick="switchPhase('p2', this)">First 2 Weeks</div>
-    <div class="phase-tab" onclick="switchPhase('p3', this)">First 3 Months</div>
-    <div class="phase-tab" onclick="switchPhase('p4', this)">First Year</div>
-  </div>
-
-  <div id="p1" class="phase-content active fade-in">
-    <div class="checklist">
-      <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="item-text">Confirm your work permit / residence permit type (B, C, G, L)</span><span class="item-tag tag-important">Important</span></div>
-      <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="item-text">Research health insurance providers and compare premiums by canton</span><span class="item-tag tag-important">Important</span></div>
-      <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="item-text">Open a temporary account at a neobank (Neon, Yuh) if possible before arrival</span><span class="item-tag tag-optional">Optional</span></div>
-      <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="item-text">Gather documents: passport, employment contract, rental agreement</span><span class="item-tag tag-important">Important</span></div>
+  <!-- 1 DEADLINES -->
+  <div class="card c-red">
+    <div class="card-head"><span class="card-num">#1</span><h2>The Two Deadlines That Define Your First Months</h2></div>
+    <h3>14 days: Register with your municipality</h3>
+    <p>You must register at the cantonal immigration office within 14 days of arrival to obtain a residence permit — such as a Permit L or Permit B, depending on your circumstances.</p>
+    <p>This is not optional and not negotiable. Registration triggers everything else — your permit, your tax file, and the clock on your health insurance deadline.</p>
+    <h3>90 days: Sign up for health insurance</h3>
+    <p>Swiss health insurance (KVG/LAMal) is mandatory for everyone living in Switzerland, regardless of nationality. If you miss the deadline, authorities will assign you to a random provider and backdate premiums to your arrival date — you will receive a very unpleasant bill.</p>
+    <p>In 2026, the average basic premium for an adult is around <span class="hl-blue">CHF&nbsp;465 per month</span> (the overall average, which includes children and young adults, is CHF&nbsp;393). Choose your deductible wisely — higher deductible means lower monthly premium but more out-of-pocket when you visit a doctor. Deductibles range from CHF&nbsp;300 to CHF&nbsp;2,500.</p>
+    <p>Health insurance is not provided by your employer in Switzerland — it is your individual responsibility.</p>
+    <div class="viz" id="vtl">
+      <div class="viz-label">Your first 90 days</div>
+      <div class="tl">
+        <div class="tl-track"></div>
+        <div class="tl-fill" id="tl-fill"></div>
+        <div class="tl-pt start first lit" style="left:0%"><div class="lab">Day 0</div><div class="dot"></div><div class="what">Arrival</div></div>
+        <div class="tl-pt blue" id="tl14" style="left:15.6%"><div class="lab">Day 14</div><div class="dot"></div><div class="what">Register</div></div>
+        <div class="tl-pt red last" id="tl90" style="left:100%"><div class="lab">Day 90</div><div class="dot"></div><div class="what">Health insurance</div></div>
+      </div>
+      <div class="viz-label" style="margin-top:22px">Missed it? Arrive in January, sign up in May</div>
+      <div class="late" id="late">
+        <div class="mo" data-delay="0">Jan<small>backdated</small></div>
+        <div class="mo" data-delay="150">Feb<small>backdated</small></div>
+        <div class="mo" data-delay="300">Mar<small>backdated</small></div>
+        <div class="mo" data-delay="450">Apr<small>backdated</small></div>
+      </div>
+      <div class="bill"><span>4 months × CHF&nbsp;465 — before the late-payment surcharge</span><b id="bill">CHF 0</b></div>
+      <p class="viz-note">Illustrative figures, based on the 2026 average adult premium.</p>
     </div>
   </div>
 
-  <div id="p2" class="phase-content fade-in">
-    <div class="checklist">
-      <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="item-text">Register with the local commune (Contrôle des habitants in Geneva)</span><span class="item-tag tag-urgent">⚠ 14 days</span></div>
-      <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="item-text">Open a Swiss bank account (BCGE, UBS Key4, Migros Bank, or Neon)</span><span class="item-tag tag-urgent">Urgent</span></div>
-      <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="item-text">Give your Swiss IBAN to your employer for salary payments</span><span class="item-tag tag-urgent">Urgent</span></div>
-      <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="item-text">Set up rent payment from your Swiss account</span><span class="item-tag tag-important">Important</span></div>
+  <!-- 2 CANTON -->
+  <div class="card c-gold">
+    <div class="card-head"><span class="card-num">#2</span><h2>The Canton Decision: More Important Than Most People Realise</h2></div>
+    <p>Where you choose to live in Switzerland is one of the most significant financial decisions you will make — and most newcomers underestimate it.</p>
+    <p>The tax difference between a low-tax canton like Zug and Geneva can exceed <span class="hl-red">CHF&nbsp;30,000 per year</span> on a high income. Income and wealth taxes can double or even triple depending on the canton and municipality where you settle.</p>
+    <p>If you are working in Zurich or Geneva, you do not necessarily need to live there. Many expats commute from lower-tax cantons — though the trade-off between tax savings and lifestyle must be considered carefully.</p>
+    <p>For those already committed to a location, understanding the local tax rates and available deductions is far more useful than comparing cantons after the fact.</p>
+    <div class="viz" id="vcanton">
+      <div class="canton">
+        <div class="stat red"><div class="k">Gap per year</div><div class="v" id="gap1">CHF 0</div></div>
+        <div class="stat red"><div class="k">Over a 5-year stay</div><div class="v" id="gap5">CHF 0</div></div>
+      </div>
+      <p class="calc-line">5 years × CHF&nbsp;30,000 = CHF&nbsp;150,000 — on a high income, Zug vs Geneva</p>
+      <div class="mult" id="mult"><span data-delay="0">×1</span><span data-delay="250">×2</span><span data-delay="500">×3</span></div>
+      <p class="viz-note" style="text-align:center">How much income and wealth tax can vary between cantons and municipalities.</p>
     </div>
   </div>
 
-  <div id="p3" class="phase-content fade-in">
-    <div class="checklist">
-      <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="item-text">Arrange health insurance (KVG/LAMal) — mandatory within 90 days</span><span class="item-tag tag-urgent">⚠ 90 days</span></div>
-      <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="item-text">If employed ≥8h/week: remove accident cover from health insurance to save CHF 200-400/year</span><span class="item-tag tag-important">Save money</span></div>
-      <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="item-text">Verify Pillar 2 enrollment on your first payslip</span><span class="item-tag tag-important">Important</span></div>
-      <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="item-text">Check your withholding tax rate (impôt à la source) on payslip is correct</span><span class="item-tag tag-important">Important</span></div>
-      <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="item-text">Activate TWINT on your Swiss bank app for daily payments</span><span class="item-tag tag-optional">Useful</span></div>
+  <!-- 3 BANK -->
+  <div class="card">
+    <div class="card-head"><span class="card-num">#3</span><h2>Opening a Swiss Bank Account</h2></div>
+    <p>You need a Swiss bank account almost immediately after arrival.</p>
+    <p>Your employer will deposit your salary into a Swiss IBAN. Your landlord will expect rent payments from a Swiss account. Health insurance premiums, utility bills, and tax payments all run smoother with a local account. Some landlords and service providers will not accept foreign bank transfers.</p>
+    <p>For Americans, opening a Swiss bank account requires additional disclosure steps due to FATCA obligations. Some banks are more experienced with US clients than others — this is worth researching before choosing a provider.</p>
+    <div class="viz" id="vbank">
+      <div class="hub">
+        <div class="flows">
+          <div class="flow" data-delay="0"><span class="ic">💼</span>Salary<span class="line"></span></div>
+          <div class="flow" data-delay="120"><span class="ic">🏠</span>Rent<span class="line"></span></div>
+          <div class="flow" data-delay="240"><span class="ic">🩺</span>Health insurance<span class="line"></span></div>
+          <div class="flow" data-delay="360"><span class="ic">💡</span>Utility bills<span class="line"></span></div>
+          <div class="flow" data-delay="480"><span class="ic">🧾</span>Taxes<span class="line"></span></div>
+        </div>
+        <div class="iban" id="iban"><small>All need a</small><b>Swiss IBAN</b><small style="margin-top:4px">CH•• •••• ••••</small></div>
+      </div>
+      <div class="bank-types">
+        <div class="bt reveal"><b>Traditional cantonal banks</b>In-person service and English support in major cities.</div>
+        <div class="bt reveal"><b>Digital banks &amp; neobanks</b>Faster to open and often fee-free.</div>
+      </div>
     </div>
   </div>
 
-  <div id="p4" class="phase-content fade-in">
-    <div class="checklist">
-      <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="item-text">Open a Pillar 3a account and contribute before 31 December (CHF 7,258 max, 2026)</span><span class="item-tag tag-urgent">⚠ 31 Dec</span></div>
-      <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="item-text">Ask HR for your Pillar 2 buy-in capacity and consider contributing</span><span class="item-tag tag-important">Tax saving</span></div>
-      <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="item-text">Determine if you must file a tax return (mandatory if income >CHF 120,000 for B permit)</span><span class="item-tag tag-important">Important</span></div>
-      <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="item-text">File your first Swiss tax return by 31 March (Geneva deadline)</span><span class="item-tag tag-urgent">⚠ 31 March</span></div>
-      <div class="checklist-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="item-text">Start saving receipts for deductible expenses: medical, professional, transport</span><span class="item-tag tag-important">Important</span></div>
+  <!-- 4 PILLAR 3A -->
+  <div class="card c-green">
+    <div class="card-head"><span class="card-num">#4</span><h2>Starting Pillar 3a Early</h2></div>
+    <p>One of the best financial decisions a new arrival can make is to open a Pillar 3a account as soon as possible.</p>
+    <p>Every year you contribute the maximum — <span class="hl-blue">CHF&nbsp;7,258</span> for employees in 2026 — is a year where your Swiss income tax bill is reduced by approximately <span class="hl-green">CHF&nbsp;2,000 to CHF&nbsp;2,500</span> in a mid-to-high tax canton.</p>
+    <p>Starting in year one rather than year three means two additional years of tax savings and two additional years of compound growth on the invested funds.</p>
+    <div class="viz" id="v3a">
+      <div class="p3a">
+        <div class="stat blue"><div class="k">You contribute</div><div class="v" id="p3a-in">CHF 0</div></div>
+        <div class="p3a-arrow">→</div>
+        <div class="stat green"><div class="k">Tax saved</div><div class="v" id="p3a-out">CHF 0</div></div>
+      </div>
+      <div class="rate">
+        <label for="rate">Your marginal tax rate <b id="rate-val">30%</b></label>
+        <input type="range" id="rate" min="25" max="35" step="1" value="30" aria-label="Marginal tax rate">
+      </div>
+      <p class="calc-line" id="p3a-calc"></p>
+      <div class="start-cmp">
+        <div class="sc-row a">
+          <div class="who"><b>Start in year 1</b>3 years saved</div>
+          <div class="yr" data-y="1">Y1</div><div class="yr" data-y="2">Y2</div><div class="yr" data-y="3">Y3</div>
+          <div class="tot" id="tot-a">CHF 0</div>
+        </div>
+        <div class="sc-row b">
+          <div class="who"><b>Start in year 3</b>1 year saved</div>
+          <div class="yr" data-y="1">Y1</div><div class="yr" data-y="2">Y2</div><div class="yr" data-y="3">Y3</div>
+          <div class="tot" id="tot-b">CHF 0</div>
+        </div>
+      </div>
+      <p class="calc-line" id="diff-calc"></p>
+      <p class="viz-note">Illustrative marginal rates of 25–35%; tax savings only, before investment growth.</p>
     </div>
   </div>
 
-  <h2 class="fade-in">Before You Ask</h2>
-  <div class="faq fade-in">
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">What happens if I miss the 90-day health insurance deadline?<span class="faq-arrow">▾</span></div>
-      <div class="faq-a">The canton will automatically enroll you with an insurer and backdate your premiums to your arrival date. You will also pay a penalty surcharge of up to 50% of premiums owed. There are no exceptions — secure insurance before the 90 days are up.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Which bank is best for expats in Geneva?<span class="faq-arrow">▾</span></div>
-      <div class="faq-a">For daily banking: Neon (free, English app) or BCGE (cantonal bank, CHF 10/month, physical branches). For US citizens: UBS or Credit Suisse — many smaller banks refuse US clients due to FATCA compliance costs. Avoid opening accounts at banks that don't accept your nationality before checking.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Do I pay tax in the year I arrive?<span class="faq-arrow">▾</span></div>
-      <div class="faq-a">Yes, from the day you become a Swiss tax resident. If you arrive mid-year, your first tax return covers only the months you lived in Switzerland. Withholding tax (impôt à la source) starts immediately from your first payslip if you have a B permit.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Can I keep my foreign bank account?<span class="faq-arrow">▾</span></div>
-      <div class="faq-a">Yes. There is no obligation to close foreign accounts. However, you must declare all foreign accounts and assets in your Swiss wealth tax return, and US citizens must file FBAR if foreign accounts exceed $10,000.</div>
+  <!-- 5 PERMIT -->
+  <div class="card">
+    <div class="card-head"><span class="card-num">#5</span><h2>Understanding Your Permit and What It Means Financially</h2></div>
+    <p>Your permit type affects your tax situation more than most newcomers realise.</p>
+    <p>With a B Permit, taxes are typically deducted directly from your salary (tax at source). If your gross income reaches <span class="hl-blue">CHF&nbsp;120,000</span> a year, a full tax return becomes mandatory.</p>
+    <p>Below that threshold, you can request a full tax return by <span class="hl-red">31 March</span> of the following year — this is how you claim deductions such as Pillar 3a contributions or pension fund buy-ins. The deadline is strict: miss it, and tax at source is final for that year.</p>
+    <p>With a C Permit, tax at source ends and you file every year like any Swiss resident. Understanding this transition early helps you plan for it.</p>
+    <div class="viz" id="vpermit">
+      <div class="ptable">
+        <div class="prow head" data-delay="0"><div class="lbl">&nbsp;</div><div>Tax at source</div><div>Full tax return</div></div>
+        <div class="prow" data-delay="150"><div class="lbl">B Permit — under CHF&nbsp;120,000</div><div class="yes">Yes</div><div class="opt">On request</div></div>
+        <div class="prow" data-delay="300"><div class="lbl">B Permit — CHF&nbsp;120,000 or more</div><div class="yes">Yes</div><div class="yes">Mandatory</div></div>
+        <div class="prow" data-delay="450"><div class="lbl">C Permit</div><div class="no">No</div><div class="yes">Every year</div></div>
+      </div>
+      <div class="deadline-chip" id="dl">📅 Request deadline: 31 March</div>
     </div>
   </div>
 
-  <div class="sources fade-in">
+  <!-- 6 AMERICANS -->
+  <div class="card">
+    <div class="card-head"><span class="card-num">#6</span><h2>For Americans: Additional Steps From Day One</h2></div>
+    <p>If you are a US citizen or Green Card holder, moving to Switzerland does not suspend your US tax obligations. Several actions should be taken from your first year:</p>
+    <div class="viz" id="vus" style="margin-top:12px;padding-top:12px">
+      <div class="stamps">
+        <div class="stamp" data-delay="0"><b>FBAR</b>Confirm your FBAR obligations — your Swiss bank account almost certainly triggers the filing requirement.</div>
+        <div class="stamp" data-delay="250"><b>FEIE or Foreign Tax Credit</b>Choose on your first Swiss-year US return. With Swiss tax levels, the credit is often the better option — and the FEIE election is hard to reverse.</div>
+        <div class="stamp" data-delay="500"><b>FATCA</b>Inform your Swiss bank of your US person status — this is required under FATCA.</div>
+        <div class="stamp cond" data-delay="750"><b>Certificate of Coverage</b>If you were seconded by a US employer, confirm it has applied for one under the Totalization Agreement. Hired locally? You pay into Swiss AHV as normal.</div>
+      </div>
+    </div>
+    <p style="margin-top:14px">These obligations are covered in detail in our dedicated articles on US taxation in Switzerland.</p>
+  </div>
+
+  <!-- CHECKLIST -->
+  <div>
+    <h2 class="reveal">First-Year Financial Checklist</h2>
+    <div class="checklist reveal" style="margin-top:12px">
+      <div class="cl-progress"><div class="cl-track"><div class="cl-fill" id="cl-fill"></div></div><span class="cl-count" id="cl-count">0 / 12 done</span></div>
+      <div class="cl-group"><div class="cl-when">Within 14 days</div>
+        <label class="cl-item"><input type="checkbox"><span>Register with your municipality</span></label>
+      </div>
+      <div class="cl-group"><div class="cl-when">Within 90 days</div>
+        <label class="cl-item"><input type="checkbox"><span>Choose and register for Swiss health insurance</span></label>
+        <label class="cl-item"><input type="checkbox"><span>Open a Swiss bank account</span></label>
+        <label class="cl-item"><input type="checkbox"><span>Confirm your permit status</span></label>
+      </div>
+      <div class="cl-group"><div class="cl-when">In your first year</div>
+        <label class="cl-item"><input type="checkbox"><span>Open a Pillar 3a account and make your first contribution before December 31</span></label>
+        <label class="cl-item"><input type="checkbox"><span>Understand your cantonal tax situation</span></label>
+        <label class="cl-item"><input type="checkbox"><span>If American: confirm FBAR and FATCA, and choose between FEIE and the Foreign Tax Credit</span></label>
+        <label class="cl-item"><input type="checkbox"><span>Review whether any deductions apply to your first tax year</span></label>
+        <label class="cl-item"><input type="checkbox"><span>On a B Permit under CHF&nbsp;120,000: decide whether to request a full tax return by 31 March</span></label>
+      </div>
+      <div class="cl-group"><div class="cl-when">Before your second year</div>
+        <label class="cl-item"><input type="checkbox"><span>Review your pension fund statement for contribution gaps</span></label>
+        <label class="cl-item"><input type="checkbox"><span>Consider whether voluntary Pillar 2 contributions make sense for your situation</span></label>
+        <label class="cl-item"><input type="checkbox"><span>Confirm whether your overall tax position is optimised</span></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- MISTAKES -->
+  <div>
+    <h2 class="reveal">Common Mistakes</h2>
+    <div class="mistakes">
+      <div class="mistake-item" data-delay="0"><div class="mistake-number">01</div><div class="mistake-content"><h3>Missing the health insurance deadline</h3><p>If you miss the 90-day deadline, authorities will force-assign you to a random provider and backdate your premiums — with a penalty surcharge. This is one of the most avoidable and most common errors among new arrivals.</p></div></div>
+      <div class="mistake-item" data-delay="80"><div class="mistake-number">02</div><div class="mistake-content"><h3>Assuming the canton does not matter</h3><p>Many expats choose where to live based on proximity to work and housing costs — without considering the tax implications. The difference can be substantial over a multi-year stay.</p></div></div>
+      <div class="mistake-item" data-delay="160"><div class="mistake-number">03</div><div class="mistake-content"><h3>Delaying Pillar 3a</h3><p>Since 2026, missed Pillar 3a contributions can be made up retroactively — but with limits: only for gaps from 2025 onward, only after paying the current year's maximum, and up to CHF&nbsp;7,258 per catch-up year. The compound growth of the missed years does not come back — starting early is still the best route.</p></div></div>
+      <div class="mistake-item" data-delay="240"><div class="mistake-number">04</div><div class="mistake-content"><h3>Not reviewing US obligations from day one</h3><p>For Americans, the first Swiss tax year sets patterns that are difficult to change later. Getting the foundations right from the start is far easier than correcting years of errors.</p></div></div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div>
+    <h2 class="reveal">Frequently Asked Questions</h2>
+    <div style="margin-top:12px">
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">Do I need a Swiss bank account before I arrive?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">Not necessarily — but you will need one within the first few weeks. Some digital banks allow you to open an account before arrival with a passport and Swiss address confirmation.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">Can I keep my foreign health insurance when moving to Switzerland?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">EU/EFTA nationals can use the European Health Insurance Card for short-term residency, but all long-term residents must obtain Swiss health insurance within three months of arrival. Foreign private health insurance does not generally substitute for the mandatory Swiss system.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">Does it matter which canton I live in for tax purposes?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">Significantly. The tax difference between low-tax and high-tax cantons can exceed CHF&nbsp;30,000 per year on a high income. If you have flexibility in where you live, the canton decision deserves careful consideration before signing a rental contract.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">When should I open a Pillar 3a account?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">As soon as possible after arrival — ideally in your first year. Contributions must reach the account by December 31 to qualify as a deduction for that tax year.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">When should I speak with an advisor?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">Ideally before or shortly after arrival — particularly if you are American, have assets in multiple countries, or want to ensure your tax position is optimised from the start rather than corrected later.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-box reveal">
+    <p>The first year in Switzerland sets the financial foundations for everything that follows.</p>
+    <p>Many expats spend years correcting decisions — or missed opportunities — that could have been handled correctly from the start with one professional review. SwissExpatHub can connect you with experienced advisors who regularly assist international residents with relocation planning, Swiss tax setup, and long-term financial strategy in Switzerland.</p>
+    <a href="/directory" class="cta-btn">Find Your Advisor →</a>
+  </div>
+
+  <!-- SOURCES -->
+  <div class="sources reveal">
     <h3>Sources</h3>
     <ol>
-      <li>Geneva Canton — Resident registration (Contrôle des habitants): ge.ch</li>
-      <li>Federal Office of Public Health — Health insurance obligation (KVG/LAMal): bag.admin.ch</li>
-      <li>Federal Tax Administration — Pillar 3a contribution limits 2026: estv.admin.ch</li>
-      <li>Federal Social Insurance Office — AHV/AVS and pension system: bsv.admin.ch</li>
+      <li>Federal Office of Public Health — Health insurance premiums 2026: bag.admin.ch</li>
+      <li>Federal Social Insurance Office — Pillar 3a limits 2026: bsv.admin.ch</li>
+      <li>Geneva Tax Authority — Tax at source and subsequent ordinary assessment (TOU): ge.ch/impots</li>
+      <li>IRS and FinCEN — FEIE, Foreign Tax Credit, FBAR and FATCA: irs.gov, fincen.gov</li>
     </ol>
   </div>
 
 </div>
+
 <script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+// Progress bar
+window.addEventListener('scroll', () => {
+  const docH = document.documentElement.scrollHeight - window.innerHeight;
+  document.getElementById('progress-bar').style.width = (docH > 0 ? window.scrollY / docH * 100 : 0) + '%';
+});
 
-  function switchPhase(id, tab) {
-    document.querySelectorAll('.phase-content').forEach(c => c.classList.remove('active'));
-    document.querySelectorAll('.phase-tab').forEach(t => t.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-    tab.classList.add('active');
-  }
+// Header entrance
+window.addEventListener('load', () => {
+  setTimeout(() => document.querySelector('.article-meta').classList.add('visible'), 80);
+  setTimeout(() => document.querySelector('h1').classList.add('visible'), 220);
+  setTimeout(() => document.querySelector('.header-rule').classList.add('visible'), 420);
+});
 
-  function toggleCheck(item) {
-    item.classList.toggle('done');
-    item.querySelector('.check-box').classList.toggle('checked');
-    updateProgress();
-  }
+function stagger(selector, threshold) {
+  const obs = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), parseInt(e.target.dataset.delay || 0)); obs.unobserve(e.target); }
+  }), { threshold });
+  document.querySelectorAll(selector).forEach(el => obs.observe(el));
+}
+stagger('.takeaway-item', 0.15);
+stagger('.card', 0.04);
+stagger('.reveal', 0.08);
+stagger('.mistake-item', 0.08);
 
-  function updateProgress() {
-    const total = document.querySelectorAll('.checklist-item').length;
-    const done = document.querySelectorAll('.checklist-item.done').length;
-    const pct = Math.round((done / total) * 100);
-    document.getElementById('progressFill').style.width = pct + '%';
-    document.getElementById('progressText').textContent = done + ' of ' + total + ' completed';
-  }
+function onView(id, fn, threshold = 0.4) {
+  const el = document.getElementById(id);
+  const obs = new IntersectionObserver(en => { if (en[0].isIntersecting) { fn(); obs.disconnect(); } }, { threshold });
+  obs.observe(el);
+}
+const fmt = n => 'CHF ' + Math.round(n).toLocaleString('en-US');
+function countUp(el, to, ms, from = 0) {
+  const t0 = performance.now();
+  const step = t => {
+    const k = Math.min(1, (t - t0) / ms), e = 1 - Math.pow(1 - k, 3);
+    el.textContent = fmt(from + (to - from) * e);
+    if (k < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+const each = (sel, fn) => document.querySelectorAll(sel).forEach(fn);
 
-  function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+// #1 Timeline + backdated bill
+onView('vtl', () => {
+  document.getElementById('tl-fill').style.width = '100%';
+  setTimeout(() => document.getElementById('tl14').classList.add('lit'), 450);
+  setTimeout(() => document.getElementById('tl90').classList.add('lit'), 1800);
+}, 0.5);
+onView('late', () => {
+  each('.mo', m => setTimeout(() => m.classList.add('visible'), parseInt(m.dataset.delay)));
+  setTimeout(() => countUp(document.getElementById('bill'), 4 * 465, 900), 500);
+}, 0.6);
+
+// #2 Canton
+onView('vcanton', () => {
+  countUp(document.getElementById('gap1'), 30000, 1000);
+  setTimeout(() => countUp(document.getElementById('gap5'), 150000, 1100), 600);
+  each('#mult span', s => setTimeout(() => s.classList.add('visible'), parseInt(s.dataset.delay) + 1200));
+});
+
+// #3 IBAN hub
+onView('vbank', () => {
+  each('.flow', f => setTimeout(() => f.classList.add('visible'), parseInt(f.dataset.delay)));
+  setTimeout(() => document.getElementById('iban').classList.add('visible'), 650);
+}, 0.3);
+
+// #4 Pillar 3a calculator
+const MAX3A = 7258, rateEl = document.getElementById('rate');
+let p3aStarted = false;
+function upd3a(animate) {
+  const r = +rateEl.value / 100, save = MAX3A * r;
+  document.getElementById('rate-val').textContent = rateEl.value + '%';
+  document.getElementById('p3a-calc').textContent = `CHF 7,258 × ${rateEl.value}% = ${fmt(save)} less tax per year`;
+  const out = document.getElementById('p3a-out');
+  if (animate) countUp(out, save, 1000); else out.textContent = fmt(save);
+  const a = document.getElementById('tot-a'), b = document.getElementById('tot-b');
+  if (animate) { setTimeout(() => countUp(a, 3 * Math.round(save), 900), 900); setTimeout(() => countUp(b, Math.round(save), 900), 1300); }
+  else { a.textContent = fmt(3 * Math.round(save)); b.textContent = fmt(Math.round(save)); }
+  document.getElementById('diff-calc').textContent =
+    `3 × ${Math.round(save).toLocaleString('en-US')} − 1 × ${Math.round(save).toLocaleString('en-US')} = ${fmt(2 * Math.round(save))} more by starting in year 1`;
+}
+rateEl.addEventListener('input', () => { if (p3aStarted) upd3a(false); });
+onView('v3a', () => {
+  p3aStarted = true;
+  countUp(document.getElementById('p3a-in'), MAX3A, 1000);
+  setTimeout(() => upd3a(true), 500);
+  each('.sc-row.a .yr', (y, i) => setTimeout(() => y.classList.add('on'), 900 + i * 200));
+  each('.sc-row.b .yr', (y, i) => setTimeout(() => y.classList.add(i < 2 ? 'off' : 'on'), 1300 + i * 200));
+}, 0.3);
+
+// #5 Permit table
+onView('vpermit', () => {
+  each('.prow', r => setTimeout(() => r.classList.add('visible'), parseInt(r.dataset.delay)));
+  setTimeout(() => document.getElementById('dl').classList.add('visible'), 800);
+}, 0.3);
+
+// #6 US stamps
+onView('vus', () => each('.stamp', s => setTimeout(() => s.classList.add('lit'), parseInt(s.dataset.delay) + 200)), 0.3);
+
+// Checklist
+const boxes = document.querySelectorAll('.cl-item input');
+function updCl() {
+  const done = [...boxes].filter(b => b.checked).length;
+  boxes.forEach(b => b.closest('.cl-item').classList.toggle('done', b.checked));
+  document.getElementById('cl-fill').style.width = (done / boxes.length * 100) + '%';
+  document.getElementById('cl-count').textContent = done + ' / ' + boxes.length + ' done';
+}
+boxes.forEach(b => b.addEventListener('change', updCl));
+updCl();
+
+// FAQ
+function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
 </script>
 </body>
 </html>
