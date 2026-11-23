@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Buying Property in Switzerland as a Foreign National</title>
+<meta name="description" content="Lex Koller explained: what you can buy depending on your nationality and permit, the 2026 reform proposals, closing costs and capital gains tax in Geneva.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
 <style>
 :root {
@@ -47,480 +48,509 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 body {
-  background: var(--bg);
-  color: var(--fg);
+  background: var(--bg); color: var(--fg);
   font-family: 'Inter', system-ui, sans-serif;
-  font-size: 16px;
-  line-height: 1.75;
-  padding: 40px max(16px, 5vw) 80px;
+  font-size: 16px; line-height: 1.75;
+  padding: 48px max(16px, 5vw) 80px;
 }
+.article { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 36px; }
 
-.article {
-  max-width: 720px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
+#progress-bar {
+  position: fixed; top: 0; left: 0; height: 3px;
+  background: var(--blue-mid); width: 0%;
+  z-index: 1000; transition: width .1s linear;
+  border-radius: 0 2px 2px 0;
 }
 
 /* ── HEADER ── */
-.article-header { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
 .article-meta {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: .12em; text-transform: uppercase;
-  color: var(--fg2); margin-bottom: 10px;
+  font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--fg2); margin-bottom: 12px;
+  opacity: 0; transform: translateY(-8px); transition: opacity .5s ease, transform .5s ease;
 }
+.article-meta.visible { opacity: 1; transform: translateY(0); }
 h1 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(24px, 5vw, 36px);
-  font-weight: 700; line-height: 1.2;
-  text-wrap: balance; color: var(--fg);
+  font-family: 'Space Grotesk', sans-serif; font-size: clamp(24px, 5vw, 36px);
+  font-weight: 700; line-height: 1.2; text-wrap: balance; color: var(--fg);
+  opacity: 0; transform: translateY(12px);
+  transition: opacity .6s ease .15s, transform .6s ease .15s;
 }
+h1.visible { opacity: 1; transform: translateY(0); }
 .header-rule {
-  height: 2px; background: var(--blue);
-  border-radius: 2px; margin-top: 20px;
-  width: 48px;
+  height: 3px; background: var(--blue); border-radius: 2px; margin-top: 20px;
+  width: 0; transition: width .8s cubic-bezier(.16,1,.3,1) .5s;
 }
+.header-rule.visible { width: 48px; }
 
-/* ── QUICK ANSWER ── */
-.quick-answer {
-  background: var(--blue-light);
-  border-left: 4px solid var(--blue);
-  border-radius: 0 14px 14px 0;
-  padding: 20px 24px;
-}
-.quick-answer p { font-size: 15px; color: var(--fg); margin: 0; }
-
-/* ── TAKEAWAYS ── */
-.takeaways {
-  background: var(--blue);
-  border-radius: 16px;
-  padding: 28px 32px;
-}
-.takeaways h2 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 16px; font-weight: 700;
-  color: rgba(255,255,255,.6);
-  letter-spacing: .08em; text-transform: uppercase;
-  margin-bottom: 16px; margin-top: 0;
-}
-.takeaways ul { list-style: none; }
-.takeaways ul li {
-  color: #e8ecf5;
-  font-size: 14.5px;
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(255,255,255,.1);
-  display: flex; gap: 12px; align-items: flex-start;
-}
-.takeaways ul li:last-child { border-bottom: none; }
-.takeaways ul li::before {
-  content: "✓"; color: #3dba78;
-  font-weight: 700; flex-shrink: 0; margin-top: 1px;
-}
-
-/* ── HEADINGS ── */
-h2 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 20px; font-weight: 700;
-  color: var(--fg); margin-bottom: 4px;
-}
-h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  color: var(--blue-mid); margin-bottom: 6px;
-}
+/* ── TYPE ── */
+h2 { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; color: var(--fg); margin-bottom: 8px; }
+h3 { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; color: var(--blue-mid); margin-bottom: 6px; }
 p { font-size: 15.5px; color: var(--fg); margin-bottom: 12px; }
 p:last-child { margin-bottom: 0; }
 .hl-blue  { color: var(--blue-mid); font-weight: 600; }
 .hl-green { color: var(--green);    font-weight: 600; }
 .hl-red   { color: var(--red);      font-weight: 600; }
-sup { font-size: 11px; color: var(--blue-mid); }
+.viz-label {
+  font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--fg2); margin-bottom: 12px;
+}
+.viz-note { font-size: 12px; color: var(--fg2); margin-top: 10px; }
+.calc-line { font-size: 13px; color: var(--fg2); text-align: center; margin-top: 10px; font-variant-numeric: tabular-nums; }
 
-/* ── SITUATION CARDS ── */
-.situation-cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
+/* ── QUICK ANSWER / TAKEAWAYS ── */
+.quick-answer { background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 14px 14px 0; padding: 20px 24px; }
+.quick-answer p { font-size: 15px; }
+.takeaways { background: #1f4080; border-radius: 16px; padding: 28px 32px; }
+.takeaways h2 { font-size: 13px; color: rgba(255,255,255,.55); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 18px; }
+.takeaways ul { list-style: none; }
+.takeaway-item {
+  color: #e8ecf5; font-size: 14.5px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.1);
+  display: flex; gap: 12px; align-items: flex-start;
+  opacity: 0; transform: translateX(-10px); transition: opacity .45s ease, transform .45s ease;
 }
-@media (max-width: 520px) { .situation-cards { grid-template-columns: 1fr; } }
+.takeaway-item:last-child { border-bottom: none; }
+.takeaway-item.visible { opacity: 1; transform: translateX(0); }
+.takeaway-item::before { content: "✓"; color: #3dba78; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
 
-.sit-card {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 14px;
-  padding: 18px 20px;
-  box-shadow: var(--shadow);
-  transition: border-color .2s, box-shadow .2s;
+/* ── SECTION CARDS ── */
+.card {
+  position: relative; overflow: hidden;
+  background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px;
+  padding: 24px 26px; box-shadow: var(--shadow);
+  opacity: 0; transform: translateY(16px);
+  transition: opacity .5s ease, transform .5s ease, box-shadow .2s;
 }
-.sit-card:hover { box-shadow: var(--shadow-md); }
-.sit-card.alert { border-color: var(--red); }
-.sit-card h3 { color: var(--blue-mid); margin-bottom: 6px; }
-.sit-card.alert h3 { color: var(--red); }
-.sit-card p { font-size: 13px; color: var(--fg2); margin: 0; }
+.card.visible { opacity: 1; transform: none; }
+.card:hover { box-shadow: var(--shadow-md); }
+.card::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--c, var(--blue-mid));
+  transform: scaleY(0); transform-origin: top; transition: transform .6s cubic-bezier(.16,1,.3,1) .25s;
+}
+.card.visible::before { transform: scaleY(1); }
+.card-head { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+.card-num {
+  font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; color: var(--c, var(--blue-mid));
+  background: var(--cl, var(--blue-light)); border-radius: 8px; padding: 4px 10px; flex-shrink: 0;
+  transform: scale(.6); opacity: 0; transition: transform .5s cubic-bezier(.34,1.56,.64,1) .2s, opacity .4s ease .2s;
+}
+.card.visible .card-num { transform: scale(1); opacity: 1; }
+.card-head h2 { margin: 0; font-size: 18px; }
+.card p { font-size: 15px; }
+.c-red   { --c: var(--red);   --cl: var(--red-light); }
+.c-green { --c: var(--green); --cl: var(--green-light); }
+.c-gold  { --c: var(--gold);  --cl: var(--gold-light); }
+.viz { margin-top: 18px; padding-top: 16px; border-top: 1px dashed var(--border); }
 
-/* ── CHECKLIST ── */
-.checklist {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 16px;
-  padding: 24px 28px;
-  box-shadow: var(--shadow);
+/* ── NOTE BOXES ── */
+.note { border-radius: 0 12px 12px 0; padding: 14px 18px; margin-top: 16px; }
+.note p { font-size: 14.5px; }
+.note.warn { background: var(--gold-light); border-left: 4px solid var(--gold); }
+.note.warn strong { color: var(--gold); }
+.note.new { background: var(--green-light); border-left: 4px solid var(--green); }
+.note.new strong { color: var(--green); }
+
+/* ── shared ── */
+.stat { text-align: center; border-radius: 12px; padding: 14px 10px; }
+.stat .k { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--fg2); }
+.stat .v { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1.3; white-space: nowrap; }
+.stat small { display: block; font-size: 12px; color: var(--fg2); font-variant-numeric: tabular-nums; }
+.stat.blue { background: var(--blue-light); } .stat.blue .v { color: var(--blue-mid); }
+.stat.red  { background: var(--red-light); }  .stat.red .v  { color: var(--red); }
+.stats2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.slider { margin-bottom: 14px; background: var(--bg); border-radius: 12px; padding: 12px 16px; }
+.slider label { font-size: 12.5px; color: var(--fg2); display: flex; justify-content: space-between; gap: 10px; }
+.slider label b { font-family: 'Space Grotesk', sans-serif; color: var(--fg); font-size: 15px; font-variant-numeric: tabular-nums; }
+.slider input { width: 100%; accent-color: var(--blue-mid); }
+@media (max-width: 560px) { .stats2 { grid-template-columns: 1fr; } .stat .v { font-size: 21px; } }
+
+/* ── who are you ── */
+.pick { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+.pick-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; font-size: 12.5px; color: var(--fg2); }
+.pick-row > span { min-width: 92px; font-weight: 600; }
+.pick button { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 13px; padding: 7px 13px; border-radius: 10px; cursor: pointer;
+  border: 1.5px solid var(--border); background: var(--bg); color: var(--fg2); transition: background .2s, color .2s, border-color .2s; }
+.pick button.on { background: #2e5fa3; border-color: #2e5fa3; color: #fff; }
+.pick button:focus-visible { outline: 2px solid var(--blue-mid); outline-offset: 2px; }
+.cats { display: flex; flex-direction: column; gap: 8px; }
+.cat { display: grid; grid-template-columns: 1.3fr 1fr 1.6fr; gap: 12px; align-items: center; padding: 12px 14px; border-radius: 12px; border: 1.5px solid var(--border); background: var(--bg2); font-size: 13.5px;
+  opacity: 0; transform: translateX(-10px); transition: opacity .4s, transform .4s, border-color .3s, background .3s, box-shadow .3s; }
+.cat.visible { opacity: 1; transform: none; }
+.cat.dim { opacity: .4; }
+.cat.match { border-color: var(--c); background: var(--cl); box-shadow: var(--shadow-md); opacity: 1; }
+.cat .who { font-weight: 600; }
+.cat .what { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--c); }
+.cat .cond { color: var(--fg2); font-size: 13px; line-height: 1.5; }
+.k-green { --c: var(--green); --cl: var(--green-light); } .k-gold { --c: var(--gold); --cl: var(--gold-light); } .k-red { --c: var(--red); --cl: var(--red-light); } .k-blue { --c: var(--blue-mid); --cl: var(--blue-light); }
+@media (max-width: 580px) { .cat { grid-template-columns: 1fr; gap: 3px; } }
+
+/* ── timeline ── */
+.tline { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; position: relative; }
+.tl-step { text-align: center; font-size: 12.5px; color: var(--fg2); opacity: .35; transition: opacity .4s; }
+.tl-step .dot { width: 18px; height: 18px; border-radius: 50%; margin: 0 auto 8px; border: 3px solid var(--border); background: var(--bg2); transition: border-color .4s, background .4s, transform .4s cubic-bezier(.34,1.56,.64,1); }
+.tl-step b { display: block; color: var(--fg); font-family: 'Space Grotesk', sans-serif; font-size: 13px; }
+.tl-step.lit { opacity: 1; }
+.tl-step.lit .dot { border-color: var(--blue-mid); background: var(--blue-light); transform: scale(1.2); }
+.tl-step.fut.lit .dot { border-style: dashed; border-color: var(--gold); background: var(--gold-light); }
+.props { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+.prop { display: flex; gap: 10px; align-items: flex-start; padding: 10px 14px; border-radius: 10px; font-size: 14px; border: 1.5px dashed var(--gold); background: var(--gold-light);
+  opacity: 0; transform: translateY(6px); transition: opacity .4s, transform .4s; }
+.prop.visible { opacity: 1; transform: none; }
+@media (max-width: 480px) { .tline { grid-template-columns: repeat(2, 1fr); row-gap: 14px; } }
+
+/* ── cost breakdown ── */
+.split { display: flex; height: 30px; border-radius: 9px; overflow: hidden; border: 1.5px solid var(--border); background: var(--bg); margin-top: 14px; }
+.split div { width: 0; transition: width .8s cubic-bezier(.16,1,.3,1); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 11.5px; font-weight: 700; white-space: nowrap; overflow: hidden; }
+.split-legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12.5px; color: var(--fg2); margin-top: 8px; }
+.split-legend span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; background: var(--c); }
+
+/* ── gains staircase ── */
+.stairs { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; align-items: end; height: 170px; }
+.stair { position: relative; border-radius: 8px 8px 4px 4px; background: var(--red-light); border: 1.5px solid var(--border); height: 0; transition: height .7s cubic-bezier(.16,1,.3,1), background .3s, border-color .3s; }
+.stair span { position: absolute; top: -20px; left: 0; right: 0; text-align: center; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 12.5px; color: var(--fg2); }
+.stair.on { background: var(--red); border-color: var(--red); }
+.stair.on span { color: var(--red); }
+.stairs-lab { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; text-align: center; font-size: 11px; color: var(--fg2); margin-top: 6px; }
+@media (max-width: 480px) { .stairs { height: 140px; } .stair span { font-size: 11px; } .stairs-lab { font-size: 10px; } }
+
+/* ── situations ── */
+.sits { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.sit { border-radius: 14px; padding: 16px 18px; border: 1.5px solid var(--border); background: var(--bg2); border-top: 4px solid var(--c);
+  opacity: 0; transform: translateY(12px); transition: opacity .45s, transform .45s; }
+.sit.visible { opacity: 1; transform: none; }
+.sit h3 { color: var(--fg); font-size: 14.5px; margin-bottom: 4px; }
+.sit .tag { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--c); }
+.sit p { font-size: 13.5px; color: var(--fg2); margin: 6px 0 10px; line-height: 1.55; }
+.sit .cost { border-top: 1px dashed var(--border); padding-top: 8px; font-size: 13px; color: var(--fg2); font-variant-numeric: tabular-nums; }
+.sit .cost b { color: var(--fg); font-family: 'Space Grotesk', sans-serif; font-size: 15px; }
+@media (max-width: 580px) { .sits { grid-template-columns: 1fr; } }
+
+/* ── next article ── */
+.next { display: flex; justify-content: space-between; align-items: center; gap: 16px; background: var(--bg2); border: 1.5px solid var(--border); border-radius: 14px; padding: 20px 24px; transition: border-color .25s, box-shadow .25s; }
+.next:hover { border-color: var(--blue-mid); box-shadow: var(--shadow-md); }
+.next small { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--fg2); margin-bottom: 4px; }
+.next b { font-family: 'Space Grotesk', sans-serif; font-size: 16px; }
+.next span { font-size: 22px; color: var(--blue-mid); }
+
+/* ── MISTAKES ── */
+.mistakes { display: flex; flex-direction: column; gap: 12px; margin-top: 12px; }
+.mistake-item {
+  background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px; padding: 20px 24px; box-shadow: var(--shadow);
+  display: flex; gap: 18px; align-items: flex-start;
+  opacity: 0; transform: translateX(-14px); transition: opacity .45s ease, transform .45s ease, box-shadow .2s;
 }
-.checklist h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  margin-bottom: 16px; color: var(--fg);
-}
-.checklist-item {
-  display: flex; align-items: flex-start; gap: 12px;
-  padding: 11px 0;
-  border-bottom: 1px solid var(--border);
-  cursor: pointer;
-}
-.checklist-item:last-of-type { border-bottom: none; }
-.check-box {
-  width: 22px; height: 22px;
-  border: 2px solid var(--blue);
-  border-radius: 6px; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  transition: all .2s; margin-top: 2px;
-}
-.check-box.checked { background: var(--blue); border-color: var(--blue); }
-.check-box.checked::after { content: "✓"; color: white; font-size: 13px; font-weight: 700; }
-.checklist-item.done span { text-decoration: line-through; color: var(--fg2); }
-.checklist-item span { font-size: 14.5px; color: var(--fg); font-family: 'Inter', sans-serif; }
-.progress-bar { height: 5px; background: var(--border); border-radius: 3px; margin-top: 16px; }
-.progress-fill { height: 100%; background: var(--green); border-radius: 3px; transition: width .4s ease; }
-.progress-label { font-size: 12px; color: var(--fg2); margin-top: 6px; font-family: 'Inter', sans-serif; }
+.mistake-item.visible { opacity: 1; transform: translateX(0); }
+.mistake-item:hover { box-shadow: var(--shadow-md); }
+.mistake-number { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; color: var(--red); line-height: 1; flex-shrink: 0; min-width: 32px; opacity: .25; }
+.mistake-content h3 { color: var(--red); font-size: 15px; margin-bottom: 6px; }
+.mistake-content p { font-size: 14.5px; color: var(--fg2); margin: 0; line-height: 1.6; }
 
 /* ── FAQ ── */
-.faq-item {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  margin-bottom: 8px;
-  overflow: hidden;
-  transition: border-color .2s;
-}
-.faq-item.open { border-color: var(--blue); }
-.faq-q {
-  padding: 16px 20px;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 14px; font-weight: 600;
-  cursor: pointer;
-  display: flex; justify-content: space-between; align-items: center;
-  gap: 12px; color: var(--fg);
-  background: transparent;
-}
-.faq-arrow { color: var(--blue); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
+.faq-item { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; margin-bottom: 8px; overflow: hidden; transition: border-color .2s; }
+.faq-item.open { border-color: var(--blue-mid); }
+.faq-q { padding: 16px 20px; font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; color: var(--fg); user-select: none; }
+.faq-arrow { color: var(--blue-mid); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
 .faq-item.open .faq-arrow { transform: rotate(180deg); }
-.faq-a {
-  display: none;
-  padding: 0 20px 16px;
-  font-size: 14px; color: var(--fg2); line-height: 1.65;
-  font-family: 'Inter', sans-serif;
-}
-.faq-item.open .faq-a { display: block; }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .35s ease; font-size: 14px; color: var(--fg2); line-height: 1.65; padding: 0 20px; }
+.faq-item.open .faq-a { max-height: 400px; padding: 0 20px 16px; }
 
-/* ── CTA ── */
-.cta-box {
-  background: var(--blue);
-  border-radius: 16px;
-  padding: 32px 36px;
-  text-align: center;
-}
-.cta-box p {
-  color: rgba(255,255,255,.8);
-  font-size: 15px; margin-bottom: 20px;
-}
-.cta-btn {
-  background: var(--gold);
-  color: #fff;
-  padding: 13px 28px;
-  border-radius: 10px;
-  text-decoration: none;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  display: inline-block;
-  transition: opacity .2s;
-}
-.cta-btn:hover { opacity: .88; }
-
-/* ── SOURCES ── */
-.sources {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  padding: 20px 24px;
-}
-.sources h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: .1em; text-transform: uppercase;
-  color: var(--fg2); margin-bottom: 10px;
-}
+/* ── CTA / SOURCES ── */
+.cta-box { background: #1f4080; border-radius: 16px; padding: 32px 36px; text-align: center; }
+.cta-box p { color: rgba(255,255,255,.85); font-size: 15px; margin-bottom: 14px; }
+.cta-box p:last-of-type { margin-bottom: 20px; }
+.cta-btn { background:var(--gold); color:#fff; padding:13px 28px; border-radius:10px; text-decoration:none; font-family:'Space Grotesk',sans-serif; font-size:15px; font-weight:700; display:inline-block; transition:opacity .2s,transform .2s; }
+.cta-btn:hover { opacity:.88; transform:translateY(-1px); }
+.sources { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; padding: 20px 24px; }
+.sources h3 { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--fg2); margin-bottom: 10px; }
 .sources ol { padding-left: 18px; }
-.sources ol li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; }
+.sources li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; }
 
-/* ── FADE IN ── */
-.fade-in { opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
-.fade-in.visible { opacity: 1; transform: translateY(0); }
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
 
 @media (max-width: 600px) {
-  h1 { font-size: 24px; }
-  .situation-cards { grid-template-columns: 1fr; }
+  body { padding-top: 36px; }
+  .takeaways { padding: 22px 20px; }
   .cta-box { padding: 24px 20px; }
-  .takeaways { padding: 20px 20px; }
+  .card { padding: 18px 18px; }
+  .checklist { padding: 18px 16px; }
+  .tl-pt { width: 92px; }
+  .tl-pt.first .what { visibility: hidden; }
 }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; } }
 </style>
 </head>
 <body>
-
 <div id="progress-bar"></div>
-
-<!-- HERO -->
-<header class="hero">
-  <div class="hero-bg"></div>
-  
-  <div class="hero-gradient"></div>
-  <div class="hero-content">
-    <div class="hero-tag" id="heroTag">
-      <span class="hero-tag-pill">Real Estate</span>
-      <span>Geneva · Switzerland</span>
-    </div>
-    <h1 class="hero-title" id="heroTitle">Buying Property in Switzerland as a Foreign National</h1>
-    <p class="hero-subtitle" id="heroSubtitle">The Lex Koller law has restricted foreign property ownership since 1983. Your permit type determines everything — what you can buy, where, and on what terms.</p>
-    <div class="hero-meta" id="heroMeta">
-      <span>Updated August 2026</span>
-      <div class="hero-meta-divider"></div>
-      <span>4 min read</span>
-    </div>
-  </div>
-</header>
-
 <div class="article">
 
-  <!-- TAKEAWAYS -->
+  <div class="article-header">
+    <p class="article-meta">Real Estate · Geneva · 4 min read</p>
+    <h1>Buying Property in Switzerland as a Foreign National</h1>
+    <div class="header-rule"></div>
+  </div>
+
+  <div class="quick-answer reveal">
+    <p><strong>Quick Answer: It depends on your nationality and your permit.</strong> With a C Permit — or as an EU/EFTA citizen living in Switzerland — you buy like a Swiss citizen. From outside the EU on a B Permit, only your main home. Without Swiss residence, only a holiday home, within quotas. And buying property does not give you any right of residence.</p>
+  </div>
+
   <div class="takeaways">
-    <p class="takeaways-label">Key Takeaways</p>
-    <div class="takeaway-item" data-delay="0"><span class="takeaway-num">01</span><span class="takeaway-text">C Permit — no restrictions, same rights as a Swiss citizen</span></div>
-    <div class="takeaway-item" data-delay="90"><span class="takeaway-num">02</span><span class="takeaway-text">B Permit — can buy primary residence for own use only, cannot rent out</span></div>
-    <div class="takeaway-item" data-delay="180"><span class="takeaway-num">03</span><span class="takeaway-text">No permit — limited to holiday homes in 17 tourist cantons, 1,500 authorisations per year nationwide</span></div>
-    <div class="takeaway-item" data-delay="270"><span class="takeaway-num">04</span><span class="takeaway-text">Switzerland has no Golden Visa — buying property does not grant residency</span></div>
-    <div class="takeaway-item" data-delay="360"><span class="takeaway-num">05</span><span class="takeaway-text">Closing costs in Geneva reach 4.1% of the purchase price — the highest in the country</span></div>
-    <div class="takeaway-item" data-delay="450"><span class="takeaway-num">06</span><span class="takeaway-text">2026 proposals to tighten Lex Koller are in progress — act before new rules take effect</span></div>
+    <h2>Key Takeaways</h2>
+    <ul>
+      <li class="takeaway-item" data-delay="0">In Geneva, closing costs add up to about 4% of the price — paid from your own pocket, not the mortgage</li>
+      <li class="takeaway-item" data-delay="100">Sell within 2 years and Geneva taxes 50% of your profit; after 25 years, 2%</li>
+      <li class="takeaway-item" data-delay="200">Since April 2026, a government proposal aims to tighten the rules for buyers from outside Europe</li>
+      <li class="takeaway-item" data-delay="300">Commercial property — offices, shops — falls outside Lex Koller</li>
+    </ul>
   </div>
 
-  <!-- LEX KOLLER -->
-  <h2 class="reveal">The Lex Koller Law — What You Need to Know</h2>
-  <p class="reveal">Switzerland has one of the most restrictive property purchase laws for foreigners in Europe — the <span class="hl-blue">Lex Koller</span>, in force since 1983. Its purpose: prevent foreign speculation from driving up Swiss property prices. Depending on your residence status, the rules are completely different.</p>
-
-  <!-- SCENARIOS -->
-  <h2 class="reveal">Your Situation — Three Scenarios</h2>
-  <div class="scenario-cards">
-    <div class="scenario-card ok reveal" data-delay="0">
-      <p class="scenario-tag">✅ Full rights</p>
-      <h3>C Permit — No Restrictions</h3>
-      <p class="scenario-body">No restrictions. Buy any property in any canton — primary residence, holiday home, investment property to rent out. Exactly like a Swiss citizen. No special authorisation needed.</p>
-    </div>
-    <div class="scenario-card caution reveal" data-delay="100">
-      <p class="scenario-tag">⚠ Conditions apply</p>
-      <h3>B Permit — Primary Residence Only</h3>
-      <ul>
-        <li>The property must be for personal use — cannot be rented out</li>
-        <li>If you leave Switzerland and the B Permit lapses, you may be forced to sell within two years</li>
-        <li>Cannot purchase a holiday home at the same time</li>
-      </ul>
-    </div>
-    <div class="scenario-card restricted reveal" data-delay="200">
-      <p class="scenario-tag">🔒 Severely restricted</p>
-      <h3>No Residence Permit — Holiday Homes Only</h3>
-      <p class="scenario-body">Only holiday homes in 17 tourist cantons with annual quotas — Valais, Graubünden, Ticino, among others. Only <span class="hl-red">1,500 authorisations per year</span> nationwide. Approval is not guaranteed.</p>
-    </div>
-  </div>
-
-  <!-- QUOTE -->
-  <div class="quote-block reveal">
-    <p class="quote-label">Worth Knowing</p>
-    <p class="quote-text">"Switzerland has no Golden Visa. Buying a property — regardless of its value — does not confer any right of residence."</p>
-  </div>
-
-  <!-- 2026 CHANGES -->
-  <h2 class="reveal">Attention — 2026 Changes</h2>
-  <p class="reveal">In April 2026, the Swiss Federal Council opened a public consultation to tighten the Lex Koller rules.</p>
-  <div class="warning-box reveal">
-    <p>⚠ <strong>Proposals include:</strong> Non-EU/EFTA nationals with a B Permit would need special authorisation to buy a residence · Holiday home restrictions would tighten further · Anyone who buys and later leaves Switzerland would be obliged to sell within two years. The consultation closed in July 2026. <span class="hl-red">Not yet law — but expected to advance. Anyone considering a purchase should act before the new rules take effect.</span></p>
-  </div>
-
-  <!-- CLOSING COSTS -->
-  <h2 class="reveal">Closing Costs</h2>
-  <p class="reveal">In Geneva, closing costs reach <span class="hl-red">4.1% of the purchase price</span> — the highest in the country. They include cantonal transfer tax, notary fees (mandatory in all Swiss transactions), land registry registration, and administrative charges. These costs come out of pocket before you move in — they are not part of the mortgage.</p>
-
-  <table class="cost-table reveal">
-    <tr><th>Property value</th><th>Closing costs in Geneva (~4.1%)</th></tr>
-    <tr><td>CHF 500,000</td><td>~CHF 20,500</td></tr>
-    <tr><td>CHF 750,000</td><td>~CHF 30,750</td></tr>
-    <tr><td>CHF 1,000,000</td><td>~CHF 41,000</td></tr>
-    <tr><td>CHF 1,500,000</td><td>~CHF 61,500</td></tr>
-  </table>
-
-  <!-- CAPITAL GAINS -->
-  <h2 class="reveal">Capital Gains Tax on Sale</h2>
-  <p class="reveal">If you sell at a profit, you pay tax on the capital gain. In Geneva this can reach <span class="hl-red">50% of the profit</span> if you sell within the first 2 years. It decreases progressively — the longer you hold the property, the less you pay. Those who buy to live — rather than speculate — are rarely significantly affected.</p>
-
-  <!-- FOUR SITUATIONS -->
-  <h2 class="reveal">Four Real Situations</h2>
-  <div class="situation-grid">
-    <div class="sit-card reveal" data-delay="0">
-      <div class="sit-name">Sofia, 38, C Permit — CHF 600,000 in Carouge</div>
-      <p>No restrictions. Can buy, rent, or sell whenever she wants.</p>
-      <p class="sit-note">Closing costs ~CHF 24,600</p>
-    </div>
-    <div class="sit-card reveal" data-delay="100">
-      <div class="sit-name">James, 34, B Permit — CHF 750,000 in Geneva</div>
-      <p>Can buy — primary residence only. Cannot rent out. If B Permit lapses, may be forced to sell.</p>
-      <p class="sit-note">Closing costs ~CHF 30,750</p>
-    </div>
-    <div class="sit-card reveal" data-delay="200">
-      <div class="sit-name">Couple, C Permit — CHF 1,200,000 in Champel</div>
-      <p>No restrictions. Can rent a floor, sell whenever, or pass to children.</p>
-      <p class="sit-note">Closing costs ~CHF 49,200</p>
-    </div>
-    <div class="sit-card reveal" data-delay="300">
-      <div class="sit-name">Expat, no permit — CHF 400,000 holiday home, Valais</div>
-      <p>Required cantonal authorisation within annual quota. Cannot use as primary residence or rent full-time.</p>
-      <p class="sit-note">Closing costs ~CHF 12,000 (Valais rates lower than Geneva)</p>
-    </div>
-  </div>
-
-  <!-- MISTAKES -->
-  <h2 class="reveal">Common Mistakes</h2>
-  <div class="mistake-list reveal">
-    <div class="mistake-item">
-      <div class="mistake-icon">❌</div>
-      <div>
-        <div class="mistake-title">Assuming B Permit gives the same freedom as C Permit</div>
-        <div class="mistake-desc">It does not. The restrictions on use and the potential obligation to sell upon leaving Switzerland are real and can have serious consequences.</div>
+  <!-- 1 LEX KOLLER -->
+  <div class="card">
+    <div class="card-head"><span class="card-num">#1</span><h2>Lex Koller — What You Need to Know</h2></div>
+    <p>Switzerland has one of Europe's most restrictive laws on property purchases by foreigners: the <span class="hl-blue">Lex Koller</span>, in force since 1983. Its purpose is to stop foreign speculation from pushing up Swiss property prices. What you can buy depends on two things: your nationality and your residence permit.</p>
+    <div class="viz" id="vwho">
+      <div class="viz-label">Find your situation</div>
+      <div class="pick">
+        <div class="pick-row" id="pick-nat"><span>Nationality</span><button type="button" class="on" data-v="eu">EU / EFTA</button><button type="button" data-v="non">Outside EU / EFTA</button></div>
+        <div class="pick-row" id="pick-per"><span>Permit</span><button type="button" data-v="C">C</button><button type="button" class="on" data-v="B">B</button><button type="button" data-v="L">L</button><button type="button" data-v="G">G</button><button type="button" data-v="none">No Swiss residence</button></div>
       </div>
-    </div>
-    <div class="mistake-item">
-      <div class="mistake-icon">❌</div>
-      <div>
-        <div class="mistake-title">Underestimating closing costs</div>
-        <div class="mistake-desc">4.1% in Geneva is far above the European average. On a CHF 800k property that is CHF 32,800 out of pocket before moving in.</div>
+      <div class="cats">
+        <div class="cat k-green" data-k="C" data-delay="0"><span class="who">C Permit (any nationality)</span><span class="what">Everything</span><span class="cond">No restrictions — like a Swiss citizen: main home, holiday home, property to rent out.</span></div>
+        <div class="cat k-green" data-k="EU" data-delay="120"><span class="who">EU/EFTA citizen living in Switzerland (B, C or L)</span><span class="what">Everything</span><span class="cond">No restrictions, under the free movement agreement.</span></div>
+        <div class="cat k-gold" data-k="NB" data-delay="240"><span class="who">Outside EU/EFTA, B Permit</span><span class="what">Main home only</span><span class="cond">To live in yourself. A holiday home or a property to rent out needs authorisation.</span></div>
+        <div class="cat k-blue" data-k="G" data-delay="360"><span class="who">EU/EFTA cross-border worker (G Permit)</span><span class="what">Second home near work</span><span class="cond">For your own use.</span></div>
+        <div class="cat k-red" data-k="none" data-delay="480"><span class="who">No Swiss residence</span><span class="what">Holiday home only</span><span class="cond">With cantonal authorisation, within a quota of 1,500 a year nationwide. Approval is not guaranteed.</span></div>
       </div>
+      <p class="viz-note" id="who-note"></p>
     </div>
-    <div class="mistake-item">
-      <div class="mistake-icon">❌</div>
-      <div>
-        <div class="mistake-title">Not checking eligibility before searching</div>
-        <div class="mistake-desc">Lex Koller may restrict the type of property you can buy. Knowing this before falling in love with an apartment you cannot purchase saves time and frustration.</div>
+  </div>
+
+  <!-- 2 2026 -->
+  <div class="card c-gold">
+    <div class="card-head"><span class="card-num">#2</span><h2>Attention — Changes Proposed in 2026</h2></div>
+    <p>On 15 April 2026, the Federal Council opened a public consultation to tighten Lex Koller. The consultation closed on 15 July 2026. It is not law yet — the text still goes to Parliament and may change.</p>
+    <div class="viz" id="v2026">
+      <div class="tline">
+        <div class="tl-step" data-delay="0"><div class="dot"></div><b>15 Apr 2026</b>Consultation opens</div>
+        <div class="tl-step" data-delay="350"><div class="dot"></div><b>15 Jul 2026</b>Consultation closes</div>
+        <div class="tl-step fut" data-delay="700"><div class="dot"></div><b>Next</b>Federal Council → Parliament</div>
+        <div class="tl-step fut" data-delay="1050"><div class="dot"></div><b>Later</b>Possible new law</div>
       </div>
-    </div>
-    <div class="mistake-item">
-      <div class="mistake-icon">❌</div>
-      <div>
-        <div class="mistake-title">Not consulting a notary before signing</div>
-        <div class="mistake-desc">A notary is mandatory in every Swiss property purchase. Consulting one before — not just at closing — can prevent costly errors.</div>
+      <div class="viz-label" style="margin-top:18px">The main proposals</div>
+      <div class="props">
+        <div class="prop" data-delay="0">📝 Buyers from outside the EU/EFTA would need authorisation even for their main home</div>
+        <div class="prop" data-delay="200">📦 Anyone who later moves away would have to sell within two years</div>
+        <div class="prop" data-delay="400">🏔️ Holiday-home purchases by foreigners would become more restricted</div>
       </div>
     </div>
   </div>
 
-  <!-- FAQ -->
-  <h2 class="reveal">Before You Ask</h2>
-  <div class="faq-list reveal">
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Does buying property in Switzerland give me residency rights?<span class="faq-arrow">▾</span></div>
-      <div class="faq-a">No. Switzerland has no Golden Visa programme. Purchasing a property — regardless of its value — does not confer any right of residence.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Can I rent out my property if I have a B Permit?<span class="faq-arrow">▾</span></div>
-      <div class="faq-a">In principle, no. A B Permit only authorises the purchase of a primary residence for personal use. Renting the property out may violate the conditions of the authorisation.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Do the 2026 Lex Koller proposals affect people who already own property?<span class="faq-arrow">▾</span></div>
-      <div class="faq-a">No. The proposals are not retroactive. Those who already own property retain their current rights.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">When should I speak with an advisor?<span class="faq-arrow">▾</span></div>
-      <div class="faq-a">Before making any offer. The Lex Koller restrictions and the implications of your permit type depend very much on your specific situation.</div>
+  <!-- 3 CLOSING COSTS -->
+  <div class="card c-red">
+    <div class="card-head"><span class="card-num">#3</span><h2>Closing Costs</h2></div>
+    <p>In Geneva, closing costs add up to about <span class="hl-red">4% of the purchase price</span>: cantonal transfer tax, the notary (mandatory in every Swiss purchase), land registry and administrative fees. They come out of your own pocket before you move in — they are not part of the mortgage.</p>
+    <p>If you are buying your main home in Geneva, you can apply for Casatax, a reduction of the transfer tax that can be worth tens of thousands of francs.</p>
+    <div class="viz" id="vcost">
+      <div class="slider">
+        <label for="price">Purchase price <b id="price-val">CHF 1,000,000</b></label>
+        <input type="range" id="price" min="300000" max="2000000" step="10000" value="1000000" aria-label="Purchase price">
+      </div>
+      <div class="stats2">
+        <div class="stat red"><div class="k">Closing costs</div><div class="v" id="cost">CHF 0</div><small id="cost-calc"></small></div>
+        <div class="stat blue"><div class="k">Cash you need on top</div><div class="v" id="cash">CHF 0</div><small>Not covered by the mortgage</small></div>
+      </div>
+      <div class="split" id="split"><div style="background:#c22b2b">Transfer tax</div><div style="background:#b8862a"></div><div style="background:#2e5fa3">Notary</div></div>
+      <div class="split-legend"><span style="--c:#c22b2b">Transfer tax ~3%</span><span style="--c:#b8862a">Land registry ~0.3%</span><span style="--c:#2e5fa3">Notary ~0.5–0.7%</span></div>
+      <p class="viz-note">Approximate split before any Casatax reduction.</p>
     </div>
   </div>
 
-  <!-- CTA -->
+  <!-- 4 CAPITAL GAINS -->
+  <div class="card">
+    <div class="card-head"><span class="card-num">#4</span><h2>Capital Gains Tax on Sale</h2></div>
+    <p>If you sell at a profit, you pay tax on the gain. In Geneva, the rate falls the longer you have owned the property — from 50% within the first two years to 2% after 25 years. Those who buy to live in the property, rather than to speculate, are rarely hit hard.</p>
+    <div class="viz" id="vgain">
+      <div class="slider">
+        <label for="yrs">Years you owned the property <b id="yrs-val">5 years</b></label>
+        <input type="range" id="yrs" min="0" max="30" step="1" value="5" aria-label="Years of ownership">
+      </div>
+      <div class="stairs" id="stairs">
+        <div class="stair" data-r="50"><span>50%</span></div>
+        <div class="stair" data-r="40"><span>40%</span></div>
+        <div class="stair" data-r="30"><span>30%</span></div>
+        <div class="stair" data-r="20"><span>20%</span></div>
+        <div class="stair" data-r="15"><span>15%</span></div>
+        <div class="stair" data-r="10"><span>10%</span></div>
+        <div class="stair" data-r="2"><span>2%</span></div>
+      </div>
+      <div class="stairs-lab"><span>&lt;2</span><span>2–4</span><span>4–6</span><span>6–8</span><span>8–10</span><span>10–25</span><span>25+</span></div>
+      <p class="calc-line" id="gain-calc"></p>
+      <p class="viz-note">Illustrative profit of CHF&nbsp;100,000. Years of ownership.</p>
+    </div>
+  </div>
+
+  <!-- 5 SITUATIONS -->
+  <div class="card">
+    <div class="card-head"><span class="card-num">#5</span><h2>Four Real Situations</h2></div>
+    <div class="viz" id="vsits" style="margin-top:4px;padding-top:4px;border-top:none">
+      <div class="sits">
+        <div class="sit" style="--c:var(--green)" data-delay="0"><span class="tag">C Permit · Carouge</span><h3>Sofia, 38 — CHF&nbsp;600,000</h3><p>No restrictions. Can buy, rent out or sell whenever she wants.</p><div class="cost">600,000 × 4% ≈ <b data-n="24000">CHF 0</b></div></div>
+        <div class="sit" style="--c:var(--gold)" data-delay="150"><span class="tag">American · B Permit · Geneva</span><h3>James, 34 — CHF&nbsp;750,000</h3><p>Can buy, but only to live in. Cannot rent it out.</p><div class="cost">750,000 × 4% ≈ <b data-n="30000">CHF 0</b></div></div>
+        <div class="sit" style="--c:var(--green)" data-delay="300"><span class="tag">Italian · B Permit · Champel</span><h3>Marta, 41 — CHF&nbsp;1,200,000</h3><p>As an EU citizen living in Switzerland, no restrictions: she can rent out a floor or sell whenever she wants.</p><div class="cost">1,200,000 × 4% ≈ <b data-n="48000">CHF 0</b></div></div>
+        <div class="sit" style="--c:var(--red)" data-delay="450"><span class="tag">No Swiss residence · Valais</span><h3>Holiday home — CHF&nbsp;400,000</h3><p>Needs cantonal authorisation within the annual quota. Cannot be used as a main home or rented out year-round.</p><div class="cost">Closing costs ≈ <b data-n="12000">CHF 0</b> (Valais charges less than Geneva)</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <h2 class="reveal">Common Mistakes</h2>
+    <div class="mistakes">
+      <div class="mistake-item" data-delay="0"><div class="mistake-number">01</div><div class="mistake-content"><h3>Not checking eligibility before searching</h3><p>Lex Koller may limit the type of property you can buy. Knowing this before falling in love with an apartment you cannot purchase saves time and frustration.</p></div></div>
+      <div class="mistake-item" data-delay="80"><div class="mistake-number">02</div><div class="mistake-content"><h3>Only seeing the notary at signing</h3><p>A notary is mandatory in every Swiss property purchase. Consulting one beforehand — not just at closing — prevents costly errors.</p></div></div>
+    </div>
+  </div>
+
+  <div>
+    <h2 class="reveal">Before You Ask</h2>
+    <div style="margin-top:12px">
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">Do the 2026 proposals affect people who already own property?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">No. The proposals are not retroactive: existing owners keep their current rights.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">When should I speak with an advisor?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">Before making any offer. Lex Koller restrictions and the effect of your permit depend very much on your specific situation.</div>
+      </div>
+    </div>
+  </div>
+
   <div class="cta-box reveal">
-    <p>SwissExpatHub can connect you with advisors experienced in Swiss property law, Lex Koller authorisations, and the tax implications of property ownership for international residents in Geneva.</p>
+    <p>SwissExpatHub can connect you with advisors experienced in Swiss property law, Lex Koller authorisations and the tax implications of owning property in Geneva.</p>
     <a href="/directory" class="cta-btn">Find Your Advisor →</a>
   </div>
 
-  <!-- NEXT ARTICLE -->
-  <div class="next-article reveal">
-    <div>
-      <p class="next-label">Next Article</p>
-      <p class="next-title">Financing Property in Switzerland as an Expat — What You Need to Know</p>
-    </div>
-    <div class="next-arrow">→</div>
-  </div>
+  <div class="next reveal"><div><small>Next article</small><b>Financing Property in Switzerland as an Expat</b></div><span>→</span></div>
 
-  <!-- SOURCES -->
   <div class="sources reveal">
-    <p class="sources-label">Sources</p>
+    <h3>Sources</h3>
     <ol>
       <li>Federal Act on the Acquisition of Real Estate by Persons Abroad (Lex Koller): admin.ch</li>
-      <li>Proposed Lex Koller revision 2026 — public consultation: admin.ch</li>
-      <li>Deloitte Switzerland — Lex Koller reform analysis, April 2026: deloitte.com/ch</li>
-      <li>Taxolution Advisory — Swiss property purchase guide 2026: taxolution.ch</li>
-      <li>Global Law Experts — How to Buy a House in Switzerland as a Foreigner, May 2026: globallawexperts.com</li>
+      <li>Federal Office of Justice — Lex Koller revision, consultation 15 April to 15 July 2026: bj.admin.ch</li>
+      <li>ch.ch — Buying property as a foreign national: ch.ch</li>
+      <li>State of Geneva — Real estate gains tax (IBGI) and Casatax: ge.ch</li>
     </ol>
   </div>
 
 </div>
 
 <script>
-  // Reading progress bar
-  window.addEventListener('scroll', () => {
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    document.getElementById('progress-bar').style.width = Math.min(100, docHeight > 0 ? (scrollTop / docHeight) * 100 : 0) + '%';
-  }, { passive: true });
+window.addEventListener('scroll', () => {
+  const docH = document.documentElement.scrollHeight - window.innerHeight;
+  document.getElementById('progress-bar').style.width = (docH > 0 ? window.scrollY / docH * 100 : 0) + '%';
+});
+window.addEventListener('load', () => {
+  setTimeout(() => document.querySelector('.article-meta').classList.add('visible'), 80);
+  setTimeout(() => document.querySelector('h1').classList.add('visible'), 220);
+  setTimeout(() => document.querySelector('.header-rule').classList.add('visible'), 420);
+});
+function stagger(selector, threshold) {
+  const obs = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), parseInt(e.target.dataset.delay || 0)); obs.unobserve(e.target); }
+  }), { threshold });
+  document.querySelectorAll(selector).forEach(el => obs.observe(el));
+}
+stagger('.takeaway-item', 0.15);
+stagger('.card', 0.04);
+stagger('.reveal', 0.08);
+stagger('.mistake-item', 0.08);
+function onView(id, fn, threshold = 0.4) {
+  const el = document.getElementById(id);
+  const obs = new IntersectionObserver(en => { if (en[0].isIntersecting) { fn(); obs.disconnect(); } }, { threshold });
+  obs.observe(el);
+}
+const num = n => Math.round(n).toLocaleString('en-US');
+const fmt = n => 'CHF ' + num(n);
+function countUp(el, to, ms) {
+  const t0 = performance.now();
+  const step = t => { const k = Math.min(1, (t - t0) / ms), e = 1 - Math.pow(1 - k, 3);
+    el.textContent = fmt(to * e); if (k < 1) requestAnimationFrame(step); };
+  requestAnimationFrame(step);
+}
+const each = (sel, fn) => document.querySelectorAll(sel).forEach(fn);
+const later = (el, cls) => setTimeout(() => el.classList.add(cls), parseInt(el.dataset.delay || 0));
 
-  // Hero animations
-  window.addEventListener('load', () => {
-    setTimeout(() => document.getElementById('heroTag').classList.add('visible'), 50);
-    setTimeout(() => document.getElementById('heroTitle').classList.add('visible'), 150);
-    setTimeout(() => document.getElementById('heroSubtitle').classList.add('visible'), 280);
-    setTimeout(() => document.getElementById('heroMeta').classList.add('visible'), 420);
-  });
+// #1 who are you
+let nat = 'eu', per = 'B', whoReady = false;
+function matchKey() {
+  if (per === 'C') return 'C';
+  if (per === 'none') return 'none';
+  if (nat === 'eu') return per === 'G' ? 'G' : 'EU';
+  if (per === 'B') return 'NB';
+  return 'none';
+}
+function updWho() {
+  if (!whoReady) return;
+  const k = matchKey();
+  each('.cat', c => { c.classList.toggle('match', c.dataset.k === k); c.classList.toggle('dim', c.dataset.k !== k); });
+  document.getElementById('who-note').textContent = (nat === 'non' && (per === 'L' || per === 'G'))
+    ? 'Outside the EU/EFTA, an L or G Permit does not count as Swiss residence for Lex Koller — you are treated like a buyer from abroad.' : '';
+}
+function pickGroup(id, set) {
+  document.querySelectorAll('#' + id + ' button').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('#' + id + ' button').forEach(x => x.classList.toggle('on', x === b));
+    set(b.dataset.v); updWho();
+  }));
+}
+pickGroup('pick-nat', v => nat = v);
+pickGroup('pick-per', v => per = v);
+onView('vwho', () => { each('.cat', c => later(c, 'visible')); setTimeout(() => { whoReady = true; updWho(); }, 900); }, 0.25);
 
-  // Takeaways with cascade delay
-  const takeawayObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const delay = parseInt(entry.target.dataset.delay || 0);
-        setTimeout(() => entry.target.classList.add('visible'), delay);
-        takeawayObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.takeaway-item').forEach(el => takeawayObserver.observe(el));
+// #2 timeline
+onView('v2026', () => {
+  each('.tl-step', s => later(s, 'lit'));
+  each('.prop', p => setTimeout(() => p.classList.add('visible'), parseInt(p.dataset.delay) + 1300));
+}, 0.4);
 
-  // Reveal elements with cascade delay
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const delay = parseInt(entry.target.dataset.delay || 0);
-        setTimeout(() => entry.target.classList.add('visible'), delay);
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
-  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+// #3 closing costs
+const price = document.getElementById('price');
+let costReady = false;
+function updCost(animate) {
+  const p = +price.value, c = p * 0.04;
+  document.getElementById('price-val').textContent = fmt(p);
+  document.getElementById('cost-calc').textContent = `${num(p)} × 4%`;
+  if (animate) { countUp(document.getElementById('cost'), c, 900); countUp(document.getElementById('cash'), c, 900); }
+  else { document.getElementById('cost').textContent = fmt(c); document.getElementById('cash').textContent = fmt(c); }
+}
+price.addEventListener('input', () => { if (costReady) updCost(false); });
+onView('vcost', () => {
+  costReady = true; updCost(true);
+  const parts = document.querySelectorAll('#split div');
+  [75, 7.5, 17.5].forEach((w, i) => setTimeout(() => parts[i].style.width = w + '%', 300 + i * 250));
+}, 0.3);
 
-  // FAQ
-  function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+// #4 capital gains
+const yrs = document.getElementById('yrs'), stairs = document.querySelectorAll('.stair');
+let gainReady = false;
+const tier = y => y < 2 ? 0 : y < 4 ? 1 : y < 6 ? 2 : y < 8 ? 3 : y < 10 ? 4 : y < 25 ? 5 : 6;
+function updGain() {
+  const y = +yrs.value, t = tier(y), r = +stairs[t].dataset.r;
+  document.getElementById('yrs-val').textContent = y + (y === 1 ? ' year' : ' years');
+  stairs.forEach((s, i) => s.classList.toggle('on', i === t));
+  document.getElementById('gain-calc').textContent = `Profit CHF 100,000 × ${r}% = ${fmt(100000 * r / 100)} tax · you keep ${fmt(100000 * (1 - r / 100))}`;
+}
+yrs.addEventListener('input', () => { if (gainReady) updGain(); });
+onView('vgain', () => {
+  stairs.forEach((s, i) => setTimeout(() => s.style.height = (+s.dataset.r / 50 * 85 + 6) + '%', i * 120));
+  setTimeout(() => { gainReady = true; updGain(); }, 900);
+}, 0.3);
+
+// #5 situations
+onView('vsits', () => each('.sit', s => setTimeout(() => {
+  s.classList.add('visible');
+  const b = s.querySelector('b[data-n]'); countUp(b, +b.dataset.n, 900);
+}, parseInt(s.dataset.delay))), 0.2);
+
+function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
 </script>
 </body>
 </html>
