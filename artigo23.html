@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cost of Living in Geneva on CHF 200,000+ a Year</title>
+<meta name="description" content="Above CHF 200,000 in Geneva, taxes matter more than living costs: Pillar 2 buy-ins, Pillar 3a, wealth tax, buying property and three real monthly budgets.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
 <style>
 :root {
@@ -47,582 +48,632 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 body {
-  background: var(--bg);
-  color: var(--fg);
+  background: var(--bg); color: var(--fg);
   font-family: 'Inter', system-ui, sans-serif;
-  font-size: 16px;
-  line-height: 1.75;
-  padding: 40px max(16px, 5vw) 80px;
+  font-size: 16px; line-height: 1.75;
+  padding: 48px max(16px, 5vw) 80px;
 }
+.article { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 36px; }
 
-.article {
-  max-width: 720px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
+#progress-bar {
+  position: fixed; top: 0; left: 0; height: 3px;
+  background: var(--blue-mid); width: 0%;
+  z-index: 1000; transition: width .1s linear;
+  border-radius: 0 2px 2px 0;
 }
 
 /* ── HEADER ── */
-.article-header { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
 .article-meta {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: .12em; text-transform: uppercase;
-  color: var(--fg2); margin-bottom: 10px;
+  font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--fg2); margin-bottom: 12px;
+  opacity: 0; transform: translateY(-8px); transition: opacity .5s ease, transform .5s ease;
 }
+.article-meta.visible { opacity: 1; transform: translateY(0); }
 h1 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(24px, 5vw, 36px);
-  font-weight: 700; line-height: 1.2;
-  text-wrap: balance; color: var(--fg);
+  font-family: 'Space Grotesk', sans-serif; font-size: clamp(24px, 5vw, 36px);
+  font-weight: 700; line-height: 1.2; text-wrap: balance; color: var(--fg);
+  opacity: 0; transform: translateY(12px);
+  transition: opacity .6s ease .15s, transform .6s ease .15s;
 }
+h1.visible { opacity: 1; transform: translateY(0); }
 .header-rule {
-  height: 2px; background: var(--blue);
-  border-radius: 2px; margin-top: 20px;
-  width: 48px;
+  height: 3px; background: var(--blue); border-radius: 2px; margin-top: 20px;
+  width: 0; transition: width .8s cubic-bezier(.16,1,.3,1) .5s;
 }
+.header-rule.visible { width: 48px; }
 
-/* ── QUICK ANSWER ── */
-.quick-answer {
-  background: var(--blue-light);
-  border-left: 4px solid var(--blue);
-  border-radius: 0 14px 14px 0;
-  padding: 20px 24px;
-}
-.quick-answer p { font-size: 15px; color: var(--fg); margin: 0; }
-
-/* ── TAKEAWAYS ── */
-.takeaways {
-  background: var(--blue);
-  border-radius: 16px;
-  padding: 28px 32px;
-}
-.takeaways h2 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 16px; font-weight: 700;
-  color: rgba(255,255,255,.6);
-  letter-spacing: .08em; text-transform: uppercase;
-  margin-bottom: 16px; margin-top: 0;
-}
-.takeaways ul { list-style: none; }
-.takeaways ul li {
-  color: #e8ecf5;
-  font-size: 14.5px;
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(255,255,255,.1);
-  display: flex; gap: 12px; align-items: flex-start;
-}
-.takeaways ul li:last-child { border-bottom: none; }
-.takeaways ul li::before {
-  content: "✓"; color: #3dba78;
-  font-weight: 700; flex-shrink: 0; margin-top: 1px;
-}
-
-/* ── HEADINGS ── */
-h2 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 20px; font-weight: 700;
-  color: var(--fg); margin-bottom: 4px;
-}
-h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  color: var(--blue-mid); margin-bottom: 6px;
-}
+/* ── TYPE ── */
+h2 { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; color: var(--fg); margin-bottom: 8px; }
+h3 { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; color: var(--blue-mid); margin-bottom: 6px; }
 p { font-size: 15.5px; color: var(--fg); margin-bottom: 12px; }
 p:last-child { margin-bottom: 0; }
 .hl-blue  { color: var(--blue-mid); font-weight: 600; }
 .hl-green { color: var(--green);    font-weight: 600; }
 .hl-red   { color: var(--red);      font-weight: 600; }
-sup { font-size: 11px; color: var(--blue-mid); }
+.viz-label {
+  font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--fg2); margin-bottom: 12px;
+}
+.viz-note { font-size: 12px; color: var(--fg2); margin-top: 10px; }
+.calc-line { font-size: 13px; color: var(--fg2); text-align: center; margin-top: 10px; font-variant-numeric: tabular-nums; }
 
-/* ── SITUATION CARDS ── */
-.situation-cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
+/* ── QUICK ANSWER / TAKEAWAYS ── */
+.quick-answer { background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 14px 14px 0; padding: 20px 24px; }
+.quick-answer p { font-size: 15px; }
+.takeaways { background: #1f4080; border-radius: 16px; padding: 28px 32px; }
+.takeaways h2 { font-size: 13px; color: rgba(255,255,255,.55); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 18px; }
+.takeaways ul { list-style: none; }
+.takeaway-item {
+  color: #e8ecf5; font-size: 14.5px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.1);
+  display: flex; gap: 12px; align-items: flex-start;
+  opacity: 0; transform: translateX(-10px); transition: opacity .45s ease, transform .45s ease;
 }
-@media (max-width: 520px) { .situation-cards { grid-template-columns: 1fr; } }
+.takeaway-item:last-child { border-bottom: none; }
+.takeaway-item.visible { opacity: 1; transform: translateX(0); }
+.takeaway-item::before { content: "✓"; color: #3dba78; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
 
-.sit-card {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 14px;
-  padding: 18px 20px;
-  box-shadow: var(--shadow);
-  transition: border-color .2s, box-shadow .2s;
+/* ── SECTION CARDS ── */
+.card {
+  position: relative; overflow: hidden;
+  background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px;
+  padding: 24px 26px; box-shadow: var(--shadow);
+  opacity: 0; transform: translateY(16px);
+  transition: opacity .5s ease, transform .5s ease, box-shadow .2s;
 }
-.sit-card:hover { box-shadow: var(--shadow-md); }
-.sit-card.alert { border-color: var(--red); }
-.sit-card h3 { color: var(--blue-mid); margin-bottom: 6px; }
-.sit-card.alert h3 { color: var(--red); }
-.sit-card p { font-size: 13px; color: var(--fg2); margin: 0; }
+.card.visible { opacity: 1; transform: none; }
+.card:hover { box-shadow: var(--shadow-md); }
+.card::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--c, var(--blue-mid));
+  transform: scaleY(0); transform-origin: top; transition: transform .6s cubic-bezier(.16,1,.3,1) .25s;
+}
+.card.visible::before { transform: scaleY(1); }
+.card-head { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+.card-num {
+  font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; color: var(--c, var(--blue-mid));
+  background: var(--cl, var(--blue-light)); border-radius: 8px; padding: 4px 10px; flex-shrink: 0;
+  transform: scale(.6); opacity: 0; transition: transform .5s cubic-bezier(.34,1.56,.64,1) .2s, opacity .4s ease .2s;
+}
+.card.visible .card-num { transform: scale(1); opacity: 1; }
+.card-head h2 { margin: 0; font-size: 18px; }
+.card p { font-size: 15px; }
+.c-red   { --c: var(--red);   --cl: var(--red-light); }
+.c-green { --c: var(--green); --cl: var(--green-light); }
+.c-gold  { --c: var(--gold);  --cl: var(--gold-light); }
+.viz { margin-top: 18px; padding-top: 16px; border-top: 1px dashed var(--border); }
 
-/* ── CHECKLIST ── */
-.checklist {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 16px;
-  padding: 24px 28px;
-  box-shadow: var(--shadow);
+/* ── NOTE BOXES ── */
+.note { border-radius: 0 12px 12px 0; padding: 14px 18px; margin-top: 16px; }
+.note p { font-size: 14.5px; }
+.note.warn { background: var(--gold-light); border-left: 4px solid var(--gold); }
+.note.warn strong { color: var(--gold); }
+.note.new { background: var(--green-light); border-left: 4px solid var(--green); }
+.note.new strong { color: var(--green); }
+
+/* ── shared ── */
+.stat { text-align: center; border-radius: 12px; padding: 14px 10px; }
+.stat .k { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--fg2); }
+.stat .v { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1.3; white-space: nowrap; }
+.stat small { display: block; font-size: 12px; color: var(--fg2); font-variant-numeric: tabular-nums; }
+.stat.blue { background: var(--blue-light); } .stat.blue .v { color: var(--blue-mid); }
+.stat.green{ background: var(--green-light); } .stat.green .v{ color: var(--green); }
+.stat.gold { background: var(--gold-light); } .stat.gold .v { color: var(--gold); }
+.stat.red  { background: var(--red-light); }  .stat.red .v  { color: var(--red); }
+.stats2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+@media (max-width: 560px) { .stats2 { grid-template-columns: 1fr; } .stat .v { font-size: 21px; } }
+
+/* ── horizontal bars ── */
+.hb { display: flex; flex-direction: column; gap: 10px; }
+.hb-row { display: grid; grid-template-columns: 130px 1fr 110px; gap: 12px; align-items: center; font-size: 13.5px; }
+.hb-row .name { font-weight: 600; }
+.hb-row .name small { display: block; font-weight: 400; color: var(--fg2); font-size: 12px; }
+.hb-track { position: relative; height: 22px; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; }
+.hb-fill { position: absolute; top: 0; bottom: 0; left: 0; width: 0; border-radius: 6px; background: var(--blue-mid); transition: width 1s cubic-bezier(.16,1,.3,1), left 1s cubic-bezier(.16,1,.3,1); }
+.hb-fill.range { background: linear-gradient(90deg, var(--blue-light), var(--blue-mid)); }
+.hb-row .amt { text-align: right; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.limit { position: absolute; top: -6px; bottom: -6px; width: 2px; background: var(--red); z-index: 2; }
+.limit-lab { position: absolute; top: -22px; transform: translateX(-50%); font-size: 11px; font-weight: 700; color: var(--red); white-space: nowrap; }
+.hb-axis { display: grid; grid-template-columns: 130px 1fr 110px; gap: 12px; font-size: 11.5px; color: var(--fg2); }
+.hb-axis div:nth-child(2) { display: flex; justify-content: space-between; }
+@media (max-width: 560px) {
+  .hb-row, .hb-axis { grid-template-columns: 1fr 96px; }
+  .hb-row .hb-track { grid-column: 1 / -1; grid-row: 2; }
+  .hb-axis div:first-child, .hb-axis div:last-child { display: none; }
+  .hb-axis div:nth-child(2) { grid-column: 1 / -1; }
 }
-.checklist h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  margin-bottom: 16px; color: var(--fg);
+
+/* ── zones ── */
+.zones { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.zone { border-radius: 14px; padding: 16px 18px; border: 1.5px solid var(--c); background: var(--cl);
+  opacity: 0; transform: translateY(12px); transition: opacity .45s, transform .45s; }
+.zone.visible { opacity: 1; transform: none; }
+.zone .lab { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--c); margin-bottom: 4px; }
+.zone h3 { color: var(--fg); font-size: 14px; margin-bottom: 4px; }
+.zone p { font-size: 13.5px; color: var(--fg2); margin: 0; line-height: 1.55; }
+.z-red { --c: var(--red); --cl: var(--red-light); } .z-blue { --c: var(--blue-mid); --cl: var(--blue-light); } .z-green { --c: var(--green); --cl: var(--green-light); }
+@media (max-width: 600px) { .zones { grid-template-columns: 1fr; } }
+
+/* ── not covered chips ── */
+.nc { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-top: 14px; }
+.nc span { padding: 7px 14px; border-radius: 999px; font-size: 13px; font-weight: 600; background: var(--red-light); color: var(--red); border: 1.5px solid var(--red);
+  opacity: 0; transform: scale(.8); transition: opacity .35s, transform .45s cubic-bezier(.34,1.56,.64,1); }
+.nc span.visible { opacity: 1; transform: none; }
+.nc span::before { content: "✗ "; }
+
+/* ── price ladder ── */
+.ladder { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items: end; }
+.step { border-radius: 12px 12px 6px 6px; padding: 12px 10px; text-align: center; font-size: 13px; color: var(--fg2); background: var(--bg); border: 1.5px solid var(--border);
+  opacity: 0; transform: translateY(14px); transition: opacity .45s, transform .55s cubic-bezier(.16,1,.3,1); display: flex; flex-direction: column; justify-content: flex-end; }
+.step.visible { opacity: 1; transform: none; }
+.step b { display: block; color: var(--fg); font-family: 'Space Grotesk', sans-serif; font-size: 14px; }
+.step.s1 { border-color: var(--green); background: var(--green-light); }
+.step.s2 { border-color: var(--blue-mid); background: var(--blue-light); }
+.step.s3 { border-color: var(--gold); background: var(--gold-light); }
+.ladder-lab { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; text-align: center; font-size: 11.5px; color: var(--fg2); margin-top: 6px; font-weight: 600; }
+.tip { margin-top: 16px; display: flex; gap: 12px; align-items: center; padding: 12px 16px; border-radius: 12px; background: var(--blue-light); font-size: 14px;
+  opacity: 0; transform: translateX(-10px); transition: opacity .45s, transform .45s; }
+.tip.visible { opacity: 1; transform: none; }
+.tip .flag { font-size: 24px; }
+.tip b { color: var(--blue-mid); }
+
+/* ── budgets ── */
+.tabs { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+.tabs button { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 13px; padding: 8px 14px; border-radius: 10px; cursor: pointer;
+  border: 1.5px solid var(--border); background: var(--bg); color: var(--fg2); transition: background .2s, color .2s, border-color .2s; }
+.tabs button.on { background: #2e5fa3; border-color: #2e5fa3; color: #fff; }
+.tabs button:focus-visible { outline: 2px solid var(--blue-mid); outline-offset: 2px; }
+.bud-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
+.bud-head b { font-family: 'Space Grotesk', sans-serif; font-size: 15px; }
+.bud-head span { font-size: 13px; color: var(--fg2); }
+.drain { height: 34px; display: flex; border-radius: 10px; overflow: hidden; border: 1.5px solid var(--border); background: var(--bg); }
+.drain div { width: 0; transition: width .6s cubic-bezier(.16,1,.3,1); border-right: 1px solid rgba(255,255,255,.5); }
+.drain .save { background: var(--green); border-right: none; }
+.bud-list { margin-top: 12px; display: flex; flex-direction: column; }
+.bud-row { display: grid; grid-template-columns: 14px 1fr auto; gap: 10px; align-items: center; padding: 7px 2px; font-size: 13.5px; border-bottom: 1px solid var(--border); font-variant-numeric: tabular-nums;
+  opacity: 0; transform: translateX(-8px); transition: opacity .3s, transform .3s; }
+.bud-row.visible { opacity: 1; transform: none; }
+.bud-row i { width: 12px; height: 12px; border-radius: 3px; }
+.bud-row .a { font-weight: 600; color: var(--red); }
+.bud-row.total { border-bottom: none; font-weight: 700; }
+.bud-row.total .a { color: var(--green); font-size: 16px; }
+.bud-calc { font-size: 12.5px; color: var(--fg2); text-align: center; margin-top: 8px; font-variant-numeric: tabular-nums; }
+
+/* ── children ── */
+.kids { display: flex; flex-direction: column; gap: 10px; }
+.kid { display: grid; grid-template-columns: 150px 1fr; gap: 14px; align-items: center; padding: 12px 14px; border-radius: 12px; border: 1.5px solid var(--border); background: var(--bg2);
+  opacity: 0; transform: translateX(-10px); transition: opacity .45s, transform .45s; }
+.kid.visible { opacity: 1; transform: none; }
+.kid .t { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 14px; }
+.kid .t small { display: block; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 13px; margin-top: 2px; }
+.kid.free .t small { color: var(--green); } .kid.pricey .t small { color: var(--red); } .kid.mid .t small { color: var(--gold); }
+.kid p { font-size: 13.5px; color: var(--fg2); margin: 0; line-height: 1.55; }
+.salary-eat { margin-top: 14px; }
+.se-track { position: relative; height: 28px; border-radius: 8px; background: var(--blue-light); border: 1.5px solid var(--border); overflow: hidden; }
+.se-min, .se-max { position: absolute; top: 0; bottom: 0; left: 0; width: 0; transition: width 1.1s cubic-bezier(.16,1,.3,1); }
+.se-max { background: rgba(194,43,43,.35); } .se-min { background: var(--red); }
+.se-legend { display: flex; justify-content: space-between; font-size: 12px; color: var(--fg2); margin-top: 6px; }
+@media (max-width: 560px) { .kid { grid-template-columns: 1fr; gap: 4px; } }
+
+/* ── 3a ── */
+.p3 { display: grid; grid-template-columns: 1fr auto 1fr; gap: 10px; align-items: center; }
+.p3 .arr { font-size: 22px; color: var(--fg2); }
+.chip-dl { display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; padding: 8px 14px; border-radius: 10px;
+  background: var(--gold-light); border: 1.5px solid var(--gold); color: var(--gold); font-weight: 700; font-size: 13.5px; font-family: 'Space Grotesk', sans-serif;
+  opacity: 0; transform: scale(.9); transition: opacity .4s, transform .45s cubic-bezier(.34,1.56,.64,1); }
+.chip-dl.visible { opacity: 1; transform: none; }
+@media (max-width: 480px) { .p3 { grid-template-columns: 1fr; } .p3 .arr { transform: rotate(90deg); justify-self: center; } }
+
+/* ── next article ── */
+.next { display: flex; justify-content: space-between; align-items: center; gap: 16px; background: var(--bg2); border: 1.5px solid var(--border); border-radius: 14px; padding: 20px 24px; transition: border-color .25s, box-shadow .25s; }
+.next:hover { border-color: var(--blue-mid); box-shadow: var(--shadow-md); }
+.next small { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--fg2); margin-bottom: 4px; }
+.next b { font-family: 'Space Grotesk', sans-serif; font-size: 16px; }
+.next span { font-size: 22px; color: var(--blue-mid); }
+
+/* ── article 23 extras ── */
+.rate-chip { display: inline-block; margin-left: 6px; font-size: 11.5px; font-weight: 700; padding: 1px 8px; border-radius: 999px; background: var(--red-light); color: var(--red); font-family: 'Space Grotesk', sans-serif; }
+.mvse { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
+.mvse div { border-radius: 12px; padding: 12px 14px; font-size: 13.5px; color: var(--fg2); border: 1.5px solid var(--border); background: var(--bg); }
+.mvse b { display: block; font-family: 'Space Grotesk', sans-serif; color: var(--fg); font-size: 14px; margin-bottom: 2px; }
+.levers { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.lever { border-radius: 14px; padding: 16px 18px; border: 1.5px solid var(--border); background: var(--bg2); border-top: 4px solid var(--c);
+  opacity: 0; transform: translateY(12px); transition: opacity .45s, transform .45s; }
+.lever.visible { opacity: 1; transform: none; }
+.lever h3 { color: var(--fg); font-size: 15px; margin-bottom: 4px; }
+.lever .amt { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--c); font-size: 18px; margin-bottom: 6px; }
+.lever p { font-size: 13.5px; color: var(--fg2); margin: 0 0 6px; line-height: 1.55; }
+.lever .save { font-size: 13px; font-weight: 700; color: var(--green); margin: 0; }
+@media (max-width: 580px) { .levers, .mvse { grid-template-columns: 1fr; } }
+.calc-box { margin-top: 16px; background: var(--bg); border-radius: 12px; padding: 14px 16px; }
+.slider { margin-bottom: 12px; }
+.slider label { font-size: 12.5px; color: var(--fg2); display: flex; justify-content: space-between; gap: 10px; }
+.slider label b { font-family: 'Space Grotesk', sans-serif; color: var(--fg); font-size: 15px; font-variant-numeric: tabular-nums; }
+.slider input { width: 100%; accent-color: var(--blue-mid); }
+.years5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-top: 10px; }
+.years5 span { text-align: center; border-radius: 8px; padding: 8px 2px; font-size: 12px; font-weight: 600; background: var(--blue-light); color: var(--fg); border: 1.5px solid var(--blue-mid); font-variant-numeric: tabular-nums;
+  opacity: 0; transform: translateY(6px); transition: opacity .35s, transform .35s; }
+.years5 span small { display: block; font-weight: 500; font-size: 11px; color: var(--fg2); }
+.years5 span.visible { opacity: 1; transform: none; }
+.lock { margin-top: 10px; text-align: center; font-size: 13px; font-weight: 700; color: var(--gold); font-family: 'Space Grotesk', sans-serif; }
+@media (max-width: 480px) { .years5 { grid-template-columns: repeat(3, 1fr); } }
+.combo { display: flex; height: 34px; border-radius: 10px; overflow: hidden; border: 1.5px solid var(--border); background: var(--bg); }
+.combo div { width: 0; transition: width .8s cubic-bezier(.16,1,.3,1); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 11.5px; font-weight: 700; white-space: nowrap; overflow: hidden; }
+.combo-legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12.5px; color: var(--fg2); margin-top: 8px; }
+.combo-legend span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; background: var(--c); }
+.result { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+.result div { text-align: center; border-radius: 12px; padding: 12px 8px; background: var(--green-light); }
+.result b { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 22px; color: var(--green); font-variant-numeric: tabular-nums; }
+.result small { font-size: 12px; color: var(--fg2); }
+.tools { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+.tools span { padding: 8px 14px; border-radius: 999px; font-size: 13px; font-weight: 600; background: var(--green-light); color: var(--green); border: 1.5px solid var(--green);
+  opacity: 0; transform: scale(.85); transition: opacity .35s, transform .45s cubic-bezier(.34,1.56,.64,1); }
+.tools span.visible { opacity: 1; transform: none; }
+.mort { display: flex; height: 40px; border-radius: 10px; overflow: hidden; border: 1.5px solid var(--border); background: var(--bg); }
+.mort div { width: 0; transition: width .9s cubic-bezier(.16,1,.3,1); display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; font-size: 11px; font-weight: 700; white-space: nowrap; overflow: hidden; line-height: 1.2; }
+.mort-legend { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; font-size: 12.5px; color: var(--fg2); }
+.mort-legend div { border-left: 4px solid var(--c); padding-left: 8px; }
+.mort-legend b { display: block; color: var(--fg); font-variant-numeric: tabular-nums; }
+@media (max-width: 520px) { .mort-legend { grid-template-columns: 1fr; } }
+.switch { display: grid; grid-template-columns: 1fr auto 1fr; gap: 10px; align-items: center; margin-top: 16px; }
+.switch div { border-radius: 12px; padding: 12px 14px; font-size: 13px; color: var(--fg2); }
+.switch .now { background: var(--blue-light); } .switch .after { background: var(--gold-light); }
+.switch b { display: block; font-family: 'Space Grotesk', sans-serif; color: var(--fg); font-size: 14px; margin-bottom: 2px; }
+.switch .arr { font-size: 22px; color: var(--fg2); }
+@media (max-width: 520px) { .switch { grid-template-columns: 1fr; } .switch .arr { transform: rotate(90deg); justify-self: center; } }
+.props { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
+.pc { border-radius: 12px; padding: 12px 14px; border: 1.5px solid var(--border); background: var(--bg2); font-size: 13px; color: var(--fg2);
+  opacity: 0; transform: translateY(10px); transition: opacity .4s, transform .4s; }
+.pc.visible { opacity: 1; transform: none; }
+.pc b { display: block; color: var(--fg); font-size: 13.5px; }
+.pc .p { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--blue-mid); font-size: 14px; margin-top: 4px; }
+@media (max-width: 520px) { .props { grid-template-columns: 1fr; } }
+.qs3 { display: flex; flex-direction: column; gap: 10px; }
+.q3 { display: flex; gap: 14px; align-items: flex-start; padding: 14px 16px; border-radius: 12px; border: 1.5px solid var(--border); background: var(--bg2);
+  opacity: 0; transform: translateX(-10px); transition: opacity .45s, transform .45s; }
+.q3.visible { opacity: 1; transform: none; }
+.q3 .ic { font-size: 22px; }
+.q3 h3 { color: var(--fg); font-size: 14.5px; margin-bottom: 3px; }
+.q3 p { font-size: 13.5px; color: var(--fg2); margin: 0; line-height: 1.55; }
+.note-line { font-size: 13.5px; color: var(--fg2); margin-top: 12px; }
+/* ── MISTAKES ── */
+.mistakes { display: flex; flex-direction: column; gap: 12px; margin-top: 12px; }
+.mistake-item {
+  background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px; padding: 20px 24px; box-shadow: var(--shadow);
+  display: flex; gap: 18px; align-items: flex-start;
+  opacity: 0; transform: translateX(-14px); transition: opacity .45s ease, transform .45s ease, box-shadow .2s;
 }
-.checklist-item {
-  display: flex; align-items: flex-start; gap: 12px;
-  padding: 11px 0;
-  border-bottom: 1px solid var(--border);
-  cursor: pointer;
-}
-.checklist-item:last-of-type { border-bottom: none; }
-.check-box {
-  width: 22px; height: 22px;
-  border: 2px solid var(--blue);
-  border-radius: 6px; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  transition: all .2s; margin-top: 2px;
-}
-.check-box.checked { background: var(--blue); border-color: var(--blue); }
-.check-box.checked::after { content: "✓"; color: white; font-size: 13px; font-weight: 700; }
-.checklist-item.done span { text-decoration: line-through; color: var(--fg2); }
-.checklist-item span { font-size: 14.5px; color: var(--fg); font-family: 'Inter', sans-serif; }
-.progress-bar { height: 5px; background: var(--border); border-radius: 3px; margin-top: 16px; }
-.progress-fill { height: 100%; background: var(--green); border-radius: 3px; transition: width .4s ease; }
-.progress-label { font-size: 12px; color: var(--fg2); margin-top: 6px; font-family: 'Inter', sans-serif; }
+.mistake-item.visible { opacity: 1; transform: translateX(0); }
+.mistake-item:hover { box-shadow: var(--shadow-md); }
+.mistake-number { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; color: var(--red); line-height: 1; flex-shrink: 0; min-width: 32px; opacity: .25; }
+.mistake-content h3 { color: var(--red); font-size: 15px; margin-bottom: 6px; }
+.mistake-content p { font-size: 14.5px; color: var(--fg2); margin: 0; line-height: 1.6; }
 
 /* ── FAQ ── */
-.faq-item {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  margin-bottom: 8px;
-  overflow: hidden;
-  transition: border-color .2s;
-}
-.faq-item.open { border-color: var(--blue); }
-.faq-q {
-  padding: 16px 20px;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 14px; font-weight: 600;
-  cursor: pointer;
-  display: flex; justify-content: space-between; align-items: center;
-  gap: 12px; color: var(--fg);
-  background: transparent;
-}
-.faq-arrow { color: var(--blue); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
+.faq-item { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; margin-bottom: 8px; overflow: hidden; transition: border-color .2s; }
+.faq-item.open { border-color: var(--blue-mid); }
+.faq-q { padding: 16px 20px; font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; color: var(--fg); user-select: none; }
+.faq-arrow { color: var(--blue-mid); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
 .faq-item.open .faq-arrow { transform: rotate(180deg); }
-.faq-a {
-  display: none;
-  padding: 0 20px 16px;
-  font-size: 14px; color: var(--fg2); line-height: 1.65;
-  font-family: 'Inter', sans-serif;
-}
-.faq-item.open .faq-a { display: block; }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .35s ease; font-size: 14px; color: var(--fg2); line-height: 1.65; padding: 0 20px; }
+.faq-item.open .faq-a { max-height: 400px; padding: 0 20px 16px; }
 
-/* ── CTA ── */
-.cta-box {
-  background: var(--blue);
-  border-radius: 16px;
-  padding: 32px 36px;
-  text-align: center;
-}
-.cta-box p {
-  color: rgba(255,255,255,.8);
-  font-size: 15px; margin-bottom: 20px;
-}
-.cta-btn {
-  background: var(--gold);
-  color: #fff;
-  padding: 13px 28px;
-  border-radius: 10px;
-  text-decoration: none;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  display: inline-block;
-  transition: opacity .2s;
-}
-.cta-btn:hover { opacity: .88; }
-
-/* ── SOURCES ── */
-.sources {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  padding: 20px 24px;
-}
-.sources h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: .1em; text-transform: uppercase;
-  color: var(--fg2); margin-bottom: 10px;
-}
+/* ── CTA / SOURCES ── */
+.cta-box { background: #1f4080; border-radius: 16px; padding: 32px 36px; text-align: center; }
+.cta-box p { color: rgba(255,255,255,.85); font-size: 15px; margin-bottom: 14px; }
+.cta-box p:last-of-type { margin-bottom: 20px; }
+.cta-btn { background:var(--gold); color:#fff; padding:13px 28px; border-radius:10px; text-decoration:none; font-family:'Space Grotesk',sans-serif; font-size:15px; font-weight:700; display:inline-block; transition:opacity .2s,transform .2s; }
+.cta-btn:hover { opacity:.88; transform:translateY(-1px); }
+.sources { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; padding: 20px 24px; }
+.sources h3 { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--fg2); margin-bottom: 10px; }
 .sources ol { padding-left: 18px; }
-.sources ol li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; }
+.sources li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; }
 
-/* ── FADE IN ── */
-.fade-in { opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
-.fade-in.visible { opacity: 1; transform: translateY(0); }
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
 
 @media (max-width: 600px) {
-  h1 { font-size: 24px; }
-  .situation-cards { grid-template-columns: 1fr; }
+  body { padding-top: 36px; }
+  .takeaways { padding: 22px 20px; }
   .cta-box { padding: 24px 20px; }
-  .takeaways { padding: 20px 20px; }
+  .card { padding: 18px 18px; }
+  .checklist { padding: 18px 16px; }
+  .tl-pt { width: 92px; }
+  .tl-pt.first .what { visibility: hidden; }
 }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; } }
 </style>
 </head>
 <body>
-
 <div id="progress-bar"></div>
-
-<header class="hero">
-  <div class="hero-bg"></div>
-  
-  <div class="hero-gradient"></div>
-  <div class="hero-content">
-    <div class="hero-tag" id="heroTag">
-      <span class="hero-tag-pill">CHF 200k+</span>
-      <span>Cost of Living · Geneva</span>
-    </div>
-    <h1 class="hero-title" id="heroTitle">Cost of Living in Geneva on CHF 200,000+ a Year</h1>
-    <p class="hero-subtitle" id="heroSubtitle">Day-to-day costs are no longer the priority. Taxes, wealth tax, property ownership, and long-term financial structure are where the real decisions happen.</p>
-    <div class="hero-meta" id="heroMeta">
-      <span>Updated August 2026</span>
-      <div class="hero-meta-divider"></div>
-      <span>5 min read</span>
-    </div>
-  </div>
-</header>
-
 <div class="article">
 
+  <div class="article-header">
+    <p class="article-meta">Cost of Living · Geneva · 5 min read</p>
+    <h1>Cost of Living in Geneva on CHF 200,000+ a Year</h1>
+    <div class="header-rule"></div>
+  </div>
+
+  <div class="quick-answer reveal">
+    <p><strong>Quick Answer: Above CHF&nbsp;200,000, what weighs most on your finances is not the cost of living — it is tax.</strong> In Geneva, every extra franc you earn is taxed at around 40%. The decisions that make a difference are Pillar 2 buy-ins (Pillar 2 is your employer's compulsory pension fund), Pillar 3a and how you buy property.</p>
+  </div>
+
   <div class="takeaways">
-    <p class="takeaways-label">Key Takeaways</p>
-    <div class="takeaway-item" data-delay="0"><span class="takeaway-num">01</span><span class="takeaway-text">Geneva's marginal tax rate reaches ~43% above CHF 200,000 — one of the highest in Switzerland</span></div>
-    <div class="takeaway-item" data-delay="90"><span class="takeaway-num">02</span><span class="takeaway-text">A Pillar 2 buy-in of CHF 200,000 at 40% marginal rate saves CHF 80,000 in tax</span></div>
-    <div class="takeaway-item" data-delay="180"><span class="takeaway-num">03</span><span class="takeaway-text">Wealth tax in Geneva on CHF 2,000,000 net: ~CHF 10,000–14,000/year — the highest in Switzerland</span></div>
-    <div class="takeaway-item" data-delay="270"><span class="takeaway-num">04</span><span class="takeaway-text">At this level, buying property begins to make clear financial sense over renting long-term</span></div>
-    <div class="takeaway-item" data-delay="360"><span class="takeaway-num">05</span><span class="takeaway-text">International school is no longer a budget constraint — it is a lifestyle choice</span></div>
-    <div class="takeaway-item" data-delay="450"><span class="takeaway-num">06</span><span class="takeaway-text">The difference between optimised and basic tax planning at this level: CHF 20,000–50,000/year</span></div>
+    <h2>Key Takeaways</h2>
+    <ul>
+      <li class="takeaway-item" data-delay="0">Pillar 3a saves about CHF&nbsp;2,900 in tax a year (around CHF&nbsp;240 a month) at a 40% rate</li>
+      <li class="takeaway-item" data-delay="100">If you arrived from abroad, Pillar 2 buy-ins are capped at 20% of your insured salary a year for the first 5 years</li>
+      <li class="takeaway-item" data-delay="200">With CHF&nbsp;2,000,000 of net assets, Geneva wealth tax is CHF&nbsp;10,000–14,000 a year</li>
+      <li class="takeaway-item" data-delay="300">From 2029, mortgage interest on your own home is no longer deductible</li>
+      <li class="takeaway-item" data-delay="400">Gains on shares are tax-free; gains on property are not</li>
+    </ul>
   </div>
 
-  <h2 class="reveal">First: What Stays in Your Pocket</h2>
-  <p class="reveal">Above CHF 200,000, Geneva's progressive tax rates are significant. Each additional franc earned is taxed at an increasingly higher marginal rate — reaching approximately 43% at the top. Understanding your real net income is the foundation of everything else.</p>
-
-  <div class="salary-box reveal">
-    <h3>Estimated monthly net salary — Geneva, single</h3>
-    <div class="salary-row"><span class="salary-label">CHF 200,000 gross/year</span><span class="salary-value" id="cnt200">CHF 0</span></div>
-    <div class="salary-row"><span class="salary-label">CHF 300,000 gross/year</span><span class="salary-value" id="cnt300">CHF 0</span></div>
-    <div class="salary-row"><span class="salary-label">CHF 500,000 gross/year</span><span class="salary-value" id="cnt500">CHF 0</span></div>
-  </div>
-
-  <h2 class="reveal">Taxes — The Number One Priority</h2>
-  <p class="reveal">At this income level, tax optimisation is not optional — it is the single most important financial decision of the year. Geneva's effective rates climb steeply:</p>
-
-  <div class="tax-bars reveal" id="taxBars">
-    <div class="tax-bar-item">
-      <div class="tax-bar-label">CHF 200,000 gross <span>~34% effective rate</span></div>
-      <div class="tax-bar-track"><div class="tax-bar-fill" data-width="68"></div></div>
-    </div>
-    <div class="tax-bar-item">
-      <div class="tax-bar-label">CHF 300,000 gross <span>~38% effective rate</span></div>
-      <div class="tax-bar-track"><div class="tax-bar-fill" data-width="76"></div></div>
-    </div>
-    <div class="tax-bar-item">
-      <div class="tax-bar-label">CHF 500,000 gross <span>~42% effective rate</span></div>
-      <div class="tax-bar-track"><div class="tax-bar-fill" data-width="84"></div></div>
-    </div>
-  </div>
-
-  <h2 class="reveal">The Levers That Actually Move the Needle</h2>
-  <div class="lever-cards reveal">
-    <div class="lever-card">
-      <h3>Pillar 3a</h3>
-      <div class="lever-amount">CHF 7,258/year</div>
-      <p class="lever-body">Small relative to salary but never skip it. Fully deductible. Grows tax-free. At 40% marginal rate:</p>
-      <p class="lever-saving">Tax saved: ~CHF 2,900/year</p>
-    </div>
-    <div class="lever-card">
-      <h3>Pillar 2 Buy-In</h3>
-      <div class="lever-amount">No fixed limit</div>
-      <p class="lever-body">The most powerful tool available. If you arrived in Switzerland mid-career, your pension gap may be CHF 100,000–300,000. At 40% marginal rate:</p>
-      <p class="lever-saving">CHF 200,000 buy-in → ~CHF 80,000 saved</p>
-    </div>
-    <div class="lever-card">
-      <h3>Package Structure</h3>
-      <div class="lever-amount">Variable</div>
-      <p class="lever-body">Bonus vs base salary, benefits in kind, international school, supplementary insurance, company car — each has different tax treatment.</p>
-      <p class="lever-saving">Worth reviewing annually with an advisor</p>
-    </div>
-    <div class="lever-card">
-      <h3>Professional Expenses</h3>
-      <div class="lever-amount">Variable</div>
-      <p class="lever-body">Executive travel, training, home office, professional memberships. At this level these can be substantial and are fully deductible.</p>
-      <p class="lever-saving">Often CHF 5,000–20,000 deductible/year</p>
-    </div>
-  </div>
-
-  <div class="gold-box reveal">
-    <p>💡 <strong>Combined impact:</strong> Maximising Pillar 3a + a CHF 100,000 Pillar 2 buy-in + professional expenses reduces taxable income by CHF 110,000+ in a single year. At a 40% marginal rate, that is <span class="hl-gold">CHF 44,000+ in tax saved</span> — money that stays in your pension and pocket, not with the government.</p>
-  </div>
-
-  <h2 class="reveal">Wealth Tax — When It Starts to Matter</h2>
-  <p class="reveal">As high incomes accumulate into investments, property, and savings, wealth tax in Geneva becomes a meaningful annual expense. Geneva has <span class="hl-red">one of the highest wealth tax rates in Switzerland.</span></p>
-
-  <table class="wealth-table reveal">
-    <tr><th>Net taxable wealth</th><th>Annual wealth tax — Geneva</th></tr>
-    <tr><td>CHF 500,000</td><td class="amount">~CHF 1,500 – 2,000</td></tr>
-    <tr><td>CHF 1,000,000</td><td class="amount">~CHF 4,500 – 6,000</td></tr>
-    <tr><td>CHF 2,000,000</td><td class="amount">~CHF 10,000 – 14,000</td></tr>
-    <tr><td>CHF 5,000,000</td><td class="amount">~CHF 38,000</td></tr>
-  </table>
-
-  <div class="warning-box reveal">
-    <p>⚠ <strong>The canton gap:</strong> At CHF 5,000,000 net wealth, the difference between Geneva (~CHF 38,000/year) and Zug (~CHF 7,000/year) is over <span class="hl-red">CHF 31,000 per year</span>. For those with flexibility over where they live, canton selection is one of the highest-value financial decisions available. For those tied to Geneva professionally, optimising within the Geneva system is the focus.</p>
-  </div>
-
-  <h2 class="reveal">Property — Buying Begins to Make Sense</h2>
-  <p class="reveal">At this income level, buying property in Geneva transitions from aspiration to a clear financial decision. Mortgage interest is deductible until 2029, the first mortgage need never be repaid, and any future appreciation is tax-free.</p>
-
-  <div class="property-grid reveal">
-    <div class="prop-card">
-      <div class="prop-type">City Centre</div>
-      <div class="prop-desc">3-bed in Champel or Eaux-Vives</div>
-      <div class="prop-price">CHF 1,200,000 – 1,800,000</div>
-    </div>
-    <div class="prop-card">
-      <div class="prop-type">Premium Location</div>
-      <div class="prop-desc">4-bed in Cologny or Collonge-Bellerive</div>
-      <div class="prop-price">CHF 1,800,000 – 3,000,000</div>
-    </div>
-    <div class="prop-card">
-      <div class="prop-type">Villa</div>
-      <div class="prop-desc">Villa with garden, Vandoeuvres or Genthod</div>
-      <div class="prop-price">CHF 3,000,000 – 6,000,000+</div>
-    </div>
-    <div class="prop-card">
-      <div class="prop-type">Lake View</div>
-      <div class="prop-desc">Premium apartment, lake-facing Rive Gauche</div>
-      <div class="prop-price">CHF 2,500,000 – 5,000,000+</div>
-    </div>
-  </div>
-
-  <div class="quote-block reveal">
-    <p class="quote-label">The Shift</p>
-    <p class="quote-text">"Above CHF 200,000, the question is no longer how to cover expenses. It is how to structure wealth efficiently — and what Geneva costs in tax compared to what it gives back in quality of life."</p>
-  </div>
-
-  <h2 class="reveal">Three Real Monthly Budgets</h2>
-  <div class="budget-cards">
-    <div class="budget-card reveal" data-delay="0">
-      <div class="budget-header">
-        <div class="budget-name">Profile 1 — Single person</div>
-        <div class="budget-salary">CHF 200,000 gross</div>
+  <!-- 1 NET -->
+  <div class="card">
+    <div class="card-head"><span class="card-num">#1</span><h2>First: What Stays in Your Pocket</h2></div>
+    <p>Above CHF&nbsp;200,000, Geneva's progressive taxes bite. Two terms help: the <strong>marginal rate</strong> is the tax on the last franc you earn (around 40–45% at this level); the <strong>effective rate</strong> is your total tax divided by your whole income — always lower than the marginal rate.</p>
+    <div class="viz" id="vnet">
+      <div class="viz-label">Estimated monthly net salary — Geneva, single</div>
+      <div class="hb">
+        <div class="hb-row"><span class="name">CHF&nbsp;200,000<small>gross a year <span class="rate-chip">~34%</span></small></span><div class="hb-track"><div class="hb-fill" data-w="40"></div></div><span class="amt" data-n="12000">CHF 0</span></div>
+        <div class="hb-row"><span class="name">CHF&nbsp;300,000<small>gross a year <span class="rate-chip">~38%</span></small></span><div class="hb-track"><div class="hb-fill" data-w="53"></div></div><span class="amt" data-n="16000">CHF 0</span></div>
+        <div class="hb-row"><span class="name">CHF&nbsp;500,000<small>gross a year <span class="rate-chip">~42%</span></small></span><div class="hb-track"><div class="hb-fill" data-w="82"></div></div><span class="amt" data-n="24500">CHF 0</span></div>
       </div>
-      <div class="budget-body">
-        <div class="budget-row"><span class="budget-label">Net monthly salary</span><span class="budget-amount">~CHF 12,000</span></div>
-        <div class="budget-divider"></div>
-        <div class="budget-row"><span class="budget-label">Rent — 2-bed Champel</span><span class="budget-amount expense">− CHF 3,500</span></div>
-        <div class="budget-row"><span class="budget-label">Health insurance + supplementary</span><span class="budget-amount expense">− CHF 750</span></div>
-        <div class="budget-row"><span class="budget-label">Food (restaurants included)</span><span class="budget-amount expense">− CHF 1,200</span></div>
-        <div class="budget-row"><span class="budget-label">Transport (pass + car)</span><span class="budget-amount expense">− CHF 500</span></div>
-        <div class="budget-row"><span class="budget-label">Phone + internet</span><span class="budget-amount expense">− CHF 80</span></div>
-        <div class="budget-row"><span class="budget-label">Leisure, travel, culture</span><span class="budget-amount expense">− CHF 1,500</span></div>
-        <div class="budget-row"><span class="budget-label">Pillar 3a</span><span class="budget-amount expense">− CHF 605</span></div>
-        <div class="budget-divider"></div>
-        <div class="budget-row"><span class="budget-label">Available to invest/save</span><span class="budget-amount saving">~CHF 3,865/month</span></div>
+      <div class="mvse">
+        <div><b>Marginal rate ~40–45%</b>The tax on your next franc — what matters for deductions</div>
+        <div><b>Effective rate ~34–42%</b>Your total tax ÷ your whole income (red labels)</div>
       </div>
+      <p class="viz-note">Approximate figures per month.</p>
     </div>
+  </div>
 
-    <div class="budget-card reveal" data-delay="100">
-      <div class="budget-header">
-        <div class="budget-name">Profile 2 — Couple, no children</div>
-        <div class="budget-salary">CHF 500,000 combined</div>
+  <!-- 2 LEVERS -->
+  <div class="card c-green">
+    <div class="card-head"><span class="card-num">#2</span><h2>The Levers That Actually Move the Needle</h2></div>
+    <div class="viz" id="vlev" style="margin-top:4px;padding-top:4px;border-top:none">
+      <div class="levers">
+        <div class="lever" style="--c:var(--green)" data-delay="0"><h3>Pillar 3a</h3><div class="amt">CHF&nbsp;7,258 a year</div><p>Private pension savings with a tax deduction. Small next to your salary, but never skip it: fully deductible, grows tax-free.</p><p class="save">7,258 × 40% ≈ CHF&nbsp;2,900 a year (~CHF&nbsp;240 a month)</p></div>
+        <div class="lever" style="--c:var(--blue-mid)" data-delay="150"><h3>Pillar 2 buy-in</h3><div class="amt">Gap often CHF&nbsp;100,000–300,000</div><p>Pillar 2 is your employer's compulsory pension fund: you and your employer pay into it every month from your salary. If you arrived mid-career, years of contributions are missing — you can fill that gap with voluntary payments, a “buy-in”, which you deduct from your income.</p></div>
+        <div class="lever" style="--c:var(--gold)" data-delay="300"><h3>Package structure</h3><div class="amt">Variable</div><p>Bonus vs base salary, benefits in kind, school fees paid by the employer, supplementary insurance, company car — each is taxed differently. Worth reviewing every year with an advisor.</p></div>
+        <div class="lever" style="--c:var(--fg2)" data-delay="450"><h3>Professional expenses</h3><div class="amt">With receipts</div><p>Travel, training, home office, professional memberships. In Geneva, anything above the standard flat amount needs receipts — and expenses your employer already reimburses don't count.</p></div>
       </div>
-      <div class="budget-body">
-        <div class="budget-row"><span class="budget-label">Net monthly salary (combined)</span><span class="budget-amount">~CHF 27,000</span></div>
-        <div class="budget-divider"></div>
-        <div class="budget-row"><span class="budget-label">Mortgage interest (CHF 2M property at 2%)</span><span class="budget-amount expense">− CHF 3,333</span></div>
-        <div class="budget-row"><span class="budget-label">Health insurance + supplementary (×2)</span><span class="budget-amount expense">− CHF 1,500</span></div>
-        <div class="budget-row"><span class="budget-label">Food + premium restaurants</span><span class="budget-amount expense">− CHF 2,000</span></div>
-        <div class="budget-row"><span class="budget-label">Transport (2 cars)</span><span class="budget-amount expense">− CHF 1,200</span></div>
-        <div class="budget-row"><span class="budget-label">Leisure, travel, culture</span><span class="budget-amount expense">− CHF 4,000</span></div>
-        <div class="budget-row"><span class="budget-label">Pillar 3a (both)</span><span class="budget-amount expense">− CHF 1,210</span></div>
-        <div class="budget-divider"></div>
-        <div class="budget-row"><span class="budget-label">Available to invest/save</span><span class="budget-amount saving">~CHF 13,757/month</span></div>
-      </div>
-    </div>
 
-    <div class="budget-card reveal" data-delay="200">
-      <div class="budget-header">
-        <div class="budget-name">Profile 3 — Family with 2 children</div>
-        <div class="budget-salary">CHF 600,000 combined</div>
+      <div class="calc-box" id="vbuy">
+        <div class="viz-label">Pillar 2 buy-in if you arrived from abroad</div>
+        <p class="note-line" style="margin:0 0 10px">If you were never in a Swiss pension fund, you can buy in at most 20% of your insured salary a year during your first 5 years. And money you buy in cannot be withdrawn as a lump sum for the next 3 years.</p>
+        <div class="slider">
+          <label for="ins">Your insured salary <b id="ins-val">CHF 180,000</b></label>
+          <input type="range" id="ins" min="80000" max="300000" step="5000" value="180000" aria-label="Insured salary">
+        </div>
+        <div class="years5" id="y5">
+          <span data-delay="0">Year 1<small id="y1"></small></span><span data-delay="120">Year 2<small id="y2"></small></span><span data-delay="240">Year 3<small id="y3"></small></span><span data-delay="360">Year 4<small id="y4"></small></span><span data-delay="480">Year 5<small id="y5v"></small></span>
+        </div>
+        <p class="calc-line" id="buy-calc"></p>
+        <p class="lock">🔒 3-year lock on lump-sum withdrawals after each buy-in</p>
       </div>
-      <div class="budget-body">
-        <div class="budget-row"><span class="budget-label">Net monthly salary (combined)</span><span class="budget-amount">~CHF 32,000</span></div>
-        <div class="budget-divider"></div>
-        <div class="budget-row"><span class="budget-label">Mortgage interest (CHF 2.5M property)</span><span class="budget-amount expense">− CHF 4,167</span></div>
-        <div class="budget-row"><span class="budget-label">Health insurance (family)</span><span class="budget-amount expense">− CHF 2,000</span></div>
-        <div class="budget-row"><span class="budget-label">International school (2 children)</span><span class="budget-amount expense">− CHF 6,000</span></div>
-        <div class="budget-row"><span class="budget-label">Food + restaurants</span><span class="budget-amount expense">− CHF 2,500</span></div>
-        <div class="budget-row"><span class="budget-label">Transport (2 cars)</span><span class="budget-amount expense">− CHF 1,200</span></div>
-        <div class="budget-row"><span class="budget-label">Activities, holidays, leisure</span><span class="budget-amount expense">− CHF 5,000</span></div>
-        <div class="budget-row"><span class="budget-label">Pillar 3a (both)</span><span class="budget-amount expense">− CHF 1,210</span></div>
-        <div class="budget-divider"></div>
-        <div class="budget-row"><span class="budget-label">Available to invest/save</span><span class="budget-amount saving">~CHF 9,923/month</span></div>
+
+      <div class="calc-box" id="vcombo">
+        <div class="viz-label">Combined impact in one year</div>
+        <div class="combo" id="combo"><div style="background:#1a7a4a">3a</div><div style="background:#2e5fa3">Pillar 2 buy-in 100,000</div><div style="background:#8892a4"></div></div>
+        <div class="combo-legend"><span style="--c:#1a7a4a">Pillar 3a 7,258</span><span style="--c:#2e5fa3">Pillar 2 buy-in 100,000</span><span style="--c:#8892a4">Professional expenses 3,000</span></div>
+        <div class="result">
+          <div><b id="c-year">CHF 0</b><small>less tax this year (110,258 × 40%)</small></div>
+          <div><b id="c-month">CHF 0</b><small>per month</small></div>
+        </div>
+        <p class="viz-note">In practice slightly less: a large deduction also drops you through the tax brackets. Illustrative buy-in amount.</p>
       </div>
     </div>
   </div>
 
-  <h2 class="reveal">The Questions That Matter at This Level</h2>
-  <div class="strategy-list reveal">
-    <div class="strategy-item">
-      <div class="strategy-icon">🏛️</div>
-      <div>
-        <div class="strategy-title">When to buy property — and how to structure it</div>
-        <div class="strategy-desc">The first mortgage need never be repaid. The second must be amortised in 15 years. Structuring the split correctly, and timing the purchase relative to your Pillar 2 buy-in strategy, matters significantly.</div>
+  <!-- 3 WEALTH TAX -->
+  <div class="card c-red">
+    <div class="card-head"><span class="card-num">#3</span><h2>Wealth Tax — When It Starts to Matter</h2></div>
+    <p>Wealth tax is charged every year on your net assets — investments, property and savings, minus debts. As a high income turns into assets, it becomes a meaningful annual cost. Geneva has the highest top wealth tax rate in Switzerland.</p>
+    <div class="viz" id="vwealth">
+      <div class="viz-label">Annual wealth tax in Geneva</div>
+      <div class="hb">
+        <div class="hb-row"><span class="name">CHF&nbsp;500,000<small>net assets</small></span><div class="hb-track"><div class="hb-fill" data-w="5" style="background:var(--red)"></div></div><span class="amt">1,500–2,000</span></div>
+        <div class="hb-row"><span class="name">CHF&nbsp;1,000,000<small>net assets</small></span><div class="hb-track"><div class="hb-fill" data-w="16" style="background:var(--red)"></div></div><span class="amt">4,500–6,000</span></div>
+        <div class="hb-row"><span class="name">CHF&nbsp;2,000,000<small>net assets</small></span><div class="hb-track"><div class="hb-fill" data-w="37" style="background:var(--red)"></div></div><span class="amt">10,000–14,000</span></div>
+        <div class="hb-row"><span class="name">CHF&nbsp;5,000,000<small>~CHF&nbsp;3,200 a month</small></span><div class="hb-track"><div class="hb-fill" data-w="100" style="background:var(--red)"></div></div><span class="amt">~38,000</span></div>
+      </div>
+      <div class="viz-label" style="margin-top:16px">The two most effective tools</div>
+      <div class="tools"><span data-delay="0">🏠 Keep the mortgage — debt is deducted from taxable wealth</span><span data-delay="250">🏦 Pillar 3a and Pillar 2 — fully outside wealth tax</span></div>
+    </div>
+  </div>
+
+  <!-- 4 PROPERTY -->
+  <div class="card">
+    <div class="card-head"><span class="card-num">#4</span><h2>Property — Buying Begins to Make Sense</h2></div>
+    <p>At this income level, buying in Geneva stops being a dream and becomes a concrete financial decision. Three things to know:</p>
+    <p><strong>First and second mortgage.</strong> The first mortgage — up to about two-thirds of the property value — never has to be repaid. The second — the rest of the loan — must be paid off within 15 years.</p>
+    <div class="viz" id="vmort" style="margin-top:8px">
+      <div class="viz-label">A CHF&nbsp;2,000,000 property with an 80% mortgage</div>
+      <div class="mort" id="mort"><div style="background:#1a7a4a">Own funds</div><div style="background:#2e5fa3">1st mortgage</div><div style="background:#b8862a">2nd</div></div>
+      <div class="mort-legend">
+        <div style="--c:#1a7a4a">Own funds 20%<b>CHF&nbsp;400,000</b></div>
+        <div style="--c:#2e5fa3">1st mortgage ⅔ — never repaid<b>CHF&nbsp;1,333,333</b></div>
+        <div style="--c:#b8862a">2nd mortgage — repaid in 15 years<b>CHF&nbsp;266,667 → ~1,481/month</b></div>
       </div>
     </div>
-    <div class="strategy-item">
-      <div class="strategy-icon">📈</div>
-      <div>
-        <div class="strategy-title">How to invest the surplus tax-efficiently</div>
-        <div class="strategy-desc">Swiss capital gains on private wealth are tax-free. But wealth tax applies to the portfolio value. The balance between maximising returns and minimising wealth tax requires ongoing strategy.</div>
-      </div>
+    <p style="margin-top:16px"><strong>Interest deductible only until the end of 2028.</strong> Today, if you live in your own home, you pay tax on a notional rent (the “imputed rental value”) and can deduct your mortgage interest. From 1 January 2029, both disappear.</p>
+    <div class="switch" id="vswitch">
+      <div class="now"><b>Until 2028</b>Tax on imputed rent · mortgage interest deductible</div>
+      <div class="arr">→</div>
+      <div class="after"><b>From 2029</b>No imputed rent · no interest deduction on your own home</div>
     </div>
-    <div class="strategy-item">
-      <div class="strategy-icon">🏔️</div>
-      <div>
-        <div class="strategy-title">Whether canton relocation makes sense</div>
-        <div class="strategy-desc">The difference between Geneva and Zug at CHF 300,000 is over CHF 60,000/year in income tax alone. For those with geographic flexibility, this is one of the highest-value financial decisions available.</div>
-      </div>
+    <p style="margin-top:16px"><strong>Appreciation.</strong> If you sell at a profit, you pay tax on the gain — in Geneva, from 50% (under 2 years) down to 2% (25 years or more). See our article on buying property.</p>
+    <div class="props" id="vprops">
+      <div class="pc" data-delay="0"><b>3-bed in Champel or Eaux-Vives</b>City centre<div class="p">CHF&nbsp;1.2–1.8M</div></div>
+      <div class="pc" data-delay="120"><b>4-bed in Cologny or Collonge-Bellerive</b>Premium location<div class="p">CHF&nbsp;1.8–3M</div></div>
+      <div class="pc" data-delay="240"><b>Villa with garden, Vandoeuvres or Genthod</b>Villa<div class="p">CHF&nbsp;3–6M+</div></div>
+      <div class="pc" data-delay="360"><b>Lake-facing apartment, Rive Gauche</b>Lake view<div class="p">CHF&nbsp;2.5–5M+</div></div>
     </div>
-    <div class="strategy-item">
-      <div class="strategy-icon">🎯</div>
-      <div>
-        <div class="strategy-title">Pillar 2 in annuity or lump sum at retirement</div>
-        <div class="strategy-desc">Taking Pillar 2 as a lump sum is taxed at a reduced rate. Taking it as a monthly pension is taxed as income. The right choice depends on your overall financial picture and post-retirement plans.</div>
+  </div>
+
+  <!-- 5 BUDGETS -->
+  <div class="card c-green">
+    <div class="card-head"><span class="card-num">#5</span><h2>Three Real Monthly Budgets</h2></div>
+    <div class="viz" id="vbud" style="margin-top:4px;padding-top:4px;border-top:none">
+      <div class="tabs" role="tablist">
+        <button type="button" class="on" data-b="0" role="tab" aria-selected="true">Single · CHF 200k</button>
+        <button type="button" data-b="1" role="tab" aria-selected="false">Couple · CHF 500k</button>
+        <button type="button" data-b="2" role="tab" aria-selected="false">Family · CHF 600k</button>
+      </div>
+      <div class="bud-head"><b id="bud-title"></b><span id="bud-net"></span></div>
+      <p class="note-line" id="bud-note" style="margin:0 0 10px"></p>
+      <div class="drain" id="drain"></div>
+      <div class="bud-list" id="bud-list"></div>
+      <p class="bud-calc" id="bud-calc"></p>
+      <p class="note-line" id="bud-after"></p>
+      <p class="viz-note">Illustrative mortgage rate of 2%.</p>
+    </div>
+  </div>
+
+  <!-- 6 QUESTIONS -->
+  <div class="card">
+    <div class="card-head"><span class="card-num">#6</span><h2>The Questions That Matter at This Level</h2></div>
+    <div class="viz" id="vq" style="margin-top:4px;padding-top:4px;border-top:none">
+      <div class="qs3">
+        <div class="q3" data-delay="0"><span class="ic">🏛️</span><div><h3>When to buy property — and how to structure it</h3><p>Splitting the first and second mortgage well, and timing the purchase around your Pillar 2 buy-ins, makes a big difference: money from a buy-in is locked for 3 years, including for buying your own home.</p></div></div>
+        <div class="q3" data-delay="200"><span class="ic">📈</span><div><h3>How to invest the surplus</h3><p>Gains on shares and funds are tax-free in Switzerland, but the portfolio's value counts towards wealth tax every year. Balancing returns against wealth tax takes an ongoing strategy.</p></div></div>
+        <div class="q3" data-delay="400"><span class="ic">🎯</span><div><h3>Pillar 2 at retirement: monthly pension or lump sum?</h3><p>Taking your Pillar 2 all at once (lump sum) is taxed once, at a reduced rate. Taking it as a monthly pension is taxed as income every month, like a salary. The right choice depends on your whole financial picture and retirement plans.</p></div></div>
       </div>
     </div>
   </div>
 
-  <h2 class="reveal">Before You Ask</h2>
-  <div class="faq-list reveal">
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Is it worth moving cantons to pay less tax?<span class="faq-arrow">▾</span></div>
-      <div class="faq-a">At CHF 300,000+, the difference between Geneva (~38% effective) and Zug (~22%) is over CHF 60,000/year in income tax alone. But moving means changing home, children's schools, and daily life. For those professionally tied to Geneva, optimising within the Geneva system is the focus. For founders, freelancers, or those with geographic flexibility, it can be transformative.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">At CHF 500,000, how significant is the wealth tax?<span class="faq-arrow">▾</span></div>
-      <div class="faq-a">After several years at this salary, total net assets can easily reach CHF 2,000,000–5,000,000. At that level, Geneva wealth tax is CHF 10,000–38,000/year — a permanent, growing annual cost that justifies dedicated planning. The two most effective tools: keeping the mortgage active (deducts from taxable wealth) and maximising Pillar 3a and Pillar 2 (fully exempt from wealth tax).</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">When should I speak with an advisor?<span class="faq-arrow">▾</span></div>
-      <div class="faq-a">Immediately, if you have not already. At this income level, the cost of not having professional advice is measured in tens of thousands of francs per year — not just in taxes owed, but in Pillar 2 buy-in opportunities missed, wealth tax not optimised, and property timing not planned. The earlier you engage, the more options remain open.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Does international school still matter at this salary?<span class="faq-arrow">▾</span></div>
-      <div class="faq-a">It is no longer a budget constraint — it is a lifestyle and educational choice. At CHF 200,000+, one or two children in international school at CHF 30,000–40,000 each represents 6–12% of gross salary. That is significant but manageable. The question shifts from "can we afford it?" to "is this the right school for our children?"</div>
+  <div>
+    <h2 class="reveal">Before You Ask</h2>
+    <div style="margin-top:12px">
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">When should I speak with an advisor?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">Now, if you haven't already. At this income level, going without advice costs tens of thousands of francs a year — in Pillar 2 buy-ins not made, wealth tax not optimised and property purchases poorly planned. The earlier you start, the more options stay open.</div>
+      </div>
     </div>
   </div>
 
   <div class="cta-box reveal">
-    <p>At CHF 200,000+, professional financial advice is not a cost — it is an investment with a measurable return. SwissExpatHub can connect you with advisors experienced in tax optimisation, Pillar 2 strategy, wealth planning, and property structuring for senior international professionals in Geneva.</p>
+    <p>SwissExpatHub can connect you with advisors experienced in tax optimisation, Pillar 2 strategy, wealth planning and property structuring for international professionals in Geneva.</p>
     <a href="/directory" class="cta-btn">Find Your Advisor →</a>
   </div>
 
   <div class="sources reveal">
-    <p class="sources-label">Sources</p>
+    <h3>Sources</h3>
     <ol>
-      <li>Taxolution Advisory — Swiss Wealth Tax rates by canton 2026: taxolution.ch</li>
-      <li>Federal Tax Administration — Income tax Geneva 2026: estv.admin.ch</li>
-      <li>Investropa — Property prices Geneva 2026: investropa.com</li>
-      <li>Swiss Relocation Portal — How Much Money to Live in Switzerland 2026: swiss-relocation.com</li>
-      <li>Expat Savvy — Health Insurance Geneva 2026: expat-savvy.ch</li>
+      <li>Federal Tax Administration — Income and wealth tax in Geneva 2026: estv.admin.ch</li>
+      <li>Ordinance BVV 2, Art. 60b — Buy-ins for people arriving from abroad: fedlex.admin.ch</li>
+      <li>Federal Council — Abolition of imputed rental value from 1 January 2029: admin.ch</li>
+      <li>State of Geneva — Real estate gains tax (IBGI): ge.ch</li>
+      <li>Investropa — Property prices in Geneva 2026</li>
     </ol>
   </div>
 
 </div>
 
 <script>
-  window.addEventListener('scroll', () => {
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    document.getElementById('progress-bar').style.width = Math.min(100, docHeight > 0 ? (scrollTop / docHeight) * 100 : 0) + '%';
-  }, { passive: true });
+window.addEventListener('scroll', () => {
+  const docH = document.documentElement.scrollHeight - window.innerHeight;
+  document.getElementById('progress-bar').style.width = (docH > 0 ? window.scrollY / docH * 100 : 0) + '%';
+});
+window.addEventListener('load', () => {
+  setTimeout(() => document.querySelector('.article-meta').classList.add('visible'), 80);
+  setTimeout(() => document.querySelector('h1').classList.add('visible'), 220);
+  setTimeout(() => document.querySelector('.header-rule').classList.add('visible'), 420);
+});
+function stagger(selector, threshold) {
+  const obs = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), parseInt(e.target.dataset.delay || 0)); obs.unobserve(e.target); }
+  }), { threshold });
+  document.querySelectorAll(selector).forEach(el => obs.observe(el));
+}
+stagger('.takeaway-item', 0.15);
+stagger('.card', 0.04);
+stagger('.reveal', 0.08);
+function onView(id, fn, threshold = 0.4) {
+  const el = document.getElementById(id);
+  const obs = new IntersectionObserver(en => { if (en[0].isIntersecting) { fn(); obs.disconnect(); } }, { threshold });
+  obs.observe(el);
+}
+const num = n => Math.round(n).toLocaleString('en-US');
+const fmt = n => 'CHF ' + num(n);
+function countUp(el, to, ms) {
+  const t0 = performance.now();
+  const step = t => { const k = Math.min(1, (t - t0) / ms), e = 1 - Math.pow(1 - k, 3);
+    el.textContent = fmt(to * e); if (k < 1) requestAnimationFrame(step); };
+  requestAnimationFrame(step);
+}
+const each = (sel, fn) => document.querySelectorAll(sel).forEach(fn);
+const later = (el, cls) => setTimeout(() => el.classList.add(cls), parseInt(el.dataset.delay || 0));
+function fillBars(root) {
+  root.querySelectorAll('.hb-fill').forEach((f, i) => setTimeout(() => { f.style.width = f.dataset.w + '%'; }, i * 180));
+}
 
-  window.addEventListener('load', () => {
-    setTimeout(() => document.getElementById('heroTag').classList.add('visible'), 50);
-    setTimeout(() => document.getElementById('heroTitle').classList.add('visible'), 150);
-    setTimeout(() => document.getElementById('heroSubtitle').classList.add('visible'), 280);
-    setTimeout(() => document.getElementById('heroMeta').classList.add('visible'), 420);
-  });
+// #1 net
+onView('vnet', () => {
+  const v = document.getElementById('vnet'); fillBars(v);
+  v.querySelectorAll('.amt').forEach((a, i) => setTimeout(() => countUp(a, +a.dataset.n, 1000), i * 180));
+}, 0.4);
 
-  function animateCount(el, target, prefix, duration) {
-    let start = 0;
-    const step = target / (duration / 16);
-    const timer = setInterval(() => {
-      start = Math.min(start + step, target);
-      el.textContent = prefix + Math.round(start).toLocaleString();
-      if (start >= target) clearInterval(timer);
-    }, 16);
-  }
+// #2 levers
+onView('vlev', () => each('.lever', l => later(l, 'visible')), 0.1);
+const ins = document.getElementById('ins');
+let buyReady = false;
+function updBuy() {
+  const v = +ins.value, y = v * 0.2;
+  document.getElementById('ins-val').textContent = fmt(v);
+  ['y1', 'y2', 'y3', 'y4', 'y5v'].forEach(id => document.getElementById(id).textContent = 'max ' + num(y));
+  document.getElementById('buy-calc').textContent = `${num(v)} × 20% = ${fmt(y)} a year · × 5 years = ${fmt(y * 5)} · tax saved at 40% ≈ ${fmt(y * 0.4)} a year (~${fmt(y * 0.4 / 12)} a month)`;
+}
+ins.addEventListener('input', () => { if (buyReady) updBuy(); });
+onView('vbuy', () => { buyReady = true; updBuy(); each('#y5 span', s => later(s, 'visible')); }, 0.4);
+onView('vcombo', () => {
+  const parts = document.querySelectorAll('#combo div'), tot = 110258;
+  [7258, 100000, 3000].forEach((v, i) => setTimeout(() => parts[i].style.width = (v / tot * 100) + '%', i * 250));
+  setTimeout(() => { countUp(document.getElementById('c-year'), 44103, 1000); countUp(document.getElementById('c-month'), 3675, 1000); }, 800);
+}, 0.4);
 
-  const salaryObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        setTimeout(() => animateCount(document.getElementById('cnt200'), 12000, 'CHF ', 1200), 100);
-        setTimeout(() => animateCount(document.getElementById('cnt300'), 16000, 'CHF ', 1400), 300);
-        setTimeout(() => animateCount(document.getElementById('cnt500'), 24500, 'CHF ', 1600), 500);
-        salaryObserver.disconnect();
-      }
-    });
-  }, { threshold: 0.3 });
-  const salaryBox = document.querySelector('.salary-box');
-  if (salaryBox) salaryObserver.observe(salaryBox);
+// #3 wealth
+onView('vwealth', () => { fillBars(document.getElementById('vwealth')); each('.tools span', t => setTimeout(() => t.classList.add('visible'), parseInt(t.dataset.delay) + 900)); }, 0.3);
 
-  const taxObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.querySelectorAll('.tax-bar-fill').forEach((bar, i) => {
-          setTimeout(() => { bar.style.width = bar.dataset.width + '%'; }, i * 200);
-        });
-        taxObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.3 });
-  const taxBars = document.getElementById('taxBars');
-  if (taxBars) taxObserver.observe(taxBars);
+// #4 property
+onView('vmort', () => {
+  const parts = document.querySelectorAll('#mort div');
+  [20, 66.67, 13.33].forEach((w, i) => setTimeout(() => parts[i].style.width = w + '%', i * 300));
+}, 0.5);
+onView('vprops', () => each('.pc', p => later(p, 'visible')), 0.3);
 
-  const takeawayObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const delay = parseInt(entry.target.dataset.delay || 0);
-        setTimeout(() => entry.target.classList.add('visible'), delay);
-        takeawayObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.takeaway-item').forEach(el => takeawayObserver.observe(el));
+// #5 budgets
+const COLORS = ['#c22b2b', '#d4674a', '#b8862a', '#2e5fa3', '#8892a4', '#7a5fc2', '#1f8a8a', '#a04a7a'];
+const BUD = [
+  { t: 'Profile 1 — Single, CHF 200,000 gross', net: 12000, note: '', rows: [['Rent — 2-bed in Champel', 3500], ['Health insurance + supplementary', 750], ['Food (incl. restaurants)', 1200], ['Transport (pass + car)', 500], ['Phone + internet', 80], ['Leisure, travel, culture', 1500], ['Pillar 3a', 605]] },
+  { t: 'Profile 2 — Couple, no children, CHF 500,000 combined', net: 27000, note: 'CHF 2,000,000 property, 80% mortgage (CHF 1,600,000) at 2%.', rows: [['Mortgage interest: 1,600,000 × 2% ÷ 12', 2667], ['2nd mortgage repayment: 266,667 ÷ 15 ÷ 12', 1481], ['Health insurance + supplementary (× 2)', 1500], ['Food + restaurants', 2000], ['Transport (2 cars)', 1200], ['Leisure, travel, culture', 4000], ['Pillar 3a (both)', 1210]] },
+  { t: 'Profile 3 — Family with 2 children, CHF 600,000 combined', net: 32000, note: 'CHF 2,500,000 property, 80% mortgage (CHF 2,000,000) at 2%.', after: 'At this level, international school is a choice rather than a squeeze: CHF 72,000 a year for two children is 12% of CHF 600,000.', rows: [['Mortgage interest: 2,000,000 × 2% ÷ 12', 3333], ['2nd mortgage repayment: 333,333 ÷ 15 ÷ 12', 1852], ['Health insurance (family)', 2000], ['International school (2 × CHF 36,000 a year)', 6000], ['Food + restaurants', 2500], ['Transport (2 cars)', 1200], ['Activities, holidays, leisure', 5000], ['Pillar 3a (both)', 1210]] },
+];
+function showBud(k) {
+  const b = BUD[k], spent = b.rows.reduce((s, r) => s + r[1], 0), save = b.net - spent;
+  document.getElementById('bud-title').textContent = b.t;
+  document.getElementById('bud-net').textContent = 'Net ~' + fmt(b.net) + ' a month';
+  document.getElementById('bud-note').textContent = b.note;
+  document.getElementById('bud-after').textContent = b.after || '';
+  const drain = document.getElementById('drain'), list = document.getElementById('bud-list');
+  drain.innerHTML = b.rows.map((r, i) => `<div style="background:${COLORS[i]}"></div>`).join('') + '<div class="save"></div>';
+  list.innerHTML = b.rows.map((r, i) => `<div class="bud-row"><i style="background:${COLORS[i]}"></i><span>${r[0]}</span><span class="a">− ${fmt(r[1])}</span></div>`).join('')
+    + `<div class="bud-row total"><i style="background:var(--green)"></i><span>Available to invest</span><span class="a">~${fmt(save)}</span></div>`;
+  const parts = drain.querySelectorAll('div');
+  [...b.rows.map(r => r[1]), save].forEach((v, i) => setTimeout(() => parts[i].style.width = (v / b.net * 100) + '%', 80 + i * 110));
+  list.querySelectorAll('.bud-row').forEach((r, i) => setTimeout(() => r.classList.add('visible'), 80 + i * 80));
+  document.getElementById('bud-calc').textContent = `${num(b.net)} − ${b.rows.map(r => num(r[1])).join(' − ')} = ${fmt(save)}`;
+}
+onView('vbud', () => showBud(0), 0.3);
+document.querySelectorAll('.tabs button').forEach(btn => btn.addEventListener('click', () => {
+  document.querySelectorAll('.tabs button').forEach(x => { x.classList.toggle('on', x === btn); x.setAttribute('aria-selected', x === btn); });
+  showBud(+btn.dataset.b);
+}));
 
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const delay = parseInt(entry.target.dataset.delay || 0);
-        setTimeout(() => entry.target.classList.add('visible'), delay);
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
-  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+// #6 questions
+onView('vq', () => each('.q3', q => later(q, 'visible')), 0.3);
 
-  function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
 </script>
 </body>
 </html>
