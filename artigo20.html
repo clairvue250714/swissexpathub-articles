@@ -47,496 +47,529 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-  background: var(--bg);
-  color: var(--fg);
-  font-family: 'Inter', system-ui, sans-serif;
-  font-size: 16px;
-  line-height: 1.75;
-  padding: 40px max(16px, 5vw) 80px;
-}
-
-.article {
-  max-width: 720px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-
-/* ── HEADER ── */
-.article-header { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
-.article-meta {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: .12em; text-transform: uppercase;
-  color: var(--fg2); margin-bottom: 10px;
-}
-h1 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(24px, 5vw, 36px);
-  font-weight: 700; line-height: 1.2;
-  text-wrap: balance; color: var(--fg);
-}
-.header-rule {
-  height: 2px; background: var(--blue);
-  border-radius: 2px; margin-top: 20px;
-  width: 48px;
-}
-
-/* ── QUICK ANSWER ── */
-.quick-answer {
-  background: var(--blue-light);
-  border-left: 4px solid var(--blue);
-  border-radius: 0 14px 14px 0;
-  padding: 20px 24px;
-}
-.quick-answer p { font-size: 15px; color: var(--fg); margin: 0; }
-
-/* ── TAKEAWAYS ── */
-.takeaways {
-  background: var(--blue);
-  border-radius: 16px;
-  padding: 28px 32px;
-}
-.takeaways h2 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 16px; font-weight: 700;
-  color: rgba(255,255,255,.6);
-  letter-spacing: .08em; text-transform: uppercase;
-  margin-bottom: 16px; margin-top: 0;
-}
+#progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: var(--blue-mid); width: 0%; z-index: 1000; transition: width .1s linear; border-radius: 0 2px 2px 0; }
+body { background: var(--bg); color: var(--fg); font-family: 'Inter', system-ui, sans-serif; font-size: 16px; line-height: 1.75; padding: 48px max(16px, 5vw) 80px; }
+.article { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 36px; }
+.article-meta { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--fg2); margin-bottom: 12px; opacity: 0; transform: translateY(-8px); transition: opacity .5s ease, transform .5s ease; }
+.article-meta.visible { opacity: 1; transform: none; }
+h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(24px, 5vw, 36px); font-weight: 700; line-height: 1.2; text-wrap: balance; color: var(--fg); opacity: 0; transform: translateY(12px); transition: opacity .6s ease .15s, transform .6s ease .15s; }
+h1.visible { opacity: 1; transform: none; }
+.header-rule { height: 3px; background: var(--blue); border-radius: 2px; margin-top: 20px; width: 0; transition: width .8s cubic-bezier(.16,1,.3,1) .5s; }
+.header-rule.visible { width: 48px; }
+.takeaways { background: var(--blue); border-radius: 16px; padding: 28px 32px; }
+.takeaways h2 { font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; color: rgba(255,255,255,.55); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 18px; }
 .takeaways ul { list-style: none; }
-.takeaways ul li {
-  color: #e8ecf5;
-  font-size: 14.5px;
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(255,255,255,.1);
-  display: flex; gap: 12px; align-items: flex-start;
-}
-.takeaways ul li:last-child { border-bottom: none; }
-.takeaways ul li::before {
-  content: "✓"; color: #3dba78;
-  font-weight: 700; flex-shrink: 0; margin-top: 1px;
-}
-
-/* ── HEADINGS ── */
-h2 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 20px; font-weight: 700;
-  color: var(--fg); margin-bottom: 4px;
-}
-h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  color: var(--blue-mid); margin-bottom: 6px;
-}
+.takeaway-item { color: #e8ecf5; font-size: 14.5px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.1); display: flex; gap: 12px; align-items: flex-start; opacity: 0; transform: translateX(-10px); transition: opacity .45s ease, transform .45s ease; }
+.takeaway-item.visible { opacity: 1; transform: none; }
+.takeaway-item:last-child { border-bottom: none; }
+.takeaway-item::before { content: "✓"; color: #3dba78; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+h2 { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; color: var(--fg); margin-bottom: 4px; }
+h3 { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; color: var(--blue-mid); margin-bottom: 6px; }
 p { font-size: 15.5px; color: var(--fg); margin-bottom: 12px; }
 p:last-child { margin-bottom: 0; }
-.hl-blue  { color: var(--blue-mid); font-weight: 600; }
-.hl-green { color: var(--green);    font-weight: 600; }
-.hl-red   { color: var(--red);      font-weight: 600; }
-sup { font-size: 11px; color: var(--blue-mid); }
+.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.viz-label { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--fg2); margin-bottom: 12px; }
+.viz-note { font-size: 12px; color: var(--fg2); margin-top: 10px; line-height: 1.55; }
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+.blk { position: relative; overflow: hidden; background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px; padding: 24px 26px; box-shadow: var(--shadow); opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
+.blk.visible { opacity: 1; transform: none; }
+.blk::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--blue-mid); transform: scaleY(0); transform-origin: top; transition: transform .6s cubic-bezier(.16,1,.3,1) .25s; }
+.blk.visible::before { transform: scaleY(1); }
+.blk h2 { margin-bottom: 12px; font-size: 19px; }
+.blk p { font-size: 15px; }
+.plain { background: var(--green-light); border-radius: 10px; padding: 12px 14px; font-size: 14.5px; margin-bottom: 12px; }
+.plain b { color: var(--green); font-family: 'Space Grotesk', sans-serif; }
+.warnline { margin: 4px 0 14px; padding: 10px 14px; border-radius: 10px; background: var(--gold-light); color: var(--fg); font-size: 14px; border-left: 4px solid var(--gold); }
+.warnline b { color: var(--gold); }
+.panel { margin-top: 16px; padding: 18px; border-radius: 14px; background: var(--bg); border: 1.5px solid var(--border); }
 
-/* ── SITUATION CARDS ── */
-.situation-cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-@media (max-width: 520px) { .situation-cards { grid-template-columns: 1fr; } }
+/* DOWN PAYMENT STACK */
+.stackbar { display: flex; height: 54px; border-radius: 10px; overflow: hidden; background: var(--border); }
+.sb { width: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #fff; font-size: 11.5px; line-height: 1.25; text-align: center; white-space: nowrap; overflow: hidden; transition: width .9s cubic-bezier(.16,1,.3,1); }
+.sb b { font-family: 'Space Grotesk', sans-serif; font-size: 13px; }
+.sb.m1 { background: var(--blue); } .sb.m2 { background: var(--blue-mid); } .sb.p2 { background: var(--gold); } .sb.sv { background: var(--green); }
+.sb-legend { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 16px; margin-top: 12px; font-size: 13px; color: var(--fg2); }
+.sb-legend div { display: flex; gap: 8px; align-items: baseline; }
+.sb-legend i { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; transform: translateY(1px); }
+.sb-legend b { color: var(--fg); }
+.brace { display: flex; margin-top: 8px; font-size: 12px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--fg2); }
+.brace span { border-top: 2px solid var(--border); padding-top: 4px; text-align: center; opacity: 0; transition: opacity .5s ease; }
+.brace span.on { opacity: 1; }
+.brace .loan { width: 80%; border-color: var(--blue-mid); color: var(--blue-mid); margin-right: 4px; }
+.brace .own { width: 20%; border-color: var(--green); color: var(--green); }
 
-.sit-card {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 14px;
-  padding: 18px 20px;
-  box-shadow: var(--shadow);
-  transition: border-color .2s, box-shadow .2s;
-}
-.sit-card:hover { box-shadow: var(--shadow-md); }
-.sit-card.alert { border-color: var(--red); }
-.sit-card h3 { color: var(--blue-mid); margin-bottom: 6px; }
-.sit-card.alert h3 { color: var(--red); }
-.sit-card p { font-size: 13px; color: var(--fg2); margin: 0; }
+/* TIERS */
+.tiers { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 6px; }
+.tier { border-radius: 14px; padding: 16px 18px; border: 1.5px solid var(--border); background: var(--bg); opacity: 0; transform: translateY(10px); transition: opacity .45s ease, transform .45s ease; }
+.tier.visible { opacity: 1; transform: none; }
+.tier .tag { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.tier h3 { color: var(--fg); font-size: 16px; margin: 2px 0 8px; }
+.tier p { font-size: 14px; color: var(--fg2); margin-bottom: 8px; }
+.tier.t1 { border-color: var(--blue); } .tier.t1 .tag { color: var(--blue); }
+.tier.t2 { border-color: var(--blue-mid); } .tier.t2 .tag { color: var(--blue-mid); }
+.payoff { height: 8px; border-radius: 4px; background: var(--border); overflow: hidden; margin-top: 6px; }
+.payoff i { display: block; height: 100%; width: 100%; background: var(--blue-mid); transform-origin: left; }
+.tier.t1 .payoff i { background: var(--blue); }
+.tier.t2.visible .payoff i { animation: drain 3.5s ease-in-out .6s infinite alternate; }
+@keyframes drain { from { transform: scaleX(1); } to { transform: scaleX(0); } }
+.payoff-lbl { font-size: 11.5px; color: var(--fg2); margin-top: 4px; }
 
-/* ── CHECKLIST ── */
-.checklist {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 16px;
-  padding: 24px 28px;
-  box-shadow: var(--shadow);
-}
-.checklist h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  margin-bottom: 16px; color: var(--fg);
-}
-.checklist-item {
-  display: flex; align-items: flex-start; gap: 12px;
-  padding: 11px 0;
-  border-bottom: 1px solid var(--border);
-  cursor: pointer;
-}
-.checklist-item:last-of-type { border-bottom: none; }
-.check-box {
-  width: 22px; height: 22px;
-  border: 2px solid var(--blue);
-  border-radius: 6px; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  transition: all .2s; margin-top: 2px;
-}
-.check-box.checked { background: var(--blue); border-color: var(--blue); }
-.check-box.checked::after { content: "✓"; color: white; font-size: 13px; font-weight: 700; }
-.checklist-item.done span { text-decoration: line-through; color: var(--fg2); }
-.checklist-item span { font-size: 14.5px; color: var(--fg); font-family: 'Inter', sans-serif; }
-.progress-bar { height: 5px; background: var(--border); border-radius: 3px; margin-top: 16px; }
-.progress-fill { height: 100%; background: var(--green); border-radius: 3px; transition: width .4s ease; }
-.progress-label { font-size: 12px; color: var(--fg2); margin-top: 6px; font-family: 'Inter', sans-serif; }
+/* RATES */
+.rates { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.rate { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 14px; padding: 18px 20px; box-shadow: var(--shadow); opacity: 0; transform: translateY(10px); transition: opacity .45s ease, transform .45s ease; }
+.rate.visible { opacity: 1; transform: none; }
+.rate .big { font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 700; color: var(--blue-mid); line-height: 1.1; margin: 4px 0 8px; font-variant-numeric: tabular-nums; }
+.rate p { font-size: 14px; color: var(--fg2); margin-bottom: 0; }
+.spark { height: 34px; margin: 4px 0 10px; }
+.spark path { fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 300; stroke-dashoffset: 300; transition: stroke-dashoffset 1.4s ease .3s; }
+.rate.visible .spark path { stroke-dashoffset: 0; }
 
-/* ── FAQ ── */
-.faq-item {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  margin-bottom: 8px;
-  overflow: hidden;
-  transition: border-color .2s;
-}
-.faq-item.open { border-color: var(--blue); }
-.faq-q {
-  padding: 16px 20px;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 14px; font-weight: 600;
-  cursor: pointer;
-  display: flex; justify-content: space-between; align-items: center;
-  gap: 12px; color: var(--fg);
-  background: transparent;
-}
-.faq-arrow { color: var(--blue); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
+/* ONE-THIRD CALCULATOR */
+.calc label { display: flex; justify-content: space-between; font-size: 13.5px; color: var(--fg2); margin-bottom: 4px; }
+.calc label b { white-space: nowrap; color: var(--fg); font-family: 'Space Grotesk', sans-serif; font-variant-numeric: tabular-nums; }
+.calc input[type=range] { width: 100%; accent-color: var(--blue-mid); margin-bottom: 14px; }
+.costs { display: flex; flex-direction: column; gap: 6px; margin: 4px 0 12px; }
+.cost { display: grid; grid-template-columns: 150px 1fr 90px; gap: 10px; align-items: center; font-size: 13px; color: var(--fg2); }
+.cost .tr { height: 12px; background: var(--border); border-radius: 6px; overflow: hidden; }
+.cost .tr i { display: block; height: 100%; width: 0; border-radius: 6px; transition: width .5s cubic-bezier(.16,1,.3,1); }
+.cost .v { text-align: right; color: var(--fg); font-variant-numeric: tabular-nums; font-weight: 600; }
+.c-int i { background: var(--red); } .c-am i { background: var(--blue-mid); } .c-mt i { background: var(--gold); }
+.total { display: flex; justify-content: space-between; border-top: 1px solid var(--border); padding-top: 10px; font-size: 14px; }
+.total b { font-variant-numeric: tabular-nums; }
+.need { margin-top: 10px; padding: 12px 14px; border-radius: 10px; background: var(--blue-light); font-size: 14px; }
+.need b { font-family: 'Space Grotesk', sans-serif; font-size: 20px; color: var(--blue-mid); font-variant-numeric: tabular-nums; }
+.gauge { margin-top: 14px; }
+.gauge .tr { position: relative; height: 22px; border-radius: 8px; background: var(--border); }
+.gauge .fill { position: absolute; inset: 0 auto 0 0; width: 0; border-radius: 8px; background: var(--green); transition: width .5s cubic-bezier(.16,1,.3,1), background .3s; }
+.gauge .fill.over { background: var(--red); }
+.gauge .third { position: absolute; top: -6px; bottom: -6px; left: 33.33%; width: 2px; background: var(--fg); }
+.gauge .third span { position: absolute; top: -18px; left: 50%; transform: translateX(-50%); font-size: 11px; font-weight: 700; white-space: nowrap; font-family: 'Space Grotesk', sans-serif; }
+.verdict { margin-top: 8px; font-size: 14px; font-weight: 600; }
+.verdict.ok { color: var(--green); } .verdict.no { color: var(--red); }
+
+/* IMPUTED RENT */
+.ir-top { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+.ir-kpi { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; padding: 12px 14px; }
+.ir-kpi .k { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--fg2); font-family: 'Space Grotesk', sans-serif; }
+.ir-kpi .v { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1.25; }
+.ir-kpi .s { font-size: 12px; color: var(--fg2); font-variant-numeric: tabular-nums; }
+.ir-kpi.rent .v { color: var(--gold); } .ir-kpi.tax .v { color: var(--red); }
+.ir-kpi.tax { border-color: var(--red); background: var(--red-light); }
+.ir-bars { display: flex; flex-direction: column; gap: 8px; margin: 6px 0 4px; }
+.ir-row { display: grid; grid-template-columns: 140px 1fr; gap: 10px; align-items: center; font-size: 12.5px; color: var(--fg2); }
+.ir-row .tr { height: 20px; background: var(--border); border-radius: 6px; overflow: hidden; position: relative; }
+.ir-row .tr i { position: absolute; inset: 0 auto 0 0; display: flex; align-items: center; padding-left: 8px; color: #fff; font-size: 11px; font-weight: 700; white-space: nowrap; transition: width .5s cubic-bezier(.16,1,.3,1); }
+.ir-rent i { background: var(--gold); } .ir-int i { background: var(--green); } .ir-tx i { background: var(--red); }
+.ir-steps { display: flex; justify-content: space-between; font-size: 11.5px; color: var(--fg2); margin-top: -8px; margin-bottom: 8px; }
+.ir-steps button { background: none; border: 1.5px solid var(--border); border-radius: 999px; padding: 3px 10px; font: inherit; color: var(--fg2); cursor: pointer; }
+.ir-steps button.active { border-color: var(--blue-mid); color: var(--blue-mid); font-weight: 600; }
+.msg { margin-top: 12px; font-size: 14.5px; font-weight: 600; }
+
+/* 2029 */
+.era { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1.5px solid var(--border); border-radius: 14px; overflow: hidden; margin: 6px 0 14px; }
+.era-col h3 { margin: 0; padding: 10px 14px; color: #fff; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; }
+.era-col.old h3 { background: var(--fg2); } .era-col.new h3 { background: var(--green); }
+.era-row { padding: 9px 14px; font-size: 13.5px; border-top: 1px solid var(--border); display: flex; gap: 8px; opacity: 0; transform: translateY(6px); transition: opacity .4s ease, transform .4s ease; }
+.era-row.visible { opacity: 1; transform: none; }
+.era-row .y { color: var(--green); font-weight: 700; } .era-row .n { color: var(--red); font-weight: 700; }
+.era-col.new { border-left: 1.5px solid var(--border); }
+.except { background: var(--green-light); border-left: 4px solid var(--green); border-radius: 0 10px 10px 0; padding: 10px 14px; font-size: 14px; margin-bottom: 12px; }
+.except b { color: var(--green); }
+
+/* SITUATIONS */
+.sits { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.sit { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 14px; padding: 16px 16px; box-shadow: var(--shadow); opacity: 0; transform: translateY(12px) scale(.98); transition: opacity .45s ease, transform .45s ease; display: flex; flex-direction: column; }
+.sit.visible { opacity: 1; transform: none; }
+.sit h3 { color: var(--fg); font-size: 15px; margin-bottom: 0; }
+.sit .sub { font-size: 12px; color: var(--fg2); margin-bottom: 10px; }
+.sit dl { font-size: 13px; display: grid; grid-template-columns: auto 1fr; gap: 4px 8px; margin-bottom: 10px; }
+.sit dt { color: var(--fg2); } .sit dd { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+.sit .foot { margin-top: auto; border-top: 1px solid var(--border); padding-top: 8px; font-size: 12px; color: var(--fg2); }
+.sit .foot b { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 18px; color: var(--blue-mid); font-variant-numeric: tabular-nums; }
+.sit .note { font-size: 12.5px; color: var(--fg2); margin-bottom: 10px; line-height: 1.5; }
+
+/* MISTAKES */
+.mk { position: relative; overflow: hidden; background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px; padding: 20px 24px; box-shadow: var(--shadow); display: flex; gap: 16px; opacity: 0; transform: translateX(-14px); transition: opacity .5s ease, transform .5s ease; }
+.mk.visible { opacity: 1; transform: none; }
+.mk-num { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; color: var(--red); opacity: 0; line-height: 1; min-width: 26px; transform: scale(1.6); transition: opacity .5s ease .2s, transform .5s cubic-bezier(.34,1.56,.64,1) .2s; }
+.mk.visible .mk-num { opacity: .25; transform: scale(1); }
+.mk h3 { color: var(--red); font-size: 15px; margin-bottom: 6px; }
+.mk p { font-size: 14.5px; color: var(--fg2); margin: 0; line-height: 1.6; }
+
+/* FAQ / CTA / SOURCES */
+.faq-item { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; margin-bottom: 8px; overflow: hidden; transition: border-color .2s; }
+.faq-item.open { border-color: var(--blue-mid); }
+.faq-q { padding: 16px 20px; font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; color: var(--fg); user-select: none; }
+.faq-arrow { color: var(--blue-mid); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
 .faq-item.open .faq-arrow { transform: rotate(180deg); }
-.faq-a {
-  display: none;
-  padding: 0 20px 16px;
-  font-size: 14px; color: var(--fg2); line-height: 1.65;
-  font-family: 'Inter', sans-serif;
-}
-.faq-item.open .faq-a { display: block; }
-
-/* ── CTA ── */
-.cta-box {
-  background: var(--blue);
-  border-radius: 16px;
-  padding: 32px 36px;
-  text-align: center;
-}
-.cta-box p {
-  color: rgba(255,255,255,.8);
-  font-size: 15px; margin-bottom: 20px;
-}
-.cta-btn {
-  background: var(--gold);
-  color: #fff;
-  padding: 13px 28px;
-  border-radius: 10px;
-  text-decoration: none;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  display: inline-block;
-  transition: opacity .2s;
-}
-.cta-btn:hover { opacity: .88; }
-
-/* ── SOURCES ── */
-.sources {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  padding: 20px 24px;
-}
-.sources h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: .1em; text-transform: uppercase;
-  color: var(--fg2); margin-bottom: 10px;
-}
+.faq-a { max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .35s ease; font-size: 14px; color: var(--fg2); line-height: 1.65; padding: 0 20px; }
+.faq-a p { font-size: 14px; color: var(--fg2); margin-bottom: 8px; }
+.faq-item.open .faq-a { max-height: 420px; padding: 0 20px 16px; }
+.cta-box { background: var(--blue); border-radius: 16px; padding: 32px 36px; text-align: center; }
+.cta-box p { color: rgba(255,255,255,.85); font-size: 15px; margin-bottom: 20px; }
+.cta-btn { background: var(--gold); color: #fff; padding: 13px 28px; border-radius: 10px; text-decoration: none; font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; display: inline-block; transition: opacity .2s, transform .2s; }
+.cta-btn:hover { opacity: .88; transform: translateY(-1px); }
+.sources { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; padding: 20px 24px; }
+.sources h3 { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--fg2); margin-bottom: 10px; }
 .sources ol { padding-left: 18px; }
-.sources ol li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; }
-
-/* ── FADE IN ── */
-.fade-in { opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
-.fade-in.visible { opacity: 1; transform: translateY(0); }
+.sources li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; }
 
 @media (max-width: 600px) {
-  h1 { font-size: 24px; }
-  .situation-cards { grid-template-columns: 1fr; }
-  .cta-box { padding: 24px 20px; }
-  .takeaways { padding: 20px 20px; }
+  .takeaways { padding: 20px; } .cta-box { padding: 24px 20px; } .blk { padding: 20px 18px; }
+  .tiers, .rates, .sits, .era, .ir-top { grid-template-columns: 1fr; }
+  .era-col.new { border-left: none; border-top: 1.5px solid var(--border); }
+  .sb-legend { grid-template-columns: 1fr; }
+  .sb { font-size: 10px; } .sb b { font-size: 11px; } .sb small { display: none; }
+  .cost { grid-template-columns: 110px 1fr 76px; font-size: 12px; }
+  .ir-row { grid-template-columns: 100px 1fr; font-size: 11.5px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+  .reveal, .blk, .mk, .tier, .rate, .sit, .era-row, .takeaway-item, .article-meta, h1 { opacity: 1 !important; transform: none !important; }
 }
 </style>
 </head>
 <body>
-
 <div id="progress-bar"></div>
-
-<header class="hero">
-  <div class="hero-bg"></div>
-  
-  <div class="hero-gradient"></div>
-  <div class="hero-content">
-    <div class="hero-tag" id="heroTag">
-      <span class="hero-tag-pill">Mortgages</span>
-      <span>Geneva · Switzerland</span>
-    </div>
-    <h1 class="hero-title" id="heroTitle">Financing Property in Switzerland as an Expat</h1>
-    <p class="hero-subtitle" id="heroSubtitle">A stress test at 5%, a two-tier mortgage structure, and a tax strategy that leads Swiss residents to deliberately never pay off their mortgage. Here is how it all works.</p>
-    <div class="hero-meta" id="heroMeta">
-      <span>Updated August 2026</span>
-      <div class="hero-meta-divider"></div>
-      <span>5 min read</span>
-    </div>
-  </div>
-</header>
-
 <div class="article">
 
+  <!-- HEADER -->
+  <div class="article-header">
+    <p class="article-meta">Tax &amp; Finance · Property · 6 min read</p>
+    <h1>Financing Property in Switzerland as an Expat</h1>
+    <div class="header-rule"></div>
+  </div>
+
+  <!-- TAKEAWAYS -->
   <div class="takeaways">
-    <p class="takeaways-label">Key Takeaways</p>
-    <div class="takeaway-item" data-delay="0"><span class="takeaway-num">01</span><span class="takeaway-text">Minimum 20% down payment — at least 10% must be personal savings, not Pillar 2</span></div>
-    <div class="takeaway-item" data-delay="90"><span class="takeaway-num">02</span><span class="takeaway-text">Swiss mortgages use a two-tier system — the first mortgage (up to 65%) never needs to be repaid</span></div>
-    <div class="takeaway-item" data-delay="180"><span class="takeaway-num">03</span><span class="takeaway-text">Banks stress-test at 5% even if current rates are below 2% — many applicants fail this test</span></div>
-    <div class="takeaway-item" data-delay="270"><span class="takeaway-num">04</span><span class="takeaway-text">Total housing costs cannot exceed 33% of gross income — calculated at the stress rate</span></div>
-    <div class="takeaway-item" data-delay="360"><span class="takeaway-num">05</span><span class="takeaway-text">Swiss residents deliberately never pay off the mortgage — it is a powerful wealth tax shield</span></div>
-    <div class="takeaway-item" data-delay="450"><span class="takeaway-num">06</span><span class="takeaway-text">The imputed rental value tax is being abolished in 2029 — this changes the mortgage strategy</span></div>
+    <h2>Key Takeaways</h2>
+    <ul>
+      <li class="takeaway-item" data-delay="0">You need a 20% down payment — at least half of it (10% of the price) from your own savings, not your pension fund</li>
+      <li class="takeaway-item" data-delay="100">Swiss mortgages come in two tiers — the first (up to 65%) has no repayment deadline: you pay only interest, and the debt can stay until you sell</li>
+      <li class="takeaway-item" data-delay="200">The rule that matters most: your yearly housing costs can't exceed one third (33%) of your gross income</li>
+      <li class="takeaway-item" data-delay="300">Until 2028, homeowners pay income tax on a rent they never receive — the imputed rental value. The Swiss keep their mortgage because the interest offsets it</li>
+      <li class="takeaway-item" data-delay="400">From 2029 the imputed rental value disappears, but mortgage interest stops being deductible — "never pay it off" no longer makes sense for many owners</li>
+    </ul>
   </div>
 
-  <h2 class="reveal">What Makes Swiss Financing Different</h2>
-  <p class="reveal">The Swiss mortgage system has its own rules that surprise almost every expat. There is a mandatory stress test at 5% even when current rates are below 2%, a two-tier mortgage structure with different repayment obligations, and a tax strategy that leads Swiss residents to deliberately never pay off their mortgage. Understanding these three points changes how you approach the entire purchase.</p>
-
-  <h2 class="reveal">The Minimum Down Payment</h2>
-  <p class="reveal">Swiss banks require a <span class="hl-blue">minimum of 20% of the property value</span> in equity. Of that 20%, at least <span class="hl-red">10% must be personal savings</span> — the bank will not accept the full amount from Pillar 2. The remaining 10% can come from <span class="hl-green">Pillar 2</span> (employer pension fund) or <span class="hl-green">Pillar 3a</span>. For non-residents without a Swiss residence permit, the minimum rises to <span class="hl-red">35% to 50%</span>.</p>
-
-  <div class="stat-box reveal">
-    <h3>Example — CHF 800,000 property</h3>
-    <div class="stat-row"><span class="stat-label">Minimum down payment (20%)</span><span class="stat-value">CHF 160,000</span></div>
-    <div class="stat-row"><span class="stat-label">Must be personal savings (min 10%)</span><span class="stat-value red">CHF 80,000</span></div>
-    <div class="stat-row"><span class="stat-label">Can come from Pillar 2 or 3a</span><span class="stat-value green">up to CHF 80,000</span></div>
-  </div>
-
-  <h2 class="reveal">The Two-Tier Mortgage System</h2>
-  <p class="reveal">Switzerland uses a unique system of <span class="hl-blue">two mortgages simultaneously</span> on the same property:</p>
-  <div class="tier-grid reveal">
-    <div class="tier-card first">
-      <p class="tier-label">1st Mortgage — up to 65%</p>
-      <h3>No repayment required</h3>
-      <p class="tier-body">The bank does not require you to pay this down. This is where Swiss residents keep debt active indefinitely — it is the wealth tax shield.</p>
-    </div>
-    <div class="tier-card second">
-      <p class="tier-label">2nd Mortgage — 65% to 80%</p>
-      <h3>Must be repaid in 15 years</h3>
-      <p class="tier-body">This portion must be amortised within 15 years or by retirement age, whichever comes first.</p>
-    </div>
-  </div>
-
-  <h2 class="reveal">Fixed Rate vs SARON</h2>
-  <div class="rate-grid reveal">
-    <div class="rate-card">
-      <h3>Fixed Rate (Festhypothek)</h3>
-      <div class="rate-value">1.8–2.4%</div>
-      <p class="rate-body">10-year fixed in 2026. Protects against rate rises. Terms from 2 to 15 years. Most popular choice for expats who want predictability.</p>
-    </div>
-    <div class="rate-card">
-      <h3>SARON (Variable)</h3>
-      <div class="rate-value">0.9–1.3%</div>
-      <p class="rate-body">Linked to the Swiss overnight rate. Cheaper now but rises with the market. Many buyers split — part fixed, part SARON.</p>
-    </div>
-  </div>
-
-  <h2 class="reveal">The 5% Stress Test — Why Many Expats Are Rejected</h2>
-  <p class="reveal">Even if the current rate is 1.5%, the bank <span class="hl-red">calculates your repayment capacity at 5%</span>. Total housing costs — calculated at 5% — cannot exceed <span class="hl-red">33% of gross annual income.</span></p>
-
-  <div class="stat-box reveal">
-    <h3>Stress test — CHF 1,000,000 property, 20% down</h3>
-    <div class="stat-row"><span class="stat-label">Mortgage amount</span><span class="stat-value">CHF 800,000</span></div>
-    <div class="stat-row"><span class="stat-label">Interest calculated at 5%</span><span class="stat-value red">CHF 40,000/year</span></div>
-    <div class="stat-row"><span class="stat-label">2nd mortgage amortisation</span><span class="stat-value red">CHF 8,000/year</span></div>
-    <div class="stat-row"><span class="stat-label">Maintenance costs (1%)</span><span class="stat-value red">CHF 10,000/year</span></div>
-    <div class="stat-row"><span class="stat-label">Total annual housing cost</span><span class="stat-value">CHF 58,000</span></div>
-    <div class="stat-row"><span class="stat-label">Minimum gross income required</span><span class="stat-value gold">CHF 176,000/year</span></div>
-  </div>
-
-  <div class="warning-box reveal">
-    <p>⚠ If you earn less, the bank refuses — even if the actual rate is 1.5% and you could comfortably afford the real payments. Compare 3 to 5 banks — some cantonal banks and Raiffeisen use 4.5% instead of 5%, which can lower the income threshold by CHF 10,000 to CHF 20,000.</p>
-  </div>
-
-  <h2 class="reveal">The Mortgage as a Tax Shield — Why Swiss Residents Never Pay It Off</h2>
-  <p class="reveal">The wealth tax is calculated on <span class="hl-blue">net wealth</span> — the property value <span class="hl-blue">minus the outstanding mortgage</span>. A large mortgage dramatically reduces the tax owed. And mortgage interest is deductible from taxable income on top of that. Two tax benefits simultaneously.</p>
-
-  <div class="tax-compare reveal">
-    <div class="tax-card with">
-      <p class="tax-card-title">✅ With mortgage — CHF 640,000</p>
-      <div class="tax-row">Property value: CHF 800,000</div>
-      <div class="tax-row">Mortgage outstanding: CHF 640,000</div>
-      <div class="tax-row">Taxable wealth from property: CHF 160,000</div>
-      <div class="tax-row">After Geneva exemption (~CHF 82k): ~CHF 78,000</div>
-      <div class="tax-row">Wealth tax per year: ~CHF 200–400</div>
-    </div>
-    <div class="tax-card without">
-      <p class="tax-card-title">❌ Mortgage paid off</p>
-      <div class="tax-row">Property value: CHF 800,000</div>
-      <div class="tax-row">Mortgage outstanding: CHF 0</div>
-      <div class="tax-row">Taxable wealth from property: CHF 800,000</div>
-      <div class="tax-row">After Geneva exemption: ~CHF 718,000</div>
-      <div class="tax-row">Wealth tax per year: ~CHF 2,500–3,500</div>
-    </div>
-  </div>
-
-  <div class="quote-block reveal">
-    <p class="quote-label">The Swiss Strategy</p>
-    <p class="quote-text">"Swiss residents deliberately never pay off the first mortgage. The debt is not a burden — it is a tax shield. And the interest is deductible from taxable income on top of that."</p>
-  </div>
-
-  <h2 class="reveal">The Imputed Rental Value — and Its Abolition in 2029</h2>
-  <p class="reveal">Currently Switzerland taxes a <span class="hl-red">fictitious income</span> called the imputed rental value — the amount you would receive if you rented out your property. This is added to your taxable income even though you live there yourself. In exchange, mortgage interest and maintenance costs are deductible.</p>
-
-  <div class="green-box reveal">
-    <p>✅ <strong>Big change coming:</strong> The Swiss Parliament has approved the abolition of the imputed rental value from <span class="hl-green">1 January 2029.</span> With the abolition, mortgage interest will also no longer be deductible for primary residences. Anyone buying before 2029 should model how this affects their tax situation from 2029 onwards.</p>
-  </div>
-
-  <h2 class="reveal">Three Real Situations</h2>
-  <div class="situation-list">
-    <div class="sit-card reveal" data-delay="0">
-      <div class="sit-name">Sofia, C Permit — CHF 600,000 property</div>
-      <p>Down payment: CHF 120,000 (CHF 60,000 savings + CHF 60,000 from Pillar 2)</p>
-      <p>1st mortgage: CHF 390,000 (no repayment required) · 2nd mortgage: CHF 90,000 (paid over 15 years)</p>
-      <p>Fixed rate 10 years at 2%: ~CHF 9,600/year in interest — deductible until 2029</p>
-      <p class="sit-note">Minimum gross income for stress test: ~CHF 105,000</p>
-    </div>
-    <div class="sit-card reveal" data-delay="100">
-      <div class="sit-name">James, B Permit — CHF 750,000 property</div>
-      <p>Down payment: CHF 150,000 (personal savings only — cannot use Pillar 2 easily as B permit)</p>
-      <p>1st mortgage: CHF 487,500 · 2nd mortgage: CHF 112,500</p>
-      <p>SARON current rate: ~CHF 7,000/year in interest</p>
-      <p class="sit-note">Minimum gross income for stress test: ~CHF 132,000</p>
-    </div>
-    <div class="sit-card reveal" data-delay="200">
-      <div class="sit-name">Couple, C Permit — CHF 1,200,000 property</div>
-      <p>Down payment: CHF 240,000 · Total mortgage: CHF 960,000</p>
-      <p>Split: CHF 600,000 fixed 10 years + CHF 360,000 SARON</p>
-      <p>Combined interest saving on wealth tax vs paying off mortgage: ~CHF 3,000/year</p>
-      <p class="sit-note">Minimum gross income for stress test: ~CHF 212,000 combined</p>
-    </div>
-  </div>
-
-  <h2 class="reveal">Common Mistakes</h2>
-  <div class="mistake-list reveal">
-    <div class="mistake-item">
-      <div class="mistake-icon">❌</div>
-      <div>
-        <div class="mistake-title">Paying off the mortgage</div>
-        <div class="mistake-desc">The biggest fiscal error a Swiss property owner can make. The first mortgage is a powerful wealth tax shield. Keeping it active indefinitely is strategy, not debt.</div>
+  <!-- DOWN PAYMENT -->
+  <div class="blk">
+    <h2>The Minimum Down Payment</h2>
+    <p>Swiss banks require at least 20% of the property price in your own money. Of that 20%, at least 10% must be personal savings — the bank won't accept the whole amount coming from Pillar 2 (your workplace pension fund). The other 10% can come from Pillar 2 or Pillar 3a (your private retirement savings account).</p>
+    <div class="panel" id="stack">
+      <div class="viz-label">Example — property of CHF 800,000</div>
+      <div class="stackbar">
+        <div class="sb m1" data-w="65"><b>CHF 520,000</b><small>1st mortgage</small></div>
+        <div class="sb m2" data-w="15"><b>120,000</b><small>2nd</small></div>
+        <div class="sb p2" data-w="10"><b>80,000</b></div>
+        <div class="sb sv" data-w="10"><b>80,000</b></div>
+      </div>
+      <div class="brace"><span class="loan">Bank loan · 80%</span><span class="own">Your money · 20%</span></div>
+      <div class="sb-legend">
+        <div><i style="background:var(--blue)"></i><span><b>1st mortgage</b> · up to 65%</span></div>
+        <div><i style="background:var(--blue-mid)"></i><span><b>2nd mortgage</b> · 65% to 80%</span></div>
+        <div><i style="background:var(--gold)"></i><span><b>Pillar 2 or 3a</b> · up to 10%</span></div>
+        <div><i style="background:var(--green)"></i><span><b>Own savings</b> · at least 10%</span></div>
       </div>
     </div>
-    <div class="mistake-item">
-      <div class="mistake-icon">❌</div>
-      <div>
-        <div class="mistake-title">Using all of Pillar 2 for the down payment</div>
-        <div class="mistake-desc">Drawing down Pillar 2 reduces your future pension and triggers tax at the moment of withdrawal. Use only what is necessary.</div>
+    <p style="margin-top:14px;font-size:14px;color:var(--fg2)">Not living in Switzerland yet? Banks ask non-residents for 35% to 50% down — and the Lex Koller law restricts property purchases by people living abroad. In Geneva, buying without Swiss residence is very difficult.</p>
+  </div>
+
+  <!-- TWO TIERS -->
+  <div class="blk">
+    <h2>The Two-Tier Mortgage</h2>
+    <p>Switzerland splits the bank loan into two mortgages on the same property, with very different rules:</p>
+    <div class="tiers">
+      <div class="tier t1" data-delay="0">
+        <div class="tag">1st mortgage · up to 65%</div>
+        <h3>No deadline to repay</h3>
+        <p>You pay only the interest. The debt can stay until you sell — the sale proceeds then repay the bank first. You can pay it off whenever you like, but you don't have to.</p>
+        <p>The bank may ask you to reduce it in a few cases: at retirement, if your pension no longer passes the one-third rule; at the end of a fixed-rate term, if you don't renew; or if the property loses a lot of value.</p>
+        <div class="payoff"><i></i></div><div class="payoff-lbl">Debt stays the same — interest only</div>
+      </div>
+      <div class="tier t2" data-delay="180">
+        <div class="tag">2nd mortgage · 65% to 80%</div>
+        <h3>Works like a normal loan</h3>
+        <p>It must be paid back within 15 years, or by retirement age — whichever comes first. This repayment of the loan itself (not the interest) is called amortisation.</p>
+        <div class="payoff"><i></i></div><div class="payoff-lbl">Repaid over 15 years</div>
       </div>
     </div>
-    <div class="mistake-item">
-      <div class="mistake-icon">❌</div>
-      <div>
-        <div class="mistake-title">Not comparing banks</div>
-        <div class="mistake-desc">Rates vary significantly. Some cantonal banks and Raiffeisen use a 4.5% stress test instead of 5% — this can make the difference between approval and rejection.</div>
+    <p style="margin-top:14px;font-size:14px;color:var(--fg2)">The first tier is the debt Swiss residents keep for decades — because of the imputed rental value, explained below.</p>
+  </div>
+
+  <!-- RATES -->
+  <div class="sec">
+    <h2 class="reveal" style="margin-bottom:12px">Fixed Rate or SARON</h2>
+    <div class="rates">
+      <div class="rate" data-delay="0">
+        <h3>Fixed rate (Festhypothek)</h3>
+        <svg class="spark" viewBox="0 0 200 34" preserveAspectRatio="none"><path d="M2 17 H198" stroke="var(--blue-mid)"/></svg>
+        <div class="big">1.8–2.4%</div>
+        <p>For 10 years in 2026. The rate is locked for the whole term (2 to 15 years), so you're protected if rates rise. The most popular choice among expats who want predictable payments.</p>
       </div>
-    </div>
-    <div class="mistake-item">
-      <div class="mistake-icon">❌</div>
-      <div>
-        <div class="mistake-title">Ignoring the 2029 imputed rental value abolition</div>
-        <div class="mistake-desc">Anyone buying before 2029 should model how the elimination of this deduction affects their tax situation from 2029 onwards — it changes the mortgage interest equation.</div>
+      <div class="rate" data-delay="150">
+        <h3>SARON (variable)</h3>
+        <svg class="spark" viewBox="0 0 200 34" preserveAspectRatio="none"><path d="M2 24 C20 22 30 28 50 20 S80 10 100 18 S140 30 160 14 S190 8 198 12" stroke="var(--gold)"/></svg>
+        <div class="big">0.9–1.3%</div>
+        <p>Follows SARON, the Swiss overnight interest rate between banks. Cheaper today, but it rises when the market does. Many buyers split: part fixed, part SARON.</p>
       </div>
     </div>
   </div>
 
-  <h2 class="reveal">Before You Ask</h2>
-  <div class="faq-list reveal">
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Can I use Pillar 2 for the down payment?<span class="faq-arrow">▾</span></div>
-      <div class="faq-a">Yes. You can use up to 10% of the property value from Pillar 2. But at least another 10% must be personal savings. There is a tax on the withdrawal and you must return the funds to Pillar 2 if you sell the property.</div>
+  <!-- ONE-THIRD RULE -->
+  <div class="blk" id="third">
+    <h2>The One-Third Rule: How Much House You Can Afford</h2>
+    <p class="plain"><b>In plain terms:</b> your yearly housing costs — interest, repayment of the 2nd mortgage and maintenance — can't be more than one third (33%) of your gross salary. This is the rule that decides whether the bank lends you the money.</p>
+    <p class="warnline"><b>Watch out:</b> for this calculation the bank doesn't use today's interest rate — the one it will actually charge you — but a fictitious safety rate of 5%. It does the maths on that rate to make sure you could still pay if rates went up. That's why the limit is tighter than your real payments would suggest.</p>
+    <div class="panel calc">
+      <div class="viz-label">Try it — what the bank calculates</div>
+      <label>Property price <b id="pv">CHF 800,000</b></label>
+      <input type="range" id="price" min="400000" max="2000000" step="25000" value="800000" aria-label="Property price">
+      <div class="costs">
+        <div class="cost c-int"><span>Interest at 5%</span><div class="tr"><i></i></div><span class="v" id="ci"></span></div>
+        <div class="cost c-am"><span>2nd mortgage repayment</span><div class="tr"><i></i></div><span class="v" id="ca"></span></div>
+        <div class="cost c-mt"><span>Maintenance (1%)</span><div class="tr"><i></i></div><span class="v" id="cm"></span></div>
+      </div>
+      <div class="total"><span>Total per year</span><b id="ct"></b></div>
+      <div class="need">Minimum gross income the bank will require: <b id="cn"></b><br><span style="font-size:12.5px;color:var(--fg2)" id="cnx"></span></div>
+      <div class="gauge">
+        <label>Your gross income (household) <b id="iv">CHF 150,000</b></label>
+        <input type="range" id="inc" min="60000" max="500000" step="5000" value="150000" aria-label="Your gross household income">
+        <div class="tr"><div class="fill" id="gf"></div><div class="third"><span>⅓ limit</span></div></div>
+        <div class="verdict" id="vd"></div>
+      </div>
+      <p class="viz-note">Assumes 20% down and the 2nd mortgage repaid over 15 years. Banks differ slightly in how they calculate — treat this as a guide.</p>
     </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Should I choose a fixed rate or SARON?<span class="faq-arrow">▾</span></div>
-      <div class="faq-a">It depends on your profile. SARON is cheaper now but can rise. A fixed rate gives predictability. Many expats split the mortgage — part fixed for security, part SARON to benefit from current low rates.</div>
+    <p style="margin-top:14px">At CHF 800,000, that's CHF 48,000 a year × 3 = <b>CHF 144,000</b> of gross income the bank will require. Buying as a couple? Both salaries count together — CHF 80,000 + CHF 64,000 = CHF 144,000 works too.</p>
+  </div>
+
+  <!-- IMPUTED RENT -->
+  <div class="blk" id="ir">
+    <h2>The Imputed Rental Value — Why the Swiss Keep Their Mortgage (Until 2028)</h2>
+    <p class="plain"><b>In plain terms:</b> today, if you live in a home you own, you pay tax on a fictitious rent — the imputed rental value (<i>valeur locative</i> in Geneva, <i>Eigenmietwert</i> in German). The tax office adds to your income the rent you would get if you let the property out, even though you live in it. It's usually 60–70% of the market rent.</p>
+    <p>In return, you can deduct your mortgage interest and maintenance costs. This is why the Swiss never pay off their mortgage: the interest offsets the fictitious rent. Pay the mortgage off completely and the fictitious rent hits your tax bill in full, with nothing to balance it — with low rates, you can even pay more tax than if you didn't own a home.</p>
+    <div class="panel">
+      <div class="viz-label">House of CHF 800,000 · market rent ≈ CHF 30,000/year — move the slider</div>
+      <label style="display:flex;justify-content:space-between;font-size:13.5px;color:var(--fg2)">Mortgage still owed <b id="mv" style="color:var(--fg);font-family:'Space Grotesk',sans-serif">CHF 640,000</b></label>
+      <input type="range" id="mort" min="0" max="640000" step="10000" value="640000" style="width:100%;accent-color:var(--blue-mid);margin:4px 0 12px" aria-label="Mortgage still owed">
+      <div class="ir-steps"><button data-m="640000" class="active">Full mortgage</button><button data-m="320000">Half paid</button><button data-m="0">Paid off</button></div>
+      <div class="ir-bars">
+        <div class="ir-row ir-rent"><span>Fictitious rent added</span><div class="tr"><i id="b-rent"></i></div></div>
+        <div class="ir-row ir-int"><span>Interest deducted</span><div class="tr"><i id="b-int"></i></div></div>
+        <div class="ir-row ir-tx"><span>Extra income taxed</span><div class="tr"><i id="b-tx"></i></div></div>
+      </div>
+      <div class="ir-top" style="margin-top:14px;margin-bottom:0">
+        <div class="ir-kpi rent"><div class="k">Fictitious rent</div><div class="v">CHF 1,500–1,750<span style="font-size:13px"> /month</span></div><div class="s">CHF 18,000–21,000 a year — the same every year</div></div>
+        <div class="ir-kpi tax"><div class="k">Extra tax you pay</div><div class="v" id="k-m"></div><div class="s" id="k-y"></div></div>
+      </div>
+      <p class="msg" id="ir-msg"></p>
+      <p class="viz-note">Illustrative figures: imputed rental value 60–70% of a ≈ CHF 30,000 market rent, interest at ≈ 1.8%, marginal tax rate ≈ 30% (upper-middle income in Geneva). Maintenance deduction not included. The real imputed value is set by the Geneva tax office for each property.</p>
     </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">How much income do I need to buy a CHF 800,000 property?<span class="faq-arrow">▾</span></div>
-      <div class="faq-a">Approximately CHF 140,000 gross annually — calculated by the 5% stress test. With CHF 160,000 down payment, the mortgage is CHF 640,000. At 5%: CHF 32,000 interest + amortisation + maintenance = ~CHF 46,000. Divided by 33% = ~CHF 140,000 minimum gross income.</div>
+    <p style="margin-top:14px"><b>In other words: on a CHF 800,000 home that's fully paid off, the tax office adds a fictitious rent of CHF 18,000–21,000 a year (CHF 1,500–1,750 a month) to your salary — and taxes it: around CHF 5,400–6,300 a year, or CHF 450–525 a month. In practice, you pay the tax office a kind of rent every month to live in a home you own.</b> This ends in 2029, when the imputed rental value is abolished.</p>
+    <p><b>And the more you pay off, the worse it gets.</b> The fictitious rent stays the same every year — but as the debt shrinks, so does the interest, leaving less and less to deduct. The more the home is yours, the more tax you pay on it.</p>
+  </div>
+
+  <!-- 2029 -->
+  <div class="blk" id="y2029">
+    <h2>What Changes in 2029</h2>
+    <p>From 1 January 2029, the imputed rental value is abolished for the home you live in — approved by popular vote in September 2025, with the date set by the Federal Council. At the same time, mortgage interest and maintenance costs on that home stop being deductible.</p>
+    <div class="era">
+      <div class="era-col old"><h3>Until 2028</h3>
+        <div class="era-row" data-delay="0"><span class="n">✕</span> Tax on the fictitious rent</div>
+        <div class="era-row" data-delay="120"><span class="y">✓</span> Mortgage interest deductible</div>
+        <div class="era-row" data-delay="240"><span class="y">✓</span> Maintenance deductible</div>
+      </div>
+      <div class="era-col new"><h3>From 2029</h3>
+        <div class="era-row" data-delay="500"><span class="y">✓</span> No tax on the fictitious rent</div>
+        <div class="era-row" data-delay="620"><span class="n">✕</span> Interest no longer deductible</div>
+        <div class="era-row" data-delay="740"><span class="n">✕</span> Maintenance no longer deductible</div>
+      </div>
     </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">When should I speak with an advisor?<span class="faq-arrow">▾</span></div>
-      <div class="faq-a">Before making any offer. The stress test, mortgage structure, Pillar 2 use, and the wealth tax strategy all depend very much on your specific situation and income.</div>
+    <p class="except"><b>Exception:</b> first-time buyers who live in the home keep a limited interest deduction for ten years.</p>
+    <p>With the fictitious rent and the interest deduction disappearing together, the main reason never to pay off the mortgage disappears too. The mortgage becomes just a cost, and the decision gets simple: if your money earns more elsewhere than the interest you'd pay, keep the mortgage; if it's sitting in an account earning nothing, paying it off makes sense. If you buy before 2029, run the numbers for both periods — until 2028 and from 2029.</p>
+    <p style="font-size:14px;color:var(--fg2)"><b style="color:var(--fg)">What about wealth tax?</b> It barely affects this decision: paying off the mortgage with your savings doesn't change it, because what you own falls by exactly as much as what you owe — your net wealth stays the same. And the wealth tax rules don't change with the reform.</p>
+  </div>
+
+  <!-- SITUATIONS -->
+  <div class="sec">
+    <h2 class="reveal" style="margin-bottom:12px">Three Real Situations</h2>
+    <div class="sits">
+      <div class="sit" data-delay="0">
+        <h3>Sofia</h3><div class="sub">C permit · property CHF 600,000</div>
+        <dl><dt>Down payment</dt><dd>120,000</dd><dt>1st mortgage</dt><dd>390,000</dd><dt>2nd mortgage</dt><dd>90,000</dd></dl>
+        <p class="note">CHF 60,000 savings + CHF 60,000 from Pillar 2. 10-year fixed at 2%: ≈ CHF 9,600 interest a year — deductible until 2028.</p>
+        <div class="foot">Minimum gross income<b>CHF 108,000</b></div>
+      </div>
+      <div class="sit" data-delay="120">
+        <h3>James</h3><div class="sub">B permit · property CHF 750,000</div>
+        <dl><dt>Down payment</dt><dd>150,000</dd><dt>1st mortgage</dt><dd>487,500</dd><dt>2nd mortgage</dt><dd>112,500</dd></dl>
+        <p class="note">All from savings — though a B permit wouldn't stop him using Pillar 2 for his own home. SARON today: ≈ CHF 7,000 interest a year.</p>
+        <div class="foot">Minimum gross income<b>CHF 135,000</b></div>
+      </div>
+      <div class="sit" data-delay="240">
+        <h3>A couple</h3><div class="sub">C permits · property CHF 1,200,000</div>
+        <dl><dt>Down payment</dt><dd>240,000</dd><dt>Fixed 10 years</dt><dd>600,000</dd><dt>SARON</dt><dd>360,000</dd></dl>
+        <p class="note">Total mortgage CHF 960,000, split for safety and savings.</p>
+        <div class="foot">Minimum gross income, combined<b>CHF 216,000</b></div>
+      </div>
     </div>
   </div>
 
+  <!-- MISTAKES -->
+  <div class="sec">
+    <h2 class="reveal" style="margin-bottom:12px">Common Mistakes</h2>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div class="mk" data-delay="0"><div class="mk-num">1</div><div><h3>Deciding to pay off or keep the mortgage without looking at 2029</h3>
+        <p>Until 2028, paying off the whole mortgage usually raises your tax because of the imputed rental value. From 2029, keeping a large mortgage can be expensive because the interest is no longer deductible. The right choice depends on the year and on where your money is.</p></div></div>
+      <div class="mk" data-delay="100"><div class="mk-num">2</div><div><h3>Using all your Pillar 2 for the down payment</h3>
+        <p>Withdrawing Pillar 2 reduces your future pension and is taxed when you take the money out. Use only what you need.</p></div></div>
+      <div class="mk" data-delay="200"><div class="mk-num">3</div><div><h3>Not comparing banks</h3>
+        <p>Rates vary from bank to bank. A difference of 0.3% on a CHF 640,000 mortgage is almost CHF 2,000 a year.</p></div></div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div>
+    <h2 class="reveal">Before You Ask</h2>
+    <div style="margin-top:12px">
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">Can I use Pillar 2 for the down payment?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">Yes — for up to 10% of the property price, as long as at least another 10% comes from your own savings. The withdrawal is taxed, and you have to pay the money back into Pillar 2 if you sell the property.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">Should I choose a fixed rate or SARON?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">It depends on how much risk you're comfortable with. SARON is cheaper now but can rise; a fixed rate gives you certainty. Many expats split the mortgage — part fixed for safety, part SARON to benefit from today's low rates.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">Do I need an advisor to buy a home?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a"><p>In most cases, no. Banks have mortgage specialists who explain the whole process free of charge — the one-third rule, the two tiers, fixed vs SARON and the documents you need. It's worth talking to two or three banks.</p><p>An independent advisor makes sense when your questions go beyond the loan: if you'll use Pillar 2 or 3a for the down payment, if your income is irregular or comes from several countries, or if you want to understand the tax impact of buying before or after 2029.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
   <div class="cta-box reveal">
-    <p>Swiss mortgage financing rewards those who plan ahead. The combination of the stress test, the two-tier structure, the wealth tax strategy and the 2029 imputed rental value reform means that professional advice typically pays for itself many times over.</p>
+    <p>Financing a home in Switzerland rewards those who plan ahead. For the loan itself, the bank's specialist is usually enough. When Pillar 2, income from several countries or the 2029 imputed rental value reform come into play, an independent advisor helps you get the numbers right before you sign.</p>
     <a href="/directory" class="cta-btn">Find Your Advisor →</a>
   </div>
 
+  <!-- SOURCES -->
   <div class="sources reveal">
-    <p class="sources-label">Sources</p>
+    <h3>Sources</h3>
     <ol>
       <li>Swissquote — Swiss Mortgages Explained: Rates, Terms and How They Work, 2026: swissquote.com</li>
-      <li>Swiss National Bank — SARON rate 2026: snb.ch</li>
+      <li>Swiss National Bank — SARON 2026: snb.ch</li>
       <li>Grundheim — Mortgage Affordability Calculator Switzerland 2026: grundheim.ch</li>
-      <li>UBS Switzerland — Abolition of imputed rental value 2029: ubs.com/ch</li>
-      <li>Taxolution Advisory — Swiss mortgage guide 2026: taxolution.ch</li>
+      <li>UBS Switzerland — Abolition of the imputed rental value 2029: ubs.com/ch</li>
+      <li>Swiss Federal Council — Entry into force of the imputed rental value reform, 1 April 2026: admin.ch</li>
     </ol>
   </div>
 
 </div>
 
 <script>
-  window.addEventListener('scroll', () => {
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    document.getElementById('progress-bar').style.width = Math.min(100, docHeight > 0 ? (scrollTop / docHeight) * 100 : 0) + '%';
-  }, { passive: true });
+const fmt = n => n.toLocaleString('en-GB');
+window.addEventListener('scroll', () => {
+  const docH = document.documentElement.scrollHeight - window.innerHeight;
+  document.getElementById('progress-bar').style.width = (docH > 0 ? window.scrollY / docH * 100 : 0) + '%';
+});
+window.addEventListener('load', () => {
+  setTimeout(() => document.querySelector('.article-meta').classList.add('visible'), 80);
+  setTimeout(() => document.querySelector('h1').classList.add('visible'), 220);
+  setTimeout(() => document.querySelector('.header-rule').classList.add('visible'), 420);
+});
+function stagger(selector, threshold) {
+  const obs = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), parseInt(e.target.dataset.delay || 0)); obs.unobserve(e.target); }
+  }), { threshold });
+  document.querySelectorAll(selector).forEach(el => obs.observe(el));
+}
+function onView(id, fn, threshold = 0.4) {
+  const el = document.getElementById(id);
+  const obs = new IntersectionObserver(en => { if (en[0].isIntersecting) { fn(); obs.disconnect(); } }, { threshold });
+  obs.observe(el);
+}
+stagger('.takeaway-item', 0.15);
+stagger('.reveal', 0.08);
+stagger('.blk', 0.05);
+stagger('.tier', 0.3);
+stagger('.rate', 0.3);
+stagger('.sit', 0.15);
+stagger('.era-row', 0.5);
+stagger('.mk', 0.1);
 
-  window.addEventListener('load', () => {
-    setTimeout(() => document.getElementById('heroTag').classList.add('visible'), 50);
-    setTimeout(() => document.getElementById('heroTitle').classList.add('visible'), 150);
-    setTimeout(() => document.getElementById('heroSubtitle').classList.add('visible'), 280);
-    setTimeout(() => document.getElementById('heroMeta').classList.add('visible'), 420);
+// Down payment stack
+onView('stack', () => {
+  document.querySelectorAll('#stack .sb').forEach((s, i) => setTimeout(() => s.style.width = s.dataset.w + '%', 150 + i * 250));
+  setTimeout(() => document.querySelectorAll('#stack .brace span').forEach(b => b.classList.add('on')), 1300);
+}, 0.5);
+
+// One-third calculator
+const price = document.getElementById('price'), inc = document.getElementById('inc');
+function calc() {
+  const P = +price.value, I = +inc.value;
+  const loan = P * 0.8, interest = loan * 0.05, amort = P * 0.15 / 15, maint = P * 0.01;
+  const total = interest + amort + maint, need = total * 3;
+  const max = Math.max(interest, 1);
+  document.getElementById('pv').textContent = 'CHF ' + fmt(P);
+  document.getElementById('iv').textContent = 'CHF ' + fmt(I);
+  [['ci', interest, '.c-int'], ['ca', amort, '.c-am'], ['cm', maint, '.c-mt']].forEach(([id, v, c]) => {
+    document.getElementById(id).textContent = 'CHF ' + fmt(Math.round(v));
+    document.querySelector(c + ' .tr i').style.width = (v / max * 100) + '%';
   });
+  document.getElementById('ct').textContent = 'CHF ' + fmt(Math.round(total));
+  document.getElementById('cn').textContent = 'CHF ' + fmt(Math.round(need));
+  document.getElementById('cnx').textContent = 'CHF ' + fmt(Math.round(total)) + ' × 3';
+  const share = total / I;
+  const gf = document.getElementById('gf');
+  gf.style.width = Math.min(share, 1) * 100 + '%';
+  gf.classList.toggle('over', share > 1 / 3);
+  const vd = document.getElementById('vd');
+  vd.className = 'verdict ' + (share <= 1 / 3 ? 'ok' : 'no');
+  vd.textContent = share <= 1 / 3
+    ? '✓ Costs are ' + Math.round(share * 100) + '% of your income — within the one-third rule'
+    : '✕ Costs are ' + Math.round(share * 100) + '% of your income — above one third. You\'d need CHF ' + fmt(Math.round(need - I)) + ' more income, or a cheaper property';
+}
+price.addEventListener('input', calc); inc.addEventListener('input', calc);
+onView('third', calc, 0.2);
 
-  const takeawayObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const delay = parseInt(entry.target.dataset.delay || 0);
-        setTimeout(() => entry.target.classList.add('visible'), delay);
-        takeawayObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.takeaway-item').forEach(el => takeawayObserver.observe(el));
+// Imputed rent
+const mort = document.getElementById('mort');
+const RENT_LO = 18000, RENT_HI = 21000, RATE = 0.30;
+const r100 = x => Math.round(x / 100) * 100, r5 = x => Math.round(x / 5) * 5;
+function ir() {
+  const M = +mort.value;
+  const interest = Math.round(M * 0.018 / 250) * 250;
+  const lo = r100((RENT_LO - interest) * RATE), hi = r100((RENT_HI - interest) * RATE);
+  document.getElementById('mv').textContent = 'CHF ' + fmt(M);
+  const scale = v => (v / RENT_HI * 100) + '%';
+  const bR = document.getElementById('b-rent'), bI = document.getElementById('b-int'), bT = document.getElementById('b-tx');
+  bR.style.width = scale(RENT_HI); bR.textContent = fmt(RENT_LO) + '–' + fmt(RENT_HI);
+  bI.style.width = scale(interest); bI.textContent = interest ? '− ' + fmt(interest) : '';
+  bT.style.width = scale(RENT_HI - interest); bT.textContent = fmt(RENT_LO - interest) + '–' + fmt(RENT_HI - interest);
+  document.getElementById('k-m').innerHTML = 'CHF ' + fmt(r5(lo / 12)) + '–' + fmt(r5(hi / 12)) + '<span style="font-size:13px"> /month</span>';
+  document.getElementById('k-y').textContent = 'CHF ' + fmt(lo) + '–' + fmt(hi) + ' a year';
+  document.getElementById('ir-msg').textContent = M === 0
+    ? 'Fully yours: nothing left to deduct — the whole fictitious rent is taxed.'
+    : M >= 640000 ? 'With the full mortgage, the interest absorbs a large part of the fictitious rent.'
+    : 'As you pay off, the interest shrinks — and the tax on the fictitious rent grows.';
+  document.querySelectorAll('.ir-steps button').forEach(b => b.classList.toggle('active', +b.dataset.m === M));
+}
+mort.addEventListener('input', ir);
+document.querySelectorAll('.ir-steps button').forEach(b => b.addEventListener('click', () => { mort.value = b.dataset.m; ir(); }));
+onView('ir', () => {
+  ir();
+  // gentle demo: walk from full mortgage to paid off, once
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  let v = 640000; const t = setInterval(() => {
+    v -= 20000; if (v < 0) { clearInterval(t); return; }
+    mort.value = v; ir();
+  }, 90);
+  mort.addEventListener('pointerdown', () => clearInterval(t), { once: true });
+}, 0.35);
 
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const delay = parseInt(entry.target.dataset.delay || 0);
-        setTimeout(() => entry.target.classList.add('visible'), delay);
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
-  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-  function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
 </script>
 </body>
 </html>
