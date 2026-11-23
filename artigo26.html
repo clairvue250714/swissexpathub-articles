@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Leaving Switzerland: Taxes, Pillar 2, and What to Do Before You Go</title>
+<title>Leaving Switzerland: Taxes, Pensions and What to Do Before You Go</title>
+<meta name="description" content="Your last Swiss tax return, Pillar 3a and Pillar 2 payouts, the canton strategy, EU vs UK/US rules and a checklist for expats leaving Switzerland (2026).">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
 <style>
+
 :root {
   --bg:         #f7f8fa;
   --bg2:        #ffffff;
@@ -47,375 +49,881 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 body {
-  background: var(--bg);
-  color: var(--fg);
+  background: var(--bg); color: var(--fg);
   font-family: 'Inter', system-ui, sans-serif;
-  font-size: 16px;
-  line-height: 1.75;
-  padding: 40px max(16px, 5vw) 80px;
+  font-size: 16px; line-height: 1.75;
+  padding: 48px max(16px, 5vw) 80px;
 }
+.article { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 36px; }
 
-.article {
-  max-width: 720px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
+#progress-bar {
+  position: fixed; top: 0; left: 0; height: 3px;
+  background: var(--blue-mid); width: 0%;
+  z-index: 1000; transition: width .1s linear;
+  border-radius: 0 2px 2px 0;
 }
 
 /* ── HEADER ── */
-.article-header { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
 .article-meta {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: .12em; text-transform: uppercase;
-  color: var(--fg2); margin-bottom: 10px;
+  font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--fg2); margin-bottom: 12px;
+  opacity: 0; transform: translateY(-8px); transition: opacity .5s ease, transform .5s ease;
 }
+.article-meta.visible { opacity: 1; transform: translateY(0); }
 h1 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(24px, 5vw, 36px);
-  font-weight: 700; line-height: 1.2;
-  text-wrap: balance; color: var(--fg);
+  font-family: 'Space Grotesk', sans-serif; font-size: clamp(24px, 5vw, 36px);
+  font-weight: 700; line-height: 1.2; text-wrap: balance; color: var(--fg);
+  opacity: 0; transform: translateY(12px);
+  transition: opacity .6s ease .15s, transform .6s ease .15s;
 }
+h1.visible { opacity: 1; transform: translateY(0); }
 .header-rule {
-  height: 2px; background: var(--blue);
-  border-radius: 2px; margin-top: 20px;
-  width: 48px;
+  height: 3px; background: var(--blue); border-radius: 2px; margin-top: 20px;
+  width: 0; transition: width .8s cubic-bezier(.16,1,.3,1) .5s;
 }
+.header-rule.visible { width: 48px; }
 
-/* ── QUICK ANSWER ── */
-.quick-answer {
-  background: var(--blue-light);
-  border-left: 4px solid var(--blue);
-  border-radius: 0 14px 14px 0;
-  padding: 20px 24px;
-}
-.quick-answer p { font-size: 15px; color: var(--fg); margin: 0; }
-
-/* ── TAKEAWAYS ── */
-.takeaways {
-  background: var(--blue);
-  border-radius: 16px;
-  padding: 28px 32px;
-}
-.takeaways h2 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 16px; font-weight: 700;
-  color: rgba(255,255,255,.6);
-  letter-spacing: .08em; text-transform: uppercase;
-  margin-bottom: 16px; margin-top: 0;
-}
-.takeaways ul { list-style: none; }
-.takeaways ul li {
-  color: #e8ecf5;
-  font-size: 14.5px;
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(255,255,255,.1);
-  display: flex; gap: 12px; align-items: flex-start;
-}
-.takeaways ul li:last-child { border-bottom: none; }
-.takeaways ul li::before {
-  content: "✓"; color: #3dba78;
-  font-weight: 700; flex-shrink: 0; margin-top: 1px;
-}
-
-/* ── HEADINGS ── */
-h2 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 20px; font-weight: 700;
-  color: var(--fg); margin-bottom: 4px;
-}
-h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  color: var(--blue-mid); margin-bottom: 6px;
-}
+/* ── TYPE ── */
+h2 { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; color: var(--fg); margin-bottom: 8px; }
+h3 { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; color: var(--blue-mid); margin-bottom: 6px; }
 p { font-size: 15.5px; color: var(--fg); margin-bottom: 12px; }
 p:last-child { margin-bottom: 0; }
 .hl-blue  { color: var(--blue-mid); font-weight: 600; }
 .hl-green { color: var(--green);    font-weight: 600; }
 .hl-red   { color: var(--red);      font-weight: 600; }
-sup { font-size: 11px; color: var(--blue-mid); }
-
-/* ── SITUATION CARDS ── */
-.situation-cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
+.lead { font-style: italic; color: var(--fg2); }
+.viz-label {
+  font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--fg2); margin-bottom: 12px;
 }
-@media (max-width: 520px) { .situation-cards { grid-template-columns: 1fr; } }
+.viz-note { font-size: 12px; color: var(--fg2); margin-top: 10px; }
+.illus {
+  display: inline-block; font-family: 'Space Grotesk', sans-serif; font-size: 10.5px; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--gold); background: var(--gold-light);
+  border-radius: 6px; padding: 2px 8px; margin-bottom: 10px;
+}
+.calc-line { font-size: 13px; color: var(--fg2); margin-top: 10px; font-variant-numeric: tabular-nums; }
+.calc-line strong { color: var(--fg); }
 
-.sit-card {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 14px;
-  padding: 18px 20px;
-  box-shadow: var(--shadow);
+/* ── QUICK ANSWER / TAKEAWAYS ── */
+.quick-answer { background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 14px 14px 0; padding: 20px 24px; }
+.quick-answer p { font-size: 15px; }
+.takeaways { background: var(--blue); border-radius: 16px; padding: 28px 32px; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .takeaways { background: #1f3a6b; } }
+:root[data-theme="dark"] .takeaways { background: #1f3a6b; }
+.takeaways h2 { font-size: 13px; color: rgba(255,255,255,.55); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 18px; }
+.takeaways ul { list-style: none; }
+.takeaway-item {
+  color: #e8ecf5; font-size: 14.5px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.1);
+  display: flex; gap: 12px; align-items: flex-start;
+  opacity: 0; transform: translateX(-10px); transition: opacity .45s ease, transform .45s ease;
+}
+.takeaway-item:last-child { border-bottom: none; }
+.takeaway-item.visible { opacity: 1; transform: translateX(0); }
+.takeaway-item::before { content: "✓"; color: #3dba78; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+
+
+/* ── CARDS ── */
+.card {
+  position: relative; overflow: hidden;
+  background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px;
+  padding: 24px 26px; box-shadow: var(--shadow);
+  opacity: 0; transform: translateY(16px);
+  transition: opacity .5s ease, transform .5s ease, box-shadow .2s;
+  --accent: var(--blue-mid); --accent-light: var(--blue-light);
+}
+.card.green { --accent: var(--green); --accent-light: var(--green-light); }
+.card.red   { --accent: var(--red);   --accent-light: var(--red-light); }
+.card.gold  { --accent: var(--gold);  --accent-light: var(--gold-light); }
+.card.visible { opacity: 1; transform: none; }
+.card:hover { box-shadow: var(--shadow-md); }
+.card::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--accent);
+  transform: scaleY(0); transform-origin: top; transition: transform .6s cubic-bezier(.16,1,.3,1) .25s;
+}
+.card.visible::before { transform: scaleY(1); }
+.card-head { display: flex; align-items: center; gap: 14px; margin-bottom: 10px; }
+.tag {
+  font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700; color: var(--accent);
+  background: var(--accent-light); border-radius: 8px; padding: 4px 10px; flex-shrink: 0; white-space: nowrap;
+  transform: scale(.6); opacity: 0; transition: transform .5s cubic-bezier(.34,1.56,.64,1) .2s, opacity .4s ease .2s;
+}
+.card.visible .tag { transform: scale(1); opacity: 1; }
+.card-head h2 { margin: 0; font-size: 18px; }
+.card p { font-size: 15px; }
+.viz { margin-top: 18px; padding-top: 16px; border-top: 1px dashed var(--border); }
+
+/* ── EXPLAINER: two columns ── */
+.explain { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 6px; }
+.ex { border-radius: 14px; padding: 16px 18px; border: 1.5px solid var(--border); background: var(--bg); }
+.ex h3 { font-size: 14px; margin-bottom: 4px; }
+.ex .sub { font-size: 12.5px; color: var(--fg2); margin-bottom: 12px; line-height: 1.45; }
+.ex.rsu h3 { color: var(--blue-mid); }
+.ex.opt h3 { color: var(--green); }
+.lots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.lot {
+  text-align: center; border-radius: 8px; padding: 8px 2px; font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px; font-weight: 700; border: 1.5px dashed var(--border); color: var(--fg2); background: var(--bg2);
+  transition: background .4s, color .4s, border-color .4s, transform .4s cubic-bezier(.34,1.56,.64,1);
+}
+.lot small { display: block; font-family: 'Inter', sans-serif; font-weight: 500; font-size: 10px; }
+.lot.on { background: var(--blue-mid); color: #fff; border: 1.5px solid var(--blue-mid); transform: scale(1.04); }
+.lot.on small { color: rgba(255,255,255,.85); }
+.ex-note { font-size: 12.5px; color: var(--fg2); margin-top: 10px; line-height: 1.5; }
+.ex-note b { color: var(--fg); }
+.toggle { display: flex; gap: 6px; margin-bottom: 10px; }
+.tg {
+  flex: 1; font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 600; cursor: pointer;
+  padding: 6px 8px; border-radius: 999px; border: 1.5px solid var(--border); background: var(--bg2); color: var(--fg2);
+}
+.tg.active { background: var(--green); border-color: var(--green); color: #fff; }
+.tg.down.active { background: var(--red); border-color: var(--red); }
+.opt-chart { position: relative; height: 90px; border-radius: 8px; background: var(--bg2); border: 1px solid var(--border); overflow: hidden; }
+.opt-chart svg { width: 100%; height: 100%; display: block; }
+.opt-chart .strike { stroke: var(--fg2); stroke-dasharray: 4 4; stroke-width: 1.5; }
+.opt-chart .price { fill: none; stroke-width: 2.5; stroke-linecap: round; transition: stroke .3s; }
+.opt-result { font-size: 13px; margin-top: 10px; font-weight: 600; min-height: 40px; line-height: 1.45; }
+.opt-result.up { color: var(--green); } .opt-result.down { color: var(--red); }
+.summary { margin-top: 14px; font-size: 14px; font-style: italic; color: var(--fg2); }
+@media (max-width: 580px) { .explain { grid-template-columns: 1fr; } }
+
+/* ── TAX EXAMPLES ── */
+.stat-row { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: center; gap: 8px; }
+.stat { text-align: center; border-radius: 12px; padding: 12px 6px; background: var(--bg); }
+.stat .k { font-family: 'Space Grotesk', sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--fg2); }
+.stat .v { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1.3; color: var(--fg); }
+.stat.res { background: var(--blue-light); } .stat.res .v { color: var(--blue-mid); }
+.stat.res.g { background: var(--green-light); } .stat.res.g .v { color: var(--green); }
+.stat.res.r { background: var(--red-light); } .stat.res.r .v { color: var(--red); }
+.op { font-size: 18px; color: var(--fg2); font-weight: 700; }
+.slider { margin-top: 14px; }
+.slider label { font-size: 13px; color: var(--fg2); display: flex; justify-content: space-between; gap: 10px; }
+.slider .val { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--fg); }
+.slider input[type=range] { width: 100%; accent-color: var(--blue-mid); margin-top: 4px; }
+.note { border-radius: 0 12px 12px 0; padding: 14px 18px; margin-top: 14px; }
+.note p { font-size: 14.5px; }
+.note.warn { background: var(--gold-light); border-left: 4px solid var(--gold); }
+.note.warn strong { color: var(--gold); }
+.note.info { background: var(--blue-light); border-left: 4px solid var(--blue-mid); }
+.note.info strong { color: var(--blue-mid); }
+@media (max-width: 540px) {
+  .stat-row { grid-template-columns: 1fr 1fr; }
+  .stat-row .op { display: none; }
+  .stat-row .stat.res { grid-column: 1 / -1; }
+}
+
+/* ── AFTER VESTING: timeline ── */
+.tl { display: flex; flex-direction: column; gap: 0; position: relative; padding-left: 26px; }
+.tl::before { content: ""; position: absolute; left: 8px; top: 8px; bottom: 8px; width: 2px; background: var(--border); }
+.tl-step {
+  position: relative; padding: 8px 0 14px;
+  opacity: 0; transform: translateX(-8px); transition: opacity .45s ease, transform .45s ease;
+}
+.tl-step.visible { opacity: 1; transform: none; }
+.tl-step::before {
+  content: ""; position: absolute; left: -24px; top: 13px; width: 14px; height: 14px; border-radius: 50%;
+  background: var(--bg2); border: 3px solid var(--dot, var(--blue-mid));
+}
+.tl-step .when { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--fg2); }
+.tl-step .what { font-size: 14.5px; font-weight: 600; color: var(--fg); }
+.tl-step .what .amt { font-variant-numeric: tabular-nums; }
+.tl-step .tax { display: inline-block; margin-top: 4px; font-size: 12.5px; font-weight: 700; padding: 2px 9px; border-radius: 6px; }
+.tax.blue { background: var(--blue-light); color: var(--blue-mid); }
+.tax.green { background: var(--green-light); color: var(--green); }
+.tax.gold { background: var(--gold-light); color: var(--gold); }
+
+/* ── AHV ── */
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+.sp { border-radius: 14px; padding: 16px 18px; border: 1.5px solid var(--border); background: var(--bg); }
+.sp h3 { font-size: 13.5px; color: var(--fg); margin-bottom: 10px; }
+.sp-row {
+  display: flex; justify-content: space-between; gap: 8px; font-size: 13px; padding: 6px 0; border-bottom: 1px solid var(--border);
+  font-variant-numeric: tabular-nums; opacity: 0; transform: translateX(6px); transition: opacity .4s ease, transform .4s ease;
+}
+.sp-row.visible { opacity: 1; transform: none; }
+.sp-row:last-child { border-bottom: none; }
+.sp-row .eq { color: var(--fg2); font-weight: 700; }
+.sp-row .lower { color: var(--green); font-weight: 700; }
+.verdict-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+.vd {
+  text-align: center; border-radius: 12px; padding: 10px; font-size: 13px; font-weight: 600;
+  opacity: 0; transform: scale(.95); transition: opacity .4s ease, transform .4s cubic-bezier(.34,1.56,.64,1);
+}
+.vd.visible { opacity: 1; transform: none; }
+.vd.same { background: var(--bg); border: 1.5px solid var(--border); color: var(--fg); }
+.vd.less { background: var(--green-light); border: 1.5px solid var(--green); color: var(--green); }
+@media (max-width: 560px) { .split, .verdict-row { grid-template-columns: 1fr; } }
+
+/* ── PRO RATA ── */
+.years { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.yr { border-radius: 10px; overflow: hidden; border: 1.5px solid var(--border); background: var(--bg2); }
+.yr .lbl { text-align: center; font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; padding: 6px 0; color: var(--fg); background: var(--bg); }
+.yr .bar { display: flex; height: 30px; }
+.yr .seg {
+  width: 0; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 11.5px; font-weight: 700;
+  white-space: nowrap; overflow: hidden; transition: width .7s cubic-bezier(.16,1,.3,1);
+}
+.seg.uk { background: var(--fg2); }
+.seg.ch { background: var(--red); }
+.yr .days { text-align: center; font-size: 11.5px; color: var(--fg2); padding: 4px 0 6px; font-variant-numeric: tabular-nums; }
+.legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 12px; color: var(--fg2); margin-top: 10px; }
+.legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+.share { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+.sh { border-radius: 12px; padding: 12px; text-align: center; }
+.sh .k { font-size: 12px; color: var(--fg2); }
+.sh .v { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.sh.ch { background: var(--red-light); } .sh.ch .v { color: var(--red); }
+.sh.uk { background: var(--bg); border: 1.5px solid var(--border); } .sh.uk .v { color: var(--fg); }
+@media (max-width: 480px) { .years { grid-template-columns: 1fr; } }
+
+/* ── US table ── */
+.us-table { border: 1.5px solid var(--border); border-radius: 14px; overflow: hidden; }
+.us-row {
+  display: grid; grid-template-columns: 1.2fr 1fr 1fr; font-size: 13.5px; border-bottom: 1px solid var(--border);
+  opacity: 0; transform: translateX(-8px); transition: opacity .4s ease, transform .4s ease;
+}
+.us-row:last-child { border-bottom: none; }
+.us-row.visible, .us-row.head { opacity: 1; transform: none; }
+.us-row > div { padding: 9px 14px; line-height: 1.45; }
+.us-row .lbl { font-weight: 600; background: var(--bg); color: var(--fg); }
+.us-row.head > div { font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #fff; }
+.us-row.head .lbl { background: var(--fg2); }
+.us-row.head .ch { background: var(--red); }
+.us-row.head .us { background: var(--blue); }
+.yes { color: var(--red); font-weight: 600; }
+.no  { color: var(--green); font-weight: 600; }
+@media (max-width: 580px) {
+  .us-row { grid-template-columns: 1fr 1fr; }
+  .us-row .lbl { grid-column: 1 / -1; padding-bottom: 3px; }
+  .us-row.head .lbl { display: none; }
+}
+
+
+/* ── A22: subtitle ── */
+.subtitle { font-size: 16px; color: var(--fg2); margin-top: 14px; font-style: italic;
+  opacity: 0; transform: translateY(8px); transition: opacity .6s ease .35s, transform .6s ease .35s; }
+.subtitle.visible { opacity: 1; transform: none; }
+
+/* ── segmented buttons ── */
+.seg-btns { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+.sbtn {
+  font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer;
+  padding: 7px 14px; border-radius: 999px; border: 1.5px solid var(--border); background: var(--bg2); color: var(--fg2);
+  transition: background .2s, color .2s, border-color .2s;
+}
+.sbtn:hover { border-color: var(--blue-mid); color: var(--blue-mid); }
+.sbtn.active { background: var(--blue); border-color: var(--blue); color: #fff; }
+
+/* ── gross → net bar ── */
+.gn-bar { display: flex; height: 40px; border-radius: 10px; overflow: hidden; background: var(--border); }
+.gn-net, .gn-tax {
+  display: flex; align-items: center; justify-content: center; color: #fff; font-size: 12.5px; font-weight: 700;
+  white-space: nowrap; overflow: hidden; transition: width .8s cubic-bezier(.16,1,.3,1); width: 0;
+}
+.gn-net { background: var(--green); }
+.gn-tax { background: var(--red); }
+.gn-legend { display: flex; justify-content: space-between; gap: 10px; font-size: 12px; color: var(--fg2); margin-top: 8px; flex-wrap: wrap; }
+.gn-legend i { display: inline-block; width: 11px; height: 11px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+.big-net { text-align: center; margin-top: 14px; border-radius: 14px; padding: 14px; background: var(--green-light); }
+.big-net .k { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--fg2); }
+.big-net .v { font-family: 'Space Grotesk', sans-serif; font-size: 30px; font-weight: 700; color: var(--green); font-variant-numeric: tabular-nums; }
+
+/* ── pièces explainer ── */
+.rooms { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
+.room {
+  border-radius: 10px; padding: 10px 12px; font-size: 12.5px; font-weight: 700; text-align: center; min-width: 74px;
+  border: 1.5px solid var(--border); background: var(--bg2); color: var(--fg);
+  opacity: 0; transform: scale(.85); transition: opacity .35s ease, transform .4s cubic-bezier(.34,1.56,.64,1);
+}
+.room.visible { opacity: 1; transform: none; }
+.room small { display: block; font-weight: 500; color: var(--fg2); font-size: 10.5px; }
+.room.kit { background: var(--gold-light); border-color: var(--gold); color: var(--gold); }
+.room.bed { background: var(--blue-light); border-color: var(--blue-mid); color: var(--blue-mid); }
+.rooms-eq { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 15px; margin-top: 10px; color: var(--fg); }
+
+/* ── range bars (rent, schools) ── */
+.ranges { display: flex; flex-direction: column; gap: 10px; }
+.rg { display: grid; grid-template-columns: 170px 1fr; gap: 12px; align-items: center; font-size: 13px; }
+.rg .nm { font-weight: 600; color: var(--fg); line-height: 1.25; }
+.rg .nm small { display: block; font-weight: 500; color: var(--fg2); font-size: 11px; }
+.rg .track { position: relative; height: 26px; background: var(--border); border-radius: 6px; }
+.rg .fill {
+  position: absolute; top: 0; bottom: 0; border-radius: 6px; background: var(--blue-mid);
+  display: flex; align-items: center; justify-content: center; color: #fff; font-size: 11.5px; font-weight: 700;
+  white-space: nowrap; transform-origin: left; transform: scaleX(0); transition: transform .8s cubic-bezier(.16,1,.3,1);
+}
+.rg .fill.visible { transform: scaleX(1); }
+.rg .fill.gold { background: var(--gold); }
+.rg .marker { position: absolute; top: -4px; bottom: -4px; width: 2px; background: var(--green); }
+.rg .marker span { position: absolute; top: -18px; left: 4px; font-size: 10.5px; font-weight: 700; color: var(--green); white-space: nowrap; }
+.axis { display: grid; grid-template-columns: 170px 1fr; gap: 12px; font-size: 11px; color: var(--fg2); }
+.axis .ticks { display: flex; justify-content: space-between; }
+@media (max-width: 560px) { .rg, .axis { grid-template-columns: 1fr; gap: 4px; } .axis > span:first-child { display: none; } }
+
+/* ── share bars (tax share) ── */
+.shares { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.shr { text-align: center; }
+.shr .col { height: 120px; background: var(--border); border-radius: 10px; position: relative; overflow: hidden; }
+.shr .col .f { position: absolute; left: 0; right: 0; bottom: 0; height: 0; background: var(--red); transition: height .9s cubic-bezier(.16,1,.3,1); }
+.shr .col .p { position: absolute; left: 0; right: 0; top: 8px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px; color: var(--fg); }
+.shr .lbl { font-size: 12px; color: var(--fg2); margin-top: 6px; }
+
+/* ── deduction calculator ── */
+.toggle-row { display: flex; align-items: center; gap: 10px; font-size: 14px; margin-top: 4px; cursor: pointer; user-select: none; }
+.toggle-row input { width: 18px; height: 18px; accent-color: var(--green); }
+.ded-out { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+
+/* ── two-children ring ── */
+.kids { display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: center; }
+.ring { width: 120px; height: 120px; position: relative; }
+.ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.ring circle { fill: none; stroke-width: 14; }
+.ring .bg { stroke: var(--border); }
+.ring .fg { stroke: var(--red); stroke-linecap: round; transition: stroke-dashoffset 1.2s cubic-bezier(.16,1,.3,1); }
+.ring .pc { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700; color: var(--red); }
+@media (max-width: 480px) { .kids { grid-template-columns: 1fr; justify-items: center; text-align: center; } }
+
+/* ── budget tabs ── */
+.btabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 12px; }
+.btab {
+  font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; text-align: left;
+  padding: 8px 14px; border-radius: 12px; border: 1.5px solid var(--border); background: var(--bg2); color: var(--fg2); line-height: 1.3;
+}
+.btab small { display: block; font-family: 'Inter', sans-serif; font-weight: 500; font-size: 11px; }
+.btab.active { background: var(--blue); border-color: var(--blue); color: #fff; }
+.btab.active small { color: rgba(255,255,255,.8); }
+.budget { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px; padding: 20px 22px; box-shadow: var(--shadow); }
+.b-row {
+  display: flex; justify-content: space-between; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 14px;
+  font-variant-numeric: tabular-nums; opacity: 0; transform: translateX(-6px); transition: opacity .3s ease, transform .3s ease;
+}
+.b-row.visible { opacity: 1; transform: none; }
+.b-row .amt { font-weight: 600; white-space: nowrap; }
+.b-row.inc .amt { color: var(--green); }
+.b-row.exp .amt { color: var(--red); }
+.b-row.school { background: var(--red-light); margin: 0 -10px; padding: 8px 10px; border-radius: 8px; }
+.remain {
+  display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 14px; padding: 14px 16px;
+  border-radius: 12px; background: var(--green-light); border: 1.5px solid var(--green);
+}
+.remain .k { font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--green); }
+.remain .v { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700; color: var(--green); font-variant-numeric: tabular-nums; }
+
+/* ── worth grid ── */
+.worth { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.wc { border-radius: 14px; padding: 18px 20px; }
+.wc.yes { background: var(--green-light); border: 1.5px solid var(--green); }
+.wc.no  { background: var(--red-light);   border: 1.5px solid var(--red); }
+.wc h3 { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 10px; }
+.wc.yes h3 { color: var(--green); } .wc.no h3 { color: var(--red); }
+.wi { font-size: 14px; color: var(--fg); padding: 8px 0; border-bottom: 1px solid rgba(127,127,127,.18); line-height: 1.5;
+  opacity: 0; transform: translateY(6px); transition: opacity .4s ease, transform .4s ease; }
+.wi.visible { opacity: 1; transform: none; }
+.wi:last-child { border-bottom: none; }
+.wi b { display: block; }
+@media (max-width: 580px) { .worth { grid-template-columns: 1fr; } }
+
+/* ── next article ── */
+.next {
+  display: flex; justify-content: space-between; align-items: center; gap: 16px; text-decoration: none;
+  background: var(--bg2); border: 1.5px solid var(--border); border-radius: 14px; padding: 20px 24px; box-shadow: var(--shadow);
   transition: border-color .2s, box-shadow .2s;
 }
-.sit-card:hover { box-shadow: var(--shadow-md); }
-.sit-card.alert { border-color: var(--red); }
-.sit-card h3 { color: var(--blue-mid); margin-bottom: 6px; }
-.sit-card.alert h3 { color: var(--red); }
-.sit-card p { font-size: 13px; color: var(--fg2); margin: 0; }
+.next:hover { border-color: var(--blue-mid); box-shadow: var(--shadow-md); }
+.next .k { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--fg2); }
+.next .t { font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 700; color: var(--fg); }
+.next .ar { font-size: 22px; color: var(--blue-mid); }
 
-/* ── CHECKLIST ── */
-.checklist {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 16px;
-  padding: 24px 28px;
-  box-shadow: var(--shadow);
+/* ── A24: who files ── */
+.who { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+.wcard {
+  display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start;
+  border-radius: 14px; padding: 16px 18px; border: 1.5px solid var(--border); background: var(--bg2);
+  transition: opacity .3s, transform .3s, box-shadow .3s, border-color .3s;
 }
-.checklist h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  margin-bottom: 16px; color: var(--fg);
+.wcard .badge {
+  font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  padding: 4px 9px; border-radius: 6px; white-space: nowrap; margin-top: 2px;
 }
-.checklist-item {
-  display: flex; align-items: flex-start; gap: 12px;
-  padding: 11px 0;
-  border-bottom: 1px solid var(--border);
-  cursor: pointer;
+.wcard.must .badge { background: var(--red-light); color: var(--red); }
+.wcard.opt  .badge { background: var(--green-light); color: var(--green); }
+.wcard h3 { font-size: 15px; color: var(--fg); margin-bottom: 4px; }
+.wcard p { font-size: 14px; color: var(--fg2); margin-bottom: 6px; }
+.wcard p:last-child { margin-bottom: 0; }
+.who.filtering .wcard { opacity: .35; }
+.who.filtering .wcard.hit { opacity: 1; border-color: var(--blue-mid); box-shadow: var(--shadow-md); transform: translateX(4px); }
+@media (max-width: 480px) { .wcard { grid-template-columns: 1fr; gap: 6px; } .wcard .badge { justify-self: start; } }
+
+/* ── year timeline ── */
+.year { position: relative; margin-top: 8px; }
+.months { display: grid; grid-template-columns: repeat(12, 1fr); font-size: 10.5px; color: var(--fg2); text-align: center; margin-bottom: 6px; }
+.lane { position: relative; height: 30px; margin-bottom: 8px; background: var(--bg); border-radius: 6px; }
+.lane .bar {
+  position: absolute; top: 3px; bottom: 3px; border-radius: 5px; display: flex; align-items: center; padding: 0 8px;
+  color: #fff; font-size: 11.5px; font-weight: 700; white-space: nowrap; overflow: hidden;
+  transform-origin: left; transform: scaleX(0); transition: transform .7s cubic-bezier(.16,1,.3,1);
 }
-.checklist-item:last-of-type { border-bottom: none; }
-.check-box {
-  width: 22px; height: 22px;
-  border: 2px solid var(--blue);
-  border-radius: 6px; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  transition: all .2s; margin-top: 2px;
+.lane .bar.visible { transform: scaleX(1); }
+.bar.b1 { background: var(--blue-mid); }
+.bar.b2 { background: var(--red); }
+.bar.b3 { background: var(--gold); }
+.pin { position: absolute; top: -2px; bottom: -2px; width: 2px; background: var(--red); }
+.lane-lbl { font-size: 11.5px; color: var(--fg2); margin: -4px 0 8px; }
+
+/* ── extension calculator ── */
+.ext-out { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+
+/* ── checklist ── */
+.chk-group { margin-top: 14px; }
+.chk-group:first-child { margin-top: 0; }
+.chk-title { font-family: 'Space Grotesk', sans-serif; font-size: 11.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--blue-mid); margin-bottom: 6px; }
+.chk {
+  display: flex; gap: 12px; align-items: flex-start; padding: 9px 4px; border-bottom: 1px solid var(--border);
+  cursor: pointer; user-select: none; font-size: 14px; color: var(--fg); line-height: 1.5; border-radius: 6px;
 }
-.check-box.checked { background: var(--blue); border-color: var(--blue); }
-.check-box.checked::after { content: "✓"; color: white; font-size: 13px; font-weight: 700; }
-.checklist-item.done span { text-decoration: line-through; color: var(--fg2); }
-.checklist-item span { font-size: 14.5px; color: var(--fg); font-family: 'Inter', sans-serif; }
-.progress-bar { height: 5px; background: var(--border); border-radius: 3px; margin-top: 16px; }
-.progress-fill { height: 100%; background: var(--green); border-radius: 3px; transition: width .4s ease; }
-.progress-label { font-size: 12px; color: var(--fg2); margin-top: 6px; font-family: 'Inter', sans-serif; }
+.chk:hover { background: var(--bg); }
+.chk:last-child { border-bottom: none; }
+.box {
+  width: 20px; height: 20px; border: 2px solid var(--blue-mid); border-radius: 5px; flex-shrink: 0; margin-top: 1px;
+  display: flex; align-items: center; justify-content: center; transition: background .2s, transform .2s;
+}
+.chk.done .box { background: var(--blue-mid); transform: scale(1.08); }
+.chk.done .box::after { content: "✓"; color: #fff; font-size: 12px; font-weight: 700; }
+.chk.done .txt { color: var(--fg2); text-decoration: line-through; }
+.chk-bar { height: 8px; background: var(--border); border-radius: 4px; margin-top: 14px; overflow: hidden; }
+.chk-fill { height: 100%; width: 0; background: var(--green); border-radius: 4px; transition: width .35s ease; }
+.chk-lbl { font-size: 12.5px; color: var(--fg2); margin-top: 6px; }
+
+/* ── filing options ── */
+.opts3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.o3 {
+  border-radius: 14px; padding: 16px 18px; border: 1.5px solid var(--border); background: var(--bg2); box-shadow: var(--shadow);
+  opacity: 0; transform: translateY(12px); transition: opacity .45s ease, transform .45s ease;
+}
+.o3.visible { opacity: 1; transform: none; }
+.o3 .k { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--fg2); }
+.o3 h3 { font-size: 15px; color: var(--fg); margin: 4px 0 6px; }
+.o3 p { font-size: 13.5px; color: var(--fg2); margin-bottom: 8px; line-height: 1.55; }
+.o3 .cost { font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; color: var(--green); }
+@media (max-width: 620px) { .opts3 { grid-template-columns: 1fr; } }
+
+/* ── steps ── */
+.steps { display: flex; flex-direction: column; gap: 0; position: relative; }
+.step { display: grid; grid-template-columns: 44px 1fr; gap: 14px; padding-bottom: 18px; position: relative; }
+.step::before { content: ""; position: absolute; left: 21px; top: 44px; bottom: 0; width: 2px; background: var(--border); }
+.step:last-child::before { display: none; }
+.step .n {
+  width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 700;
+  background: var(--bg2); color: var(--fg2); border: 2px solid var(--border);
+  transition: background .4s, color .4s, border-color .4s, transform .4s cubic-bezier(.34,1.56,.64,1);
+}
+.step.visible .n { background: var(--blue); color: #fff; border-color: var(--blue); transform: scale(1.06); }
+.step.key .n { box-shadow: 0 0 0 4px var(--gold-light); }
+.step h3 { font-size: 15px; color: var(--fg); margin: 10px 0 4px; }
+.step p { font-size: 14.5px; color: var(--fg2); margin: 0; }
+.step .body { opacity: .4; transition: opacity .5s ease; }
+.step.visible .body { opacity: 1; }
+
+/* ── GE vs federal ── */
+.cmp2 { display: flex; flex-direction: column; gap: 14px; margin-top: 12px; }
+.c2 .t { font-size: 13px; font-weight: 600; color: var(--fg); margin-bottom: 6px; }
+.c2-row { display: grid; grid-template-columns: 74px 1fr; gap: 10px; align-items: center; font-size: 12.5px; margin-bottom: 5px; }
+.c2-row .who2 { color: var(--fg2); font-weight: 600; }
+.c2-track { height: 22px; background: var(--border); border-radius: 5px; overflow: hidden; }
+.c2-fill { height: 100%; width: 0; border-radius: 5px; display: flex; align-items: center; justify-content: flex-end; padding-right: 7px;
+  color: #fff; font-size: 11.5px; font-weight: 700; white-space: nowrap; transition: width .9s cubic-bezier(.16,1,.3,1); }
+.c2-fill.fed { background: var(--blue-mid); }
+.c2-fill.ge { background: var(--red); }
+
+/* ── withholding mini ── */
+.wh { display: grid; grid-template-columns: 1fr auto 1fr; gap: 8px; align-items: center; margin-top: 10px; }
+.wh .stat .v { font-size: 18px; }
+@media (max-width: 480px) { .wh { grid-template-columns: 1fr; } .wh .op { display: none; } }
+
+/* ── A26: pro rata months ── */
+.mgrid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 4px; }
+.mo {
+  text-align: center; font-size: 11px; font-weight: 700; padding: 10px 0; border-radius: 6px;
+  background: var(--bg); color: var(--fg2); border: 1.5px solid var(--border); transition: background .3s, color .3s, border-color .3s;
+}
+.mo.on { background: var(--blue-mid); color: #fff; border-color: var(--blue-mid); }
+.mo.out { background: transparent; border-style: dashed; opacity: .55; }
+@media (max-width: 480px) { .mgrid { grid-template-columns: repeat(6, 1fr); } }
+
+/* ── order flow (3 steps) ── */
+.flow3 { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 8px; align-items: stretch; }
+.f3 {
+  border-radius: 12px; padding: 12px 12px; border: 1.5px solid var(--border); background: var(--bg2); text-align: center;
+  opacity: 0; transform: scale(.92); transition: opacity .4s ease, transform .45s cubic-bezier(.34,1.56,.64,1);
+}
+.f3.visible { opacity: 1; transform: none; }
+.f3 .n { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--fg2); }
+.f3 .t { font-weight: 700; font-size: 13.5px; color: var(--fg); margin: 2px 0; }
+.f3 .s { font-size: 11.5px; color: var(--fg2); line-height: 1.4; }
+.f3.mid { border-color: var(--gold); background: var(--gold-light); }
+.f3.end { border-color: var(--green); background: var(--green-light); }
+.f3-ar { align-self: center; color: var(--fg2); font-size: 18px; opacity: 0; transition: opacity .4s ease; }
+.f3-ar.visible { opacity: 1; }
+@media (max-width: 560px) { .flow3 { grid-template-columns: 1fr; } .f3-ar { transform: rotate(90deg); text-align: center; } }
+
+/* ── canton bars ── */
+.cb { display: grid; grid-template-columns: 90px 1fr; gap: 12px; align-items: center; margin-bottom: 10px; font-size: 13px; }
+.cb .nm { font-weight: 700; color: var(--fg); }
+.cb .track { height: 32px; background: var(--border); border-radius: 8px; overflow: hidden; }
+.cb .fill {
+  height: 100%; width: 0; border-radius: 8px; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px;
+  color: #fff; font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; white-space: nowrap;
+  transition: width 1s cubic-bezier(.16,1,.3,1);
+}
+.cb .fill.sz { background: var(--green); }
+.cb .fill.be { background: var(--red); }
+
+/* ── pillar 2 destination ── */
+.p2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 4px; }
+.p2b { border-radius: 12px; padding: 14px 16px; border: 1.5px solid var(--border); transition: background .35s, border-color .35s; }
+.p2b .k { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--fg2); }
+.p2b .v { font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 700; margin-top: 4px; transition: color .35s; }
+.p2b.cash { background: var(--green-light); border-color: var(--green); } .p2b.cash .v { color: var(--green); }
+.p2b.lock { background: var(--bg); border-color: var(--border); } .p2b.lock .v { color: var(--fg2); }
+.p2-tax { margin-top: 10px; font-size: 13.5px; color: var(--fg); background: var(--blue-light); border-radius: 10px; padding: 10px 14px; line-height: 1.5; }
+@media (max-width: 480px) { .p2 { grid-template-columns: 1fr; } }
+
+/* ── country cards ── */
+.ctry { display: flex; flex-direction: column; gap: 10px; }
+.cty {
+  display: grid; grid-template-columns: 54px 1fr; gap: 14px; align-items: start; border-radius: 14px; padding: 14px 16px;
+  border: 1.5px solid var(--border); background: var(--bg2);
+  opacity: 0; transform: translateX(-10px); transition: opacity .4s ease, transform .4s ease;
+}
+.cty.visible { opacity: 1; transform: none; }
+.cty .code { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 15px; text-align: center; padding: 8px 0; border-radius: 10px; background: var(--blue-light); color: var(--blue-mid); }
+.cty h3 { font-size: 14.5px; color: var(--fg); margin-bottom: 4px; }
+.cty p { font-size: 14px; color: var(--fg2); margin: 0; }
+/* ── MISTAKES ── */
+.mistakes { display: flex; flex-direction: column; gap: 12px; margin-top: 12px; }
+.mistake-item {
+  background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px; padding: 20px 24px;
+  box-shadow: var(--shadow); display: flex; gap: 18px; align-items: flex-start;
+  opacity: 0; transform: translateX(-14px); transition: opacity .45s ease, transform .45s ease, box-shadow .2s;
+}
+.mistake-item.visible { opacity: 1; transform: translateX(0); }
+.mistake-item:hover { box-shadow: var(--shadow-md); }
+.mistake-number { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; color: var(--red); line-height: 1; flex-shrink: 0; min-width: 32px; opacity: .25; }
+.mistake-content h3 { color: var(--red); font-size: 15px; margin-bottom: 6px; }
+.mistake-content p { font-size: 14.5px; color: var(--fg2); margin: 0; line-height: 1.6; }
 
 /* ── FAQ ── */
-.faq-item {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  margin-bottom: 8px;
-  overflow: hidden;
-  transition: border-color .2s;
-}
-.faq-item.open { border-color: var(--blue); }
-.faq-q {
-  padding: 16px 20px;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 14px; font-weight: 600;
-  cursor: pointer;
-  display: flex; justify-content: space-between; align-items: center;
-  gap: 12px; color: var(--fg);
-  background: transparent;
-}
-.faq-arrow { color: var(--blue); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
+.faq-item { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; margin-bottom: 8px; overflow: hidden; transition: border-color .2s; }
+.faq-item.open { border-color: var(--blue-mid); }
+.faq-q { padding: 16px 20px; font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; color: var(--fg); user-select: none; }
+.faq-arrow { color: var(--blue-mid); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
 .faq-item.open .faq-arrow { transform: rotate(180deg); }
-.faq-a {
-  display: none;
-  padding: 0 20px 16px;
-  font-size: 14px; color: var(--fg2); line-height: 1.65;
-  font-family: 'Inter', sans-serif;
-}
-.faq-item.open .faq-a { display: block; }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .35s ease; font-size: 14px; color: var(--fg2); line-height: 1.65; padding: 0 20px; }
+.faq-item.open .faq-a { max-height: 400px; padding: 0 20px 16px; }
 
-/* ── CTA ── */
-.cta-box {
-  background: var(--blue);
-  border-radius: 16px;
-  padding: 32px 36px;
-  text-align: center;
-}
-.cta-box p {
-  color: rgba(255,255,255,.8);
-  font-size: 15px; margin-bottom: 20px;
-}
-.cta-btn {
-  background: var(--gold);
-  color: #fff;
-  padding: 13px 28px;
-  border-radius: 10px;
-  text-decoration: none;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  display: inline-block;
-  transition: opacity .2s;
-}
-.cta-btn:hover { opacity: .88; }
-
-/* ── SOURCES ── */
-.sources {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  padding: 20px 24px;
-}
-.sources h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: .1em; text-transform: uppercase;
-  color: var(--fg2); margin-bottom: 10px;
-}
+/* ── CTA / SOURCES ── */
+.cta-box { background: var(--blue); border-radius: 16px; padding: 32px 36px; text-align: center; }
+.cta-box p { color: rgba(255,255,255,.85); font-size: 15px; margin-bottom: 14px; }
+.cta-box p:last-of-type { margin-bottom: 20px; }
+.cta-btn { background:var(--gold); color:#fff; padding:13px 28px; border-radius:10px; text-decoration:none; font-family:'Space Grotesk',sans-serif; font-size:15px; font-weight:700; display:inline-block; transition:opacity .2s,transform .2s; }
+.cta-btn:hover { opacity:.88; transform:translateY(-1px); }
+.sources { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; padding: 20px 24px; }
+.sources h3 { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--fg2); margin-bottom: 10px; }
 .sources ol { padding-left: 18px; }
-.sources ol li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; }
+.sources li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; }
 
-/* ── FADE IN ── */
-.fade-in { opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
-.fade-in.visible { opacity: 1; transform: translateY(0); }
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
 
 @media (max-width: 600px) {
-  h1 { font-size: 24px; }
-  .situation-cards { grid-template-columns: 1fr; }
+  body { padding-top: 36px; }
+  .takeaways { padding: 22px 20px; }
   .cta-box { padding: 24px 20px; }
-  .takeaways { padding: 20px 20px; }
+  .opt { padding: 18px 18px; }
+  .stat .v { font-size: 19px; }
+  .growth { padding: 18px 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
 }
 </style>
 </head>
 <body>
 <div id="progress-bar"></div>
-<header class="hero">
-  <div class="hero-bg"></div>
-  
-  <div class="hero-gradient"></div>
-  <div class="hero-content">
-    <div class="hero-tag" id="heroTag"><span class="hero-tag-pill">Exit Planning</span><span>Taxes · Pillar 2 · Switzerland</span></div>
-    <h1 class="hero-title" id="heroTitle">Leaving Switzerland: Taxes, Pillar 2, and What to Do Before You Go</h1>
-    <p class="hero-subtitle" id="heroSubtitle">Leaving Switzerland is one of the best moments to recover pension capital — but the canton strategy, timing, and sequence of decisions can save or cost tens of thousands of francs.</p>
-    <div class="hero-meta" id="heroMeta"><span>Updated August 2026</span><div class="hero-meta-divider"></div><span>5 min read</span></div>
-  </div>
-</header>
 <div class="article">
+
+  <!-- HEADER -->
+  <div class="article-header">
+    <p class="article-meta">Exit Planning · Taxes · Pensions · Updated November 2026 · 6 min read</p>
+    <h1>Leaving Switzerland: Taxes, Pensions and What to Do Before You Go</h1>
+    <p class="subtitle">Leaving Switzerland is one of the best moments to recover your pension money — but the order of your decisions can save or cost tens of thousands of francs.</p>
+    <div class="header-rule"></div>
+  </div>
+
+  <!-- QUICK ANSWER -->
+  <div class="quick-answer reveal">
+    <p><strong>Quick Answer:</strong> In the year you leave, you file one last tax return, covering only the months you lived in Switzerland — and decide what to do with your pension money.</p>
+    <p>The order matters. First, move the money to a provider in a low-tax canton, while you are still in Switzerland. Then, once your departure is registered, request the payout. And before anything else, check what the tax treaty with your new country says.</p>
+  </div>
+
+  <!-- TAKEAWAYS -->
   <div class="takeaways">
-    <p class="takeaways-label">Key Takeaways</p>
-    <div class="takeaway-item" data-delay="0"><span class="takeaway-num">01</span><span class="takeaway-text">In your year of departure, you file a pro-rata tax return covering only the months you were resident</span></div>
-    <div class="takeaway-item" data-delay="90"><span class="takeaway-num">02</span><span class="takeaway-text">When you permanently leave Switzerland, you can withdraw all Pillar 3a accounts — regardless of age</span></div>
-    <div class="takeaway-item" data-delay="180"><span class="takeaway-num">03</span><span class="takeaway-text">The withdrawal tax is calculated by the canton where the account is domiciled — not where you live</span></div>
-    <div class="takeaway-item" data-delay="270"><span class="takeaway-num">04</span><span class="takeaway-text">Transferring Pillar 3a to Schwyz or Appenzell before leaving can save CHF 10,000–30,000 in withdrawal tax</span></div>
-    <div class="takeaway-item" data-delay="360"><span class="takeaway-num">05</span><span class="takeaway-text">Pillar 2 can be withdrawn as capital or kept in a vested benefits account — each has different tax and financial implications</span></div>
-    <div class="takeaway-item" data-delay="450"><span class="takeaway-num">06</span><span class="takeaway-text">Plan at least 6–12 months before leaving — the canton transfer alone requires time to execute correctly</span></div>
+    <h2>Key Takeaways</h2>
+    <ul>
+      <li class="takeaway-item" data-delay="0">Your Pillar 3a can be paid out in full when you leave Switzerland for good, whatever your age or destination</li>
+      <li class="takeaway-item" data-delay="100">Your pension fund (Pillar 2) only comes out in full if you move outside the EU/EFTA — such as the UK or the US; moving to the EU, the mandatory part stays in Switzerland</li>
+      <li class="takeaway-item" data-delay="200">Once you live abroad, payout tax is charged by the canton of the provider — and in Schwyz it is roughly half of what other cantons charge</li>
+      <li class="takeaway-item" data-delay="300">Swiss health insurance (LAMal) ends on the departure date registered with your commune — no 3-month notice needed</li>
+    </ul>
   </div>
 
-  <h2 class="reveal">The Exit Tax Return</h2>
-  <p class="reveal">In the year you leave Switzerland, you file a <span class="hl-blue">pro-rata tax return</span> covering only the months you were resident. If you left in June, the return covers January to June. Income is calculated proportionally to the period of residency. Wealth, however, is declared at the date of departure — not pro-rata.</p>
-  <div class="warning-box reveal">
-    <p>⚠ <strong>Do not wait for the normal 31 March deadline.</strong> The exit year return must be filed even if you leave before the normal deadline. Inform the AFC (Geneva tax authority) of your departure date and request specific instructions for the exit return.</p>
-  </div>
-
-  <h2 class="reveal">Pillar 3a — You Can Withdraw Everything When You Leave</h2>
-  <p class="reveal">When you permanently leave Switzerland, you can withdraw the total balance of all your Pillar 3a accounts — <span class="hl-green">regardless of age.</span> This is one of the most advantageous moments for withdrawal. The tax on Pillar 3a withdrawal is calculated separately from normal income, at reduced rates. In Geneva, this tax is 8%–15% depending on the amount.</p>
-
-  <div class="canton-compare reveal">
-    <div class="canton-card high">
-      <div class="canton-name">Geneva</div>
-      <div class="canton-rate">~12–15%</div>
-      <div class="canton-body">On CHF 200,000 withdrawal: ~CHF 24,000–30,000 in tax</div>
+  <!-- EXIT RETURN -->
+  <div class="card">
+    <div class="card-head"><span class="tag">Tax</span><h2>Your Last Tax Return</h2></div>
+    <p>In the year you leave, you only declare the period you lived in Switzerland: leave in June, and the return covers January to June. The income of those months is taxed, but the rate is set as if you had earned at that pace all year. Wealth is declared at its value on your departure date, and wealth tax is only charged for the months you were resident.</p>
+    <div class="viz" id="vpro">
+      <div class="slider" style="margin-top:0">
+        <label for="dep">Month you leave <span class="val" id="dep-val">June</span></label>
+        <input type="range" id="dep" min="1" max="12" step="1" value="6" aria-label="Month of departure">
+      </div>
+      <div class="mgrid" id="mgrid" style="margin-top:10px"></div>
+      <p class="calc-line" id="pro-line"></p>
     </div>
-    <div class="canton-card low">
-      <div class="canton-name">Schwyz</div>
-      <div class="canton-rate">~4–6%</div>
-      <div class="canton-body">On CHF 200,000 withdrawal: ~CHF 8,000–12,000 in tax</div>
+    <p style="margin-top:14px">Don't wait for the usual 31 March deadline: tell the Geneva tax office (AFC) your departure date and ask for instructions for your final return.</p>
+    <div class="note info">
+      <p><strong>B Permit, taxed at source?</strong> Tax keeps being withheld from your salary until you leave. To claim deductions for your final year — Pillar 3a, pension fund buy-ins — you must request a full tax return (TOU) by 31 March of the following year. Earlier years can no longer be corrected.</p>
     </div>
   </div>
 
-  <div class="gold-box reveal">
-    <p>💡 <strong>The canton strategy:</strong> The withdrawal tax is calculated by the canton where the Pillar 3a account is domiciled — not where you live. Transferring accounts to a provider domiciled in Schwyz or Appenzell Innerrhoden before leaving can save <span class="hl-gold">CHF 10,000–30,000</span> depending on the balance. This transfer takes time — plan at least 6 months in advance.</p>
+  <!-- PILLAR 3A -->
+  <div class="card green">
+    <div class="card-head"><span class="tag">Pillar 3a</span><h2>You Can Take It All</h2></div>
+    <p>When you leave Switzerland for good, you can withdraw the balance of all your Pillar 3a accounts — whatever your age, your nationality or where you are going. The payout carries its own tax, separate from your income and at a reduced rate.</p>
   </div>
 
-  <h2 class="reveal">Pillar 2 — Two Options When You Leave</h2>
-  <div class="option-cards reveal">
-    <div class="option-card withdraw">
-      <p class="option-label">Option 1</p>
-      <h3>Withdraw as capital</h3>
-      <p>Request the full withdrawal of accumulated capital. The same reduced tax as Pillar 3a applies — but on a typically much larger amount. For CHF 200,000–500,000, the tax can be CHF 20,000–80,000. Canton strategy applies here too — transfer the vested benefits account to Schwyz or Appenzell before withdrawing.</p>
+  <!-- CANTON STRATEGY -->
+  <div class="card gold">
+    <div class="card-head"><span class="tag">Strategy</span><h2>The Canton Strategy</h2></div>
+    <p>While you live in Switzerland, a payout is taxed by your canton of residence. But once your departure is registered, the tax is withheld by the canton where the paying provider is based — not the canton you lived in. And rates vary a lot.</p>
+    <div class="viz" id="vcanton">
+      <span class="illus">Published example: CHF 500,000 payout</span>
+      <div class="cb"><span class="nm">Schwyz</span><div class="track"><div class="fill sz" data-w="50.4" id="sz">CHF 0</div></div></div>
+      <div class="cb"><span class="nm">Bern</span><div class="track"><div class="fill be" data-w="100" id="be">CHF 0</div></div></div>
+      <div class="stat res g" style="margin-top:6px"><div class="k">Difference</div><div class="v" id="cgap">CHF 0</div></div>
+      <p class="calc-line">Schwyz ≈ 4.6% · Bern ≈ 9.1% · 45,325 − 22,825 = <strong>CHF 22,500</strong></p>
     </div>
-    <div class="option-card keep">
-      <p class="option-label">Option 2</p>
-      <h3>Keep in vested benefits account</h3>
-      <p>If you don't withdraw immediately, the capital transfers automatically to a vested benefits account (compte de libre passage) at a Swiss bank. It continues to grow and can be withdrawn later — at retirement age or when you emigrate definitively to a third country. Makes sense if you plan to return to Switzerland or if your destination country taxes pension withdrawals heavily.</p>
-    </div>
-  </div>
-
-  <h2 class="reveal">Source Tax Refunds — Money Most People Leave Behind</h2>
-  <div class="green-box reveal">
-    <p>✅ If you paid source tax (impôt à la source) with a B Permit and never requested a rectification, you may be entitled to a refund when you leave. Check whether deductions you were entitled to — Pillar 3a, professional expenses — were applied. If not, submit a rectification request before leaving. You can recover money from previous years.</p>
-  </div>
-
-  <h2 class="reveal">Before You Leave — Complete Checklist</h2>
-  <div class="exit-checklist reveal" id="exitChecklist">
-    <h3>Exit planning checklist</h3>
-    <div class="exit-item" onclick="toggleExit(this)"><div class="exit-check"></div><span class="exit-label">Inform Geneva tax authority (AFC) of your departure date</span></div>
-    <div class="exit-item" onclick="toggleExit(this)"><div class="exit-check"></div><span class="exit-label">Notify your employer to cease source tax withholding</span></div>
-    <div class="exit-item" onclick="toggleExit(this)"><div class="exit-check"></div><span class="exit-label">Decide whether to transfer Pillar 3a to a low-tax canton before withdrawing</span></div>
-    <div class="exit-item" onclick="toggleExit(this)"><div class="exit-check"></div><span class="exit-label">Decide whether to withdraw Pillar 2 or keep in vested benefits account</span></div>
-    <div class="exit-item" onclick="toggleExit(this)"><div class="exit-check"></div><span class="exit-label">Check whether you are entitled to a source tax refund from previous years</span></div>
-    <div class="exit-item" onclick="toggleExit(this)"><div class="exit-check"></div><span class="exit-label">Cancel LAMal health insurance (3-month notice period required)</span></div>
-    <div class="exit-item" onclick="toggleExit(this)"><div class="exit-check"></div><span class="exit-label">Deregister from your commune (contrôle des habitants)</span></div>
-    <div class="exit-item" onclick="toggleExit(this)"><div class="exit-check"></div><span class="exit-label">Keep all tax documentation from the last 5 years</span></div>
-    <div class="exit-progress">
-      <div class="exit-progress-bar"><div class="exit-progress-fill" id="exitFill" style="width:0%"></div></div>
-      <div class="exit-progress-label" id="exitLabel">0 of 8 completed</div>
+    <p style="margin-top:14px">That's why many expats move their Pillar 3a and pension money to a provider based in Schwyz before they leave, and only request the payout after their departure date. Transfers between providers are tax-free, but take a few weeks.</p>
+    <div class="viz" id="vorder">
+      <div class="viz-label">The order that works</div>
+      <div class="flow3">
+        <div class="f3" data-delay="0"><div class="n">Step 1 · weeks before</div><div class="t">Transfer</div><div class="s">to a provider in a low-tax canton</div></div>
+        <div class="f3-ar" data-delay="250">→</div>
+        <div class="f3 mid" data-delay="400"><div class="n">Step 2 · departure day</div><div class="t">Register your departure</div><div class="s">with your commune</div></div>
+        <div class="f3-ar" data-delay="650">→</div>
+        <div class="f3 end" data-delay="800"><div class="n">Step 3 · after</div><div class="t">Request the payout</div><div class="s">taxed by the provider's canton</div></div>
+      </div>
     </div>
   </div>
 
-  <h2 class="reveal">In Your Destination Country</h2>
-  <div class="country-cards reveal">
-    <div class="country-item"><div class="country-flag">🇵🇹</div><div><div class="country-name">Portugal</div><div class="country-desc">Swiss pension withdrawals may benefit from the NHR (Non-Habitual Resident) regime with exemption or reduced rate. Always verify with a local advisor — the NHR rules have changed in recent years.</div></div></div>
-    <div class="country-item"><div class="country-flag">🇺🇸</div><div><div class="country-name">United States</div><div class="country-desc">Foreign pension withdrawals are generally taxable as ordinary income in the US. The Foreign Tax Credit may offset Swiss tax paid. Essential to consult a US tax specialist before any withdrawal.</div></div></div>
-    <div class="country-item"><div class="country-flag">🇪🇺</div><div><div class="country-name">EU countries</div><div class="country-desc">Double taxation treaties between Switzerland and each EU member state apply. The treatment varies significantly by country. Check the specific treaty before making withdrawal decisions.</div></div></div>
+  <!-- PILLAR 2 -->
+  <div class="card">
+    <div class="card-head"><span class="tag">Pillar 2</span><h2>It Depends on Where You Go</h2></div>
+    <div class="viz-label" style="margin-top:6px">Pick your destination</div>
+    <div class="seg-btns" id="dest-btns">
+      <button class="sbtn active" data-d="uk">United Kingdom</button>
+      <button class="sbtn" data-d="us">United States</button>
+      <button class="sbtn" data-d="eu">EU / EFTA country</button>
+    </div>
+    <div class="p2">
+      <div class="p2b cash" id="p2-man"><div class="k">Mandatory part</div><div class="v" id="p2-man-v">Can be withdrawn</div></div>
+      <div class="p2b cash" id="p2-ext"><div class="k">Extra-mandatory part</div><div class="v">Can be withdrawn</div></div>
+    </div>
+    <div class="p2-tax" id="p2-tax"></div>
+    <h3 style="margin-top:18px">Outside the EU/EFTA (UK, US and others)</h3>
+    <p>You can withdraw all of your pension fund money, both the mandatory and the extra-mandatory part. The canton strategy applies here too.</p>
+    <h3>To an EU or EFTA country</h3>
+    <p>If you start paying into the new country's compulsory pension system — which happens as soon as you start working there — only the extra-mandatory part can be withdrawn. The mandatory part stays in Switzerland, in a vested benefits account (see below).</p>
+    <h3>Or keep it in Switzerland</h3>
+    <p>If you don't withdraw, the money goes into a vested benefits account (<em>compte de libre passage</em>) at a Swiss bank or foundation. It keeps growing and can be withdrawn later — from five years before retirement age. This makes sense if you might come back to Switzerland, or if your new country taxes this kind of payout heavily.</p>
   </div>
 
-  <h2 class="reveal">Before You Ask</h2>
-  <div class="faq-list reveal">
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Can I withdraw Pillar 2 if I leave temporarily and return?<span class="faq-arrow">▾</span></div><div class="faq-a">Not automatically. Withdrawal is only possible when the departure is definitive. If you return and resume professional activity in Switzerland, the capital must be returned to the pension fund. For temporary absence of up to 5 years, the capital remains in the vested benefits account.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How long do I have to withdraw Pillar 3a after leaving?<span class="faq-arrow">▾</span></div><div class="faq-a">There is no very short legal deadline, but withdrawing in the first months after departure is recommended. While the capital remains in the account it continues to grow — but the withdrawal tax continues to be calculated in Geneva (or the canton where the account is domiciled). The sooner you act, the sooner you benefit from the lower-tax canton strategy.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">When should I speak with an advisor?<span class="faq-arrow">▾</span></div><div class="faq-a">At least 6 to 12 months before you plan to leave. The canton transfer for Pillar 3a and Pillar 2, the withdrawal vs maintenance decision, and the timing all have significant tax implications that benefit from advance planning. Acting early preserves options that disappear at the last moment.</div></div>
+  <!-- NEW COUNTRY -->
+  <div>
+    <h2 class="reveal">In Your New Country</h2>
+    <p class="reveal">The double tax treaty between Switzerland and your new country decides who taxes the payout — and whether the Swiss tax withheld can be refunded.</p>
+    <div class="ctry" id="vctry" style="margin-top:12px">
+      <div class="cty" data-delay="0"><span class="code">UK</span><div><h3>United Kingdom</h3><p>Under the Switzerland–UK treaty, lump sums from Swiss pensions are taxed only in Switzerland. The canton's withholding tax is final, and there is no UK tax on that amount — which is why the canton strategy matters so much.</p></div></div>
+      <div class="cty" data-delay="120"><span class="code">US</span><div><h3>United States</h3><p>Foreign pension payouts are generally taxable income in the US. Under the treaty, the Swiss tax withheld can usually be reclaimed, and US tax is paid on the amount. Speak to a US tax specialist before any withdrawal.</p></div></div>
+      <div class="cty" data-delay="240"><span class="code">EU</span><div><h3>EU countries</h3><p>Every treaty is different. In many cases, the new country taxes the payout and Switzerland refunds the tax withheld, on proof. Check the specific treaty before deciding. A note on Portugal: the non-habitual resident (NHR) regime, which favoured retirees, closed to new residents in 2024.</p></div></div>
+    </div>
   </div>
 
+  <!-- CHECKLIST -->
+  <div class="card green">
+    <div class="card-head"><span class="tag">Checklist</span><h2>Before You Go</h2></div>
+    <div class="viz" id="vchk" style="border-top:none;padding-top:0;margin-top:4px">
+      <div class="chk"><span class="box"></span><span class="txt">Tell the AFC your departure date</span></div>
+      <div class="chk"><span class="box"></span><span class="txt">Tell your employer (end of tax withholding)</span></div>
+      <div class="chk"><span class="box"></span><span class="txt">Move Pillar 3a and Pillar 2 to a provider in a low-tax canton — weeks before you leave</span></div>
+      <div class="chk"><span class="box"></span><span class="txt">Decide: withdraw Pillar 2 or keep it in a vested benefits account</span></div>
+      <div class="chk"><span class="box"></span><span class="txt">B Permit: decide whether to request a TOU for your final year (by 31 March of the following year)</span></div>
+      <div class="chk"><span class="box"></span><span class="txt">Register your departure with your commune (contrôle des habitants) and keep the certificate</span></div>
+      <div class="chk"><span class="box"></span><span class="txt">Send the departure certificate to your health insurer (LAMal)</span></div>
+      <div class="chk"><span class="box"></span><span class="txt">Request your 3a and Pillar 2 payouts only after your departure date</span></div>
+      <div class="chk"><span class="box"></span><span class="txt">Keep your tax documents from the last 10 years</span></div>
+      <div class="chk-bar"><div class="chk-fill" id="chk-fill"></div></div>
+      <div class="chk-lbl" id="chk-lbl">0 of 9 done</div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div>
+    <h2 class="reveal">Before You Ask</h2>
+    <div style="margin-top:12px">
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">Can I withdraw my Pillar 2 if I only leave for a while?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">No. A withdrawal requires a permanent departure, proven by your deregistration with the commune. If you leave temporarily, the money stays in a vested benefits account and, when you work in Switzerland again, it moves into your new employer's pension fund.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">How long do I have to withdraw after leaving?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">There is no short deadline. But don't leave it too long: while the money sits there you keep paying fees — and if the rules or your country of residence change, the payout conditions can change too.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
   <div class="cta-box reveal">
-    <p>Leaving Switzerland is one of the most tax-sensitive moments of an expat's financial life. SwissExpatHub can connect you with advisors experienced in exit planning, canton strategy, Pillar 2 decisions, and the intersection with your destination country's tax system.</p>
+    <p>Leaving Switzerland is one of the most tax-sensitive moments of an expat's financial life. Ideally, start planning 6 to 12 months ahead. SwissExpatHub can connect you with advisors experienced in exit planning, canton strategy, Pillar 2 decisions and your new country's tax system.</p>
     <a href="/directory" class="cta-btn">Find Your Advisor →</a>
   </div>
 
+  <!-- SOURCES -->
   <div class="sources reveal">
-    <p class="sources-label">Sources</p>
+    <h3>Sources</h3>
     <ol>
-      <li>Federal Tax Administration — Leaving Switzerland and tax obligations: estv.admin.ch</li>
-      <li>Federal Social Insurance Office — Pillar 2 withdrawal on departure: bsv.admin.ch</li>
-      <li>Expat Savvy — Leaving Switzerland Guide 2026: expat-savvy.ch</li>
-      <li>Taxolution Advisory — Canton tax rates on pension withdrawals 2026: taxolution.ch</li>
+      <li>swissinfo.ch — Emigration and pension benefits: how to save on taxes (withholding on CHF 500,000: Bern and Schwyz)</li>
+      <li>Federal Vested Benefits Act (FZG), art. 5 and 25f — cash payment on leaving Switzerland and the EU/EFTA restriction</li>
+      <li>Switzerland–United Kingdom double tax convention, art. 18(2) (2017 protocol)</li>
+      <li>Federal Office of Public Health — end of compulsory health insurance on departure</li>
+      <li>Portal das Finanças (Portugal) — repeal of the NHR regime from 1 January 2024</li>
+      <li>Geneva Tax Administration — DRIS/TOU for people taxed at source: ge.ch</li>
     </ol>
   </div>
+
 </div>
+
 <script>
-  window.addEventListener('scroll', () => {
-    const s = window.scrollY, d = document.documentElement.scrollHeight - window.innerHeight;
-    document.getElementById('progress-bar').style.width = Math.min(100, d > 0 ? (s/d)*100 : 0) + '%';
-  }, { passive: true });
-  window.addEventListener('load', () => {
-    setTimeout(() => document.getElementById('heroTag').classList.add('visible'), 50);
-    setTimeout(() => document.getElementById('heroTitle').classList.add('visible'), 150);
-    setTimeout(() => document.getElementById('heroSubtitle').classList.add('visible'), 280);
-    setTimeout(() => document.getElementById('heroMeta').classList.add('visible'), 420);
+// Progress bar
+window.addEventListener('scroll', () => {
+  const docH = document.documentElement.scrollHeight - window.innerHeight;
+  document.getElementById('progress-bar').style.width = (docH > 0 ? window.scrollY / docH * 100 : 0) + '%';
+});
+// Header entrance
+window.addEventListener('load', () => {
+  setTimeout(() => document.querySelector('.article-meta').classList.add('visible'), 80);
+  setTimeout(() => document.querySelector('h1').classList.add('visible'), 220);
+  setTimeout(() => document.querySelector('.subtitle').classList.add('visible'), 320);
+  setTimeout(() => document.querySelector('.header-rule').classList.add('visible'), 420);
+});
+
+function stagger(selector, threshold) {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), parseInt(e.target.dataset.delay || 0));
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold });
+  document.querySelectorAll(selector).forEach(el => obs.observe(el));
+}
+stagger('.takeaway-item', 0.15);
+stagger('.card', 0.04);
+stagger('.reveal', 0.08);
+stagger('.cty', 0.2);
+
+function onView(id, fn, threshold = 0.4) {
+  const el = document.getElementById(id);
+  const obs = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) { fn(); obs.disconnect(); }
+  }, { threshold });
+  obs.observe(el);
+}
+const fmt = n => 'CHF ' + Math.round(n).toLocaleString('en-US');
+function countUp(el, to, ms, from = 0, f = fmt) {
+  const t0 = performance.now();
+  const step = t => {
+    const k = Math.min(1, (t - t0) / ms), e = 1 - Math.pow(1 - k, 3);
+    el.textContent = f(from + (to - from) * e);
+    if (k < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+// Pro rata months
+const MS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const ML = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const grid = document.getElementById('mgrid');
+grid.innerHTML = MS.map(m => `<div class="mo">${m}</div>`).join('');
+const dep = document.getElementById('dep');
+let proStarted = false;
+function updPro(animate) {
+  const m = +dep.value;
+  document.getElementById('dep-val').textContent = ML[m - 1];
+  grid.querySelectorAll('.mo').forEach((el, i) => {
+    const on = i < m;
+    const apply = () => { el.classList.toggle('on', on); el.classList.toggle('out', !on); };
+    animate ? setTimeout(apply, i * 70) : apply();
   });
-  function toggleExit(item) {
-    item.classList.toggle('checked');
-    item.querySelector('.exit-check').classList.toggle('done');
-    const total = document.querySelectorAll('.exit-item').length;
-    const done = document.querySelectorAll('.exit-item.checked').length;
-    document.getElementById('exitFill').style.width = (done/total*100) + '%';
-    document.getElementById('exitLabel').textContent = done + ' of ' + total + ' completed';
-  }
-  const tObs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), parseInt(e.target.dataset.delay||0)); tObs.unobserve(e.target); } }); }, { threshold: 0.1 });
-  document.querySelectorAll('.takeaway-item').forEach(el => tObs.observe(el));
-  const rObs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), parseInt(e.target.dataset.delay||0)); rObs.unobserve(e.target); } }); }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
-  document.querySelectorAll('.reveal').forEach(el => rObs.observe(el));
-  function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+  document.getElementById('pro-line').innerHTML =
+    `You declare <strong>January–${ML[m - 1]}</strong> (${m} of 12 months) · income of those months, at the rate of a full year · wealth tax for ${m}/12 of the year`;
+}
+dep.addEventListener('input', () => { if (proStarted) updPro(false); });
+onView('vpro', () => { proStarted = true; updPro(true); }, 0.4);
+
+// Canton bars
+onView('vcanton', () => {
+  document.querySelectorAll('#vcanton .fill').forEach((f, i) => setTimeout(() => { f.style.width = f.dataset.w + '%'; }, i * 250));
+  countUp(document.getElementById('sz'), 22825, 1100);
+  setTimeout(() => countUp(document.getElementById('be'), 45325, 1100), 250);
+  setTimeout(() => countUp(document.getElementById('cgap'), 22500, 900), 1300);
+}, 0.4);
+
+// Order flow
+onView('vorder', () => document.querySelectorAll('#vorder .f3, #vorder .f3-ar').forEach(n =>
+  setTimeout(() => n.classList.add('visible'), parseInt(n.dataset.delay))), 0.4);
+
+// Pillar 2 destination
+const DEST = {
+  uk: { man: true, tax: '<strong>Tax:</strong> withheld by the provider’s canton — final. No UK tax on the lump sum under the treaty.' },
+  us: { man: true, tax: '<strong>Tax:</strong> Swiss withholding can usually be reclaimed under the treaty; the payout is taxed in the US.' },
+  eu: { man: false, tax: '<strong>Tax:</strong> depends on the treaty — often taxed in your new country, with the Swiss withholding refunded on proof.' },
+};
+function updDest(d) {
+  const D = DEST[d], man = document.getElementById('p2-man');
+  man.classList.toggle('cash', D.man); man.classList.toggle('lock', !D.man);
+  document.getElementById('p2-man-v').textContent = D.man ? 'Can be withdrawn' : 'Stays in Switzerland';
+  document.getElementById('p2-tax').innerHTML = D.tax;
+}
+document.querySelectorAll('#dest-btns .sbtn').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('#dest-btns .sbtn').forEach(x => x.classList.remove('active'));
+  b.classList.add('active'); updDest(b.dataset.d);
+}));
+updDest('uk');
+
+// Checklist
+const items = document.querySelectorAll('.chk');
+function updChk() {
+  const done = document.querySelectorAll('.chk.done').length;
+  document.getElementById('chk-fill').style.width = (done / items.length * 100) + '%';
+  document.getElementById('chk-lbl').textContent = done === items.length ? 'All done — safe travels' : done + ' of ' + items.length + ' done';
+}
+items.forEach(i => i.addEventListener('click', () => { i.classList.toggle('done'); updChk(); }));
+
+// FAQ
+function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
 </script>
 </body>
 </html>
