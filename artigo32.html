@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pillar 1: The Swiss State Pension (AHV) — How Much Will You Actually Get?</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+:root {
+  --bg:         #f7f8fa;
+  --bg2:        #ffffff;
+  --fg:         #1a1d23;
+  --fg2:        #5a6070;
+  --border:     #e2e5ec;
+  --blue:       #1f4080;
+  --blue-mid:   #2e5fa3;
+  --blue-light: #e8eff9;
+  --green:      #1a7a4a;
+  --green-light:#e6f4ed;
+  --red:        #c22b2b;
+  --red-light:  #fceaea;
+  --gold:       #b8862a;
+  --gold-light: #fdf6e8;
+  --shadow:     0 2px 12px rgba(0,0,0,.07);
+  --shadow-md:  0 4px 20px rgba(0,0,0,.10);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:#13161c; --bg2:#1e222b; --fg:#e8ecf5; --fg2:#8892a4; --border:#2c3140;
+    --blue:#5b8dde; --blue-mid:#7aaae8; --blue-light:#1a2540;
+    --green:#3dba78; --green-light:#0d2318;
+    --red:#e05555; --red-light:#2a0d0d;
+    --gold:#d4a855; --gold-light:#2a2010;
+    --shadow:0 2px 16px rgba(0,0,0,.3); --shadow-md:0 4px 24px rgba(0,0,0,.4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:#13161c; --bg2:#1e222b; --fg:#e8ecf5; --fg2:#8892a4; --border:#2c3140;
+  --blue:#5b8dde; --blue-mid:#7aaae8; --blue-light:#1a2540;
+  --green:#3dba78; --green-light:#0d2318;
+  --red:#e05555; --red-light:#2a0d0d;
+  --gold:#d4a855; --gold-light:#2a2010;
+  --shadow:0 2px 16px rgba(0,0,0,.3); --shadow-md:0 4px 24px rgba(0,0,0,.4);
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+#progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: var(--blue-mid); width: 0%; z-index: 1000; transition: width .1s linear; border-radius: 0 2px 2px 0; }
+body { background: var(--bg); color: var(--fg); font-family: 'Inter', system-ui, sans-serif; font-size: 16px; line-height: 1.75; padding: 48px max(16px, 5vw) 80px; }
+.article { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 36px; }
+.article-meta { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--fg2); margin-bottom: 12px; opacity: 0; transform: translateY(-8px); transition: opacity .5s ease, transform .5s ease; }
+.article-meta.visible { opacity: 1; transform: none; }
+h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(24px, 5vw, 36px); font-weight: 700; line-height: 1.2; text-wrap: balance; color: var(--fg); opacity: 0; transform: translateY(12px); transition: opacity .6s ease .15s, transform .6s ease .15s; }
+h1.visible { opacity: 1; transform: none; }
+.header-rule { height: 3px; background: var(--blue); border-radius: 2px; margin-top: 20px; width: 0; transition: width .8s cubic-bezier(.16,1,.3,1) .5s; }
+.header-rule.visible { width: 48px; }
+.takeaways { background: var(--blue); border-radius: 16px; padding: 28px 32px; }
+.takeaways h2 { font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; color: rgba(255,255,255,.55); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 18px; }
+.takeaways ul { list-style: none; }
+.takeaway-item { color: #e8ecf5; font-size: 14.5px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.1); display: flex; gap: 12px; align-items: flex-start; opacity: 0; transform: translateX(-10px); transition: opacity .45s ease, transform .45s ease; }
+.takeaway-item.visible { opacity: 1; transform: none; }
+.takeaway-item:last-child { border-bottom: none; }
+.takeaway-item::before { content: "✓"; color: #3dba78; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+h2 { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; color: var(--fg); margin-bottom: 4px; }
+h3 { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; color: var(--blue-mid); margin-bottom: 6px; }
+p { font-size: 15.5px; color: var(--fg); margin-bottom: 12px; }
+p:last-child { margin-bottom: 0; }
+.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.viz-label { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--fg2); margin-bottom: 12px; }
+.viz-note { font-size: 12px; color: var(--fg2); margin-top: 10px; line-height: 1.55; }
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+.blk { position: relative; overflow: hidden; background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px; padding: 24px 26px; box-shadow: var(--shadow); opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
+.blk.visible { opacity: 1; transform: none; }
+.blk::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--blue-mid); transform: scaleY(0); transform-origin: top; transition: transform .6s cubic-bezier(.16,1,.3,1) .25s; }
+.blk.visible::before { transform: scaleY(1); }
+.blk h2 { margin-bottom: 12px; font-size: 19px; }
+.blk p { font-size: 15px; }
+.plain { background: var(--green-light); border-radius: 10px; padding: 12px 14px; font-size: 14.5px; margin-bottom: 12px; }
+.plain b { color: var(--green); font-family: 'Space Grotesk', sans-serif; }
+.warnline { margin: 4px 0 14px; padding: 10px 14px; border-radius: 10px; background: var(--gold-light); color: var(--fg); font-size: 14px; border-left: 4px solid var(--gold); }
+.warnline b { color: var(--gold); }
+.panel { margin-top: 16px; padding: 18px; border-radius: 14px; background: var(--bg); border: 1.5px solid var(--border); }
+
+/* MISTAKES */
+.mk { position: relative; overflow: hidden; background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px; padding: 20px 24px; box-shadow: var(--shadow); display: flex; gap: 16px; opacity: 0; transform: translateX(-14px); transition: opacity .5s ease, transform .5s ease; }
+.mk.visible { opacity: 1; transform: none; }
+.mk-num { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; color: var(--red); opacity: 0; line-height: 1; min-width: 26px; transform: scale(1.6); transition: opacity .5s ease .2s, transform .5s cubic-bezier(.34,1.56,.64,1) .2s; }
+.mk.visible .mk-num { opacity: .25; transform: scale(1); }
+.mk h3 { color: var(--red); font-size: 15px; margin-bottom: 6px; }
+.mk p { font-size: 14.5px; color: var(--fg2); margin: 0; line-height: 1.6; }
+
+/* FAQ / CTA / SOURCES */
+.faq-item { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; margin-bottom: 8px; overflow: hidden; transition: border-color .2s; }
+.faq-item.open { border-color: var(--blue-mid); }
+.faq-q { padding: 16px 20px; font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; color: var(--fg); user-select: none; }
+.faq-arrow { color: var(--blue-mid); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
+.faq-item.open .faq-arrow { transform: rotate(180deg); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .35s ease; font-size: 14px; color: var(--fg2); line-height: 1.65; padding: 0 20px; }
+.faq-a p { font-size: 14px; color: var(--fg2); margin-bottom: 8px; }
+.faq-item.open .faq-a { max-height: 420px; padding: 0 20px 16px; }
+.cta-box { background: var(--blue); border-radius: 16px; padding: 32px 36px; text-align: center; }
+.cta-box p { color: rgba(255,255,255,.85); font-size: 15px; margin-bottom: 20px; }
+.cta-btn { background: var(--gold); color: #fff; padding: 13px 28px; border-radius: 10px; text-decoration: none; font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; display: inline-block; transition: opacity .2s, transform .2s; }
+.cta-btn:hover { opacity: .88; transform: translateY(-1px); }
+.sources { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; padding: 20px 24px; }
+.sources h3 { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--fg2); margin-bottom: 10px; }
+.sources ol { padding-left: 18px; }
+.sources li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; }
+
+
+.quick-answer { background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 14px 14px 0; padding: 20px 24px; }
+.quick-answer p { font-size: 15.5px; margin: 0; }
+.ex { background: var(--green-light); border-left: 4px solid var(--green); border-radius: 0 12px 12px 0; padding: 14px 16px; margin-top: 14px; }
+.ex .t { font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--green); margin-bottom: 6px; }
+.ex p { font-size: 14.5px; margin-bottom: 6px; }
+.ex ul { padding-left: 18px; font-size: 14.5px; } .ex li { margin-bottom: 3px; }
+.warn { background: var(--gold-light); border-left: 4px solid var(--gold); border-radius: 0 12px 12px 0; padding: 12px 16px; font-size: 14.5px; margin-top: 14px; }
+.warn b { color: var(--gold); }
+
+/* CONTRIBUTION SPLIT */
+.split { margin-top: 14px; }
+.split-row { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--fg2); }
+.sbar { flex: 1; height: 30px; border-radius: 8px; background: var(--border); position: relative; overflow: hidden; }
+.sbar i { position: absolute; top: 0; bottom: 0; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 11.5px; font-weight: 700; font-style: normal; width: 0; transition: width .8s cubic-bezier(.16,1,.3,1); white-space: nowrap; overflow: hidden; }
+.sbar .you { left: 0; background: var(--blue-mid); } .sbar .emp { background: var(--blue); }
+.split-note { font-size: 12.5px; color: var(--fg2); margin-top: 8px; }
+
+/* TABLE */
+.tb { display: grid; grid-template-columns: 1fr 1fr; border: 1.5px solid var(--border); border-radius: 12px; overflow: hidden; margin: 6px 0 14px; }
+.tb div { padding: 9px 14px; font-size: 14px; border-top: 1px solid var(--border); font-variant-numeric: tabular-nums; opacity: 0; transform: translateY(6px); transition: opacity .4s ease, transform .4s ease; }
+.tb div.visible { opacity: 1; transform: none; }
+.tb .h { background: var(--blue); color: #fff; font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; border-top: none; }
+.tb .v { font-weight: 600; color: var(--blue-mid); }
+
+/* CALCULATOR */
+.calc { margin-top: 16px; padding: 18px; border-radius: 14px; background: var(--bg); border: 1.5px solid var(--border); }
+.presets { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+.presets button { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 999px; padding: 5px 12px; font: 600 12.5px 'Inter', sans-serif; color: var(--fg2); cursor: pointer; }
+.presets button.active { border-color: var(--blue-mid); color: var(--blue-mid); background: var(--blue-light); }
+.ctrl label { display: flex; justify-content: space-between; font-size: 13.5px; color: var(--fg2); margin-bottom: 2px; }
+.ctrl label b { color: var(--fg); font-family: 'Space Grotesk', sans-serif; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ctrl input[type=range] { width: 100%; accent-color: var(--blue-mid); margin-bottom: 12px; }
+.years { display: grid; grid-template-columns: repeat(22, 1fr); gap: 3px; margin: 4px 0 4px; }
+.years span { aspect-ratio: 1; border-radius: 3px; background: var(--border); transition: background .25s, transform .25s; }
+.years span.on { background: var(--blue-mid); }
+.years span.pop { transform: scale(1.25); }
+.years-lbl { display: flex; justify-content: space-between; font-size: 11.5px; color: var(--fg2); margin-bottom: 14px; }
+.steps { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 8px; align-items: stretch; }
+.st { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; padding: 10px 12px; }
+.st .k { font-family: 'Space Grotesk', sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--fg2); }
+.st .v { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1.3; }
+.st .s { font-size: 11.5px; color: var(--fg2); line-height: 1.4; }
+.st.res { border-color: var(--blue-mid); background: var(--blue-light); } .st.res .v { color: var(--blue-mid); }
+.op { align-self: center; font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--fg2); font-size: 18px; }
+.dec { margin-top: 10px; font-size: 13.5px; color: var(--fg2); }
+.dec b { color: var(--fg); }
+.workings { margin-top: 8px; font-size: 12.5px; color: var(--fg2); font-variant-numeric: tabular-nums; }
+
+/* GAP */
+.gap { margin-top: 14px; }
+.grow { display: grid; grid-template-columns: 120px 1fr 90px; gap: 10px; align-items: center; font-size: 13px; color: var(--fg2); margin-bottom: 8px; }
+.gtr { height: 22px; border-radius: 6px; background: var(--border); position: relative; overflow: hidden; }
+.gtr i { position: absolute; inset: 0 auto 0 0; width: 0; transition: width .9s cubic-bezier(.16,1,.3,1); }
+.g-full i { background: var(--blue); } .g-have i { background: var(--blue-mid); } .g-miss i { background: repeating-linear-gradient(45deg, var(--red), var(--red) 5px, var(--red-light) 5px, var(--red-light) 10px); }
+.grow .v { text-align: right; color: var(--fg); font-weight: 600; font-variant-numeric: tabular-nums; }
+.grow.miss .v { color: var(--red); }
+.nobuy { display: flex; gap: 12px; align-items: flex-start; background: var(--red-light); border-radius: 12px; padding: 12px 14px; margin-bottom: 12px; }
+.nobuy .x { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 22px; color: var(--red); line-height: 1; transform: scale(0); transition: transform .45s cubic-bezier(.34,1.56,.64,1) .3s; }
+.blk.visible .nobuy .x { transform: scale(1); }
+.nobuy p { margin: 0; font-size: 14.5px; }
+
+/* COUPLE */
+.couple { display: flex; align-items: flex-end; gap: 14px; height: 130px; margin: 10px 0 6px; padding: 0 8px; border-bottom: 1.5px solid var(--border); position: relative; }
+.cbar { flex: 1; max-width: 90px; background: var(--blue-mid); border-radius: 8px 8px 0 0; height: 0; transition: height .8s cubic-bezier(.16,1,.3,1); display: flex; align-items: flex-start; justify-content: center; color: #fff; font-size: 11.5px; font-weight: 700; padding-top: 6px; }
+.cbar.b2 { background: var(--blue); }
+.cap { position: absolute; left: 0; right: 0; border-top: 2px dashed var(--red); bottom: 0; opacity: 0; transition: opacity .5s ease 1s; }
+.cap span { position: absolute; right: 0; top: -20px; font-size: 11.5px; font-weight: 700; color: var(--red); font-family: 'Space Grotesk', sans-serif; }
+.couple.on .cap { opacity: 1; }
+.couple-lbl { display: flex; gap: 14px; padding: 0 8px; font-size: 12px; color: var(--fg2); }
+.couple-lbl span { flex: 1; max-width: 90px; text-align: center; }
+
+/* ABROAD */
+.abroad { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 6px; }
+.ab { border-radius: 12px; padding: 14px 16px; border: 1.5px solid var(--border); background: var(--bg2); opacity: 0; transform: translateY(10px); transition: opacity .45s ease, transform .45s ease; }
+.ab.visible { opacity: 1; transform: none; }
+.ab .tag { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.ab h3 { color: var(--fg); font-size: 15px; margin: 2px 0 4px; }
+.ab p { font-size: 13.5px; color: var(--fg2); margin: 0; }
+.ab.yes { border-color: var(--green); } .ab.yes .tag { color: var(--green); }
+.ab.no { border-color: var(--gold); } .ab.no .tag { color: var(--gold); }
+
+/* AGE */
+.ages { display: grid; grid-template-columns: repeat(8, 1fr); gap: 4px; margin-top: 10px; }
+.ag { text-align: center; border-radius: 10px; padding: 8px 2px; background: var(--bg); border: 1.5px solid var(--border); opacity: 0; transform: translateY(8px); transition: opacity .35s ease, transform .35s ease; }
+.ag.visible { opacity: 1; transform: none; }
+.ag b { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 16px; }
+.ag small { font-size: 11px; font-weight: 600; }
+.ag.early { border-color: var(--red); background: var(--red-light); } .ag.early small { color: var(--red); }
+.ag.ref { border-color: var(--blue-mid); background: var(--blue-light); } .ag.ref small { color: var(--blue-mid); }
+.ag.late { border-color: var(--green); background: var(--green-light); } .ag.late small { color: var(--green); }
+
+/* FURTHER */
+.further { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.fr { display: block; text-decoration: none; background: var(--bg2); border: 1.5px solid var(--border); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); transition: transform .2s, box-shadow .2s, border-color .2s; opacity: 0; transform: translateY(12px); }
+.fr.visible { opacity: 1; transform: none; }
+.fr:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); border-color: var(--blue-mid); }
+.fr .n { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.fr h3 { color: var(--fg); font-size: 15px; margin: 4px 0 4px; }
+.fr p { font-size: 13px; color: var(--fg2); margin: 0 0 8px; line-height: 1.5; }
+.fr .go { font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; }
+.fr.f1 .n, .fr.f1 .go { color: var(--blue-mid); } .fr.f2 .n, .fr.f2 .go { color: var(--green); } .fr.f3 .n, .fr.f3 .go { color: var(--gold); }
+
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .takeaways { background: #1f3a6b; } }
+:root[data-theme="dark"] .takeaways { background: #1f3a6b; }
+@media (max-width: 600px) {
+  .takeaways { padding: 20px; } .cta-box { padding: 24px 20px; } .blk { padding: 20px 18px; }
+  .further, .abroad { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: 1fr; } .op { text-align: center; }
+  .grow { grid-template-columns: 1fr 70px; } .grow .gtr { grid-column: 1 / -1; grid-row: 2; }
+  .ages { grid-template-columns: repeat(4, 1fr); }
+  .years { gap: 2px; }
+  .split-row { flex-direction: column; align-items: stretch; gap: 4px; }
+  .split-row .sbar { flex: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+  .reveal, .blk, .ab, .ag, .fr, .tb div, .takeaway-item, .article-meta, h1 { opacity: 1 !important; transform: none !important; }
+}
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="article">
+
+  <div class="article-header">
+    <p class="article-meta">Tax &amp; Finance · Retirement · Pillar 1 · 5 min read</p>
+    <h1>Pillar 1: The Swiss State Pension (AHV) — How Much Will You Actually Get?</h1>
+    <div class="header-rule"></div>
+  </div>
+
+  <div class="quick-answer reveal">
+    <p><strong>Quick Answer:</strong> AHV is the Swiss state pension — Pillar 1. How much you get depends on two things: how many years you contributed in Switzerland and how much you earned on average. A full pension ranges from CHF&nbsp;1,260 to CHF&nbsp;2,520 a month, but it requires 44 years of contributions. If you arrive mid-career, you get a share of it — and the missing years can't be bought later.</p>
+  </div>
+
+  <div class="takeaways">
+    <h2>Key Takeaways</h2>
+    <ul>
+      <li class="takeaway-item" data-delay="0">Each missing year takes 1/44 off your pension — for good</li>
+      <li class="takeaway-item" data-delay="100">From December 2026 there's a 13th pension: one extra month a year</li>
+      <li class="takeaway-item" data-delay="200">UK and US citizens get their pension paid at home; contributions aren't refunded</li>
+      <li class="takeaway-item" data-delay="300">The shortfall from missing years can only be made up in Pillar 2 and Pillar 3a</li>
+    </ul>
+  </div>
+
+  <!-- WHAT IS AHV -->
+  <div class="blk" id="what">
+    <h2>What Is AHV?</h2>
+    <p>AHV (AVS in French) is the compulsory old-age insurance for everyone who lives or works in Switzerland. Every month, 5.3% of your gross salary goes to AHV and your employer pays another 5.3% — with no cap, even on high salaries. This money isn't saved in an account in your name: it pays today's pensions. In return, you earn the right to a monthly pension for life from age 65.</p>
+    <div class="split">
+      <div class="split-row"><span style="min-width:110px">On CHF&nbsp;5,000 a month</span><div class="sbar"><i class="you" data-w="50">You 265</i><i class="emp" data-w="50">Employer 265</i></div></div>
+      <p class="split-note">5,000 × 5.3% = CHF&nbsp;265 from you + CHF&nbsp;265 from your employer = CHF&nbsp;530 a month into AHV.</p>
+    </div>
+  </div>
+
+  <!-- HOW MUCH -->
+  <div class="blk" id="howmuch">
+    <h2>How Much Will I Get?</h2>
+    <p>Your pension depends on two factors.</p>
+    <p><b>1. Your average salary.</b> With a full 44 years, your pension falls between a minimum and a maximum:</p>
+    <div class="tb" id="tb">
+      <div class="h">Average salary per year</div><div class="h">Full pension per month</div>
+      <div data-delay="0">Up to CHF&nbsp;15,120</div><div class="v" data-delay="0">CHF&nbsp;1,260 (minimum)</div>
+      <div data-delay="150">CHF&nbsp;60,000 (CHF&nbsp;5,000 a month)</div><div class="v" data-delay="150">≈ CHF&nbsp;2,110</div>
+      <div data-delay="300">CHF&nbsp;90,720 or more</div><div class="v" data-delay="300">CHF&nbsp;2,520 (maximum)</div>
+    </div>
+    <p><b>2. The years you contributed.</b> A full pension requires 44 years — from age 21 to 65. Each missing year takes 1/44 off your pension, just over 2%.</p>
+
+    <div class="calc" id="calc">
+      <div class="presets">
+        <button class="active" data-p="tom">CHF 5,000/month · 20 years</button>
+        <button data-p="emma">Emma · 25 years</button>
+        <button data-p="mike">Mike · 10 years</button>
+      </div>
+      <div class="ctrl">
+        <label>Average gross salary <b id="v-sal"></b></label>
+        <input type="range" id="sal" min="12000" max="200000" step="1000" value="60000" aria-label="Average gross salary per year">
+        <label>Years contributing in Switzerland <b id="v-yrs"></b></label>
+        <input type="range" id="yrs" min="1" max="44" step="1" value="20" aria-label="Years contributing in Switzerland">
+      </div>
+      <div class="years" id="years" aria-hidden="true"></div>
+      <div class="years-lbl"><span>Age 21</span><span id="yrs-txt"></span><span>Age 65</span></div>
+      <div class="steps">
+        <div class="st"><div class="k">Step 1 · Full pension</div><div class="v" id="r-full"></div><div class="s">with 44 years, for this salary</div></div>
+        <div class="op">×</div>
+        <div class="st"><div class="k">Step 2 · Your share</div><div class="v" id="r-share"></div><div class="s" id="r-share-s"></div></div>
+        <div class="op">=</div>
+        <div class="st res"><div class="k">Your pension</div><div class="v" id="r-pen"></div><div class="s">a month, from 65</div></div>
+      </div>
+      <p class="dec">Plus the <b>13th pension</b> in December: <b id="r-13"></b> extra, once a year.</p>
+      <p class="workings" id="work"></p>
+      <p class="viz-note">Illustrative estimate using the 2026 pension scale. AHV also revalues past salaries for inflation, so your real figure may differ slightly.</p>
+    </div>
+
+    <div class="ex"><div class="t">Example — Emma, from London</div>
+      <p>Emma moves to Geneva at 40, earns CHF&nbsp;120,000 a year and retires at 65.</p>
+      <ul><li>Her salary is above CHF&nbsp;90,720 → with 44 years, her pension would be the maximum: CHF&nbsp;2,520 a month</li>
+      <li>But she contributes 25 of 44 years: 25 ÷ 44 = 57% → 57% × CHF&nbsp;2,520 ≈ <b>CHF&nbsp;1,430 a month</b>, plus CHF&nbsp;1,430 in December</li></ul>
+    </div>
+    <p class="warn"><b>Watch out:</b> with missing years, the CHF&nbsp;1,260 minimum shrinks too. Ten years on a low salary gives about 10 ÷ 44 × 1,260 ≈ CHF&nbsp;290 a month. If you live in Switzerland and don't have enough to live on, you can apply for supplementary benefits (Ergänzungsleistungen / prestations complémentaires) — separate help that isn't paid to people living abroad.</p>
+  </div>
+
+  <!-- CAN I PAY -->
+  <div class="blk" id="gapblk">
+    <h2>Can I Pay for the Years I'm Missing?</h2>
+    <div class="nobuy"><span class="x">✕</span><p>No. AHV only accepts late contributions up to five years back, and only for years when you already lived or worked in Switzerland. Years you spent in another country stay missing for good.</p></div>
+    <p>The shortfall is real. On CHF&nbsp;5,000 a month with 20 years:</p>
+    <div class="gap">
+      <div class="grow g-full"><span>Full pension (44 years)</span><div class="gtr"><i data-w="100"></i></div><span class="v">CHF&nbsp;2,110</span></div>
+      <div class="grow g-have"><span>Your pension (20 years)</span><div class="gtr"><i data-w="45.5"></i></div><span class="v">CHF&nbsp;960</span></div>
+      <div class="grow g-miss miss"><span>Missing</span><div class="gtr"><i data-w="54.5"></i></div><span class="v">CHF&nbsp;1,150</span></div>
+    </div>
+    <p style="margin-top:10px">The way to make it up is to pay extra into Pillar 2 (a "buy-in") and into Pillar 3a — both deductible from your taxes. See <a href="artigo33.html" style="color:var(--blue-mid)">Pillar 2</a> and <a href="artigo11.html" style="color:var(--blue-mid)">Pillar 3a</a>.</p>
+  </div>
+
+  <!-- MARRIED -->
+  <div class="blk" id="married">
+    <h2>Married Couples</h2>
+    <p>During the years you're married, the couple's incomes are added together and split half-and-half to calculate each person's pension. The two pensions together are capped at 150% of the maximum pension: CHF&nbsp;3,780 a month.</p>
+    <div class="couple" id="couple">
+      <div class="cbar" data-h="67">2,520</div><div class="cbar b2" data-h="67">2,520</div>
+      <div class="cbar" data-h="100" style="background:var(--green)">3,780</div>
+      <div class="cap" style="bottom:100px"><span>Couple cap CHF 3,780</span></div>
+    </div>
+    <div class="couple-lbl"><span>Partner 1 max</span><span>Partner 2 max</span><span>Paid together</span></div>
+  </div>
+
+  <!-- ABROAD -->
+  <div class="blk" id="abroad">
+    <h2>If You Leave Switzerland</h2>
+    <p>Switzerland has social security agreements with the UK and the US. For citizens of those countries, the AHV pension is paid abroad from 65, after just one year of contributions. In return, you can't ask for your contributions back when you leave.</p>
+    <div class="abroad">
+      <div class="ab yes" data-delay="0"><div class="tag">UK · US · EU/EFTA and other agreement countries</div><h3>Pension paid abroad</h3><p>From 65, for life. No refund of contributions.</p></div>
+      <div class="ab no" data-delay="150"><div class="tag">Countries without an agreement</div><h3>Refund instead</h3><p>Your contributions are paid back without interest after you leave Switzerland for good.</p></div>
+    </div>
+    <div class="ex"><div class="t">Example — Mike goes back to the US</div>
+      <p>Mike works 10 years in Geneva, earning above CHF&nbsp;90,720, and moves back to Boston at 50.</p>
+      <ul><li>His salary is above CHF&nbsp;90,720 → with 44 years, his pension would be the maximum: CHF&nbsp;2,520 a month</li>
+      <li>But he contributed 10 of 44 years: 10 ÷ 44 = 22.7% → 22.7% × CHF&nbsp;2,520 ≈ <b>CHF&nbsp;570 a month</b>, paid in the US from 65</li>
+      <li>His years working in the US count towards his US Social Security pension, separately</li></ul>
+    </div>
+  </div>
+
+  <!-- AGE -->
+  <div class="blk" id="age">
+    <h2>Before or After 65</h2>
+    <p>Your pension can start at any age between 63 and 70. If you take it early, you generally lose 6.8% for each year — for the rest of your life. If you delay it, you get a higher amount.</p>
+    <div class="ages">
+      <div class="ag early" data-delay="0"><b>63</b><small>−13.6%</small></div>
+      <div class="ag early" data-delay="80"><b>64</b><small>−6.8%</small></div>
+      <div class="ag ref" data-delay="160"><b>65</b><small>full</small></div>
+      <div class="ag late" data-delay="240"><b>66</b><small>higher</small></div>
+      <div class="ag late" data-delay="320"><b>67</b><small>higher</small></div>
+      <div class="ag late" data-delay="400"><b>68</b><small>higher</small></div>
+      <div class="ag late" data-delay="480"><b>69</b><small>higher</small></div>
+      <div class="ag late" data-delay="560"><b>70</b><small>highest</small></div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div>
+    <h2 class="reveal">Before You Ask</h2>
+    <div style="margin-top:12px">
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">How do I find out my exact pension?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">Ask your AHV compensation office for a statement of your individual account — it shows the years and salaries on record — and for an advance pension calculation. Both are free and can be requested at ahv-iv.ch.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">Is the AHV pension taxed?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">Yes. The pension, including the 13th payment, is taxable income, just like a salary.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h2 class="reveal" style="margin-bottom:12px">Go Deeper</h2>
+    <div class="further">
+      <a class="fr f1" data-delay="0" href="artigo18.html"><div class="n">Overview</div><h3>How the three pillars add up</h3><p>What you'll really get each month, and the decisions that matter.</p><span class="go">Read →</span></a>
+      <a class="fr f2" data-delay="120" href="artigo33.html"><div class="n">Pillar 2 · Pension fund</div><h3>Make up the missing years</h3><p>Buy-ins, the five-year limit for new arrivals, lump sum or pension.</p><span class="go">Read →</span></a>
+      <a class="fr f3" data-delay="240" href="artigo11.html"><div class="n">Pillar 3a · Private savings</div><h3>The complete guide</h3><p>How much to pay in and how much tax you save.</p><span class="go">Read →</span></a>
+    </div>
+  </div>
+
+  <div class="cta-box reveal">
+    <p>Knowing what AHV will pay is the first step to working out how much you're missing. An advisor can help you read your statement and decide how to close the gap.</p>
+    <a href="/directory" class="cta-btn">Find Your Advisor →</a>
+  </div>
+
+  <div class="sources reveal">
+    <h3>Sources</h3>
+    <ol>
+      <li>AHV/IV — Early and deferred pension; Reimbursement of contributions: ahv-iv.ch</li>
+      <li>Raiffeisen — Social insurance key figures 2026: raiffeisen.ch</li>
+      <li>ch.ch — OASI pension abroad: ch.ch</li>
+      <li>VZ VermögensZentrum — AHV pensions 2026: vermoegenszentrum.ch</li>
+    </ol>
+  </div>
+
+</div>
+
+<script>
+const fmt = n => 'CHF ' + Math.round(n).toLocaleString('en-US');
+window.addEventListener('scroll', () => {
+  const docH = document.documentElement.scrollHeight - window.innerHeight;
+  document.getElementById('progress-bar').style.width = (docH > 0 ? window.scrollY / docH * 100 : 0) + '%';
+});
+window.addEventListener('load', () => {
+  setTimeout(() => document.querySelector('.article-meta').classList.add('visible'), 80);
+  setTimeout(() => document.querySelector('h1').classList.add('visible'), 220);
+  setTimeout(() => document.querySelector('.header-rule').classList.add('visible'), 420);
+});
+function stagger(selector, threshold) {
+  const obs = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), parseInt(e.target.dataset.delay || 0)); obs.unobserve(e.target); }
+  }), { threshold });
+  document.querySelectorAll(selector).forEach(el => obs.observe(el));
+}
+function onView(id, fn, threshold = 0.4) {
+  const el = document.getElementById(id);
+  const obs = new IntersectionObserver(en => { if (en[0].isIntersecting) { fn(); obs.disconnect(); } }, { threshold });
+  obs.observe(el);
+}
+function countUp(el, to, ms, from = 0, f = fmt) {
+  const t0 = performance.now();
+  const step = t => { const k = Math.min(1, (t - t0) / ms), e = 1 - Math.pow(1 - k, 3);
+    el.textContent = f(from + (to - from) * e); if (k < 1) requestAnimationFrame(step); };
+  requestAnimationFrame(step);
+}
+stagger('.takeaway-item', 0.15);
+stagger('.reveal', 0.08);
+stagger('.blk', 0.05);
+stagger('.tb div', 0.5);
+stagger('.ab', 0.3);
+stagger('.ag', 0.5);
+stagger('.fr', 0.2);
+
+onView('what', () => document.querySelectorAll('.sbar i').forEach((b, i) => setTimeout(() => {
+  b.style.width = b.dataset.w + '%'; if (i === 1) b.style.left = '50%';
+}, 300 + i * 400)), 0.4);
+document.querySelector('.sbar .emp').style.left = '50%';
+
+// AHV full pension, 2026 scale
+function ahvFull(y) {
+  const MIN = 1260;
+  if (y <= 15120) return MIN;
+  if (y <= 45360) return 0.74 * MIN + 13 / 600 * y;
+  return Math.min(2520, 1.04 * MIN + 8 / 600 * y);
+}
+const yearsEl = document.getElementById('years');
+for (let i = 0; i < 44; i++) yearsEl.appendChild(document.createElement('span'));
+const cells = [...yearsEl.children];
+const sal = document.getElementById('sal'), yrs = document.getElementById('yrs');
+let first = true, lastY = 0;
+function calc() {
+  const S = +sal.value, Y = +yrs.value;
+  const full = ahvFull(S), share = Y / 44, pen = full * share;
+  document.getElementById('v-sal').textContent = fmt(S) + ' a year · ' + fmt(S / 12) + '/mo';
+  document.getElementById('v-yrs').textContent = Y + ' of 44';
+  document.getElementById('yrs-txt').textContent = Y + ' years contributed · ' + (44 - Y) + ' missing';
+  cells.forEach((c, i) => {
+    const on = i < Y;
+    if (first && on) setTimeout(() => { c.classList.add('on', 'pop'); setTimeout(() => c.classList.remove('pop'), 220); }, i * 35);
+    else c.classList.toggle('on', on);
+  });
+  const sh = document.getElementById('r-share');
+  if (first) {
+    countUp(document.getElementById('r-full'), full, 900);
+    countUp(sh, share * 100, 900, 0, v => v.toFixed(1) + '%');
+    countUp(document.getElementById('r-pen'), pen, 1300);
+    countUp(document.getElementById('r-13'), pen, 1300);
+  } else {
+    document.getElementById('r-full').textContent = fmt(full);
+    sh.textContent = (share * 100).toFixed(1) + '%';
+    document.getElementById('r-pen').textContent = fmt(pen);
+    document.getElementById('r-13').textContent = fmt(pen);
+  }
+  document.getElementById('r-share-s').textContent = Y + ' ÷ 44 years';
+  const rule = S <= 15120 ? 'salary up to CHF 15,120 → minimum'
+    : S >= 90720 ? 'salary CHF 90,720 or more → maximum'
+    : S <= 45360 ? '74% × 1,260 + 13/600 × ' + S.toLocaleString('en-US')
+    : '104% × 1,260 + 8/600 × ' + S.toLocaleString('en-US');
+  document.getElementById('work').textContent = 'Full pension: ' + rule + ' = ' + fmt(full) + ' · ' + Y + ' ÷ 44 × ' + fmt(full) + ' ≈ ' + fmt(pen) + ' a month';
+  first = false;
+}
+const PRESETS = { tom: [60000, 20], emma: [120000, 25], mike: [120000, 10] };
+document.querySelectorAll('.presets button').forEach(b => b.addEventListener('click', () => {
+  const [s, y] = PRESETS[b.dataset.p]; sal.value = s; yrs.value = y;
+  document.querySelectorAll('.presets button').forEach(x => x.classList.toggle('active', x === b)); calc();
+}));
+[sal, yrs].forEach(i => i.addEventListener('input', () => { document.querySelectorAll('.presets button').forEach(x => x.classList.remove('active')); calc(); }));
+onView('calc', calc, 0.3);
+
+onView('gapblk', () => document.querySelectorAll('.gtr i').forEach((b, i) => setTimeout(() => b.style.width = b.dataset.w + '%', 200 + i * 350)), 0.4);
+onView('couple', () => {
+  document.querySelectorAll('.cbar').forEach((b, i) => setTimeout(() => b.style.height = b.dataset.h + 'px', 150 + i * 250));
+  document.getElementById('couple').classList.add('on');
+}, 0.5);
+
+function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+</script>
+</body>
+</html>
