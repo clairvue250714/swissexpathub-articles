@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pension Planning in Switzerland for Expats</title>
+<title>Retiring in Switzerland as an Expat: How the Three Pillars Add Up</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
 <style>
 :root {
@@ -47,530 +47,391 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-  background: var(--bg);
-  color: var(--fg);
-  font-family: 'Inter', system-ui, sans-serif;
-  font-size: 16px;
-  line-height: 1.75;
-  padding: 40px max(16px, 5vw) 80px;
-}
-
-.article {
-  max-width: 720px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-
-/* ── HEADER ── */
-.article-header { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
-.article-meta {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: .12em; text-transform: uppercase;
-  color: var(--fg2); margin-bottom: 10px;
-}
-h1 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(24px, 5vw, 36px);
-  font-weight: 700; line-height: 1.2;
-  text-wrap: balance; color: var(--fg);
-}
-.header-rule {
-  height: 2px; background: var(--blue);
-  border-radius: 2px; margin-top: 20px;
-  width: 48px;
-}
-
-/* ── QUICK ANSWER ── */
-.quick-answer {
-  background: var(--blue-light);
-  border-left: 4px solid var(--blue);
-  border-radius: 0 14px 14px 0;
-  padding: 20px 24px;
-}
-.quick-answer p { font-size: 15px; color: var(--fg); margin: 0; }
-
-/* ── TAKEAWAYS ── */
-.takeaways {
-  background: var(--blue);
-  border-radius: 16px;
-  padding: 28px 32px;
-}
-.takeaways h2 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 16px; font-weight: 700;
-  color: rgba(255,255,255,.6);
-  letter-spacing: .08em; text-transform: uppercase;
-  margin-bottom: 16px; margin-top: 0;
-}
+#progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: var(--blue-mid); width: 0%; z-index: 1000; transition: width .1s linear; border-radius: 0 2px 2px 0; }
+body { background: var(--bg); color: var(--fg); font-family: 'Inter', system-ui, sans-serif; font-size: 16px; line-height: 1.75; padding: 48px max(16px, 5vw) 80px; }
+.article { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 36px; }
+.article-meta { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--fg2); margin-bottom: 12px; opacity: 0; transform: translateY(-8px); transition: opacity .5s ease, transform .5s ease; }
+.article-meta.visible { opacity: 1; transform: none; }
+h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(24px, 5vw, 36px); font-weight: 700; line-height: 1.2; text-wrap: balance; color: var(--fg); opacity: 0; transform: translateY(12px); transition: opacity .6s ease .15s, transform .6s ease .15s; }
+h1.visible { opacity: 1; transform: none; }
+.header-rule { height: 3px; background: var(--blue); border-radius: 2px; margin-top: 20px; width: 0; transition: width .8s cubic-bezier(.16,1,.3,1) .5s; }
+.header-rule.visible { width: 48px; }
+.takeaways { background: var(--blue); border-radius: 16px; padding: 28px 32px; }
+.takeaways h2 { font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; color: rgba(255,255,255,.55); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 18px; }
 .takeaways ul { list-style: none; }
-.takeaways ul li {
-  color: #e8ecf5;
-  font-size: 14.5px;
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(255,255,255,.1);
-  display: flex; gap: 12px; align-items: flex-start;
-}
-.takeaways ul li:last-child { border-bottom: none; }
-.takeaways ul li::before {
-  content: "✓"; color: #3dba78;
-  font-weight: 700; flex-shrink: 0; margin-top: 1px;
-}
-
-/* ── HEADINGS ── */
-h2 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 20px; font-weight: 700;
-  color: var(--fg); margin-bottom: 4px;
-}
-h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  color: var(--blue-mid); margin-bottom: 6px;
-}
+.takeaway-item { color: #e8ecf5; font-size: 14.5px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.1); display: flex; gap: 12px; align-items: flex-start; opacity: 0; transform: translateX(-10px); transition: opacity .45s ease, transform .45s ease; }
+.takeaway-item.visible { opacity: 1; transform: none; }
+.takeaway-item:last-child { border-bottom: none; }
+.takeaway-item::before { content: "✓"; color: #3dba78; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+h2 { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; color: var(--fg); margin-bottom: 4px; }
+h3 { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; color: var(--blue-mid); margin-bottom: 6px; }
 p { font-size: 15.5px; color: var(--fg); margin-bottom: 12px; }
 p:last-child { margin-bottom: 0; }
-.hl-blue  { color: var(--blue-mid); font-weight: 600; }
-.hl-green { color: var(--green);    font-weight: 600; }
-.hl-red   { color: var(--red);      font-weight: 600; }
-sup { font-size: 11px; color: var(--blue-mid); }
+.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.viz-label { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--fg2); margin-bottom: 12px; }
+.viz-note { font-size: 12px; color: var(--fg2); margin-top: 10px; line-height: 1.55; }
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+.blk { position: relative; overflow: hidden; background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px; padding: 24px 26px; box-shadow: var(--shadow); opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
+.blk.visible { opacity: 1; transform: none; }
+.blk::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--blue-mid); transform: scaleY(0); transform-origin: top; transition: transform .6s cubic-bezier(.16,1,.3,1) .25s; }
+.blk.visible::before { transform: scaleY(1); }
+.blk h2 { margin-bottom: 12px; font-size: 19px; }
+.blk p { font-size: 15px; }
+.plain { background: var(--green-light); border-radius: 10px; padding: 12px 14px; font-size: 14.5px; margin-bottom: 12px; }
+.plain b { color: var(--green); font-family: 'Space Grotesk', sans-serif; }
+.warnline { margin: 4px 0 14px; padding: 10px 14px; border-radius: 10px; background: var(--gold-light); color: var(--fg); font-size: 14px; border-left: 4px solid var(--gold); }
+.warnline b { color: var(--gold); }
+.panel { margin-top: 16px; padding: 18px; border-radius: 14px; background: var(--bg); border: 1.5px solid var(--border); }
 
-/* ── SITUATION CARDS ── */
-.situation-cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-@media (max-width: 520px) { .situation-cards { grid-template-columns: 1fr; } }
+/* MISTAKES */
+.mk { position: relative; overflow: hidden; background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px; padding: 20px 24px; box-shadow: var(--shadow); display: flex; gap: 16px; opacity: 0; transform: translateX(-14px); transition: opacity .5s ease, transform .5s ease; }
+.mk.visible { opacity: 1; transform: none; }
+.mk-num { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; color: var(--red); opacity: 0; line-height: 1; min-width: 26px; transform: scale(1.6); transition: opacity .5s ease .2s, transform .5s cubic-bezier(.34,1.56,.64,1) .2s; }
+.mk.visible .mk-num { opacity: .25; transform: scale(1); }
+.mk h3 { color: var(--red); font-size: 15px; margin-bottom: 6px; }
+.mk p { font-size: 14.5px; color: var(--fg2); margin: 0; line-height: 1.6; }
 
-.sit-card {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 14px;
-  padding: 18px 20px;
-  box-shadow: var(--shadow);
-  transition: border-color .2s, box-shadow .2s;
-}
-.sit-card:hover { box-shadow: var(--shadow-md); }
-.sit-card.alert { border-color: var(--red); }
-.sit-card h3 { color: var(--blue-mid); margin-bottom: 6px; }
-.sit-card.alert h3 { color: var(--red); }
-.sit-card p { font-size: 13px; color: var(--fg2); margin: 0; }
-
-/* ── CHECKLIST ── */
-.checklist {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 16px;
-  padding: 24px 28px;
-  box-shadow: var(--shadow);
-}
-.checklist h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  margin-bottom: 16px; color: var(--fg);
-}
-.checklist-item {
-  display: flex; align-items: flex-start; gap: 12px;
-  padding: 11px 0;
-  border-bottom: 1px solid var(--border);
-  cursor: pointer;
-}
-.checklist-item:last-of-type { border-bottom: none; }
-.check-box {
-  width: 22px; height: 22px;
-  border: 2px solid var(--blue);
-  border-radius: 6px; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  transition: all .2s; margin-top: 2px;
-}
-.check-box.checked { background: var(--blue); border-color: var(--blue); }
-.check-box.checked::after { content: "✓"; color: white; font-size: 13px; font-weight: 700; }
-.checklist-item.done span { text-decoration: line-through; color: var(--fg2); }
-.checklist-item span { font-size: 14.5px; color: var(--fg); font-family: 'Inter', sans-serif; }
-.progress-bar { height: 5px; background: var(--border); border-radius: 3px; margin-top: 16px; }
-.progress-fill { height: 100%; background: var(--green); border-radius: 3px; transition: width .4s ease; }
-.progress-label { font-size: 12px; color: var(--fg2); margin-top: 6px; font-family: 'Inter', sans-serif; }
-
-/* ── FAQ ── */
-.faq-item {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  margin-bottom: 8px;
-  overflow: hidden;
-  transition: border-color .2s;
-}
-.faq-item.open { border-color: var(--blue); }
-.faq-q {
-  padding: 16px 20px;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 14px; font-weight: 600;
-  cursor: pointer;
-  display: flex; justify-content: space-between; align-items: center;
-  gap: 12px; color: var(--fg);
-  background: transparent;
-}
-.faq-arrow { color: var(--blue); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
+/* FAQ / CTA / SOURCES */
+.faq-item { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; margin-bottom: 8px; overflow: hidden; transition: border-color .2s; }
+.faq-item.open { border-color: var(--blue-mid); }
+.faq-q { padding: 16px 20px; font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; color: var(--fg); user-select: none; }
+.faq-arrow { color: var(--blue-mid); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
 .faq-item.open .faq-arrow { transform: rotate(180deg); }
-.faq-a {
-  display: none;
-  padding: 0 20px 16px;
-  font-size: 14px; color: var(--fg2); line-height: 1.65;
-  font-family: 'Inter', sans-serif;
-}
-.faq-item.open .faq-a { display: block; }
-
-/* ── CTA ── */
-.cta-box {
-  background: var(--blue);
-  border-radius: 16px;
-  padding: 32px 36px;
-  text-align: center;
-}
-.cta-box p {
-  color: rgba(255,255,255,.8);
-  font-size: 15px; margin-bottom: 20px;
-}
-.cta-btn {
-  background: var(--gold);
-  color: #fff;
-  padding: 13px 28px;
-  border-radius: 10px;
-  text-decoration: none;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  display: inline-block;
-  transition: opacity .2s;
-}
-.cta-btn:hover { opacity: .88; }
-
-/* ── SOURCES ── */
-.sources {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  padding: 20px 24px;
-}
-.sources h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: .1em; text-transform: uppercase;
-  color: var(--fg2); margin-bottom: 10px;
-}
+.faq-a { max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .35s ease; font-size: 14px; color: var(--fg2); line-height: 1.65; padding: 0 20px; }
+.faq-a p { font-size: 14px; color: var(--fg2); margin-bottom: 8px; }
+.faq-item.open .faq-a { max-height: 420px; padding: 0 20px 16px; }
+.cta-box { background: var(--blue); border-radius: 16px; padding: 32px 36px; text-align: center; }
+.cta-box p { color: rgba(255,255,255,.85); font-size: 15px; margin-bottom: 20px; }
+.cta-btn { background: var(--gold); color: #fff; padding: 13px 28px; border-radius: 10px; text-decoration: none; font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; display: inline-block; transition: opacity .2s, transform .2s; }
+.cta-btn:hover { opacity: .88; transform: translateY(-1px); }
+.sources { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; padding: 20px 24px; }
+.sources h3 { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--fg2); margin-bottom: 10px; }
 .sources ol { padding-left: 18px; }
-.sources ol li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; }
+.sources li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; }
 
-/* ── FADE IN ── */
-.fade-in { opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
-.fade-in.visible { opacity: 1; transform: translateY(0); }
 
+/* QUICK ANSWER */
+.quick-answer { background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 14px 14px 0; padding: 20px 24px; }
+.quick-answer p { font-size: 15.5px; margin: 0; }
+
+/* PILLARS */
+.pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.pil { position: relative; background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px; padding: 0 0 16px; box-shadow: var(--shadow); overflow: hidden; display: flex; flex-direction: column; opacity: 0; transform: translateY(18px); transition: opacity .5s ease, transform .5s cubic-bezier(.16,1,.3,1); }
+.pil.visible { opacity: 1; transform: none; }
+.pil-top { padding: 16px 18px 14px; color: #fff; }
+.pil.p1 .pil-top { background: var(--blue); } .pil.p2 .pil-top { background: var(--green); } .pil.p3 .pil-top { background: var(--gold); }
+.pil-top .n { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; opacity: .8; }
+.pil-top h3 { color: #fff; font-size: 17px; margin: 2px 0 0; }
+.pil-top .sub { font-size: 12.5px; opacity: .85; line-height: 1.4; }
+.pil dl { padding: 12px 18px 0; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.pil dt { font-family: 'Space Grotesk', sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--fg2); }
+.pil dd { font-size: 13.5px; line-height: 1.5; color: var(--fg); }
+.pil .more { margin: 14px 18px 0; font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; text-decoration: none; display: inline-flex; gap: 6px; align-items: center; }
+.pil.p1 .more { color: var(--blue-mid); } .pil.p2 .more { color: var(--green); } .pil.p3 .more { color: var(--gold); }
+.pil .more span { transition: transform .2s; } .pil .more:hover span { transform: translateX(4px); }
+
+/* EMMA / CALCULATOR */
+.calc { margin-top: 16px; padding: 18px; border-radius: 14px; background: var(--bg); border: 1.5px solid var(--border); }
+.ctrl label { display: flex; justify-content: space-between; font-size: 13.5px; color: var(--fg2); margin-bottom: 2px; }
+.ctrl label b { color: var(--fg); font-family: 'Space Grotesk', sans-serif; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ctrl input[type=range] { width: 100%; accent-color: var(--blue-mid); margin-bottom: 12px; }
+.presets { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+.presets button { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 999px; padding: 5px 12px; font: 600 12.5px 'Inter', sans-serif; color: var(--fg2); cursor: pointer; }
+.presets button.active { border-color: var(--blue-mid); color: var(--blue-mid); background: var(--blue-light); }
+.month { margin-top: 6px; padding-bottom: 12px; }
+.mrow { display: grid; grid-template-columns: 96px 1fr; gap: 10px; align-items: center; margin-bottom: 10px; font-size: 12.5px; color: var(--fg2); }
+.mtrack { position: relative; height: 34px; background: var(--border); border-radius: 8px; overflow: visible; }
+.mfill { position: absolute; top: 0; bottom: 0; left: 0; width: 0; display: flex; overflow: hidden; border-radius: 8px; transition: width .7s cubic-bezier(.16,1,.3,1); }
+.mfill.sal { background: var(--fg2); opacity: .35; }
+.seg { height: 100%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 11.5px; font-weight: 700; white-space: nowrap; overflow: hidden; transition: width .7s cubic-bezier(.16,1,.3,1); }
+.seg.ahv { background: var(--blue); } .seg.p2 { background: var(--green); }
+.target { position: absolute; top: -7px; bottom: -7px; width: 2px; background: var(--red); transition: left .7s cubic-bezier(.16,1,.3,1); }
+.target span { position: absolute; top: auto; bottom: -19px; left: 50%; transform: translateX(-50%); font-size: 11px; font-weight: 700; color: var(--red); white-space: nowrap; font-family: 'Space Grotesk', sans-serif; }
+.gapbar { position: absolute; top: 0; bottom: 0; background: repeating-linear-gradient(45deg, var(--red-light), var(--red-light) 6px, transparent 6px, transparent 12px); border: 1.5px dashed var(--red); border-radius: 0 8px 8px 0; transition: left .7s cubic-bezier(.16,1,.3,1), width .7s cubic-bezier(.16,1,.3,1); }
+.kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 14px; }
+.kpi { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; padding: 10px 12px; }
+.kpi .k { font-family: 'Space Grotesk', sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--fg2); }
+.kpi .v { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1.3; }
+.kpi .s { font-size: 11.5px; color: var(--fg2); font-variant-numeric: tabular-nums; }
+.kpi.tot .v { color: var(--blue-mid); } .kpi.gap { border-color: var(--red); background: var(--red-light); } .kpi.gap .v { color: var(--red); }
+.workings { margin-top: 12px; font-size: 13px; color: var(--fg2); line-height: 1.7; font-variant-numeric: tabular-nums; }
+.workings b { color: var(--fg); }
+
+/* TIMELINE */
+.tl { position: relative; margin-top: 8px; padding-left: 30px; }
+.tl::before { content: ""; position: absolute; left: 9px; top: 6px; bottom: 6px; width: 2px; background: var(--border); }
+.tl-line { position: absolute; left: 9px; top: 6px; width: 2px; height: 0; background: var(--blue-mid); transition: height 1.8s cubic-bezier(.16,1,.3,1); }
+.tl-item { position: relative; padding: 0 0 18px; opacity: 0; transform: translateX(-8px); transition: opacity .45s ease, transform .45s ease; }
+.tl-item:last-child { padding-bottom: 0; }
+.tl-item.visible { opacity: 1; transform: none; }
+.tl-dot { position: absolute; left: -30px; top: 3px; width: 20px; height: 20px; border-radius: 50%; background: var(--bg2); border: 2.5px solid var(--border); transition: border-color .3s, background .3s; }
+.tl-item.visible .tl-dot { border-color: var(--blue-mid); background: var(--blue-light); }
+.tl-item.exit .tl-dot { border-color: var(--gold); background: var(--gold-light); }
+.tl-when { font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--blue-mid); }
+.tl-item.exit .tl-when { color: var(--gold); }
+.tl-item p { font-size: 14.5px; color: var(--fg); margin: 2px 0 0; }
+
+/* FURTHER READING */
+.further { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.fr { display: block; text-decoration: none; background: var(--bg2); border: 1.5px solid var(--border); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); transition: transform .2s, box-shadow .2s, border-color .2s; opacity: 0; transform: translateY(12px); }
+.fr.visible { opacity: 1; transform: none; }
+.fr:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); border-color: var(--blue-mid); }
+.fr .n { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.fr h3 { color: var(--fg); font-size: 15px; margin: 4px 0 4px; }
+.fr p { font-size: 13px; color: var(--fg2); margin: 0 0 8px; line-height: 1.5; }
+.fr .go { font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; }
+.fr.f1 .n, .fr.f1 .go { color: var(--blue-mid); } .fr.f2 .n, .fr.f2 .go { color: var(--green); } .fr.f3 .n, .fr.f3 .go { color: var(--gold); }
+
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .takeaways { background: #1f3a6b; } }
+:root[data-theme="dark"] .takeaways { background: #1f3a6b; }
 @media (max-width: 600px) {
-  h1 { font-size: 24px; }
-  .situation-cards { grid-template-columns: 1fr; }
-  .cta-box { padding: 24px 20px; }
-  .takeaways { padding: 20px 20px; }
+  .takeaways { padding: 20px; } .cta-box { padding: 24px 20px; } .blk { padding: 20px 18px; }
+  .pillars, .further, .kpis { grid-template-columns: 1fr; }
+  .mrow { grid-template-columns: 1fr; gap: 4px; }
+  .seg { font-size: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+  .reveal, .blk, .mk, .pil, .fr, .tl-item, .takeaway-item, .article-meta, h1 { opacity: 1 !important; transform: none !important; }
+  .tl-line { height: calc(100% - 12px) !important; }
 }
 </style>
 </head>
 <body>
-<article class="article">
+<div id="progress-bar"></div>
+<div class="article">
 
   <div class="article-header">
-    <div class="article-meta">Published: August 2026 · Reading Time: 5 minutes</div>
-    <h1>Pension Planning in Switzerland for Expats: What You Need to Know Before It's Too Late</h1>
+    <p class="article-meta">Tax &amp; Finance · Retirement · 5 min read</p>
+    <h1>Retiring in Switzerland as an Expat: How the Three Pillars Add Up</h1>
+    <div class="header-rule"></div>
   </div>
 
-  <div class="quick-answer fade-in">
-    <p>Switzerland has one of the most generous pension systems in the world — but only if you understand how it works and act early enough to take advantage of it.</p>
-    <p style="margin-top:10px;">Most expats arrive knowing nothing about the <span class="hl-blue">three-pillar system</span>. Many leave without ever using its most powerful tools. The difference — over a 10-year career in Switzerland — can easily exceed <span class="hl-num">CHF 100,000</span>.</p>
+  <div class="quick-answer reveal">
+    <p><strong>Quick Answer:</strong> Your Swiss retirement income comes from three sources: the state pension (Pillar 1), your employer's pension fund (Pillar 2) and your own private savings (Pillar 3a). The first two are designed to pay around 60% of your final salary — but only if you worked your whole career in Switzerland. If you arrive at 40, you'll typically end up closer to 30%. The rest has to come from Pillar 3a and from decisions made in time.</p>
   </div>
 
-  <div class="takeaways fade-in">
+  <div class="takeaways">
     <h2>Key Takeaways</h2>
     <ul>
-      <li>Pillars 1 and 2 together replace only <strong>60% of your final salary</strong> — Pillar 3a fills the gap ¹</li>
-      <li>The <strong>Pillar 2 buy-in</strong> is the most powerful and most overlooked tax tool for mid-career expats ²</li>
-      <li>Pillar 3a maximum: <strong>CHF 7,258</strong> for employees, <strong>CHF 36,288</strong> for self-employed ³</li>
-      <li>At retirement you choose — <strong>lump sum or monthly pension</strong> — largely irreversible ¹</li>
-      <li>From December 2026, AHV recipients receive a <strong>13th pension payment</strong> for the first time ⁴</li>
+      <li class="takeaway-item" data-delay="0">Your state pension depends on how many years you contributed in Switzerland — every missing year lowers it</li>
+      <li class="takeaway-item" data-delay="100">If you arrive mid-career, you can pay extra into your pension fund and deduct it from your taxes</li>
+      <li class="takeaway-item" data-delay="200">Some decisions have deadlines: years before you retire or leave Switzerland</li>
+      <li class="takeaway-item" data-delay="300">Leaving Switzerland doesn't mean losing what you paid in — but each pillar follows different rules</li>
     </ul>
   </div>
 
-  <div class="familiar fade-in">
-    <p>You have been in Switzerland for a few years. Someone mentioned the three pillars once. You nodded. You have never looked into it properly.</p>
-    <p style="margin-top:10px;font-style:normal;color:#1a1a2e;"><em>If that sounds familiar — this article is for you.</em></p>
-  </div>
-
-  <h2 class="fade-in">
-    <svg class="icon" viewBox="0 0 28 28" fill="none"><rect x="2" y="18" width="7" height="8" rx="1" fill="#2c3e7a"/><rect x="10.5" y="12" width="7" height="14" rx="1" fill="#2c3e7a" opacity="0.7"/><rect x="19" y="6" width="7" height="20" rx="1" fill="#2c3e7a" opacity="0.4"/></svg>
-    The Three Pillars — How They Work Together
-  </h2>
-
-  <!-- ANIMATED PILLARS -->
-  <div class="pillars-wrap fade-in">
-    <div class="pillars" id="pillarsChart">
-      <div class="pillar-bar">
-        <div class="pillar-bar-fill p1" id="bar1">
-          <span class="pillar-bar-label">Basic<br>needs</span>
-        </div>
-        <div class="pillar-bar-name" style="color:#2c3e7a;">Pillar 1</div>
-        <div class="pillar-bar-sub">AHV — State</div>
-        <div class="pillar-bar-sub" style="font-weight:700;color:#2c3e7a;">CHF 1,260–2,520/mo</div>
+  <!-- THREE PILLARS -->
+  <div class="sec">
+    <h2 class="reveal" style="margin-bottom:12px">The Three Pillars</h2>
+    <div class="pillars">
+      <div class="pil p1" data-delay="0">
+        <div class="pil-top"><div class="n">Pillar 1</div><h3>AHV</h3><div class="sub">State pension, compulsory</div></div>
+        <dl><div><dt>Who pays</dt><dd>You and your employer, half each</dd></div>
+            <div><dt>What you get</dt><dd>A monthly pension of up to CHF&nbsp;2,520. If you contributed for fewer than 44 years, your pension is lower.</dd></div></dl>
+        <a class="more" href="artigo32.html">Pillar 1 in depth <span>→</span></a>
       </div>
-      <div class="pillar-bar">
-        <div class="pillar-bar-fill p2" id="bar2">
-          <span class="pillar-bar-label">Lifestyle<br>pension</span>
-        </div>
-        <div class="pillar-bar-name" style="color:#1a7a4a;">Pillar 2</div>
-        <div class="pillar-bar-sub">BVG — Employer</div>
-        <div class="pillar-bar-sub" style="font-weight:700;color:#1a7a4a;">CHF 300k–700k total</div>
+      <div class="pil p2" data-delay="150">
+        <div class="pil-top"><div class="n">Pillar 2</div><h3>Pension fund</h3><div class="sub">Your employer's fund, compulsory above CHF&nbsp;22,680 a year</div></div>
+        <dl><div><dt>Who pays</dt><dd>You and your employer</dd></div>
+            <div><dt>What you get</dt><dd>A monthly pension or a lump sum, based on what you saved</dd></div></dl>
+        <a class="more" href="artigo33.html">Pillar 2 in depth <span>→</span></a>
       </div>
-      <div class="pillar-bar">
-        <div class="pillar-bar-fill p3" id="bar3">
-          <span class="pillar-bar-label">Your<br>control</span>
-        </div>
-        <div class="pillar-bar-name" style="color:#d4a017;">Pillar 3a</div>
-        <div class="pillar-bar-sub">Private — Voluntary</div>
-        <div class="pillar-bar-sub" style="font-weight:700;color:#d4a017;">Up to CHF 36,288/yr</div>
+      <div class="pil p3" data-delay="300">
+        <div class="pil-top"><div class="n">Pillar 3a</div><h3>Private savings</h3><div class="sub">Voluntary retirement account, tax-deductible</div></div>
+        <dl><div><dt>Who pays</dt><dd>Only you, if you choose</dd></div>
+            <div><dt>What you get</dt><dd>What you saved, in one payment</dd></div></dl>
+        <a class="more" href="artigo11.html">Pillar 3a in depth <span>→</span></a>
       </div>
     </div>
-    <p class="pillars-caption">Pillars 1 + 2 replace ~60% of final salary. Pillar 3a closes the gap.</p>
   </div>
 
-  <p class="fade-in"><span class="hl-red">The uncomfortable truth:</span> for expats who did not spend their entire career in Switzerland, the actual replacement rate is often closer to <span class="hl-num">30–40%</span>. ¹ Pillar 3a is what fills that gap — and for most expats, it is significantly underused.</p>
-
-  <!-- ANIMATED COUNTERS -->
-  <div class="counter-grid fade-in" id="counterGrid">
-    <div class="counter-card highlight">
-      <div class="counter-val" data-target="7258" data-prefix="CHF ">0</div>
-      <div class="counter-label">Max Pillar 3a — Employees 2026</div>
+  <!-- HOW MUCH -->
+  <div class="blk" id="howmuch">
+    <h2>How Much You'll Actually Get</h2>
+    <p>The official goal is for Pillars 1 and 2 together to replace around 60% of your final salary. That assumes a full career in Switzerland. Arrive later, and both pillars have fewer years to grow — so the result drops sharply.</p>
+    <p><b>Emma</b> moves from London to Geneva at 40, earns CHF&nbsp;120,000 a year — CHF&nbsp;10,000 a month — and retires at 65. Here's her month in retirement. Try your own numbers too.</p>
+    <div class="calc">
+      <div class="presets"><button class="active" data-p="emma">Emma's case</button><button data-p="full">Full career</button><button data-p="late">Arrives at 50</button></div>
+      <div class="ctrl">
+        <label>Gross salary per year <b id="v-sal"></b></label>
+        <input type="range" id="sal" min="40000" max="250000" step="5000" value="120000" aria-label="Gross salary per year">
+        <label>Age you started contributing in Switzerland <b id="v-age"></b></label>
+        <input type="range" id="age" min="21" max="60" step="1" value="40" aria-label="Age you started contributing in Switzerland">
+        <label>Pillar 2 savings at 65 <b id="v-cap"></b></label>
+        <input type="range" id="cap" min="0" max="1500000" step="10000" value="350000" aria-label="Pillar 2 savings at 65">
+      </div>
+      <div class="month">
+        <div class="mrow"><span>Salary today</span><div class="mtrack"><div class="mfill sal" id="b-sal"></div></div></div>
+        <div class="mrow"><span>Pension at 65</span><div class="mtrack"><div class="mfill" id="b-pen"><div class="seg ahv" id="s-ahv"></div><div class="seg p2" id="s-p2"></div></div><div class="gapbar" id="b-gap"></div><div class="target" id="t60"><span>60%</span></div></div></div>
+      </div>
+      <div class="kpis">
+        <div class="kpi tot"><div class="k">Pension per month</div><div class="v" id="k-tot"></div><div class="s" id="k-pct"></div></div>
+        <div class="kpi"><div class="k">60% of salary</div><div class="v" id="k-60"></div><div class="s">per month</div></div>
+        <div class="kpi gap"><div class="k">Shortfall</div><div class="v" id="k-gap"></div><div class="s">per month</div></div>
+      </div>
+      <div class="workings" id="work"></div>
+      <p class="viz-note">Illustrative figures. AHV uses the 2026 pension scale and assumes no gaps after you start. Pillar 2 uses the 2026 average conversion rate of 5.2% (Swisscanto); your fund's rate and savings will differ. The 13th AHV pension is paid on top, once a year in December.</p>
     </div>
-    <div class="counter-card green">
-      <div class="counter-val" data-target="36288" data-prefix="CHF ">0</div>
-      <div class="counter-label">Max Pillar 3a — Self-employed 2026</div>
-    </div>
-    <div class="counter-card">
-      <div class="counter-val" data-target="2500" data-prefix="~CHF ">0</div>
-      <div class="counter-label">Tax saved per year (Geneva)</div>
-    </div>
-    <div class="counter-card">
-      <div class="counter-val" data-target="25000" data-prefix="CHF ">0</div>
-      <div class="counter-label">Tax saved over 10 years</div>
-    </div>
+    <p style="margin-top:14px">You can narrow that gap in three ways: paying into Pillar 3a every year, paying extra into Pillar 2 (a "buy-in"), and choosing carefully how you take each pillar.</p>
   </div>
 
-  <h2 class="fade-in">
-    <svg class="icon" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="11" stroke="#2c3e7a" stroke-width="2"/><path d="M14 8v6l4 2" stroke="#2c3e7a" stroke-width="2" stroke-linecap="round"/></svg>
-    The Pillar 2 Buy-In — The Tool Most Expats Never Use
-  </h2>
-
-  <p class="fade-in">If you arrived in Switzerland mid-career, you have a <span class="hl-blue">contribution gap</span> in your Pillar 2 pension fund. The Swiss system allows you to <span class="hl-blue">buy back these missing years</span> — and every franc contributed is <span class="hl-green">100% tax-deductible</span>. ²</p>
-
-  <div class="calculator fade-in">
-    <h3>Pillar 2 Buy-In — What It Means in Practice</h3>
-    <div class="calc-row"><span class="lbl">Buy-in amount</span><span class="val">CHF 20,000</span></div>
-    <div class="calc-row"><span class="lbl">Tax bracket (Geneva high earner)</span><span class="val">~40%</span></div>
-    <div class="calc-row"><span class="lbl">Tax saved immediately</span><span class="val">CHF 6,000–8,000</span></div>
-    <div class="calc-row"><span class="lbl">Added to pension capital</span><span class="val">CHF 20,000</span></div>
-    <div class="calc-row"><span class="lbl">✓ Net cost to you</span><span class="val">CHF 12,000–14,000</span></div>
-  </div>
-
-  <div class="warning fade-in">
-    ⚠️ <strong>3-year blocking period:</strong> After a Pillar 2 buy-in, lump-sum withdrawals are blocked for <span class="hl-red">3 years</span>. Do not make a buy-in if you plan to leave Switzerland within that period.
-  </div>
-
-  <!-- SAVINGS TICKER -->
-  <div class="savings-ticker fade-in">
-    <div class="ticker-label">Tax you save by maxing Pillar 3a every year</div>
-    <div class="ticker-val" id="tickerVal">CHF 0</div>
-    <div class="ticker-sub">at ~35% effective rate in Geneva</div>
-    <button class="ticker-btn" id="tickerBtn" onclick="startTicker()">▶ See it grow year by year</button>
-  </div>
-
-  <h2 class="fade-in">
-    <svg class="icon" viewBox="0 0 28 28" fill="none"><circle cx="10" cy="10" r="4" stroke="#2c3e7a" stroke-width="2"/><circle cx="20" cy="10" r="4" stroke="#2c3e7a" stroke-width="2"/><path d="M3 24c0-4 3-6 7-6s7 2 7 6" stroke="#2c3e7a" stroke-width="2"/><path d="M20 18c3 0 5 2 5 6" stroke="#2c3e7a" stroke-width="2"/></svg>
-    Two Expats, Two Very Different Outcomes
-  </h2>
-
-  <div class="expats fade-in">
-    <div class="expat expat-a">
-      <div class="expat-title">✓ Expat A — Plans Ahead</div>
-      <p>Arrives at 35. Opens Pillar 3a immediately. Contributes CHF 7,258 every year. After 10 years requests a Pillar 2 buy-in. Discovers CHF 30,000 in eligible buy-ins.</p>
-      <div class="result">At 65: pension replaces 70%+ of salary. CHF 50,000+ in total tax savings.</div>
-    </div>
-    <div class="expat expat-b">
-      <div class="expat-title">✗ Expat B — Does Nothing</div>
-      <p>Arrives at 35. Never opens Pillar 3a. Never investigates a buy-in. After 20 years retires with pension replacing only 38% of final salary.</p>
-      <div class="result">At 65: significant income gap. CHF 50,000+ in missed tax savings.</div>
+  <!-- DECISIONS -->
+  <div class="blk" id="decisions">
+    <h2>The Decisions, and When to Make Them</h2>
+    <div class="tl"><div class="tl-line" id="tl-line"></div>
+      <div class="tl-item" data-delay="0"><span class="tl-dot"></span><div class="tl-when">When you arrive</div>
+        <p>Open a Pillar 3a. Ask your pension fund for your buy-in capacity — how much extra you're allowed to pay in. For your first five years, the limit is 20% of your insured salary per year.</p></div>
+      <div class="tl-item" data-delay="250"><span class="tl-dot"></span><div class="tl-when">Every year</div>
+        <p>Pay into Pillar 3a by 31 December. Consider a Pillar 2 buy-in in your higher-income years, when the tax deduction is worth more.</p></div>
+      <div class="tl-item" data-delay="500"><span class="tl-dot"></span><div class="tl-when">3 years before you retire or leave</div>
+        <p>Stop buy-ins: after each one, that money is locked for three years. Tell your fund if you want a lump sum instead of a pension — many funds require advance notice.</p></div>
+      <div class="tl-item" data-delay="750"><span class="tl-dot"></span><div class="tl-when">At retirement</div>
+        <p>Choose between a lump sum and a pension for Pillar 2. Withdraw your Pillar 3a accounts in different years to pay less tax.</p></div>
+      <div class="tl-item exit" data-delay="1000"><span class="tl-dot"></span><div class="tl-when">If you leave Switzerland</div>
+        <p>Your AHV pension is paid in the UK and the US. Pillar 2 and Pillar 3a can be withdrawn — the rules depend on where you move.</p></div>
     </div>
   </div>
 
-  <h2 class="fade-in">
-    <svg class="icon" viewBox="0 0 28 28" fill="none"><path d="M14 3L2 24h24L14 3z" stroke="#c0392b" stroke-width="2" stroke-linejoin="round"/><path d="M14 11v6" stroke="#c0392b" stroke-width="2" stroke-linecap="round"/><circle cx="14" cy="20" r="1" fill="#c0392b"/></svg>
-    Common Mistakes
-  </h2>
-
-  <div class="mistake fade-in">
-    <div class="mistake-icon">⏳</div>
-    <div class="mistake-content">
-      <h3>Delaying Pillar 3a</h3>
-      <p>Every year without maximum contributions costs <span class="hl-red">CHF 2,000–2,500 in unnecessary tax</span>. Over 10 years that is CHF 20,000–25,000 gone.</p>
-    </div>
-  </div>
-  <div class="mistake fade-in">
-    <div class="mistake-icon">🔍</div>
-    <div class="mistake-content">
-      <h3>Never requesting a Pillar 2 buy-in analysis</h3>
-      <p>Your pension fund is <span class="hl-blue">required to tell you your buy-in capacity</span> upon request. Most expats never ask.</p>
-    </div>
-  </div>
-  <div class="mistake fade-in">
-    <div class="mistake-icon">❌</div>
-    <div class="mistake-content">
-      <h3>Accepting the default retirement payout</h3>
-      <p>The default lump-sum or pension option is <span class="hl-red">not always optimal</span>. Analysis is required — not guesswork.</p>
-    </div>
-  </div>
-  <div class="mistake fade-in">
-    <div class="mistake-icon">📅</div>
-    <div class="mistake-content">
-      <h3>Missing 31 December</h3>
-      <p>Pillar 3a contributions must arrive by <span class="hl-blue">31 December</span>. No extension. No exceptions. ³</p>
+  <!-- FAQ -->
+  <div>
+    <h2 class="reveal">Before You Ask</h2>
+    <div style="margin-top:12px">
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">If I leave Switzerland before retiring, do I lose what I paid in?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">No. Your AHV pension is secured after one year of contributions and is paid abroad from age 65. Pillar 2 and Pillar 3a can be withdrawn or left in Switzerland. Each pillar's rules are covered in the articles below.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">When should I speak with an advisor?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">When you arrive, if you're over 40 — that's when a Pillar 2 buy-in pays off most. And three to five years before you retire or leave Switzerland, when decisions about lump sums, pensions and withdrawals start to have deadlines.</div>
+      </div>
     </div>
   </div>
 
-  <h2 class="fade-in">
-    <svg class="icon" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="11" stroke="#2c3e7a" stroke-width="2"/><path d="M11 11c0-1.7 1.3-3 3-3s3 1.3 3 3c0 1.7-1.7 3-3 4" stroke="#2c3e7a" stroke-width="2" stroke-linecap="round"/><circle cx="14" cy="21" r="1" fill="#2c3e7a"/></svg>
-    FAQ
-  </h2>
-
-  <div class="faq-item fade-in">
-    <div class="faq-q" onclick="toggleFaq(this)">Will I get an AHV pension if I leave Switzerland before retirement?</div>
-    <div class="faq-a">Yes — provided you contributed for at least <span class="hl-blue">one year</span>. The pension is paid abroad at retirement age. EU bilateral agreements allow foreign work years to count. ⁴</div>
-  </div>
-  <div class="faq-item fade-in">
-    <div class="faq-q" onclick="toggleFaq(this)">Can I take my Pillar 2 as a lump sum when I leave Switzerland?</div>
-    <div class="faq-a">Yes — if leaving the EU/EFTA area permanently. Moving to an EU/EFTA country means the mandatory portion stays until retirement. A <span class="hl-red">reduced withdrawal tax</span> applies.</div>
-  </div>
-  <div class="faq-item fade-in">
-    <div class="faq-q" onclick="toggleFaq(this)">How do I find out my Pillar 2 buy-in capacity?</div>
-    <div class="faq-a">Contact your pension fund and ask for your <span class="hl-blue">"capacité de rachat"</span>. They are legally required to provide this. A financial advisor can help optimise the timing for maximum tax efficiency.</div>
-  </div>
-  <div class="faq-item fade-in">
-    <div class="faq-q" onclick="toggleFaq(this)">When should I speak with an advisor?</div>
-    <div class="faq-a">Ideally <span class="hl-green">as soon as possible after arriving</span> — especially if over 40, have contribution gaps, or plan to leave within 5–10 years. The earlier, the more options you have.</div>
+  <!-- FURTHER READING -->
+  <div class="sec">
+    <h2 class="reveal" style="margin-bottom:12px">Go Deeper</h2>
+    <p class="reveal">Each pillar has its own rules and its own decisions. To study each one in detail:</p>
+    <div class="further">
+      <a class="fr f1" data-delay="0" href="artigo32.html"><div class="n">Pillar 1 · AHV</div><h3>How much will I get?</h3><p>The 44-year rule, the 13th pension and what happens if you leave Switzerland.</p><span class="go">Read →</span></a>
+      <a class="fr f2" data-delay="120" href="artigo33.html"><div class="n">Pillar 2 · Pension fund</div><h3>Buy-ins and payouts</h3><p>Buy-ins, the five-year limit for new arrivals, lump sum or pension.</p><span class="go">Read →</span></a>
+      <a class="fr f3" data-delay="240" href="artigo11.html"><div class="n">Pillar 3a · Private savings</div><h3>The complete guide</h3><p>How much to pay in, how much tax you save and how to withdraw it.</p><span class="go">Read →</span></a>
+    </div>
   </div>
 
-  <div class="cta fade-in">
-    <p>Pension planning in Switzerland rewards those who act early. The tools exist — Pillar 3a, Pillar 2 buy-ins, staggered withdrawals — but they require understanding and timely action.</p>
-    <p>SwissExpatHub connects you with advisors experienced in Swiss pension planning for international residents.</p>
+  <div class="cta-box reveal">
+    <p>Swiss retirement rewards those who decide early. An advisor who knows the system can help you work out your real shortfall and choose, year by year, where each franc works hardest.</p>
     <a href="/directory" class="cta-btn">Find Your Advisor →</a>
   </div>
 
-  <div class="sources fade-in">
-    <p><strong>Sources</strong></p>
-    <p>1. Upreer.ch — Retirement Planning Switzerland 2026</p>
-    <p>2. Taxolution.ch — Pillar 2 Buy-In Guide 2026</p>
-    <p>3. Expat Savvy — Third Pillar Switzerland 2026</p>
-    <p>4. Swiss Federal Social Insurance Office — AHV 13th pension 2026</p>
+  <div class="sources reveal">
+    <h3>Sources</h3>
+    <ol>
+      <li>Swiss Federal Social Insurance Office (BSV) — AHV and BVG figures 2026: bsv.admin.ch</li>
+      <li>Swisscanto — Swiss Pension Fund Study 2026 (average conversion rate): swisscanto.com</li>
+      <li>Taxolution — Pillar 2 Buy-In 2026: taxolution.ch</li>
+    </ol>
   </div>
 
-</article>
+</div>
 
 <script>
-// Intersection Observer for fade-in
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      // Animate takeaway items
-      if (entry.target.classList.contains('takeaways')) {
-        const items = entry.target.querySelectorAll('li');
-        items.forEach((item, i) => {
-          setTimeout(() => item.classList.add('visible'), i * 120);
-        });
-      }
-      // Animate pillar bars
-      if (entry.target.classList.contains('pillars-wrap')) {
-        setTimeout(() => {
-          document.getElementById('bar1').classList.add('animated');
-          setTimeout(() => document.getElementById('bar2').classList.add('animated'), 200);
-          setTimeout(() => document.getElementById('bar3').classList.add('animated'), 400);
-        }, 300);
-      }
-      // Animate counters
-      if (entry.target.id === 'counterGrid') {
-        entry.target.querySelectorAll('[data-target]').forEach((el, i) => {
-          setTimeout(() => animateCounter(el), i * 150);
-        });
-      }
-    }
-  });
-}, { threshold: 0.15 });
-
-document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-// Counter animation
-function animateCounter(el) {
-  const target = parseInt(el.dataset.target);
-  const prefix = el.dataset.prefix || '';
-  const duration = 1200;
-  const start = performance.now();
-  function update(now) {
-    const progress = Math.min((now - start) / duration, 1);
-    const ease = 1 - Math.pow(1 - progress, 3);
-    const val = Math.round(target * ease);
-    el.textContent = prefix + val.toLocaleString('en-CH');
-    if (progress < 1) requestAnimationFrame(update);
-  }
-  requestAnimationFrame(update);
+const fmt = n => 'CHF ' + Math.round(n).toLocaleString('en-US');
+window.addEventListener('scroll', () => {
+  const docH = document.documentElement.scrollHeight - window.innerHeight;
+  document.getElementById('progress-bar').style.width = (docH > 0 ? window.scrollY / docH * 100 : 0) + '%';
+});
+window.addEventListener('load', () => {
+  setTimeout(() => document.querySelector('.article-meta').classList.add('visible'), 80);
+  setTimeout(() => document.querySelector('h1').classList.add('visible'), 220);
+  setTimeout(() => document.querySelector('.header-rule').classList.add('visible'), 420);
+});
+function stagger(selector, threshold) {
+  const obs = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), parseInt(e.target.dataset.delay || 0)); obs.unobserve(e.target); }
+  }), { threshold });
+  document.querySelectorAll(selector).forEach(el => obs.observe(el));
 }
-
-// Savings ticker
-let tickerRunning = false;
-let tickerYear = 0;
-let tickerInterval;
-const savingsPerYear = 2540; // ~35% of CHF 7,258
-
-function startTicker() {
-  if (tickerRunning) {
-    clearInterval(tickerInterval);
-    tickerRunning = false;
-    tickerYear = 0;
-    document.getElementById('tickerVal').textContent = 'CHF 0';
-    document.getElementById('tickerBtn').textContent = '▶ See it grow year by year';
-    return;
-  }
-  tickerRunning = true;
-  document.getElementById('tickerBtn').textContent = '⏹ Reset';
-  tickerInterval = setInterval(() => {
-    tickerYear++;
-    const total = tickerYear * savingsPerYear;
-    document.getElementById('tickerVal').textContent = 'CHF ' + total.toLocaleString('en-CH');
-    if (tickerYear >= 20) {
-      clearInterval(tickerInterval);
-      tickerRunning = false;
-      document.getElementById('tickerBtn').textContent = '↺ Start again';
-    }
-  }, 600);
+function onView(id, fn, threshold = 0.4) {
+  const el = document.getElementById(id);
+  const obs = new IntersectionObserver(en => { if (en[0].isIntersecting) { fn(); obs.disconnect(); } }, { threshold });
+  obs.observe(el);
 }
-
-// FAQ accordion
-function toggleFaq(el) {
-  const answer = el.nextElementSibling;
-  const isOpen = answer.classList.contains('open');
-  document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
-  document.querySelectorAll('.faq-q').forEach(q => q.classList.remove('open'));
-  if (!isOpen) {
-    answer.classList.add('open');
-    el.classList.add('open');
-  }
+function countUp(el, to, ms, from = 0, f = fmt) {
+  const t0 = performance.now();
+  const step = t => { const k = Math.min(1, (t - t0) / ms), e = 1 - Math.pow(1 - k, 3);
+    el.textContent = f(from + (to - from) * e); if (k < 1) requestAnimationFrame(step); };
+  requestAnimationFrame(step);
 }
+stagger('.takeaway-item', 0.15);
+stagger('.reveal', 0.08);
+stagger('.blk', 0.05);
+stagger('.pil', 0.2);
+stagger('.fr', 0.2);
+stagger('.tl-item', 0.3);
+
+// AHV full pension, 2026 scale (monthly), from average annual income
+function ahvFull(y) {
+  const MIN = 1260;
+  if (y <= 15120) return MIN;
+  if (y <= 45360) return 0.74 * MIN + 13 / 600 * y;
+  return Math.min(2520, 1.04 * MIN + 8 / 600 * y);
+}
+const sal = document.getElementById('sal'), age = document.getElementById('age'), cap = document.getElementById('cap');
+let first = true;
+const prev = { tot: 0, sixty: 0, gap: 0 };
+function calc() {
+  const S = +sal.value, A = +age.value, C = +cap.value;
+  const years = Math.max(0, Math.min(44, 65 - A));
+  const full = ahvFull(S), ahv = full * years / 44;
+  const p2 = C * 0.052 / 12, tot = ahv + p2;
+  const mSal = S / 12, sixty = mSal * 0.6, gap = Math.max(0, sixty - tot);
+  document.getElementById('v-sal').textContent = fmt(S) + ' · ' + fmt(mSal) + '/mo';
+  document.getElementById('v-age').textContent = A + ' → ' + years + ' years';
+  document.getElementById('v-cap').textContent = fmt(C);
+  // bars: scale = monthly salary
+  const W = v => Math.min(100, v / mSal * 100) + '%';
+  document.getElementById('b-sal').style.width = '100%';
+  document.getElementById('b-pen').style.width = W(tot);
+  const sA = document.getElementById('s-ahv'), sP = document.getElementById('s-p2');
+  sA.style.width = tot ? (ahv / tot * 100) + '%' : '0'; sP.style.width = tot ? (p2 / tot * 100) + '%' : '0';
+  sA.textContent = ahv / mSal > 0.09 ? 'AHV ' + Math.round(ahv).toLocaleString('en-US') : '';
+  sP.textContent = p2 / mSal > 0.09 ? 'P2 ' + Math.round(p2).toLocaleString('en-US') : '';
+  document.getElementById('t60').style.left = '60%';
+  const g = document.getElementById('b-gap');
+  g.style.left = W(tot); g.style.width = gap ? (gap / mSal * 100) + '%' : '0';
+  const set = (id, v, key) => {
+    const el = document.getElementById(id);
+    if (first) countUp(el, v, 1100, 0); else el.textContent = fmt(v);
+    prev[key] = v;
+  };
+  set('k-tot', tot, 'tot'); set('k-60', sixty, 'sixty'); set('k-gap', gap, 'gap');
+  document.getElementById('k-pct').textContent = Math.round(tot / mSal * 100) + '% of salary';
+  document.getElementById('work').innerHTML =
+    '<b>AHV:</b> ' + years + ' ÷ 44 × ' + fmt(full) + ' ≈ ' + fmt(ahv) + ' a month' +
+    (S >= 90720 ? ' (salary above CHF 90,720 → full pension CHF 2,520)' : '') + '<br>' +
+    '<b>Pillar 2:</b> ' + fmt(C) + ' × 5.2% ÷ 12 ≈ ' + fmt(p2) + ' a month<br>' +
+    '<b>Shortfall:</b> ' + fmt(sixty) + ' − ' + fmt(tot) + ' ≈ ' + fmt(gap) + ' a month';
+  first = false;
+}
+const PRESETS = { emma: [120000, 40, 350000], full: [120000, 21, 700000], late: [120000, 50, 180000] };
+document.querySelectorAll('.presets button').forEach(b => b.addEventListener('click', () => {
+  const [s, a, c] = PRESETS[b.dataset.p]; sal.value = s; age.value = a; cap.value = c;
+  document.querySelectorAll('.presets button').forEach(x => x.classList.toggle('active', x === b));
+  calc();
+}));
+[sal, age, cap].forEach(i => i.addEventListener('input', () => {
+  document.querySelectorAll('.presets button').forEach(x => x.classList.remove('active')); calc();
+}));
+onView('howmuch', calc, 0.25);
+
+onView('decisions', () => {
+  const tl = document.querySelector('.tl');
+  document.getElementById('tl-line').style.height = (tl.offsetHeight - 12) + 'px';
+}, 0.3);
+
+function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
 </script>
 </body>
 </html>
