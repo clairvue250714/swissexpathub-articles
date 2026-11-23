@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Early Retirement in Switzerland (FIRE): What Expats Need to Know</title>
+<meta name="description" content="FIRE in Switzerland: the 25x rule, when Pillar 2 and 3a unlock, staggered withdrawals, withdrawal tax by canton, three savings profiles and the costs of staying.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
 <style>
 :root {
@@ -47,496 +48,727 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 body {
-  background: var(--bg);
-  color: var(--fg);
+  background: var(--bg); color: var(--fg);
   font-family: 'Inter', system-ui, sans-serif;
-  font-size: 16px;
-  line-height: 1.75;
-  padding: 40px max(16px, 5vw) 80px;
+  font-size: 16px; line-height: 1.75;
+  padding: 48px max(16px, 5vw) 80px;
 }
+.article { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 36px; }
 
-.article {
-  max-width: 720px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
+#progress-bar {
+  position: fixed; top: 0; left: 0; height: 3px;
+  background: var(--blue-mid); width: 0%;
+  z-index: 1000; transition: width .1s linear;
+  border-radius: 0 2px 2px 0;
 }
 
 /* ── HEADER ── */
-.article-header { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
 .article-meta {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: .12em; text-transform: uppercase;
-  color: var(--fg2); margin-bottom: 10px;
+  font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--fg2); margin-bottom: 12px;
+  opacity: 0; transform: translateY(-8px); transition: opacity .5s ease, transform .5s ease;
 }
+.article-meta.visible { opacity: 1; transform: translateY(0); }
 h1 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(24px, 5vw, 36px);
-  font-weight: 700; line-height: 1.2;
-  text-wrap: balance; color: var(--fg);
+  font-family: 'Space Grotesk', sans-serif; font-size: clamp(24px, 5vw, 36px);
+  font-weight: 700; line-height: 1.2; text-wrap: balance; color: var(--fg);
+  opacity: 0; transform: translateY(12px);
+  transition: opacity .6s ease .15s, transform .6s ease .15s;
 }
+h1.visible { opacity: 1; transform: translateY(0); }
 .header-rule {
-  height: 2px; background: var(--blue);
-  border-radius: 2px; margin-top: 20px;
-  width: 48px;
+  height: 3px; background: var(--blue); border-radius: 2px; margin-top: 20px;
+  width: 0; transition: width .8s cubic-bezier(.16,1,.3,1) .5s;
 }
+.header-rule.visible { width: 48px; }
 
-/* ── QUICK ANSWER ── */
-.quick-answer {
-  background: var(--blue-light);
-  border-left: 4px solid var(--blue);
-  border-radius: 0 14px 14px 0;
-  padding: 20px 24px;
-}
-.quick-answer p { font-size: 15px; color: var(--fg); margin: 0; }
-
-/* ── TAKEAWAYS ── */
-.takeaways {
-  background: var(--blue);
-  border-radius: 16px;
-  padding: 28px 32px;
-}
-.takeaways h2 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 16px; font-weight: 700;
-  color: rgba(255,255,255,.6);
-  letter-spacing: .08em; text-transform: uppercase;
-  margin-bottom: 16px; margin-top: 0;
-}
-.takeaways ul { list-style: none; }
-.takeaways ul li {
-  color: #e8ecf5;
-  font-size: 14.5px;
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(255,255,255,.1);
-  display: flex; gap: 12px; align-items: flex-start;
-}
-.takeaways ul li:last-child { border-bottom: none; }
-.takeaways ul li::before {
-  content: "✓"; color: #3dba78;
-  font-weight: 700; flex-shrink: 0; margin-top: 1px;
-}
-
-/* ── HEADINGS ── */
-h2 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 20px; font-weight: 700;
-  color: var(--fg); margin-bottom: 4px;
-}
-h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  color: var(--blue-mid); margin-bottom: 6px;
-}
+/* ── TYPE ── */
+h2 { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; color: var(--fg); margin-bottom: 8px; }
+h3 { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; color: var(--blue-mid); margin-bottom: 6px; }
 p { font-size: 15.5px; color: var(--fg); margin-bottom: 12px; }
 p:last-child { margin-bottom: 0; }
 .hl-blue  { color: var(--blue-mid); font-weight: 600; }
 .hl-green { color: var(--green);    font-weight: 600; }
 .hl-red   { color: var(--red);      font-weight: 600; }
-sup { font-size: 11px; color: var(--blue-mid); }
+.viz-label {
+  font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--fg2); margin-bottom: 12px;
+}
+.viz-note { font-size: 12px; color: var(--fg2); margin-top: 10px; }
+.calc-line { font-size: 13px; color: var(--fg2); text-align: center; margin-top: 10px; font-variant-numeric: tabular-nums; }
 
-/* ── SITUATION CARDS ── */
-.situation-cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
+/* ── QUICK ANSWER / TAKEAWAYS ── */
+.quick-answer { background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 14px 14px 0; padding: 20px 24px; }
+.quick-answer p { font-size: 15px; }
+.takeaways { background: #1f4080; border-radius: 16px; padding: 28px 32px; }
+.takeaways h2 { font-size: 13px; color: rgba(255,255,255,.55); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 18px; }
+.takeaways ul { list-style: none; }
+.takeaway-item {
+  color: #e8ecf5; font-size: 14.5px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.1);
+  display: flex; gap: 12px; align-items: flex-start;
+  opacity: 0; transform: translateX(-10px); transition: opacity .45s ease, transform .45s ease;
 }
-@media (max-width: 520px) { .situation-cards { grid-template-columns: 1fr; } }
+.takeaway-item:last-child { border-bottom: none; }
+.takeaway-item.visible { opacity: 1; transform: translateX(0); }
+.takeaway-item::before { content: "✓"; color: #3dba78; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
 
-.sit-card {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 14px;
-  padding: 18px 20px;
-  box-shadow: var(--shadow);
-  transition: border-color .2s, box-shadow .2s;
+/* ── SECTION CARDS ── */
+.card {
+  position: relative; overflow: hidden;
+  background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px;
+  padding: 24px 26px; box-shadow: var(--shadow);
+  opacity: 0; transform: translateY(16px);
+  transition: opacity .5s ease, transform .5s ease, box-shadow .2s;
 }
-.sit-card:hover { box-shadow: var(--shadow-md); }
-.sit-card.alert { border-color: var(--red); }
-.sit-card h3 { color: var(--blue-mid); margin-bottom: 6px; }
-.sit-card.alert h3 { color: var(--red); }
-.sit-card p { font-size: 13px; color: var(--fg2); margin: 0; }
+.card.visible { opacity: 1; transform: none; }
+.card:hover { box-shadow: var(--shadow-md); }
+.card::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--c, var(--blue-mid));
+  transform: scaleY(0); transform-origin: top; transition: transform .6s cubic-bezier(.16,1,.3,1) .25s;
+}
+.card.visible::before { transform: scaleY(1); }
+.card-head { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+.card-num {
+  font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; color: var(--c, var(--blue-mid));
+  background: var(--cl, var(--blue-light)); border-radius: 8px; padding: 4px 10px; flex-shrink: 0;
+  transform: scale(.6); opacity: 0; transition: transform .5s cubic-bezier(.34,1.56,.64,1) .2s, opacity .4s ease .2s;
+}
+.card.visible .card-num { transform: scale(1); opacity: 1; }
+.card-head h2 { margin: 0; font-size: 18px; }
+.card p { font-size: 15px; }
+.c-red   { --c: var(--red);   --cl: var(--red-light); }
+.c-green { --c: var(--green); --cl: var(--green-light); }
+.c-gold  { --c: var(--gold);  --cl: var(--gold-light); }
+.viz { margin-top: 18px; padding-top: 16px; border-top: 1px dashed var(--border); }
 
-/* ── CHECKLIST ── */
-.checklist {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 16px;
-  padding: 24px 28px;
-  box-shadow: var(--shadow);
+/* ── NOTE BOXES ── */
+.note { border-radius: 0 12px 12px 0; padding: 14px 18px; margin-top: 16px; }
+.note p { font-size: 14.5px; }
+.note.warn { background: var(--gold-light); border-left: 4px solid var(--gold); }
+.note.warn strong { color: var(--gold); }
+.note.new { background: var(--green-light); border-left: 4px solid var(--green); }
+.note.new strong { color: var(--green); }
+
+/* ── shared ── */
+.stat { text-align: center; border-radius: 12px; padding: 14px 10px; }
+.stat .k { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--fg2); }
+.stat .v { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1.3; white-space: nowrap; }
+.stat small { display: block; font-size: 12px; color: var(--fg2); font-variant-numeric: tabular-nums; }
+.stat.blue { background: var(--blue-light); } .stat.blue .v { color: var(--blue-mid); }
+.stat.green{ background: var(--green-light); } .stat.green .v{ color: var(--green); }
+.stat.gold { background: var(--gold-light); } .stat.gold .v { color: var(--gold); }
+.stat.red  { background: var(--red-light); }  .stat.red .v  { color: var(--red); }
+.stats2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+@media (max-width: 560px) { .stats2 { grid-template-columns: 1fr; } .stat .v { font-size: 21px; } }
+
+/* ── horizontal bars ── */
+.hb { display: flex; flex-direction: column; gap: 10px; }
+.hb-row { display: grid; grid-template-columns: 130px 1fr 110px; gap: 12px; align-items: center; font-size: 13.5px; }
+.hb-row .name { font-weight: 600; }
+.hb-row .name small { display: block; font-weight: 400; color: var(--fg2); font-size: 12px; }
+.hb-track { position: relative; height: 22px; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; }
+.hb-fill { position: absolute; top: 0; bottom: 0; left: 0; width: 0; border-radius: 6px; background: var(--blue-mid); transition: width 1s cubic-bezier(.16,1,.3,1), left 1s cubic-bezier(.16,1,.3,1); }
+.hb-fill.range { background: linear-gradient(90deg, var(--blue-light), var(--blue-mid)); }
+.hb-row .amt { text-align: right; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.limit { position: absolute; top: -6px; bottom: -6px; width: 2px; background: var(--red); z-index: 2; }
+.limit-lab { position: absolute; top: -22px; transform: translateX(-50%); font-size: 11px; font-weight: 700; color: var(--red); white-space: nowrap; }
+.hb-axis { display: grid; grid-template-columns: 130px 1fr 110px; gap: 12px; font-size: 11.5px; color: var(--fg2); }
+.hb-axis div:nth-child(2) { display: flex; justify-content: space-between; }
+@media (max-width: 560px) {
+  .hb-row, .hb-axis { grid-template-columns: 1fr 96px; }
+  .hb-row .hb-track { grid-column: 1 / -1; grid-row: 2; }
+  .hb-axis div:first-child, .hb-axis div:last-child { display: none; }
+  .hb-axis div:nth-child(2) { grid-column: 1 / -1; }
 }
-.checklist h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  margin-bottom: 16px; color: var(--fg);
+
+/* ── zones ── */
+.zones { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.zone { border-radius: 14px; padding: 16px 18px; border: 1.5px solid var(--c); background: var(--cl);
+  opacity: 0; transform: translateY(12px); transition: opacity .45s, transform .45s; }
+.zone.visible { opacity: 1; transform: none; }
+.zone .lab { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--c); margin-bottom: 4px; }
+.zone h3 { color: var(--fg); font-size: 14px; margin-bottom: 4px; }
+.zone p { font-size: 13.5px; color: var(--fg2); margin: 0; line-height: 1.55; }
+.z-red { --c: var(--red); --cl: var(--red-light); } .z-blue { --c: var(--blue-mid); --cl: var(--blue-light); } .z-green { --c: var(--green); --cl: var(--green-light); }
+@media (max-width: 600px) { .zones { grid-template-columns: 1fr; } }
+
+/* ── not covered chips ── */
+.nc { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-top: 14px; }
+.nc span { padding: 7px 14px; border-radius: 999px; font-size: 13px; font-weight: 600; background: var(--red-light); color: var(--red); border: 1.5px solid var(--red);
+  opacity: 0; transform: scale(.8); transition: opacity .35s, transform .45s cubic-bezier(.34,1.56,.64,1); }
+.nc span.visible { opacity: 1; transform: none; }
+.nc span::before { content: "✗ "; }
+
+/* ── price ladder ── */
+.ladder { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items: end; }
+.step { border-radius: 12px 12px 6px 6px; padding: 12px 10px; text-align: center; font-size: 13px; color: var(--fg2); background: var(--bg); border: 1.5px solid var(--border);
+  opacity: 0; transform: translateY(14px); transition: opacity .45s, transform .55s cubic-bezier(.16,1,.3,1); display: flex; flex-direction: column; justify-content: flex-end; }
+.step.visible { opacity: 1; transform: none; }
+.step b { display: block; color: var(--fg); font-family: 'Space Grotesk', sans-serif; font-size: 14px; }
+.step.s1 { border-color: var(--green); background: var(--green-light); }
+.step.s2 { border-color: var(--blue-mid); background: var(--blue-light); }
+.step.s3 { border-color: var(--gold); background: var(--gold-light); }
+.ladder-lab { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; text-align: center; font-size: 11.5px; color: var(--fg2); margin-top: 6px; font-weight: 600; }
+.tip { margin-top: 16px; display: flex; gap: 12px; align-items: center; padding: 12px 16px; border-radius: 12px; background: var(--blue-light); font-size: 14px;
+  opacity: 0; transform: translateX(-10px); transition: opacity .45s, transform .45s; }
+.tip.visible { opacity: 1; transform: none; }
+.tip .flag { font-size: 24px; }
+.tip b { color: var(--blue-mid); }
+
+/* ── budgets ── */
+.tabs { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+.tabs button { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 13px; padding: 8px 14px; border-radius: 10px; cursor: pointer;
+  border: 1.5px solid var(--border); background: var(--bg); color: var(--fg2); transition: background .2s, color .2s, border-color .2s; }
+.tabs button.on { background: #2e5fa3; border-color: #2e5fa3; color: #fff; }
+.tabs button:focus-visible { outline: 2px solid var(--blue-mid); outline-offset: 2px; }
+.bud-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
+.bud-head b { font-family: 'Space Grotesk', sans-serif; font-size: 15px; }
+.bud-head span { font-size: 13px; color: var(--fg2); }
+.drain { height: 34px; display: flex; border-radius: 10px; overflow: hidden; border: 1.5px solid var(--border); background: var(--bg); }
+.drain div { width: 0; transition: width .6s cubic-bezier(.16,1,.3,1); border-right: 1px solid rgba(255,255,255,.5); }
+.drain .save { background: var(--green); border-right: none; }
+.bud-list { margin-top: 12px; display: flex; flex-direction: column; }
+.bud-row { display: grid; grid-template-columns: 14px 1fr auto; gap: 10px; align-items: center; padding: 7px 2px; font-size: 13.5px; border-bottom: 1px solid var(--border); font-variant-numeric: tabular-nums;
+  opacity: 0; transform: translateX(-8px); transition: opacity .3s, transform .3s; }
+.bud-row.visible { opacity: 1; transform: none; }
+.bud-row i { width: 12px; height: 12px; border-radius: 3px; }
+.bud-row .a { font-weight: 600; color: var(--red); }
+.bud-row.total { border-bottom: none; font-weight: 700; }
+.bud-row.total .a { color: var(--green); font-size: 16px; }
+.bud-calc { font-size: 12.5px; color: var(--fg2); text-align: center; margin-top: 8px; font-variant-numeric: tabular-nums; }
+
+/* ── children ── */
+.kids { display: flex; flex-direction: column; gap: 10px; }
+.kid { display: grid; grid-template-columns: 150px 1fr; gap: 14px; align-items: center; padding: 12px 14px; border-radius: 12px; border: 1.5px solid var(--border); background: var(--bg2);
+  opacity: 0; transform: translateX(-10px); transition: opacity .45s, transform .45s; }
+.kid.visible { opacity: 1; transform: none; }
+.kid .t { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 14px; }
+.kid .t small { display: block; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 13px; margin-top: 2px; }
+.kid.free .t small { color: var(--green); } .kid.pricey .t small { color: var(--red); } .kid.mid .t small { color: var(--gold); }
+.kid p { font-size: 13.5px; color: var(--fg2); margin: 0; line-height: 1.55; }
+.salary-eat { margin-top: 14px; }
+.se-track { position: relative; height: 28px; border-radius: 8px; background: var(--blue-light); border: 1.5px solid var(--border); overflow: hidden; }
+.se-min, .se-max { position: absolute; top: 0; bottom: 0; left: 0; width: 0; transition: width 1.1s cubic-bezier(.16,1,.3,1); }
+.se-max { background: rgba(194,43,43,.35); } .se-min { background: var(--red); }
+.se-legend { display: flex; justify-content: space-between; font-size: 12px; color: var(--fg2); margin-top: 6px; }
+@media (max-width: 560px) { .kid { grid-template-columns: 1fr; gap: 4px; } }
+
+/* ── 3a ── */
+.p3 { display: grid; grid-template-columns: 1fr auto 1fr; gap: 10px; align-items: center; }
+.p3 .arr { font-size: 22px; color: var(--fg2); }
+.chip-dl { display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; padding: 8px 14px; border-radius: 10px;
+  background: var(--gold-light); border: 1.5px solid var(--gold); color: var(--gold); font-weight: 700; font-size: 13.5px; font-family: 'Space Grotesk', sans-serif;
+  opacity: 0; transform: scale(.9); transition: opacity .4s, transform .45s cubic-bezier(.34,1.56,.64,1); }
+.chip-dl.visible { opacity: 1; transform: none; }
+@media (max-width: 480px) { .p3 { grid-template-columns: 1fr; } .p3 .arr { transform: rotate(90deg); justify-self: center; } }
+
+/* ── next article ── */
+.next { display: flex; justify-content: space-between; align-items: center; gap: 16px; background: var(--bg2); border: 1.5px solid var(--border); border-radius: 14px; padding: 20px 24px; transition: border-color .25s, box-shadow .25s; }
+.next:hover { border-color: var(--blue-mid); box-shadow: var(--shadow-md); }
+.next small { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--fg2); margin-bottom: 4px; }
+.next b { font-family: 'Space Grotesk', sans-serif; font-size: 16px; }
+.next span { font-size: 22px; color: var(--blue-mid); }
+
+/* ── article 23 extras ── */
+.rate-chip { display: inline-block; margin-left: 6px; font-size: 11.5px; font-weight: 700; padding: 1px 8px; border-radius: 999px; background: var(--red-light); color: var(--red); font-family: 'Space Grotesk', sans-serif; }
+.mvse { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
+.mvse div { border-radius: 12px; padding: 12px 14px; font-size: 13.5px; color: var(--fg2); border: 1.5px solid var(--border); background: var(--bg); }
+.mvse b { display: block; font-family: 'Space Grotesk', sans-serif; color: var(--fg); font-size: 14px; margin-bottom: 2px; }
+.levers { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.lever { border-radius: 14px; padding: 16px 18px; border: 1.5px solid var(--border); background: var(--bg2); border-top: 4px solid var(--c);
+  opacity: 0; transform: translateY(12px); transition: opacity .45s, transform .45s; }
+.lever.visible { opacity: 1; transform: none; }
+.lever h3 { color: var(--fg); font-size: 15px; margin-bottom: 4px; }
+.lever .amt { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--c); font-size: 18px; margin-bottom: 6px; }
+.lever p { font-size: 13.5px; color: var(--fg2); margin: 0 0 6px; line-height: 1.55; }
+.lever .save { font-size: 13px; font-weight: 700; color: var(--green); margin: 0; }
+@media (max-width: 580px) { .levers, .mvse { grid-template-columns: 1fr; } }
+.calc-box { margin-top: 16px; background: var(--bg); border-radius: 12px; padding: 14px 16px; }
+.slider { margin-bottom: 12px; }
+.slider label { font-size: 12.5px; color: var(--fg2); display: flex; justify-content: space-between; gap: 10px; }
+.slider label b { font-family: 'Space Grotesk', sans-serif; color: var(--fg); font-size: 15px; font-variant-numeric: tabular-nums; }
+.slider input { width: 100%; accent-color: var(--blue-mid); }
+.years5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-top: 10px; }
+.years5 span { text-align: center; border-radius: 8px; padding: 8px 2px; font-size: 12px; font-weight: 600; background: var(--blue-light); color: var(--fg); border: 1.5px solid var(--blue-mid); font-variant-numeric: tabular-nums;
+  opacity: 0; transform: translateY(6px); transition: opacity .35s, transform .35s; }
+.years5 span small { display: block; font-weight: 500; font-size: 11px; color: var(--fg2); }
+.years5 span.visible { opacity: 1; transform: none; }
+.lock { margin-top: 10px; text-align: center; font-size: 13px; font-weight: 700; color: var(--gold); font-family: 'Space Grotesk', sans-serif; }
+@media (max-width: 480px) { .years5 { grid-template-columns: repeat(3, 1fr); } }
+.combo { display: flex; height: 34px; border-radius: 10px; overflow: hidden; border: 1.5px solid var(--border); background: var(--bg); }
+.combo div { width: 0; transition: width .8s cubic-bezier(.16,1,.3,1); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 11.5px; font-weight: 700; white-space: nowrap; overflow: hidden; }
+.combo-legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12.5px; color: var(--fg2); margin-top: 8px; }
+.combo-legend span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; background: var(--c); }
+.result { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+.result div { text-align: center; border-radius: 12px; padding: 12px 8px; background: var(--green-light); }
+.result b { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 22px; color: var(--green); font-variant-numeric: tabular-nums; }
+.result small { font-size: 12px; color: var(--fg2); }
+.tools { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+.tools span { padding: 8px 14px; border-radius: 999px; font-size: 13px; font-weight: 600; background: var(--green-light); color: var(--green); border: 1.5px solid var(--green);
+  opacity: 0; transform: scale(.85); transition: opacity .35s, transform .45s cubic-bezier(.34,1.56,.64,1); }
+.tools span.visible { opacity: 1; transform: none; }
+.mort { display: flex; height: 40px; border-radius: 10px; overflow: hidden; border: 1.5px solid var(--border); background: var(--bg); }
+.mort div { width: 0; transition: width .9s cubic-bezier(.16,1,.3,1); display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; font-size: 11px; font-weight: 700; white-space: nowrap; overflow: hidden; line-height: 1.2; }
+.mort-legend { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; font-size: 12.5px; color: var(--fg2); }
+.mort-legend div { border-left: 4px solid var(--c); padding-left: 8px; }
+.mort-legend b { display: block; color: var(--fg); font-variant-numeric: tabular-nums; }
+@media (max-width: 520px) { .mort-legend { grid-template-columns: 1fr; } }
+.switch { display: grid; grid-template-columns: 1fr auto 1fr; gap: 10px; align-items: center; margin-top: 16px; }
+.switch div { border-radius: 12px; padding: 12px 14px; font-size: 13px; color: var(--fg2); }
+.switch .now { background: var(--blue-light); } .switch .after { background: var(--gold-light); }
+.switch b { display: block; font-family: 'Space Grotesk', sans-serif; color: var(--fg); font-size: 14px; margin-bottom: 2px; }
+.switch .arr { font-size: 22px; color: var(--fg2); }
+@media (max-width: 520px) { .switch { grid-template-columns: 1fr; } .switch .arr { transform: rotate(90deg); justify-self: center; } }
+.props { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
+.pc { border-radius: 12px; padding: 12px 14px; border: 1.5px solid var(--border); background: var(--bg2); font-size: 13px; color: var(--fg2);
+  opacity: 0; transform: translateY(10px); transition: opacity .4s, transform .4s; }
+.pc.visible { opacity: 1; transform: none; }
+.pc b { display: block; color: var(--fg); font-size: 13.5px; }
+.pc .p { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--blue-mid); font-size: 14px; margin-top: 4px; }
+@media (max-width: 520px) { .props { grid-template-columns: 1fr; } }
+.qs3 { display: flex; flex-direction: column; gap: 10px; }
+.q3 { display: flex; gap: 14px; align-items: flex-start; padding: 14px 16px; border-radius: 12px; border: 1.5px solid var(--border); background: var(--bg2);
+  opacity: 0; transform: translateX(-10px); transition: opacity .45s, transform .45s; }
+.q3.visible { opacity: 1; transform: none; }
+.q3 .ic { font-size: 22px; }
+.q3 h3 { color: var(--fg); font-size: 14.5px; margin-bottom: 3px; }
+.q3 p { font-size: 13.5px; color: var(--fg2); margin: 0; line-height: 1.55; }
+.note-line { font-size: 13.5px; color: var(--fg2); margin-top: 12px; }
+
+/* ── article 25 extras ── */
+.seg { display: inline-flex; gap: 6px; margin: 4px 0 12px; }
+.seg button { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 13px; padding: 7px 14px; border-radius: 10px; cursor: pointer;
+  border: 1.5px solid var(--border); background: var(--bg2); color: var(--fg2); transition: background .2s, color .2s, border-color .2s; }
+.seg button.on { background: #2e5fa3; border-color: #2e5fa3; color: #fff; }
+.seg button:focus-visible { outline: 2px solid var(--blue-mid); outline-offset: 2px; }
+.result.blue div { background: var(--blue-light); } .result.blue b { color: var(--blue-mid); }
+.ages { margin-top: 6px; }
+.age-track { display: flex; height: 40px; border-radius: 10px; overflow: hidden; border: 1.5px solid var(--border); background: var(--bg); }
+.age-track div { width: 0; transition: width 1s cubic-bezier(.16,1,.3,1); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 12px; font-weight: 700; white-space: nowrap; overflow: hidden; }
+.age-axis { position: relative; height: 18px; font-size: 12px; color: var(--fg2); margin-top: 6px; font-variant-numeric: tabular-nums; }
+.age-axis span { position: absolute; transform: translateX(-50%); font-weight: 600; }
+.age-axis span.first { transform: none; } .age-axis span.last { transform: translateX(-100%); }
+.zones .z-gold, .z-gold { --c: var(--gold); --cl: var(--gold-light); }
+.zone .big { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--c); font-size: 17px; margin-bottom: 4px; }
+.grow-wrap { position: relative; margin-top: 8px; }
+.grow { position: relative; height: 200px; display: flex; align-items: flex-end; gap: 3px; border-bottom: 1.5px solid var(--border); }
+.grow .col { flex: 1; height: 100%; display: flex; flex-direction: column-reverse; }
+.grow .col div { height: 0; transition: height .5s cubic-bezier(.16,1,.3,1); }
+.grow .col .d { background: #2e5fa3; border-radius: 0 0 2px 2px; }
+.grow .col .g { background: #1a7a4a; border-radius: 3px 3px 0 0; }
+.goal { position: absolute; left: 0; right: 0; border-top: 2px dashed var(--red); z-index: 2; opacity: 0; transition: opacity .4s; }
+.goal.visible { opacity: 1; }
+.goal span { position: absolute; right: 0; top: -20px; font-size: 11.5px; font-weight: 700; color: var(--red); background: var(--bg2); padding: 0 4px; font-family: 'Space Grotesk', sans-serif; }
+.grow-x { display: flex; justify-content: space-between; font-size: 11.5px; color: var(--fg2); margin-top: 5px; }
+.prof-lines { margin: 10px 0 12px; padding: 0; list-style: none; }
+.prof-lines li { font-size: 14px; padding: 4px 0 4px 18px; position: relative; }
+.prof-lines li::before { content: "›"; position: absolute; left: 4px; color: var(--blue-mid); font-weight: 700; }
+.dest { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+.dest span { padding: 7px 14px; border-radius: 999px; font-size: 13px; font-weight: 600; border: 1.5px solid var(--green); background: var(--green-light); color: var(--green);
+  opacity: 0; transform: scale(.85); transition: opacity .35s, transform .45s cubic-bezier(.34,1.56,.64,1); }
+.dest span.no { border-color: var(--red); background: var(--red-light); color: var(--red); }
+.dest span.mid { border-color: var(--gold); background: var(--gold-light); color: var(--gold); }
+.dest span.visible { opacity: 1; transform: none; }
+.illu { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--gold); border: 1.5px solid var(--gold); border-radius: 999px; padding: 2px 10px; margin-bottom: 10px; font-family: 'Space Grotesk', sans-serif; }
+.intro { font-size: 15.5px; color: var(--fg2); }
+.note.info { background: var(--blue-light); border-left: 4px solid var(--blue-mid); }
+.note.info strong { color: var(--blue-mid); }
+/* ── MISTAKES ── */
+.mistakes { display: flex; flex-direction: column; gap: 12px; margin-top: 12px; }
+.mistake-item {
+  background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px; padding: 20px 24px; box-shadow: var(--shadow);
+  display: flex; gap: 18px; align-items: flex-start;
+  opacity: 0; transform: translateX(-14px); transition: opacity .45s ease, transform .45s ease, box-shadow .2s;
 }
-.checklist-item {
-  display: flex; align-items: flex-start; gap: 12px;
-  padding: 11px 0;
-  border-bottom: 1px solid var(--border);
-  cursor: pointer;
-}
-.checklist-item:last-of-type { border-bottom: none; }
-.check-box {
-  width: 22px; height: 22px;
-  border: 2px solid var(--blue);
-  border-radius: 6px; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  transition: all .2s; margin-top: 2px;
-}
-.check-box.checked { background: var(--blue); border-color: var(--blue); }
-.check-box.checked::after { content: "✓"; color: white; font-size: 13px; font-weight: 700; }
-.checklist-item.done span { text-decoration: line-through; color: var(--fg2); }
-.checklist-item span { font-size: 14.5px; color: var(--fg); font-family: 'Inter', sans-serif; }
-.progress-bar { height: 5px; background: var(--border); border-radius: 3px; margin-top: 16px; }
-.progress-fill { height: 100%; background: var(--green); border-radius: 3px; transition: width .4s ease; }
-.progress-label { font-size: 12px; color: var(--fg2); margin-top: 6px; font-family: 'Inter', sans-serif; }
+.mistake-item.visible { opacity: 1; transform: translateX(0); }
+.mistake-item:hover { box-shadow: var(--shadow-md); }
+.mistake-number { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; color: var(--red); line-height: 1; flex-shrink: 0; min-width: 32px; opacity: .25; }
+.mistake-content h3 { color: var(--red); font-size: 15px; margin-bottom: 6px; }
+.mistake-content p { font-size: 14.5px; color: var(--fg2); margin: 0; line-height: 1.6; }
 
 /* ── FAQ ── */
-.faq-item {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  margin-bottom: 8px;
-  overflow: hidden;
-  transition: border-color .2s;
-}
-.faq-item.open { border-color: var(--blue); }
-.faq-q {
-  padding: 16px 20px;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 14px; font-weight: 600;
-  cursor: pointer;
-  display: flex; justify-content: space-between; align-items: center;
-  gap: 12px; color: var(--fg);
-  background: transparent;
-}
-.faq-arrow { color: var(--blue); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
+.faq-item { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; margin-bottom: 8px; overflow: hidden; transition: border-color .2s; }
+.faq-item.open { border-color: var(--blue-mid); }
+.faq-q { padding: 16px 20px; font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; color: var(--fg); user-select: none; }
+.faq-arrow { color: var(--blue-mid); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
 .faq-item.open .faq-arrow { transform: rotate(180deg); }
-.faq-a {
-  display: none;
-  padding: 0 20px 16px;
-  font-size: 14px; color: var(--fg2); line-height: 1.65;
-  font-family: 'Inter', sans-serif;
-}
-.faq-item.open .faq-a { display: block; }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .35s ease; font-size: 14px; color: var(--fg2); line-height: 1.65; padding: 0 20px; }
+.faq-item.open .faq-a { max-height: 400px; padding: 0 20px 16px; }
 
-/* ── CTA ── */
-.cta-box {
-  background: var(--blue);
-  border-radius: 16px;
-  padding: 32px 36px;
-  text-align: center;
-}
-.cta-box p {
-  color: rgba(255,255,255,.8);
-  font-size: 15px; margin-bottom: 20px;
-}
-.cta-btn {
-  background: var(--gold);
-  color: #fff;
-  padding: 13px 28px;
-  border-radius: 10px;
-  text-decoration: none;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  display: inline-block;
-  transition: opacity .2s;
-}
-.cta-btn:hover { opacity: .88; }
-
-/* ── SOURCES ── */
-.sources {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  padding: 20px 24px;
-}
-.sources h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: .1em; text-transform: uppercase;
-  color: var(--fg2); margin-bottom: 10px;
-}
+/* ── CTA / SOURCES ── */
+.cta-box { background: #1f4080; border-radius: 16px; padding: 32px 36px; text-align: center; }
+.cta-box p { color: rgba(255,255,255,.85); font-size: 15px; margin-bottom: 14px; }
+.cta-box p:last-of-type { margin-bottom: 20px; }
+.cta-btn { background:var(--gold); color:#fff; padding:13px 28px; border-radius:10px; text-decoration:none; font-family:'Space Grotesk',sans-serif; font-size:15px; font-weight:700; display:inline-block; transition:opacity .2s,transform .2s; }
+.cta-btn:hover { opacity:.88; transform:translateY(-1px); }
+.sources { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; padding: 20px 24px; }
+.sources h3 { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--fg2); margin-bottom: 10px; }
 .sources ol { padding-left: 18px; }
-.sources ol li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; }
+.sources li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; }
 
-/* ── FADE IN ── */
-.fade-in { opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
-.fade-in.visible { opacity: 1; transform: translateY(0); }
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
 
 @media (max-width: 600px) {
-  h1 { font-size: 24px; }
-  .situation-cards { grid-template-columns: 1fr; }
+  body { padding-top: 36px; }
+  .takeaways { padding: 22px 20px; }
   .cta-box { padding: 24px 20px; }
-  .takeaways { padding: 20px 20px; }
+  .card { padding: 18px 18px; }
+  .checklist { padding: 18px 16px; }
+  .tl-pt { width: 92px; }
+  .tl-pt.first .what { visibility: hidden; }
 }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; } }
 </style>
 </head>
 <body>
-
 <div id="progress-bar"></div>
-
-<header class="hero">
-  <div class="hero-bg"></div>
-  
-  <div class="hero-gradient"></div>
-  <div class="hero-content">
-    <div class="hero-tag" id="heroTag">
-      <span class="hero-tag-pill">FIRE · Switzerland</span>
-      <span>Financial Independence · Early Retirement</span>
-    </div>
-    <h1 class="hero-title" id="heroTitle">Early Retirement in Switzerland: What Expats Need to Know About FIRE</h1>
-    <p class="hero-subtitle" id="heroSubtitle">High salaries make FIRE faster here than almost anywhere in Europe. But Pillar 2, wealth tax, and canton strategy change the playbook completely.</p>
-    <div class="hero-meta" id="heroMeta">
-      <span>Updated August 2026</span>
-      <div class="hero-meta-divider"></div>
-      <span>5 min read</span>
-    </div>
-  </div>
-</header>
-
 <div class="article">
 
+  <div class="article-header">
+    <p class="article-meta">Retirement · FIRE · 6 min read</p>
+    <h1>Early Retirement in Switzerland: What Expats Need to Know About FIRE</h1>
+    <div class="header-rule"></div>
+  </div>
+
+  <p class="intro reveal">FIRE stands for <strong>Financial Independence, Retire Early</strong>: saving enough to live off your investments and stop working well before 65.</p>
+
+  <div class="quick-answer reveal">
+    <p><strong>Quick Answer: In Switzerland, FIRE needs two pots.</strong> Free capital to live on until 60, and your pension pillars (Pillar 2 and Pillar 3a), which only unlock from 60 — or earlier if you leave the country. The plan changes a lot depending on whether you stay or go.</p>
+  </div>
+
   <div class="takeaways">
-    <p class="takeaways-label">Key Takeaways</p>
-    <div class="takeaway-item" data-delay="0"><span class="takeaway-num">01</span><span class="takeaway-text">The FIRE rule: accumulate 25× your annual expenses. In Geneva on CHF 60,000/year that is CHF 1,500,000</span></div>
-    <div class="takeaway-item" data-delay="90"><span class="takeaway-num">02</span><span class="takeaway-text">Pillar 2 is locked until age 60 — unless you permanently leave Switzerland, where it can be withdrawn at any age</span></div>
-    <div class="takeaway-item" data-delay="180"><span class="takeaway-num">03</span><span class="takeaway-text">Multiple Pillar 3a accounts (up to 5) allow staggered withdrawals — each taxed separately at a lower rate</span></div>
-    <div class="takeaway-item" data-delay="270"><span class="takeaway-num">04</span><span class="takeaway-text">The canton where you live at withdrawal determines the tax — Schwyz and Appenzell are significantly cheaper than Geneva</span></div>
-    <div class="takeaway-item" data-delay="360"><span class="takeaway-num">05</span><span class="takeaway-text">Geneva wealth tax on CHF 2,000,000 in liquid assets: ~CHF 10,000–14,000/year — a permanent cost to include in FIRE calculations</span></div>
-    <div class="takeaway-item" data-delay="450"><span class="takeaway-num">06</span><span class="takeaway-text">A couple earning CHF 300,000 combined and spending CHF 120,000/year can reach FIRE in 10–12 years</span></div>
+    <h2>Key Takeaways</h2>
+    <ul>
+      <li class="takeaway-item" data-delay="0">The classic target is 25 times what you spend a year: spending CHF&nbsp;60,000 (CHF&nbsp;5,000 a month) means you need CHF&nbsp;1,500,000</li>
+      <li class="takeaway-item" data-delay="100">Moving to the UK or the US lets you withdraw your whole Pillar 2; moving to an EU country and working there leaves the mandatory part locked until retirement</li>
+      <li class="takeaway-item" data-delay="200">Withdrawing Pillar 2 and Pillar 3a in different years cuts the tax: in Geneva, splitting CHF&nbsp;500,000 over two years saves about CHF&nbsp;5,900</li>
+      <li class="takeaway-item" data-delay="300">Withdrawal tax depends on the canton you live in on the day you withdraw: CHF&nbsp;250,000 costs about CHF&nbsp;15,500 in Geneva and about CHF&nbsp;11,500 in Zug</li>
+      <li class="takeaway-item" data-delay="400">If you stay in Switzerland, you keep paying wealth tax — and AHV contributions (the state pension) until 65</li>
+    </ul>
   </div>
 
-  <h2 class="reveal">The 25× Rule — Where to Start</h2>
-  <p class="reveal">The core FIRE rule: accumulate 25 times your annual expenses. With a 4% annual withdrawal rate, the capital lasts indefinitely (statistically). The good news in Geneva: salaries are very high compared to the rest of Europe. A couple earning CHF 300,000 combined, living on CHF 120,000/year, saves CHF 180,000/year — and can reach FIRE in 10 to 12 years.</p>
-
-  <!-- Interactive FIRE Calculator -->
-  <div class="fire-calc reveal">
-    <h3>Your FIRE Number — Geneva Calculator</h3>
-    <p class="fire-calc-sub">Drag to set your annual expenses</p>
-    <div class="fire-slider-label">
-      <span>Annual expenses</span>
-      <span id="expenseLabel">CHF 80,000</span>
-    </div>
-    <input type="range" class="fire-slider" min="40000" max="200000" step="5000" value="80000" id="expenseSlider">
-    <div class="fire-result">
-      <div class="fire-result-box">
-        <div class="fire-result-label">FIRE Number (25×)</div>
-        <div class="fire-result-value" id="fireNumber">CHF 2,000,000</div>
+  <!-- 1 RULE -->
+  <div class="card">
+    <div class="card-head"><span class="card-num">#1</span><h2>The 25× Rule — Where to Start</h2></div>
+    <p>The most widely used FIRE rule: save 25 times your annual spending. It comes from US studies: withdrawing 4% of your capital a year, adjusted for inflation, made the money last at least 30 years in the vast majority of historical scenarios. Since 1 ÷ 4% = 25, the target is 25×.</p>
+    <p>If you stop at 45, the money has to last 40 years or more. That's why many people use a more cautious 3.5% withdrawal rate — which raises the target to about 28.6× your annual spending.</p>
+    <div class="viz" id="vfire">
+      <div class="viz-label">Your FIRE target</div>
+      <div class="slider">
+        <label for="exp">Annual spending <b id="exp-val">CHF 60,000</b></label>
+        <input type="range" id="exp" min="30000" max="200000" step="5000" value="60000" aria-label="Annual spending">
       </div>
-      <div class="fire-result-box">
-        <div class="fire-result-label">Monthly withdrawal (4%)</div>
-        <div class="fire-result-value" id="monthlyWithdrawal">CHF 6,667</div>
+      <div class="seg" role="group" aria-label="Withdrawal rate">
+        <button type="button" class="on" data-r="0.04" aria-pressed="true">4% a year (25×)</button>
+        <button type="button" data-r="0.035" aria-pressed="false">3.5% a year (28.6×)</button>
       </div>
+      <div class="result blue">
+        <div><b id="f-target">CHF 0</b><small>capital you need</small></div>
+        <div><b id="f-month">CHF 0</b><small>you can spend per month</small></div>
+      </div>
+      <p class="calc-line" id="f-calc"></p>
     </div>
   </div>
 
-  <h2 class="reveal">The Pillar 2 Problem — The Biggest Obstacle</h2>
-  <p class="reveal">Pillar 2 — the mandatory employer pension fund — accumulates significant capital over a career, but is <span class="hl-red">locked until 5 years before the legal retirement age</span> (currently age 60 for early withdrawal as capital). For those wanting to retire at 45 or 50, Pillar 2 is not immediately available. You need liquid capital outside of Pillar 2 to cover the interim years.</p>
-
-  <div class="timeline reveal">
-    <div class="timeline-item">
-      <div class="timeline-dot locked"></div>
-      <div class="timeline-content locked">
-        <h3>Before age 60 — Locked (if staying in Switzerland)</h3>
-        <p>Capital remains in a vested benefits account (compte de libre passage). Continues to grow with investment returns. Cannot be accessed.</p>
-      </div>
+  <!-- 2 PILLAR 2 -->
+  <div class="card c-red">
+    <div class="card-head"><span class="card-num">#2</span><h2>The Pillar 2 Problem — The Biggest Obstacle</h2></div>
+    <p>Pillar 2 is your employer's compulsory pension fund: you and your employer pay into it every month. Over a career it builds up a lot of money — but that money is locked.</p>
+    <p>When you stop working before retirement age, the balance moves to a <strong>vested benefits account</strong> (compte de libre passage) — a holding account at a bank or foundation where the money keeps growing. In Switzerland, you can only withdraw it from age 60 (5 years before the reference age of 65).</p>
+    <div class="viz" id="vages">
+      <div class="viz-label">Retiring at 45 and staying in Switzerland</div>
+      <div class="age-track" id="ages"><div style="background:#b8862a">Your own capital — the “bridge”</div><div style="background:#1a7a4a">Pillars</div></div>
+      <div class="age-axis"><span class="first" style="left:0">Age 45</span><span style="left:75%">60</span><span class="last" style="left:100%">65</span></div>
+      <p class="note-line">That's why anyone stopping at 45 or 50 needs capital outside the pillars to live on until 60. From 60 you can take Pillar 2 as a lump sum (taxed once, at a reduced rate) or as a monthly pension (taxed as income every year) — a choice with a big long-term tax impact.</p>
     </div>
-    <div class="timeline-item">
-      <div class="timeline-dot available"></div>
-      <div class="timeline-content available">
-        <h3>At any age — Available if you permanently leave Switzerland</h3>
-        <p>If you permanently emigrate, you can withdraw the full Pillar 2 balance regardless of age. Many FIRE planners in Switzerland build their exit strategy around this.</p>
-      </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-dot partial"></div>
-      <div class="timeline-content partial">
-        <h3>From age 60 — Available in Switzerland</h3>
-        <p>Can be taken as capital (taxed at reduced rate) or as monthly pension (taxed as income). The choice has significant long-term tax implications.</p>
+    <div class="viz" id="vroutes">
+      <div class="viz-label">Can you withdraw Pillar 2 before 60?</div>
+      <div class="zones">
+        <div class="zone z-red" data-delay="0"><div class="lab">Staying in Switzerland</div><h3>Locked</h3><p>The only exceptions: buying the home you will live in, or starting your own business.</p></div>
+        <div class="zone z-green" data-delay="180"><div class="lab">Moving to the UK or US</div><h3>The whole balance</h3><p>Outside the EU and EFTA (Iceland, Norway, Liechtenstein), you can take everything in cash, at any age.</p></div>
+        <div class="zone z-gold" data-delay="360"><div class="lab">Moving to the EU / EFTA</div><h3>Only part of it</h3><p>If you're compulsorily insured there (for example, because you work), only the amount above the legal minimum comes out. The mandatory part stays locked until retirement.</p></div>
       </div>
     </div>
   </div>
 
-  <h2 class="reveal">Pillar 3a Strategy for FIRE</h2>
-  <p class="reveal">Pillar 3a can be withdrawn 5 years before legal retirement age, when you leave Switzerland, when you buy your primary residence, or when you start self-employment. The key FIRE strategy: open multiple Pillar 3a accounts — up to 5 — and contribute the annual maximum (CHF 7,258 in 2026).</p>
-
-  <div class="green-box reveal">
-    <p>✅ <strong>The staggered withdrawal strategy:</strong> At the point of early retirement, withdraw one Pillar 3a account per year over multiple years. Each account is taxed separately — keeping the taxable amount per year lower and therefore the tax rate lower. The difference between withdrawing CHF 200,000 in one year vs CHF 40,000/year over 5 years can be CHF 10,000–20,000 in total tax saved.</p>
-  </div>
-
-  <h2 class="reveal">The Canton Strategy — Where You Live at Withdrawal Matters</h2>
-  <p class="reveal">The canton where you are resident at the moment of withdrawal determines the tax rate on Pillar 2 and 3a capital. This is one of the most underused strategies in Swiss FIRE planning.</p>
-
-  <div class="canton-grid reveal">
-    <div class="canton-card expensive">
-      <p class="canton-label">❌ High withdrawal tax</p>
-      <p class="canton-name">Geneva</p>
-      <p class="canton-rate">~12–15%</p>
-      <p class="canton-body">On CHF 300,000 withdrawal: ~CHF 36,000–45,000 in tax</p>
+  <!-- 3 PILLAR 3A -->
+  <div class="card c-green">
+    <div class="card-head"><span class="card-num">#3</span><h2>Pillar 3a — The FIRE Strategy</h2></div>
+    <p>Pillar 3a is private pension saving with a tax deduction (up to CHF&nbsp;7,258 in 2026 — about CHF&nbsp;605 a month — if you have a Pillar 2). The withdrawal rules are the same as for Pillar 2, with one advantage: when you leave Switzerland, you can take out all of your 3a, even if you move to the EU.</p>
+    <p>Note: once you stop working, you can no longer pay in — Pillar 3a requires earned income.</p>
+    <div class="viz" id="vacc">
+      <div class="viz-label">Why several accounts: one withdrawal a year</div>
+      <p class="note-line" style="margin:0 0 4px">Each 3a account must be withdrawn in full, in one go. With several accounts you can take one a year. The law sets no limit on the number of accounts; five is practical, because it fits one a year between 60 and 65.</p>
+      <div class="years5" id="acc5">
+        <span data-delay="0">Account 1<small>age 60</small></span><span data-delay="120">Account 2<small>age 61</small></span><span data-delay="240">Account 3<small>age 62</small></span><span data-delay="360">Account 4<small>age 63</small></span><span data-delay="480">Account 5<small>age 64</small></span>
+      </div>
     </div>
-    <div class="canton-card cheap">
-      <p class="canton-label">✅ Low withdrawal tax</p>
-      <p class="canton-name">Schwyz</p>
-      <p class="canton-rate">~4–6%</p>
-      <p class="canton-body">On CHF 300,000 withdrawal: ~CHF 12,000–18,000 in tax</p>
-    </div>
-    <div class="canton-card cheap">
-      <p class="canton-label">✅ Low withdrawal tax</p>
-      <p class="canton-name">Appenzell</p>
-      <p class="canton-rate">~4–5%</p>
-      <p class="canton-body">Among the lowest rates in Switzerland for pension capital withdrawals</p>
-    </div>
-    <div class="canton-card expensive">
-      <p class="canton-label">❌ High withdrawal tax</p>
-      <p class="canton-name">Vaud / Basel</p>
-      <p class="canton-rate">~10–13%</p>
-      <p class="canton-body">Similar range to Geneva — worth planning around if possible</p>
+    <div class="viz" id="vstag">
+      <div class="viz-label">How much it saves — Geneva, single, 2026</div>
+      <div class="hb">
+        <div class="hb-row"><span class="name">500,000<small>in one year</small></span><div class="hb-track"><div class="hb-fill" data-w="100" style="background:var(--red)"></div></div><span class="amt" data-n="37051">CHF 0</span></div>
+        <div class="hb-row"><span class="name">2 × 250,000<small>over two years</small></span><div class="hb-track"><div class="hb-fill" data-w="84" style="background:var(--green)"></div></div><span class="amt" data-n="31102">CHF 0</span></div>
+      </div>
+      <p class="calc-line">2 × 15,551 = 31,102 · 37,051 − 31,102 = <b>CHF&nbsp;5,949 saved</b></p>
+      <div class="note warn"><p><strong>Watch out:</strong> withdrawal tax is progressive — the more you take out in one year, the higher the rate. Everything you withdraw in the same calendar year (Pillar 2, Pillar 3a and, if you're married, your spouse's) is added together and taxed as one.</p></div>
+      <div class="note new"><p><strong>Rules unchanged:</strong> in March 2026, Parliament rejected the proposal to raise the tax on these withdrawals.</p></div>
     </div>
   </div>
 
-  <div class="gold-box reveal">
-    <p>💡 <strong>The canton move:</strong> Some expats transfer their Pillar 3a accounts to a provider domiciled in Schwyz or Appenzell — and/or temporarily change residence to a low-tax canton — before withdrawing. The Pillar 3a tax is calculated based on the canton where the <em>account is domiciled</em>, not necessarily where you live. This can save CHF 20,000–40,000 on a large withdrawal.</p>
-  </div>
-
-  <h2 class="reveal">Three FIRE Profiles in Switzerland</h2>
-  <div class="profile-cards reveal">
-    <div class="profile-card">
-      <div class="profile-header">
-        <div class="profile-name">Profile 1 — Single, CHF 150,000 gross</div>
-        <div class="profile-goal">FIRE at 50</div>
+  <!-- 4 CANTON -->
+  <div class="card c-gold">
+    <div class="card-head"><span class="card-num">#4</span><h2>The Canton Strategy — Where You Live on Withdrawal Day</h2></div>
+    <p>If you live in Switzerland when you withdraw, you pay the tax of the canton you live in on that day. The differences between cantons are large.</p>
+    <div class="viz" id="vcant">
+      <div class="viz-label">Tax on a Pillar 2 / 3a withdrawal — single, 2026</div>
+      <div class="seg" role="group" aria-label="Withdrawal amount">
+        <button type="button" data-a="100000" aria-pressed="false">CHF 100,000</button>
+        <button type="button" class="on" data-a="250000" aria-pressed="true">CHF 250,000</button>
+        <button type="button" data-a="500000" aria-pressed="false">CHF 500,000</button>
       </div>
-      <div class="profile-body">
-        <div class="profile-stat"><div class="profile-stat-label">Monthly savings</div><div class="profile-stat-value highlight">CHF 4,500</div></div>
-        <div class="profile-stat"><div class="profile-stat-label">FIRE number</div><div class="profile-stat-value">CHF 1,500,000</div></div>
-        <div class="profile-stat"><div class="profile-stat-label">Time to FIRE</div><div class="profile-stat-value highlight">~16 years</div></div>
-      </div>
-    </div>
-    <div class="profile-card">
-      <div class="profile-header">
-        <div class="profile-name">Profile 2 — Couple, CHF 300,000 combined</div>
-        <div class="profile-goal">FIRE at 48, leave Switzerland</div>
-      </div>
-      <div class="profile-body">
-        <div class="profile-stat"><div class="profile-stat-label">Monthly savings</div><div class="profile-stat-value highlight">CHF 10,000</div></div>
-        <div class="profile-stat"><div class="profile-stat-label">FIRE number</div><div class="profile-stat-value">CHF 2,700,000</div></div>
-        <div class="profile-stat"><div class="profile-stat-label">Time to FIRE</div><div class="profile-stat-value highlight">~15 years</div></div>
-      </div>
-    </div>
-    <div class="profile-card">
-      <div class="profile-header">
-        <div class="profile-name">Profile 3 — "Coast FIRE" at 40</div>
-        <div class="profile-goal">Keep working, but with freedom</div>
-      </div>
-      <div class="profile-body">
-        <div class="profile-stat"><div class="profile-stat-label">Strategy</div><div class="profile-stat-value highlight">Stop contributing</div></div>
-        <div class="profile-stat"><div class="profile-stat-label">Let compound growth</div><div class="profile-stat-value">do the work</div></div>
-        <div class="profile-stat"><div class="profile-stat-label">Freedom gained</div><div class="profile-stat-value highlight">Career change</div></div>
-      </div>
+      <div class="hb" id="cant-bars"></div>
+      <p class="calc-line" id="cant-calc"></p>
+      <p class="viz-note">Federal, cantonal and municipal tax, cantonal capital, no church tax. Source: Federal Tax Administration (ESTV) calculator.</p>
+      <p class="note-line">Zug and Appenzell Innerrhoden are the cheapest in the table at every amount. Mind the name: Appenzell Ausserrhoden is one of the most expensive (7.94% already at CHF&nbsp;100,000).</p>
+      <div class="note warn"><p><strong>Moving canton just to withdraw:</strong> the move has to be real and lasting. If you move back soon after, your old canton may claim the tax.</p></div>
+      <div class="note info"><p style="margin:0"><strong>Leaving the country:</strong> if you already live abroad on withdrawal day, Switzerland charges a withholding tax at the rate of the canton where the foundation holding your money has its seat — not the canton you lived in. That's why some people move their Pillar 3a and vested benefits account to a foundation based in a low-withholding-tax canton before leaving. Depending on the tax treaty with your new country, this tax may be refunded — but your new country may tax the withdrawal.</p></div>
     </div>
   </div>
 
-  <h2 class="reveal">Wealth Tax — The Permanent Annual Cost</h2>
-  <p class="reveal">During the FIRE accumulation phase, wealth tax in Geneva grows as the portfolio grows. With CHF 2,000,000 in liquid assets, the annual wealth tax in Geneva is approximately <span class="hl-red">CHF 10,000–14,000/year</span> — a permanent, compounding cost that must be included in all FIRE calculations.</p>
-  <p class="reveal">Many who reach FIRE in Switzerland choose to leave partly for this reason — eliminating wealth tax by moving to a country without it (Portugal, Spain, Italy, etc.).</p>
-
-  <div class="quote-block reveal">
-    <p class="quote-label">The Swiss FIRE Reality</p>
-    <p class="quote-text">"Geneva's salaries make FIRE faster than almost anywhere in Europe. But if you stay, wealth tax keeps growing with you. Many FIRE planners here build their exit from Switzerland into the plan from day one."</p>
+  <!-- 5 PROFILES -->
+  <div class="card">
+    <div class="card-head"><span class="card-num">#5</span><h2>Three FIRE Profiles in Switzerland</h2></div>
+    <div class="viz" id="vprof" style="margin-top:4px;padding-top:4px;border-top:none">
+      <span class="illu">Illustrative figures</span>
+      <p class="note-line" style="margin:0 0 12px">Assumptions: 5% return a year; profiles 1 and 2 start from zero and save the same amount every year.</p>
+      <div class="tabs" role="tablist" id="prof-tabs">
+        <button type="button" class="on" data-p="0" role="tab" aria-selected="true">Single · stop at 50</button>
+        <button type="button" data-p="1" role="tab" aria-selected="false">Couple · stop at 48</button>
+        <button type="button" data-p="2" role="tab" aria-selected="false">Coast FIRE · 40</button>
+      </div>
+      <div class="bud-head"><b id="p-title"></b></div>
+      <p class="note-line" id="p-def" style="margin:0 0 8px"></p>
+      <ul class="prof-lines" id="p-lines"></ul>
+      <div class="grow-wrap">
+        <div class="grow" id="grow"></div>
+        <div class="goal" id="goal"><span id="goal-lab"></span></div>
+      </div>
+      <div class="grow-x"><span>Year 1</span><span id="gx-end"></span></div>
+      <div class="combo-legend"><span style="--c:#2e5fa3" id="leg-d">Money paid in</span><span style="--c:#1a7a4a">Investment growth</span><span style="--c:var(--red)">Target</span></div>
+      <p class="calc-line" id="p-calc"></p>
+    </div>
   </div>
 
-  <h2 class="reveal">Before You Ask</h2>
-  <div class="faq-list reveal">
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Can I stay in Switzerland after reaching FIRE?<span class="faq-arrow">▾</span></div>
-      <div class="faq-a">Yes — but you must continue paying LAMal health insurance (mandatory for all residents), declare your investment portfolio annually for wealth tax, and be careful about the distinction between active income (taxable) and passive income (investments, dividends — more favourable). Many FIRE expats in Switzerland live on investment returns with no issues, but the wealth tax accumulates.</div>
+  <!-- 6 STAYING -->
+  <div class="card c-red">
+    <div class="card-head"><span class="card-num">#6</span><h2>Staying in Switzerland After FIRE — The Permanent Costs</h2></div>
+    <div class="viz" id="vstay" style="margin-top:4px;padding-top:4px;border-top:none">
+      <div class="zones">
+        <div class="zone z-red" data-delay="0"><div class="lab">Wealth tax</div><div class="big">CHF 10,000–14,000 a year</div><p>On CHF&nbsp;2,000,000 of investments in Geneva (about CHF&nbsp;830–1,170 a month) — and it grows with your portfolio.</p></div>
+        <div class="zone z-blue" data-delay="180"><div class="lab">AHV without a job</div><div class="big">CHF 530–26,500 a year</div><p>The state pension (Pillar 1) stays compulsory until 65, even with no salary. The contribution is based on your assets. Paying avoids gaps that cut your state pension.</p></div>
+        <div class="zone z-gold" data-delay="360"><div class="lab">Health insurance</div><div class="big">Still compulsory</div><p>Basic health insurance (LAMal) is mandatory for every resident, with or without a job.</p></div>
+      </div>
     </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">What happens to Pillar 2 if I do FIRE and stay in Switzerland?<span class="faq-arrow">▾</span></div>
-      <div class="faq-a">The capital is transferred to a vested benefits account (Freizügigkeitsstiftung / compte de libre passage) and remains locked until age 60. It continues to grow with investment returns inside the account. You cannot access it until 60 — unless you permanently leave Switzerland.</div>
+    <div class="viz" id="vwt">
+      <div class="viz-label">In practice, wealth tax raises your FIRE target</div>
+      <div class="result">
+        <div><b id="wt-m">CHF 0</b><small>a month (12,000 ÷ 12)</small></div>
+        <div><b id="wt-t">CHF 0</b><small>more capital needed (12,000 × 25)</small></div>
+      </div>
+      <p class="viz-note">Illustrative: CHF&nbsp;12,000 is the middle of the Geneva range for CHF&nbsp;2,000,000.</p>
     </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Are ETFs a good FIRE vehicle in Switzerland?<span class="faq-arrow">▾</span></div>
-      <div class="faq-a">Yes — Switzerland has no capital gains tax on shares held as private wealth. ETFs and stocks grow entirely tax-free until you sell. The only annual cost is wealth tax on the portfolio value. For US citizens, avoid non-US domiciled ETFs (PFIC rules) — use US-domiciled funds through a US broker instead.</div>
+    <div class="viz" id="vdest">
+      <div class="viz-label">That's why many plan to leave once they reach the target</div>
+      <div class="dest">
+        <span data-delay="0">✓ UK — no annual wealth tax</span>
+        <span data-delay="120">✓ US — no annual wealth tax</span>
+        <span data-delay="240">✓ Portugal — no annual wealth tax</span>
+        <span class="no" data-delay="360">✗ Spain — has a wealth tax</span>
+        <span class="mid" data-delay="480">≈ Italy — 0.2% a year on investments held abroad</span>
+      </div>
     </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">When should I speak with an advisor?<span class="faq-arrow">▾</span></div>
-      <div class="faq-a">Before making any major FIRE decision — especially about Pillar 2 early withdrawal, canton strategy, and investment structure. The tax implications are significant and vary considerably with individual circumstances. A plan made 5–10 years before the target date is far more effective than one made at the last moment.</div>
+  </div>
+
+  <div>
+    <h2 class="reveal">Before You Ask</h2>
+    <div style="margin-top:12px">
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">Are ETFs a good FIRE vehicle in Switzerland?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">Yes. ETFs are exchange-traded funds that bundle hundreds of shares into one purchase. In Switzerland, gains from selling shares and ETFs held as private wealth are tax-free. Dividends, however, count as income, and the whole portfolio counts towards wealth tax. If you buy and sell very often, you may be treated as a professional trader and taxed on your gains.<br><br>For US citizens: avoid ETFs domiciled outside the US. Under the PFIC rules (the US rules for foreign funds), they are taxed punitively in the US. Use US-domiciled funds through a broker that accepts US clients.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">When should I speak with an advisor?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">Before any major decision — especially about withdrawing Pillar 2, changing canton or leaving the country. A plan made 5–10 years before your target date is far more effective than one made at the last minute.</div>
+      </div>
     </div>
   </div>
 
   <div class="cta-box reveal">
-    <p>FIRE in Switzerland rewards those who plan early and plan well. SwissExpatHub can connect you with advisors experienced in Pillar 2 and 3a strategy, canton optimisation, and long-term wealth planning for international professionals in Geneva.</p>
+    <p>FIRE in Switzerland rewards those who plan early. SwissExpatHub can connect you with advisors experienced in Pillar 2 and 3a, canton strategy and long-term wealth planning for international professionals in Geneva.</p>
     <a href="/directory" class="cta-btn">Find Your Advisor →</a>
   </div>
 
   <div class="sources reveal">
-    <p class="sources-label">Sources</p>
+    <h3>Sources</h3>
     <ol>
-      <li>Federal Tax Administration — Early withdrawal Pillar 2 and 3a: estv.admin.ch</li>
-      <li>Federal Social Insurance Office — Retirement and pensions Switzerland: bsv.admin.ch</li>
-      <li>Expat Savvy — FIRE in Switzerland 2026: expat-savvy.ch</li>
-      <li>Taxolution Advisory — Wealth tax by canton 2026: taxolution.ch</li>
+      <li>Federal Tax Administration (ESTV) — Tax calculator for lump-sum pension benefits, 2026: swisstaxcalculator.estv.admin.ch</li>
+      <li>AXA — Pillar 3a withdrawal tax by canton, 2026 (ESTV data): axa.ch</li>
+      <li>ibani — Pillar 2 withdrawal tax by canton and the effect of staggering, 2026: ibani.com</li>
+      <li>ch.ch — Pillar 2 when leaving Switzerland: ch.ch/en/work/old-age-pension/2nd-pillar</li>
+      <li>AHV/IV Information Centre — Leaflet 2.03, contributions of non-employed persons: ahv-iv.ch</li>
+      <li>Moneyland — Withdrawal tax: canton of residence vs foundation seat: moneyland.ch</li>
+      <li>BDO / VZ VermögensZentrum — Parliament rejects higher tax on pension withdrawals (EP27), March 2026</li>
     </ol>
   </div>
 
 </div>
 
 <script>
-  window.addEventListener('scroll', () => {
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    document.getElementById('progress-bar').style.width = Math.min(100, docHeight > 0 ? (scrollTop / docHeight) * 100 : 0) + '%';
-  }, { passive: true });
+window.addEventListener('scroll', () => {
+  const docH = document.documentElement.scrollHeight - window.innerHeight;
+  document.getElementById('progress-bar').style.width = (docH > 0 ? window.scrollY / docH * 100 : 0) + '%';
+});
+window.addEventListener('load', () => {
+  setTimeout(() => document.querySelector('.article-meta').classList.add('visible'), 80);
+  setTimeout(() => document.querySelector('h1').classList.add('visible'), 220);
+  setTimeout(() => document.querySelector('.header-rule').classList.add('visible'), 420);
+});
+function stagger(selector, threshold) {
+  const obs = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), parseInt(e.target.dataset.delay || 0)); obs.unobserve(e.target); }
+  }), { threshold });
+  document.querySelectorAll(selector).forEach(el => obs.observe(el));
+}
+stagger('.takeaway-item', 0.15);
+stagger('.card', 0.04);
+stagger('.reveal', 0.08);
+function onView(id, fn, threshold = 0.4) {
+  const el = document.getElementById(id);
+  const obs = new IntersectionObserver(en => { if (en[0].isIntersecting) { fn(); obs.disconnect(); } }, { threshold });
+  obs.observe(el);
+}
+const num = n => Math.round(n).toLocaleString('en-US');
+const fmt = n => 'CHF ' + num(n);
+function countUp(el, to, ms) {
+  const t0 = performance.now();
+  const step = t => { const k = Math.min(1, (t - t0) / ms), e = 1 - Math.pow(1 - k, 3);
+    el.textContent = fmt(to * e); if (k < 1) requestAnimationFrame(step); };
+  requestAnimationFrame(step);
+}
+const each = (sel, fn) => document.querySelectorAll(sel).forEach(fn);
+const later = (el, cls) => setTimeout(() => el.classList.add(cls), parseInt(el.dataset.delay || 0));
+function segInit(groupSel, fn) {
+  const btns = document.querySelectorAll(groupSel + ' button');
+  btns.forEach(b => b.addEventListener('click', () => {
+    btns.forEach(x => { x.classList.toggle('on', x === b); x.setAttribute(x.getAttribute('role') === 'tab' ? 'aria-selected' : 'aria-pressed', x === b); });
+    fn(b);
+  }));
+}
 
-  window.addEventListener('load', () => {
-    setTimeout(() => document.getElementById('heroTag').classList.add('visible'), 50);
-    setTimeout(() => document.getElementById('heroTitle').classList.add('visible'), 150);
-    setTimeout(() => document.getElementById('heroSubtitle').classList.add('visible'), 280);
-    setTimeout(() => document.getElementById('heroMeta').classList.add('visible'), 420);
+// #1 FIRE target
+const exp = document.getElementById('exp');
+let rate = 0.04, fireReady = false;
+function updFire(animate) {
+  const e = +exp.value, t = e / rate;
+  document.getElementById('exp-val').textContent = fmt(e);
+  const tEl = document.getElementById('f-target'), mEl = document.getElementById('f-month');
+  if (animate) { countUp(tEl, t, 1000); countUp(mEl, e / 12, 1000); }
+  else { tEl.textContent = fmt(t); mEl.textContent = fmt(e / 12); }
+  document.getElementById('f-calc').textContent = rate === 0.04
+    ? `${num(e)} × 25 = ${fmt(t)} · ${num(e)} ÷ 12 = ${fmt(e / 12)} a month`
+    : `${num(e)} ÷ 0.035 = ${fmt(t)} · ${num(e)} ÷ 12 = ${fmt(e / 12)} a month`;
+}
+exp.addEventListener('input', () => { if (fireReady) updFire(false); });
+segInit('#vfire .seg', b => { rate = +b.dataset.r; if (fireReady) updFire(true); });
+onView('vfire', () => { fireReady = true; updFire(true); }, 0.4);
+
+// #2 ages + routes
+onView('vages', () => {
+  const p = document.querySelectorAll('#ages div');
+  setTimeout(() => p[0].style.width = '75%', 100);
+  setTimeout(() => p[1].style.width = '25%', 900);
+}, 0.5);
+onView('vroutes', () => each('#vroutes .zone', z => later(z, 'visible')), 0.25);
+
+// #3 accounts + staggering
+onView('vacc', () => each('#acc5 span', s => later(s, 'visible')), 0.4);
+onView('vstag', () => {
+  document.querySelectorAll('#vstag .hb-fill').forEach((f, i) => setTimeout(() => f.style.width = f.dataset.w + '%', i * 300));
+  document.querySelectorAll('#vstag .amt').forEach((a, i) => setTimeout(() => countUp(a, +a.dataset.n, 1000), i * 300));
+}, 0.4);
+
+// #4 cantons
+const CANT = [['Geneva', [4.13, 6.22, 7.41]], ['Zug', [2.81, 4.60, 5.76]], ['Appenzell Innerrhoden', [3.31, 4.60, 5.14]], ['Vaud (Lausanne)', [4.59, 6.95, 8.39]], ['Basel-Stadt', [5.29, 8.26, 9.45]]];
+const AMTS = [100000, 250000, 500000];
+const cb = document.getElementById('cant-bars');
+cb.innerHTML = CANT.map(c => `<div class="hb-row"><span class="name">${c[0]}<small></small></span><div class="hb-track"><div class="hb-fill" style="background:${c[0] === 'Geneva' ? 'var(--blue-mid)' : 'var(--gold)'}"></div></div><span class="amt">–</span></div>`).join('');
+let cantReady = false, amtIdx = 1;
+function showCant() {
+  const a = AMTS[amtIdx];
+  cb.querySelectorAll('.hb-row').forEach((r, i) => {
+    const pct = CANT[i][1][amtIdx];
+    setTimeout(() => {
+      r.querySelector('.hb-fill').style.width = (pct / 10 * 100) + '%';
+      r.querySelector('small').textContent = pct.toFixed(2) + '%';
+      r.querySelector('.amt').textContent = '≈ ' + fmt(a * pct / 100);
+    }, i * 120);
   });
+  const g = CANT[0][1][amtIdx];
+  document.getElementById('cant-calc').textContent = `Geneva: ${num(a)} × ${g.toFixed(2)}% ≈ ${fmt(a * g / 100)}`;
+}
+segInit('#vcant .seg', b => { amtIdx = AMTS.indexOf(+b.dataset.a); if (cantReady) showCant(); });
+onView('vcant', () => { cantReady = true; showCant(); }, 0.3);
 
-  // FIRE Calculator
-  const slider = document.getElementById('expenseSlider');
-  function updateFire() {
-    const expenses = parseInt(slider.value);
-    const fireNum = expenses * 25;
-    const monthly = Math.round(fireNum * 0.04 / 12);
-    document.getElementById('expenseLabel').textContent = 'CHF ' + expenses.toLocaleString();
-    document.getElementById('fireNumber').textContent = 'CHF ' + fireNum.toLocaleString();
-    document.getElementById('monthlyWithdrawal').textContent = 'CHF ' + monthly.toLocaleString();
+// #5 profiles
+const PROF = [
+  { t: 'Profile 1 — Single, CHF 150,000 gross a year, aim: stop at 50', start: 0, pmt: 54000, yrs: 18, goal: 1500000,
+    lines: ['Saves CHF 4,500 a month = CHF 54,000 a year', 'Spends CHF 60,000 a year (CHF 5,000 a month) → target: 60,000 × 25 = CHF 1,500,000'],
+    calc: '18 × 54,000 = 972,000 paid in + ~547,000 growth = ~CHF 1,519,000 after about 18 years' },
+  { t: 'Profile 2 — Couple, CHF 300,000 gross combined, aim: stop at 48 and leave Switzerland', start: 0, pmt: 120000, yrs: 16, goal: 2700000,
+    lines: ['Saves CHF 10,000 a month = CHF 120,000 a year', 'Spends CHF 108,000 a year (CHF 9,000 a month) → target: 108,000 × 25 = CHF 2,700,000'],
+    calc: '16 × 120,000 = 1,920,000 paid in + ~919,000 growth = ~CHF 2,839,000 · target reached in 15 to 16 years' },
+  { t: 'Profile 3 — “Coast FIRE” at 40', start: 600000, pmt: 0, yrs: 20, goal: 1500000,
+    def: 'Coast FIRE means you have already saved enough that, without paying in anything more, investment growth will carry your capital to the target by normal retirement age. From then on you only need to earn enough for day-to-day spending — which frees you to work less or change career.',
+    lines: ['CHF 600,000 saved at 40, nothing more paid in', 'Grows at 5% a year for 20 years'],
+    calc: '600,000 × 1.05²⁰ = ~CHF 1,592,000 at 60 — above the CHF 1,500,000 target' },
+];
+const grow = document.getElementById('grow'), goal = document.getElementById('goal');
+function showProf(k) {
+  const p = PROF[k], cols = [];
+  for (let n = 1; n <= p.yrs; n++) {
+    const bal = p.start * Math.pow(1.05, n) + p.pmt * (Math.pow(1.05, n) - 1) / 0.05, dep = p.start + p.pmt * n;
+    cols.push([dep, bal - dep]);
   }
-  slider.addEventListener('input', updateFire);
-  updateFire();
+  const max = Math.max(p.goal, cols[cols.length - 1][0] + cols[cols.length - 1][1]) * 1.08;
+  document.getElementById('p-title').textContent = p.t;
+  const def = document.getElementById('p-def'); def.textContent = p.def || ''; def.style.display = p.def ? '' : 'none';
+  document.getElementById('p-lines').innerHTML = p.lines.map(l => `<li>${l}</li>`).join('');
+  document.getElementById('p-calc').textContent = p.calc;
+  document.getElementById('gx-end').textContent = 'Year ' + p.yrs;
+  document.getElementById('leg-d').textContent = p.start ? 'Capital at 40' : 'Money paid in';
+  grow.innerHTML = cols.map(() => '<div class="col"><div class="d"></div><div class="g"></div></div>').join('');
+  goal.classList.remove('visible');
+  goal.style.bottom = 'auto';
+  goal.style.top = ((1 - p.goal / max) * 200) + 'px';
+  document.getElementById('goal-lab').textContent = 'Target ' + fmt(p.goal);
+  const cs = grow.querySelectorAll('.col');
+  requestAnimationFrame(() => cols.forEach((c, i) => setTimeout(() => {
+    cs[i].children[0].style.height = (c[0] / max * 100) + '%';
+    cs[i].children[1].style.height = (c[1] / max * 100) + '%';
+  }, 60 + i * 55)));
+  setTimeout(() => goal.classList.add('visible'), 60 + cols.length * 55 + 200);
+}
+segInit('#prof-tabs', b => showProf(+b.dataset.p));
+onView('vprof', () => showProf(0), 0.3);
 
-  const takeawayObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const delay = parseInt(entry.target.dataset.delay || 0);
-        setTimeout(() => entry.target.classList.add('visible'), delay);
-        takeawayObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.takeaway-item').forEach(el => takeawayObserver.observe(el));
+// #6 staying
+onView('vstay', () => each('#vstay .zone', z => later(z, 'visible')), 0.25);
+onView('vwt', () => { countUp(document.getElementById('wt-m'), 1000, 900); countUp(document.getElementById('wt-t'), 300000, 1200); }, 0.5);
+onView('vdest', () => each('.dest span', s => later(s, 'visible')), 0.4);
 
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const delay = parseInt(entry.target.dataset.delay || 0);
-        setTimeout(() => entry.target.classList.add('visible'), delay);
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
-  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-  function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
 </script>
 </body>
 </html>
