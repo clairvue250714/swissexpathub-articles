@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tax Ruling in Geneva Before You Move: What It Is, Who Needs One and How to Get It</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+:root {
+  --bg:         #f7f8fa;
+  --bg2:        #ffffff;
+  --fg:         #1a1d23;
+  --fg2:        #5a6070;
+  --border:     #e2e5ec;
+  --blue:       #1f4080;
+  --blue-mid:   #2e5fa3;
+  --blue-light: #e8eff9;
+  --green:      #1a7a4a;
+  --green-light:#e6f4ed;
+  --red:        #c22b2b;
+  --red-light:  #fceaea;
+  --gold:       #b8862a;
+  --gold-light: #fdf6e8;
+  --shadow:     0 2px 12px rgba(0,0,0,.07);
+  --shadow-md:  0 4px 20px rgba(0,0,0,.10);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:#13161c; --bg2:#1e222b; --fg:#e8ecf5; --fg2:#8892a4; --border:#2c3140;
+    --blue:#5b8dde; --blue-mid:#7aaae8; --blue-light:#1a2540;
+    --green:#3dba78; --green-light:#0d2318;
+    --red:#e05555; --red-light:#2a0d0d;
+    --gold:#d4a855; --gold-light:#2a2010;
+    --shadow:0 2px 16px rgba(0,0,0,.3); --shadow-md:0 4px 24px rgba(0,0,0,.4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:#13161c; --bg2:#1e222b; --fg:#e8ecf5; --fg2:#8892a4; --border:#2c3140;
+  --blue:#5b8dde; --blue-mid:#7aaae8; --blue-light:#1a2540;
+  --green:#3dba78; --green-light:#0d2318;
+  --red:#e05555; --red-light:#2a0d0d;
+  --gold:#d4a855; --gold-light:#2a2010;
+  --shadow:0 2px 16px rgba(0,0,0,.3); --shadow-md:0 4px 24px rgba(0,0,0,.4);
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+#progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: var(--blue-mid); width: 0%; z-index: 1000; transition: width .1s linear; border-radius: 0 2px 2px 0; }
+body { background: var(--bg); color: var(--fg); font-family: 'Inter', system-ui, sans-serif; font-size: 16px; line-height: 1.75; padding: 48px max(16px, 5vw) 80px; }
+.article { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 36px; }
+.article-meta { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--fg2); margin-bottom: 12px; opacity: 0; transform: translateY(-8px); transition: opacity .5s ease, transform .5s ease; }
+.article-meta.visible { opacity: 1; transform: none; }
+h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(24px, 5vw, 36px); font-weight: 700; line-height: 1.2; text-wrap: balance; color: var(--fg); opacity: 0; transform: translateY(12px); transition: opacity .6s ease .15s, transform .6s ease .15s; }
+h1.visible { opacity: 1; transform: none; }
+.header-rule { height: 3px; background: var(--blue); border-radius: 2px; margin-top: 20px; width: 0; transition: width .8s cubic-bezier(.16,1,.3,1) .5s; }
+.header-rule.visible { width: 48px; }
+.quick-answer { background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 14px 14px 0; padding: 20px 24px; }
+.quick-answer p { font-size: 15.5px; margin: 0; }
+.takeaways { background: var(--blue); border-radius: 16px; padding: 28px 32px; }
+.takeaways h2 { font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; color: rgba(255,255,255,.55); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 18px; }
+.takeaways ul { list-style: none; }
+.takeaway-item { color: #e8ecf5; font-size: 14.5px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.1); display: flex; gap: 12px; align-items: flex-start; opacity: 0; transform: translateX(-10px); transition: opacity .45s ease, transform .45s ease; }
+.takeaway-item.visible { opacity: 1; transform: none; }
+.takeaway-item:last-child { border-bottom: none; }
+.takeaway-item::before { content: "✓"; color: #3dba78; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+h2 { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; color: var(--fg); margin-bottom: 4px; }
+h3 { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; color: var(--blue-mid); margin-bottom: 6px; }
+p { font-size: 15.5px; color: var(--fg); margin-bottom: 12px; }
+p:last-child { margin-bottom: 0; }
+a { color: var(--blue-mid); text-underline-offset: 2px; }
+a:hover { color: var(--blue); }
+em { font-style: italic; }
+.viz-label { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--fg2); }
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+.blk { position: relative; overflow: hidden; background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px; padding: 24px 26px; box-shadow: var(--shadow); opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
+.blk.visible { opacity: 1; transform: none; }
+.blk::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--blue-mid); transform: scaleY(0); transform-origin: top; transition: transform .6s cubic-bezier(.16,1,.3,1) .25s; }
+.blk.visible::before { transform: scaleY(1); }
+.blk h2 { margin-bottom: 12px; font-size: 19px; }
+.blk p { font-size: 15px; }
+.panel { margin: 4px 0 14px; padding: 16px 18px; border-radius: 14px; background: var(--bg); border: 1.5px solid var(--border); }
+
+/* WHAT IS A RULING: 3-STEP FLOW */
+.flow { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: stretch; gap: 8px; margin: 2px 0 14px; }
+.fstep { background: var(--bg); border: 1.5px solid var(--border); border-radius: 12px; padding: 12px 14px; font-size: 14px; line-height: 1.5; opacity: 0; transform: translateY(10px); transition: opacity .45s ease, transform .45s ease; }
+.fstep.visible { opacity: 1; transform: none; }
+.fstep .k { display: block; font: 700 22px 'Space Grotesk', sans-serif; color: var(--blue-mid); line-height: 1; margin-bottom: 6px; }
+.fstep.ok { background: var(--green-light); border-color: var(--green); }
+.fstep.ok .k { color: var(--green); }
+.farr { align-self: center; color: var(--blue-mid); font: 700 18px 'Space Grotesk', sans-serif; opacity: 0; transition: opacity .4s ease; }
+.farr.visible { opacity: 1; }
+
+/* MIKE'S TIMELINE */
+.tl { position: relative; padding: 4px 6px 6px; margin: 2px 0 14px; }
+.tl-zones { position: relative; height: 26px; margin-bottom: 8px; }
+.tl-zone { position: absolute; top: 0; bottom: 0; display: flex; align-items: center; justify-content: center; border-radius: 8px; font: 700 12px 'Space Grotesk', sans-serif; white-space: nowrap; overflow: hidden; transform: scaleX(0); transform-origin: left; transition: transform .8s cubic-bezier(.16,1,.3,1); }
+.tl-zone.ask { left: 0; width: 60%; background: var(--green-light); color: var(--green); border: 1.5px dashed var(--green); }
+.tl-zone.late { left: 60%; width: 40%; background: var(--red-light); color: var(--red); border: 1.5px dashed var(--red); transition-delay: 1.1s; }
+.tl.go .tl-zone { transform: scaleX(1); }
+.tl-track { position: relative; height: 6px; background: var(--border); border-radius: 3px; }
+.tl-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: var(--blue-mid); border-radius: 3px; transition: width 1.6s cubic-bezier(.16,1,.3,1) .2s; }
+.tl.go .tl-fill { width: 100%; }
+.tl-dot { position: absolute; top: 50%; width: 16px; height: 16px; margin: -8px 0 0 -8px; border-radius: 50%; background: var(--bg2); border: 3.5px solid var(--blue-mid); transform: scale(0); transition: transform .45s cubic-bezier(.34,1.56,.64,1); }
+.tl-dot.sale { border-color: var(--gold); }
+.tl.go .tl-dot.d1 { transform: scale(1); transition-delay: .1s; }
+.tl.go .tl-dot.d2 { transform: scale(1); transition-delay: .95s; }
+.tl-lbls { position: relative; height: 40px; margin-top: 10px; }
+.tl-lbl { position: absolute; top: 0; font-size: 12.5px; line-height: 1.35; color: var(--fg2); opacity: 0; transition: opacity .4s ease; white-space: nowrap; }
+.tl-lbl b { display: block; color: var(--fg); font-family: 'Space Grotesk', sans-serif; }
+.tl-lbl.l1 { left: 0; }
+.tl-lbl.l2 { left: 60%; transform: translateX(-50%); text-align: center; }
+.tl.go .tl-lbl.l1 { opacity: 1; transition-delay: .2s; }
+.tl.go .tl-lbl.l2 { opacity: 1; transition-delay: 1s; }
+.card-ex { background: var(--gold-light); border-left: 4px solid var(--gold); border-radius: 0 12px 12px 0; padding: 12px 16px; font-size: 14.5px; }
+.card-ex b { color: var(--gold); }
+
+/* WHO NEEDS ONE: PROFILE CARDS */
+.profs { display: flex; flex-direction: column; gap: 12px; }
+.prof { border: 1.5px solid var(--border); border-radius: 14px; padding: 16px 18px; background: var(--bg); opacity: 0; transform: translateX(-12px); transition: opacity .45s ease, transform .45s ease; }
+.prof.visible { opacity: 1; transform: none; }
+.prof .tag { display: inline-block; font: 700 11px 'Space Grotesk', sans-serif; letter-spacing: .08em; text-transform: uppercase; color: var(--blue-mid); background: var(--blue-light); border-radius: 999px; padding: 3px 10px; margin-bottom: 8px; }
+.prof p { font-size: 14.5px; margin: 0; }
+.yrs { display: flex; align-items: center; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
+.yrs-bar { display: grid; grid-template-columns: repeat(5, 28px); gap: 4px; }
+.yrs-bar i { height: 14px; border-radius: 4px; background: var(--border); transition: background .3s ease; }
+.yrs-bar i.on { background: var(--blue-mid); }
+.yrs span { font: 700 12.5px 'Space Grotesk', sans-serif; color: var(--fg2); }
+.ff { margin-top: 12px; font: 600 14px 'Space Grotesk', sans-serif; color: var(--fg2); font-variant-numeric: tabular-nums; }
+.ff b { color: var(--blue-mid); }
+
+/* HOW TO APPLY: CHECKLIST */
+.chk { list-style: none; margin: 2px 0 14px; display: flex; flex-direction: column; gap: 8px; }
+.chk li { display: flex; gap: 12px; align-items: flex-start; font-size: 14.5px; line-height: 1.5; padding: 10px 14px; border-radius: 10px; background: var(--bg); border: 1.5px solid var(--border); opacity: .35; transition: opacity .4s ease, border-color .4s ease; }
+.chk li .tick { flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; color: transparent; font: 700 12px 'Space Grotesk', sans-serif; transition: background .35s ease, border-color .35s ease, color .35s ease; margin-top: 1px; }
+.chk li.visible { opacity: 1; border-color: var(--green); }
+.chk li.visible .tick { background: var(--green); border-color: var(--green); color: #fff; }
+
+/* COST CALCULATOR */
+.calc { margin: 6px 0 12px; padding: 18px; border-radius: 14px; background: var(--bg); border: 1.5px solid var(--border); }
+.calc label { display: block; font-size: 14px; font-weight: 600; color: var(--fg); margin: 10px 0 8px; }
+.calc input[type=range] { width: 100%; accent-color: var(--blue-mid); height: 28px; }
+.presets { display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0 14px; }
+.presets button { min-height: 44px; min-width: 64px; padding: 0 14px; border-radius: 10px; border: 1.5px solid var(--border); background: var(--bg2); color: var(--fg); font: 700 14px 'Space Grotesk', sans-serif; cursor: pointer; }
+.presets button.on { background: #2e5fa3; border-color: #2e5fa3; color: #fff; }
+.presets button:focus-visible, .calc input:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+.calc-out { font: 600 16px 'Space Grotesk', sans-serif; color: var(--fg); font-variant-numeric: tabular-nums; }
+.calc-out b { font-size: clamp(22px, 5vw, 28px); color: var(--blue-mid); }
+.calc-note { font-size: 13px !important; color: var(--fg2) !important; margin: 8px 0 0 !important; }
+
+/* WHAT IT DOESN'T DO */
+.nots { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.nots li { display: flex; gap: 12px; align-items: flex-start; font-size: 14.5px; line-height: 1.55; padding: 12px 14px; border-radius: 10px; background: var(--red-light); opacity: 0; transform: translateX(-10px); transition: opacity .4s ease, transform .4s ease; }
+.nots li.visible { opacity: 1; transform: none; }
+.nots li::before { content: "✕"; flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; background: var(--red); color: #fff; display: flex; align-items: center; justify-content: center; font: 700 12px 'Space Grotesk', sans-serif; margin-top: 1px; }
+
+/* FAQ / GO DEEPER / CTA / SOURCES */
+.faq-item { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; margin-bottom: 8px; overflow: hidden; transition: border-color .2s; }
+.faq-item.open { border-color: var(--blue-mid); }
+.faq-q { padding: 16px 20px; font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; color: var(--fg); user-select: none; }
+.faq-arrow { color: var(--blue-mid); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
+.faq-item.open .faq-arrow { transform: rotate(180deg); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .35s ease; font-size: 14px; color: var(--fg2); line-height: 1.65; padding: 0 20px; }
+.faq-item.open .faq-a { max-height: 420px; padding: 0 20px 16px; }
+.further { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.fr { display: block; text-decoration: none; background: var(--bg2); border: 1.5px solid var(--border); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); transition: transform .2s, box-shadow .2s, border-color .2s; opacity: 0; transform: translateY(12px); }
+.fr.visible { opacity: 1; transform: none; }
+.fr:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); border-color: var(--blue-mid); }
+.fr .n { font: 700 11px 'Space Grotesk', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: var(--blue-mid); }
+.fr h3 { color: var(--fg); font-size: 15px; margin: 4px 0 8px; }
+.fr .go { font: 700 13px 'Space Grotesk', sans-serif; color: var(--blue-mid); }
+.cta-box { background: var(--blue); border-radius: 16px; padding: 32px 36px; text-align: center; }
+.cta-box p { color: rgba(255,255,255,.85); font-size: 15px; margin-bottom: 20px; }
+.cta-btn { background: var(--gold); color: #fff; padding: 13px 28px; border-radius: 10px; text-decoration: none; font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; display: inline-block; transition: opacity .2s, transform .2s; }
+.cta-btn:hover { opacity: .88; transform: translateY(-1px); color: #fff; }
+.sources { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; padding: 20px 24px; }
+.sources h3 { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--fg2); margin-bottom: 10px; }
+.sources ol { padding-left: 18px; }
+.sources li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; overflow-wrap: anywhere; }
+.sources a { color: var(--fg2); }
+
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .takeaways { background: #1f3a6b; } }
+:root[data-theme="dark"] .takeaways { background: #1f3a6b; }
+@media (max-width: 600px) {
+  .takeaways { padding: 20px; } .cta-box { padding: 24px 20px; } .blk { padding: 20px 18px; }
+  .flow { grid-template-columns: 1fr; gap: 6px; }
+  .farr { justify-self: center; transform: rotate(90deg); }
+  .further { grid-template-columns: 1fr; }
+  .tl { padding: 4px 2px 6px; }
+  .tl-zone { font-size: 11px; }
+  .tl-lbl { font-size: 11.5px; }
+  .calc { padding: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+  .reveal, .blk, .fstep, .farr, .prof, .nots li, .fr, .takeaway-item, .article-meta, h1, .tl-lbl { opacity: 1 !important; transform: none !important; }
+  .tl-lbl.l2 { transform: translateX(-50%) !important; }
+  .tl-zone, .tl-dot { transform: none !important; }
+  .tl-fill { width: 100% !important; }
+  .chk li { opacity: 1 !important; }
+}
+</style>
+<link rel="canonical" href="https://swissexpathub.ch/resources/tax-ruling-geneva-before-you-move">
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="article">
+
+  <div class="article-header">
+    <p class="article-meta">Moving &amp; Living · Tax · Updated November 2026 · 4 min read</p>
+    <h1>Tax Ruling in Geneva Before You Move: What It Is, Who Needs One and How to Get It</h1>
+    <div class="header-rule"></div>
+  </div>
+
+  <div class="quick-answer reveal">
+    <p><strong>Quick Answer:</strong> Yes. You — or your advisor — describe your future situation in writing and how you think it should be taxed, and the Geneva tax office says whether it agrees. That confirmation is called a tax ruling, and it binds the tax office to what it signed.</p>
+  </div>
+
+  <div class="takeaways">
+    <h2>Key Takeaways</h2>
+    <ul>
+      <li class="takeaway-item" data-delay="0">Ask before you move or act: since September 2023, Geneva generally won't rule on what has already happened</li>
+      <li class="takeaway-item" data-delay="100">Geneva's tax office decides for both cantonal and federal tax</li>
+      <li class="takeaway-item" data-delay="200">Only the conclusions in your request are guaranteed, and only while the facts and the law stay the same</li>
+      <li class="takeaway-item" data-delay="300">The tax office can charge up to CHF&nbsp;200 an hour, on top of your advisor's fee</li>
+    </ul>
+  </div>
+
+  <!-- WHAT IS IT -->
+  <div class="blk" id="what">
+    <h2>What Is a Tax Ruling?</h2>
+    <p>It's an advance answer from the tax office:</p>
+    <div class="flow">
+      <div class="fstep" data-delay="0"><span class="k">1</span>You describe a planned transaction or a future situation, and the tax treatment you argue for</div>
+      <div class="farr" data-delay="250">→</div>
+      <div class="fstep" data-delay="300"><span class="k">2</span>The tax office analyses it</div>
+      <div class="farr" data-delay="550">→</div>
+      <div class="fstep ok" data-delay="600"><span class="k">✓</span>If it agrees, it signs your request “bon pour accord” (agreed) — sometimes with conditions</div>
+    </div>
+    <p>It isn't a formal decision, so there's no appeal against it. But it binds the tax office under the principle of good faith (art.&nbsp;9 of the Swiss Constitution), as long as the facts are as described and you disclosed everything that matters, for or against you.</p>
+  </div>
+
+  <!-- BEFORE YOU ARRIVE -->
+  <div class="blk" id="before">
+    <h2>Can You Ask Before You Arrive?</h2>
+    <p>Yes — that's exactly what it's for. You can file in your own name or through an advisor, with a power of attorney.</p>
+    <p>Just don't leave it until afterwards: since 1&nbsp;September 2023, Geneva generally no longer rules on transactions already carried out, except very recent ones whose tax return hasn't been filed yet.</p>
+    <div class="tl" id="tl" role="img" aria-label="Mike's timeline: he arrives in July, must ask for the ruling before selling in October; after the sale it is too late">
+      <div class="tl-zones"><div class="tl-zone ask">Ask for the ruling here</div><div class="tl-zone late">Too late</div></div>
+      <div class="tl-track"><div class="tl-fill"></div><span class="tl-dot d1" style="left:0%"></span><span class="tl-dot sale d2" style="left:60%"></span></div>
+      <div class="tl-lbls"><div class="tl-lbl l1"><b>July</b>Mike arrives</div><div class="tl-lbl l2"><b>October</b>He sells</div></div>
+    </div>
+    <p class="card-ex"><b>Example:</b> Mike, from Boston, arrives in July and wants to sell, in October, the shares of the company he founded. In Switzerland, gains on selling private assets are tax-free — if the tax office sees the shares as private assets, not as part of a business activity. That's a typical ruling question.</p>
+  </div>
+
+  <!-- WHO NEEDS ONE -->
+  <div class="blk" id="who">
+    <h2>Who Usually Needs One</h2>
+    <div class="profs">
+      <div class="prof" data-delay="0"><span class="tag">A US company</span><p>The Taylors, from New York, hold rental flats in an LLC (a type of US company) with two members. For the IRS, the US tax authority, it's a partnership by default: the members pay the tax, not the company. Will Geneva see the LLC the same way? A ruling answers that before the move.</p></div>
+      <div class="prof" data-delay="150"><span class="tag">An expat package</span><p>Emma, from London, is posted to Geneva by her employer for three years, with housing and her children's school paid. Three years fits within the five-year limit for expat status, which comes with its own deductions; her employer can confirm by ruling how these allowances are taxed.</p>
+        <div class="yrs" id="yrs" aria-hidden="true"><div class="yrs-bar"><i></i><i></i><i></i><i></i><i></i></div><span>3 of 5 years</span></div></div>
+      <div class="prof" data-delay="300"><span class="tag">Lump-sum taxation</span><p>A retired couple from London who won't work in Switzerland can ask to be taxed on what they spend, rather than on their income and wealth. The agreement usually runs for five years and is requested on arrival, at the latest before the first tax assessment becomes final.</p>
+        <div class="ff" id="ff">Geneva's minimum base: CHF&nbsp;400,000 a year ÷ 12 ≈ <b id="ff-v">CHF 33,333</b> a month</div></div>
+    </div>
+  </div>
+
+  <!-- HOW TO APPLY -->
+  <div class="blk" id="apply">
+    <h2>How to Apply</h2>
+    <p>The request is made in writing and must include all of the following, or Geneva can refuse to examine it:</p>
+    <ol class="chk">
+      <li data-delay="0"><span class="tick">✓</span>The facts and the people involved, described accurately and in full</li>
+      <li data-delay="250"><span class="tick">✓</span>A legal and tax analysis</li>
+      <li data-delay="500"><span class="tick">✓</span>The tax treatment you're asking for</li>
+      <li data-delay="750"><span class="tick">✓</span>A conclusion listing the points the tax office must confirm</li>
+      <li data-delay="1000"><span class="tick">✓</span>If your advisor files it: a power of attorney and the advisor's address for correspondence</li>
+    </ol>
+    <p>Templates are available. Lump-sum taxation and expat allowances go to the individual-tax department; all other requests go to the tax affairs department (DAF).</p>
+  </div>
+
+  <!-- TIME AND COST -->
+  <div class="blk" id="cost">
+    <h2>How Long It Takes and What It Costs</h2>
+    <p>Geneva publishes no response deadline. According to the tax office, a complete request that needs no follow-up questions moves faster — so start well before your move.</p>
+    <p>The tax office can charge according to the work involved, up to CHF&nbsp;200 an hour. The advisor who prepares the request charges separately.</p>
+    <div class="calc" id="calc">
+      <div class="viz-label">Illustrative figures</div>
+      <label for="hrs">Hours of review by the tax office: <span id="hrs-v">6</span></label>
+      <input type="range" id="hrs" min="1" max="12" step="1" value="6">
+      <div class="presets" role="group" aria-label="Preset hours"><button type="button" data-h="2">2 h</button><button type="button" data-h="6" class="on">6 h</button><button type="button" data-h="10">10 h</button></div>
+      <div class="calc-out" aria-live="polite"><span id="calc-h">6</span>&nbsp;h × CHF&nbsp;200 = <b id="calc-v">CHF 1,200</b> at most</div>
+    </div>
+  </div>
+
+  <!-- LIMITS -->
+  <div class="blk" id="limits">
+    <h2>What a Ruling Doesn't Do</h2>
+    <ul class="nots">
+      <li data-delay="0">It guarantees nothing beyond the conclusions you wrote: nothing is approved tacitly.</li>
+      <li data-delay="200">It doesn't protect you if the facts or the law change: the protection ends automatically.</li>
+      <li data-delay="400">It doesn't bind the IRS or HMRC (the UK tax authority) — only the Geneva tax office, for cantonal and federal tax.</li>
+    </ul>
+  </div>
+
+  <!-- FAQ -->
+  <div>
+    <h2 class="reveal">Before You Ask</h2>
+    <div style="margin-top:12px">
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">Is a ruling the same as a tax simulation?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">No. A simulation estimates how much you'll pay and binds no one; a ruling confirms how a specific situation will be taxed.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">What if I end up living in Vaud?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">A Geneva ruling doesn't apply there: each canton issues its own.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">What if Geneva says no?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">You can still file your return on your own position and, if the assessment differs, contest it in writing within 30 days.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GO DEEPER -->
+  <div>
+    <h2 class="reveal" style="margin-bottom:12px">Go Deeper</h2>
+    <div class="further">
+      <a class="fr" data-delay="0" href="https://swissexpathub.ch/resources/moving-to-switzerland-financial-checklist" target="_top"><div class="n">Moving</div><h3>Financial checklist for your move</h3><span class="go">Read →</span></a>
+      <a class="fr" data-delay="120" href="https://swissexpathub.ch/resources/us-citizens-living-in-switzerland-tax-obligations" target="_top"><div class="n">US citizens</div><h3>What Americans in Switzerland must file</h3><span class="go">Read →</span></a>
+      <a class="fr" data-delay="240" href="https://swissexpathub.ch/resources/double-taxation-us-switzerland" target="_top"><div class="n">Double taxation</div><h3>Taxed by the US and Switzerland?</h3><span class="go">Read →</span></a>
+    </div>
+  </div>
+
+  <div class="cta-box reveal">
+    <p>SwissExpatHub connects you with advisors in Geneva who prepare ruling requests — ideally before you sell, transfer or sign anything.</p>
+    <a href="https://swissexpathub.ch/directory" target="_top" class="cta-btn">Find Your Advisor →</a>
+  </div>
+
+  <div class="sources reveal">
+    <h3>Sources</h3>
+    <ol>
+      <li>Canton of Geneva — Requesting a tax ruling: <a href="https://www.ge.ch/demander-ruling-fiscal-allegement-fiscal" target="_blank" rel="noopener">ge.ch</a></li>
+      <li>Canton of Geneva — Form and content of a ruling request: <a href="https://www.ge.ch/demander-ruling-fiscal-allegement-fiscal/forme-contenu-demande-ruling-fiscal" target="_blank" rel="noopener">ge.ch</a></li>
+      <li>Canton of Geneva — Where to send a ruling request: <a href="https://www.ge.ch/demander-ruling-fiscal-allegement-fiscal/envoyer-demande-ruling-fiscal" target="_blank" rel="noopener">ge.ch</a></li>
+      <li>Canton of Geneva — Ruling procedure (“bon pour accord” and conditions): <a href="https://www.ge.ch/demander-ruling-fiscal-allegement-fiscal/procedure-octroi-ruling-fiscal" target="_blank" rel="noopener">ge.ch</a></li>
+      <li>Canton of Geneva — Effects of a ruling (good faith, conclusions, no appeal): <a href="https://www.ge.ch/demander-ruling-fiscal/consequences-delivrance-ruling-fiscal" target="_blank" rel="noopener">ge.ch</a></li>
+      <li>Geneva tax office fee regulation (REmAFC, D 3 19.03), art. 2(g): <a href="https://silgeneve.ch/legis/data/rsg_d3_19p03.htm" target="_blank" rel="noopener">silgeneve.ch</a></li>
+      <li>Swiss Federal Tax Administration — Communication 011-DVS-2019 on federal tax rulings: <a href="https://www.estv.admin.ch/dam/fr/sd-web/vDmz1XaIywRx/estv-mitteilung-011-dvs-2019-fr.pdf" target="_blank" rel="noopener">estv.admin.ch</a></li>
+      <li>Canton of Geneva — Lump-sum taxation (imposition d'après la dépense): <a href="https://www.ge.ch/imposition-apres-depense" target="_blank" rel="noopener">ge.ch</a></li>
+      <li>Federal Expatriates Ordinance (OExpa, SR 642.118.3): Fedlex</li>
+      <li>IRS — Single-member limited liability companies (default LLC classification): <a href="https://www.irs.gov/businesses/small-businesses-self-employed/single-member-limited-liability-companies" target="_blank" rel="noopener">irs.gov</a></li>
+      <li>Federal Constitution, art. 9; Federal Direct Tax Act, art. 132; Geneva Tax Procedure Act (LPFisc), art. 39: Fedlex and silgeneve.ch</li>
+    </ol>
+  </div>
+
+</div>
+
+<script>
+const RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const fmt = n => 'CHF ' + Math.round(n).toLocaleString('en-US');
+window.addEventListener('scroll', () => {
+  const docH = document.documentElement.scrollHeight - window.innerHeight;
+  document.getElementById('progress-bar').style.width = (docH > 0 ? window.scrollY / docH * 100 : 0) + '%';
+});
+window.addEventListener('load', () => {
+  setTimeout(() => document.querySelector('.article-meta').classList.add('visible'), 80);
+  setTimeout(() => document.querySelector('h1').classList.add('visible'), 220);
+  setTimeout(() => document.querySelector('.header-rule').classList.add('visible'), 420);
+});
+function stagger(selector, threshold) {
+  const obs = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), parseInt(e.target.dataset.delay || 0)); obs.unobserve(e.target); }
+  }), { threshold });
+  document.querySelectorAll(selector).forEach(el => obs.observe(el));
+}
+function onView(id, fn, threshold = 0.4) {
+  const el = document.getElementById(id);
+  const obs = new IntersectionObserver(en => { if (en[0].isIntersecting) { fn(); obs.disconnect(); } }, { threshold });
+  obs.observe(el);
+}
+function countUp(el, to, ms, from = 0, f = fmt) {
+  if (RM) { el.textContent = f(to); return; }
+  const t0 = performance.now();
+  const step = t => { const k = Math.min(1, (t - t0) / ms), e = 1 - Math.pow(1 - k, 3);
+    el.textContent = f(from + (to - from) * e); if (k < 1) requestAnimationFrame(step); };
+  requestAnimationFrame(step);
+}
+function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+
+stagger('.takeaway-item', 0.15);
+stagger('.reveal', 0.08);
+stagger('.blk', 0.05);
+stagger('.fstep, .farr', 0.3);
+stagger('.prof', 0.2);
+stagger('.chk li', 0.4);
+stagger('.nots li', 0.3);
+stagger('.fr', 0.2);
+
+// Mike's timeline: ask before the sale
+onView('tl', () => document.getElementById('tl').classList.add('go'), 0.5);
+
+// Emma: 3 of the 5 years light up
+onView('yrs', () => {
+  document.querySelectorAll('#yrs i').forEach((b, i) => { if (i < 3) setTimeout(() => b.classList.add('on'), RM ? 0 : 200 + i * 250); });
+}, 0.6);
+
+// Lump sum: CHF 400,000 a year ÷ 12
+onView('ff', () => countUp(document.getElementById('ff-v'), 400000 / 12, 1100), 0.6);
+
+// Fee calculator: hours × CHF 200
+(function () {
+  const r = document.getElementById('hrs'), hv = document.getElementById('hrs-v'), ch = document.getElementById('calc-h'), cv = document.getElementById('calc-v');
+  const btns = document.querySelectorAll('.presets button');
+  function set(h, animate) {
+    const prev = parseInt(ch.textContent) * 200;
+    r.value = h; hv.textContent = h; ch.textContent = h;
+    btns.forEach(b => b.classList.toggle('on', +b.dataset.h === +h));
+    if (animate) countUp(cv, h * 200, 500, prev); else cv.textContent = fmt(h * 200);
+  }
+  r.addEventListener('input', () => set(+r.value, false));
+  btns.forEach(b => b.addEventListener('click', () => set(+b.dataset.h, true)));
+  cv.textContent = fmt(0);
+  onView('calc', () => countUp(cv, 1200, 900), 0.5);
+})();
+</script>
+<script>
+(function(){function s(){try{parent.postMessage({type:'sehHeight',h:document.documentElement.scrollHeight},'*')}catch(e){}}
+window.addEventListener('load',s);window.addEventListener('resize',s);
+if(window.ResizeObserver){new ResizeObserver(s).observe(document.body)}setInterval(s,1500);})();
+</script>
+</body>
+</html>
