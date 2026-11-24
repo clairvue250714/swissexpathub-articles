@@ -224,9 +224,48 @@ p:last-child { margin-bottom: 0; }
   .cost { grid-template-columns: 110px 1fr 76px; font-size: 12px; }
   .ir-row { grid-template-columns: 100px 1fr; font-size: 11.5px; }
 }
+
+/* QUICK ANSWER */
+.quick-answer { background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 14px 14px 0; padding: 20px 24px; }
+.quick-answer p { font-size: 15.5px; margin: 0 0 10px; } .quick-answer p:last-child { margin-bottom: 0; }
+
+/* BUY VS RENT */
+.bvr { display: flex; flex-direction: column; gap: 12px; }
+.bvr-row { display: grid; grid-template-columns: 120px 1fr; gap: 12px; align-items: center; font-size: 13.5px; }
+.bvr-row .nm { font-weight: 700; color: var(--fg); line-height: 1.3; }
+.bvr-row .nm small { display: block; font-weight: 500; color: var(--fg2); font-size: 12px; }
+.bvr-track { height: 38px; background: var(--border); border-radius: 9px; overflow: hidden; display: flex; }
+.bvr-seg { width: 0; height: 100%; display: flex; align-items: center; justify-content: center; color: #fff; font-family: 'Space Grotesk', sans-serif; font-size: 12.5px; font-weight: 700; white-space: nowrap; overflow: hidden; transition: width 1s cubic-bezier(.16,1,.3,1); }
+.bvr-seg.int { background: var(--blue-mid); } .bvr-seg.mt { background: var(--blue); } .bvr-seg.rent { background: var(--red); }
+.bvr-res { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 4px; }
+.bvr-k { border-radius: 12px; padding: 12px 14px; background: var(--bg2); border: 1.5px solid var(--border); }
+.bvr-k .k { font-family: 'Space Grotesk', sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--fg2); }
+.bvr-k .v { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; margin-top: 2px; font-variant-numeric: tabular-nums; }
+.bvr-k.g { background: var(--green-light); border-color: var(--green); } .bvr-k.g .v { color: var(--green); }
+.bvr-k.b .v { color: var(--blue-mid); }
+.bvr-k .s { font-size: 12px; color: var(--fg2); margin-top: 2px; }
+.illus { display: inline-block; font-family: 'Space Grotesk', sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--gold); background: var(--gold-light); border-radius: 6px; padding: 2px 8px; margin-bottom: 10px; }
+.link { color: var(--blue-mid); font-weight: 600; }
+.sources a { color: var(--fg2); text-decoration: underline; text-decoration-color: var(--border); }
+
+/* FURTHER */
+.further { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.fr { display: block; text-decoration: none; background: var(--bg2); border: 1.5px solid var(--border); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); transition: transform .2s, box-shadow .2s, border-color .2s; opacity: 0; transform: translateY(12px); }
+.fr.visible { opacity: 1; transform: none; }
+.fr:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); border-color: var(--blue-mid); }
+.fr .n { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.fr h3 { color: var(--fg); font-size: 15px; margin: 4px 0 4px; }
+.fr p { font-size: 13px; color: var(--fg2); margin: 0 0 8px; line-height: 1.5; }
+.fr .go { font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; }
+.fr.f1 .n, .fr.f1 .go { color: var(--blue-mid); } .fr.f2 .n, .fr.f2 .go { color: var(--blue); } .fr.f3 .n, .fr.f3 .go { color: var(--gold); }
+@media (max-width: 600px) {
+  .further, .bvr-res { grid-template-columns: 1fr; }
+  .sb.m2 b, .sb.m2 small, .sb.p2 b, .sb.sv b { display: none; }
+  .bvr-row { grid-template-columns: 1fr; gap: 4px; }
+}
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; }
-  .reveal, .blk, .mk, .tier, .rate, .sit, .era-row, .takeaway-item, .article-meta, h1 { opacity: 1 !important; transform: none !important; }
+  .reveal, .blk, .fr, .mk, .tier, .rate, .sit, .era-row, .takeaway-item, .article-meta, h1 { opacity: 1 !important; transform: none !important; }
 }
 </style>
 <link rel="canonical" href="https://swissexpathub.ch/resources/financing-property-switzerland-expat">
@@ -237,27 +276,51 @@ p:last-child { margin-bottom: 0; }
 
   <!-- HEADER -->
   <div class="article-header">
-    <p class="article-meta">Tax &amp; Finance · Property · 6 min read</p>
+    <p class="article-meta">Property · Mortgages · Updated November 2026 · 5 min read</p>
     <h1>Financing Property in Switzerland as an Expat</h1>
     <div class="header-rule"></div>
+  </div>
+
+  <!-- QUICK ANSWER -->
+  <div class="quick-answer reveal">
+    <p><strong>Quick Answer:</strong> To buy the home you'll live in, you need at least 20% of the price in your own money and a salary that passes the bank's test. The bank lends the rest, as two mortgages.</p>
+    <p>And a big change is coming: in 2029 the tax on the "fictitious rent" of your own home ends — and so does the interest deduction. That changes the Swiss habit of never paying off the mortgage.</p>
   </div>
 
   <!-- TAKEAWAYS -->
   <div class="takeaways">
     <h2>Key Takeaways</h2>
     <ul>
-      <li class="takeaway-item" data-delay="0">You need a 20% down payment — at least half of it (10% of the price) from your own savings, not your pension fund</li>
-      <li class="takeaway-item" data-delay="100">Swiss mortgages come in two tiers — the first (up to 65%) has no repayment deadline: you pay only interest, and the debt can stay until you sell</li>
-      <li class="takeaway-item" data-delay="200">The rule that matters most: your yearly housing costs can't exceed one third (33%) of your gross income</li>
-      <li class="takeaway-item" data-delay="300">Until 2028, homeowners pay income tax on a rent they never receive — the imputed rental value. The Swiss keep their mortgage because the interest offsets it</li>
-      <li class="takeaway-item" data-delay="400">From 2029 the imputed rental value disappears, but mortgage interest stops being deductible — "never pay it off" no longer makes sense for many owners</li>
+      <li class="takeaway-item" data-delay="0">Pillar 2 can cover at most half of the minimum down payment; Pillar 3a counts as your own money</li>
+      <li class="takeaway-item" data-delay="100">The mortgage up to 65% of the price never has to be repaid; the part above it must be repaid within 15 years</li>
+      <li class="takeaway-item" data-delay="200">The bank works out your housing costs with a 5% interest rate, not the real one</li>
     </ul>
+  </div>
+
+  <!-- BUY VS RENT -->
+  <div class="blk" id="bvr-blk">
+    <h2>Why Buying Pays Off</h2>
+    <p>In the vast majority of cases, owning costs much less each month than renting the same home.</p>
+    <div class="panel" id="bvr">
+      <span class="illus">Illustrative figures</span>
+      <div class="viz-label">CHF 800,000 home that would rent for CHF 30,000 a year · per month</div>
+      <div class="bvr">
+        <div class="bvr-row"><span class="nm">Owning<small>real interest + maintenance</small></span><div class="bvr-track"><div class="bvr-seg int" data-w="38.3">Interest 960</div><div class="bvr-seg mt" data-w="26.7">667</div></div></div>
+        <div class="bvr-row"><span class="nm">Renting<small>same home</small></span><div class="bvr-track"><div class="bvr-seg rent" data-w="100">Rent 2,500</div></div></div>
+        <div class="bvr-res">
+          <div class="bvr-k b"><div class="k">Owning costs</div><div class="v" id="bvr-own">CHF 0</div><div class="s">(11,500 + 8,000) ÷ 12 per month</div></div>
+          <div class="bvr-k g"><div class="k">Less than renting</div><div class="v" id="bvr-gap">CHF 0</div><div class="s">2,500 − 1,625 per month</div></div>
+        </div>
+      </div>
+      <p class="viz-note">Interest: CHF 640,000 mortgage at ≈ 1.8% ≈ CHF 11,500 a year. Maintenance: 1% of the price = CHF 8,000 a year. Repaying the 2nd mortgage is not a cost — that money stays in the home.</p>
+    </div>
+    <p style="margin-top:14px">And it's an investment: your down payment and everything you repay stay in the home and come back to you when you sell. Rent never comes back. The risk is that prices fall, or that you have to sell early, before you've made up the costs of buying.</p>
   </div>
 
   <!-- DOWN PAYMENT -->
   <div class="blk">
     <h2>The Minimum Down Payment</h2>
-    <p>Swiss banks require at least 20% of the property price in your own money. Of that 20%, at least 10% must be personal savings — the bank won't accept the whole amount coming from Pillar 2 (your workplace pension fund). The other 10% can come from Pillar 2 or Pillar 3a (your private retirement savings account).</p>
+    <p>At least 10% of the price must come from outside Pillar 2 (your workplace pension fund): savings, gifts from family or Pillar 3a (your private retirement account). The other 10% can come from Pillar 2.</p>
     <div class="panel" id="stack">
       <div class="viz-label">Example — property of CHF 800,000</div>
       <div class="stackbar">
@@ -268,35 +331,34 @@ p:last-child { margin-bottom: 0; }
       </div>
       <div class="brace"><span class="loan">Bank loan · 80%</span><span class="own">Your money · 20%</span></div>
       <div class="sb-legend">
-        <div><i style="background:var(--blue)"></i><span><b>1st mortgage</b> · up to 65%</span></div>
-        <div><i style="background:var(--blue-mid)"></i><span><b>2nd mortgage</b> · 65% to 80%</span></div>
-        <div><i style="background:var(--gold)"></i><span><b>Pillar 2 or 3a</b> · up to 10%</span></div>
-        <div><i style="background:var(--green)"></i><span><b>Own savings</b> · at least 10%</span></div>
+        <div><i style="background:var(--blue)"></i><span><b>1st mortgage</b> · up to 65% · CHF 520,000</span></div>
+        <div><i style="background:var(--blue-mid)"></i><span><b>2nd mortgage</b> · 65% to 80% · CHF 120,000</span></div>
+        <div><i style="background:var(--gold)"></i><span><b>Pillar 2</b> · up to 10% · CHF 80,000</span></div>
+        <div><i style="background:var(--green)"></i><span><b>Savings or Pillar 3a</b> · at least 10% · CHF 80,000</span></div>
       </div>
     </div>
-    <p style="margin-top:14px;font-size:14px;color:var(--fg2)">Not living in Switzerland yet? Banks ask non-residents for 35% to 50% down — and the Lex Koller law restricts property purchases by people living abroad. In Geneva, buying without Swiss residence is very difficult.</p>
+    <p style="margin-top:14px">This works with a B or C permit. But a Pillar 2 withdrawal is taxed, shrinks your pension and must be paid back if you sell — use only what you need.</p>
+    <p style="font-size:14px;color:var(--fg2)">Not living in Switzerland? The Lex Koller law comes first: in Geneva, in practice, you can't buy. See <a class="link" href="https://swissexpathub.ch/resources/buying-property-switzerland-foreign-national" target="_top">Buying Property in Switzerland as a Foreign National</a>.</p>
   </div>
 
   <!-- TWO TIERS -->
   <div class="blk">
-    <h2>The Two-Tier Mortgage</h2>
-    <p>Switzerland splits the bank loan into two mortgages on the same property, with very different rules:</p>
+    <h2>Two Mortgages on One Home</h2>
+    <p>The bank loan is split into two mortgages on the same property:</p>
     <div class="tiers">
       <div class="tier t1" data-delay="0">
         <div class="tag">1st mortgage · up to 65%</div>
         <h3>No deadline to repay</h3>
-        <p>You pay only the interest. The debt can stay until you sell — the sale proceeds then repay the bank first. You can pay it off whenever you like, but you don't have to.</p>
-        <p>The bank may ask you to reduce it in a few cases: at retirement, if your pension no longer passes the one-third rule; at the end of a fixed-rate term, if you don't renew; or if the property loses a lot of value.</p>
+        <p>You pay only the interest, and the debt can stay until you sell (the bank may ask you to reduce it, for example at retirement).</p>
         <div class="payoff"><i></i></div><div class="payoff-lbl">Debt stays the same — interest only</div>
       </div>
       <div class="tier t2" data-delay="180">
         <div class="tag">2nd mortgage · 65% to 80%</div>
         <h3>Works like a normal loan</h3>
-        <p>It must be paid back within 15 years, or by retirement age — whichever comes first. This repayment of the loan itself (not the interest) is called amortisation.</p>
+        <p>It must be paid back (amortised) within 15 years, or by retirement if that comes first.</p>
         <div class="payoff"><i></i></div><div class="payoff-lbl">Repaid over 15 years</div>
       </div>
     </div>
-    <p style="margin-top:14px;font-size:14px;color:var(--fg2)">The first tier is the debt Swiss residents keep for decades — because of the imputed rental value, explained below.</p>
   </div>
 
   <!-- RATES -->
@@ -304,16 +366,16 @@ p:last-child { margin-bottom: 0; }
     <h2 class="reveal" style="margin-bottom:12px">Fixed Rate or SARON</h2>
     <div class="rates">
       <div class="rate" data-delay="0">
-        <h3>Fixed rate (Festhypothek)</h3>
+        <h3>Fixed rate</h3>
         <svg class="spark" viewBox="0 0 200 34" preserveAspectRatio="none"><path d="M2 17 H198" stroke="var(--blue-mid)"/></svg>
         <div class="big">1.8–2.4%</div>
-        <p>For 10 years in 2026. The rate is locked for the whole term (2 to 15 years), so you're protected if rates rise. The most popular choice among expats who want predictable payments.</p>
+        <p>For 10 years in 2026. Locked for the whole term (2 to 15 years).</p>
       </div>
       <div class="rate" data-delay="150">
         <h3>SARON (variable)</h3>
         <svg class="spark" viewBox="0 0 200 34" preserveAspectRatio="none"><path d="M2 24 C20 22 30 28 50 20 S80 10 100 18 S140 30 160 14 S190 8 198 12" stroke="var(--gold)"/></svg>
         <div class="big">0.9–1.3%</div>
-        <p>Follows SARON, the Swiss overnight interest rate between banks. Cheaper today, but it rises when the market does. Many buyers split: part fixed, part SARON.</p>
+        <p>Follows the Swiss market's base rate: cheaper today, but it rises if rates rise.</p>
       </div>
     </div>
   </div>
@@ -321,8 +383,7 @@ p:last-child { margin-bottom: 0; }
   <!-- ONE-THIRD RULE -->
   <div class="blk" id="third">
     <h2>The One-Third Rule: How Much House You Can Afford</h2>
-    <p class="plain"><b>In plain terms:</b> your yearly housing costs — interest, repayment of the 2nd mortgage and maintenance — can't be more than one third (33%) of your gross salary. This is the rule that decides whether the bank lends you the money.</p>
-    <p class="warnline"><b>Watch out:</b> for this calculation the bank doesn't use today's interest rate — the one it will actually charge you — but a fictitious safety rate of 5%. It does the maths on that rate to make sure you could still pay if rates went up. That's why the limit is tighter than your real payments would suggest.</p>
+    <p>Your yearly housing costs can't be more than one third of your gross salary. The bank works them out with a fictitious 5% interest rate — to make sure you could still pay if rates went up — plus repayment of the 2nd mortgage and maintenance (1% of the price).</p>
     <div class="panel calc">
       <div class="viz-label">Try it — what the bank calculates</div>
       <label>Property price <b id="pv">CHF 800,000</b></label>
@@ -342,14 +403,13 @@ p:last-child { margin-bottom: 0; }
       </div>
       <p class="viz-note">Assumes 20% down and the 2nd mortgage repaid over 15 years. Banks differ slightly in how they calculate — treat this as a guide.</p>
     </div>
-    <p style="margin-top:14px">At CHF 800,000, that's CHF 48,000 a year × 3 = <b>CHF 144,000</b> of gross income the bank will require. Buying as a couple? Both salaries count together — CHF 80,000 + CHF 64,000 = CHF 144,000 works too.</p>
+    <p style="margin-top:14px">Buying as a couple? Both salaries count. Some banks use a slightly lower rate in the test: compare two or three.</p>
   </div>
 
   <!-- IMPUTED RENT -->
   <div class="blk" id="ir">
-    <h2>The Imputed Rental Value — Why the Swiss Keep Their Mortgage (Until 2028)</h2>
-    <p class="plain"><b>In plain terms:</b> today, if you live in a home you own, you pay tax on a fictitious rent — the imputed rental value (<i>valeur locative</i> in Geneva, <i>Eigenmietwert</i> in German). The tax office adds to your income the rent you would get if you let the property out, even though you live in it. It's usually 60–70% of the market rent.</p>
-    <p>In return, you can deduct your mortgage interest and maintenance costs. This is why the Swiss never pay off their mortgage: the interest offsets the fictitious rent. Pay the mortgage off completely and the fictitious rent hits your tax bill in full, with nothing to balance it — with low rates, you can even pay more tax than if you didn't own a home.</p>
+    <h2>The Imputed Rental Value — Until 2028</h2>
+    <p>Today, if you live in a home you own, you pay tax on a rent you never receive: the imputed rental value (<i>valeur locative</i>), usually 60–70% of the market rent, added to your salary. In return, you deduct interest and maintenance. That's why the Swiss rarely pay off their mortgage: the smaller the debt, the less there is to deduct.</p>
     <div class="panel">
       <div class="viz-label">House of CHF 800,000 · market rent ≈ CHF 30,000/year — move the slider</div>
       <label style="display:flex;justify-content:space-between;font-size:13.5px;color:var(--fg2)">Mortgage still owed <b id="mv" style="color:var(--fg);font-family:'Space Grotesk',sans-serif">CHF 640,000</b></label>
@@ -367,14 +427,12 @@ p:last-child { margin-bottom: 0; }
       <p class="msg" id="ir-msg"></p>
       <p class="viz-note">Illustrative figures: imputed rental value 60–70% of a ≈ CHF 30,000 market rent, interest at ≈ 1.8%, marginal tax rate ≈ 30% (upper-middle income in Geneva). Maintenance deduction not included. The real imputed value is set by the Geneva tax office for each property.</p>
     </div>
-    <p style="margin-top:14px"><b>In other words: on a CHF 800,000 home that's fully paid off, the tax office adds a fictitious rent of CHF 18,000–21,000 a year (CHF 1,500–1,750 a month) to your salary — and taxes it: around CHF 5,400–6,300 a year, or CHF 450–525 a month. In practice, you pay the tax office a kind of rent every month to live in a home you own.</b> This ends in 2029, when the imputed rental value is abolished.</p>
-    <p><b>And the more you pay off, the worse it gets.</b> The fictitious rent stays the same every year — but as the debt shrinks, so does the interest, leaving less and less to deduct. The more the home is yours, the more tax you pay on it.</p>
   </div>
 
   <!-- 2029 -->
   <div class="blk" id="y2029">
     <h2>What Changes in 2029</h2>
-    <p>From 1 January 2029, the imputed rental value is abolished for the home you live in — approved by popular vote in September 2025, with the date set by the Federal Council. At the same time, mortgage interest and maintenance costs on that home stop being deductible.</p>
+    <p>From 1 January 2029, the imputed rental value ends for the home you live in (approved by popular vote in September 2025). With it go the deductions for interest and maintenance.</p>
     <div class="era">
       <div class="era-col old"><h3>Until 2028</h3>
         <div class="era-row" data-delay="0"><span class="n">✕</span> Tax on the fictitious rent</div>
@@ -387,71 +445,23 @@ p:last-child { margin-bottom: 0; }
         <div class="era-row" data-delay="740"><span class="n">✕</span> Maintenance no longer deductible</div>
       </div>
     </div>
-    <p class="except"><b>Exception:</b> first-time buyers who live in the home keep a limited interest deduction for ten years.</p>
-    <p>With the fictitious rent and the interest deduction disappearing together, the main reason never to pay off the mortgage disappears too. The mortgage becomes just a cost, and the decision gets simple: if your money earns more elsewhere than the interest you'd pay, keep the mortgage; if it's sitting in an account earning nothing, paying it off makes sense. If you buy before 2029, run the numbers for both periods — until 2028 and from 2029.</p>
-    <p style="font-size:14px;color:var(--fg2)"><b style="color:var(--fg)">What about wealth tax?</b> It barely affects this decision: paying off the mortgage with your savings doesn't change it, because what you own falls by exactly as much as what you owe — your net wealth stays the same. And the wealth tax rules don't change with the reform.</p>
+    <p class="except"><b>Exception:</b> first-time buyers can deduct interest of up to CHF 10,000 (married couples) or CHF 5,000 (single) in the first year; the limit falls by 10% a year and ends after ten years.</p>
+    <p>The mortgage becomes just a cost: if your money earns more elsewhere than the interest, keep it; if it's sitting in an account, paying it off makes sense. If you buy before 2029, run the numbers for both periods.</p>
   </div>
 
-  <!-- SITUATIONS -->
+  <!-- GO DEEPER -->
   <div class="sec">
-    <h2 class="reveal" style="margin-bottom:12px">Three Real Situations</h2>
-    <div class="sits">
-      <div class="sit" data-delay="0">
-        <h3>Sofia</h3><div class="sub">C permit · property CHF 600,000</div>
-        <dl><dt>Down payment</dt><dd>120,000</dd><dt>1st mortgage</dt><dd>390,000</dd><dt>2nd mortgage</dt><dd>90,000</dd></dl>
-        <p class="note">CHF 60,000 savings + CHF 60,000 from Pillar 2. 10-year fixed at 2%: ≈ CHF 9,600 interest a year — deductible until 2028.</p>
-        <div class="foot">Minimum gross income<b>CHF 108,000</b></div>
-      </div>
-      <div class="sit" data-delay="120">
-        <h3>James</h3><div class="sub">B permit · property CHF 750,000</div>
-        <dl><dt>Down payment</dt><dd>150,000</dd><dt>1st mortgage</dt><dd>487,500</dd><dt>2nd mortgage</dt><dd>112,500</dd></dl>
-        <p class="note">All from savings — though a B permit wouldn't stop him using Pillar 2 for his own home. SARON today: ≈ CHF 7,000 interest a year.</p>
-        <div class="foot">Minimum gross income<b>CHF 135,000</b></div>
-      </div>
-      <div class="sit" data-delay="240">
-        <h3>A couple</h3><div class="sub">C permits · property CHF 1,200,000</div>
-        <dl><dt>Down payment</dt><dd>240,000</dd><dt>Fixed 10 years</dt><dd>600,000</dd><dt>SARON</dt><dd>360,000</dd></dl>
-        <p class="note">Total mortgage CHF 960,000, split for safety and savings.</p>
-        <div class="foot">Minimum gross income, combined<b>CHF 216,000</b></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- MISTAKES -->
-  <div class="sec">
-    <h2 class="reveal" style="margin-bottom:12px">Common Mistakes</h2>
-    <div style="display:flex;flex-direction:column;gap:10px">
-      <div class="mk" data-delay="0"><div class="mk-num">1</div><div><h3>Deciding to pay off or keep the mortgage without looking at 2029</h3>
-        <p>Until 2028, paying off the whole mortgage usually raises your tax because of the imputed rental value. From 2029, keeping a large mortgage can be expensive because the interest is no longer deductible. The right choice depends on the year and on where your money is.</p></div></div>
-      <div class="mk" data-delay="100"><div class="mk-num">2</div><div><h3>Using all your Pillar 2 for the down payment</h3>
-        <p>Withdrawing Pillar 2 reduces your future pension and is taxed when you take the money out. Use only what you need.</p></div></div>
-      <div class="mk" data-delay="200"><div class="mk-num">3</div><div><h3>Not comparing banks</h3>
-        <p>Rates vary from bank to bank. A difference of 0.3% on a CHF 640,000 mortgage is almost CHF 2,000 a year.</p></div></div>
-    </div>
-  </div>
-
-  <!-- FAQ -->
-  <div>
-    <h2 class="reveal">Before You Ask</h2>
-    <div style="margin-top:12px">
-      <div class="faq-item reveal">
-        <div class="faq-q" onclick="toggleFaq(this)">Can I use Pillar 2 for the down payment?<span class="faq-arrow">▾</span></div>
-        <div class="faq-a">Yes — for up to 10% of the property price, as long as at least another 10% comes from your own savings. The withdrawal is taxed, and you have to pay the money back into Pillar 2 if you sell the property.</div>
-      </div>
-      <div class="faq-item reveal">
-        <div class="faq-q" onclick="toggleFaq(this)">Should I choose a fixed rate or SARON?<span class="faq-arrow">▾</span></div>
-        <div class="faq-a">It depends on how much risk you're comfortable with. SARON is cheaper now but can rise; a fixed rate gives you certainty. Many expats split the mortgage — part fixed for safety, part SARON to benefit from today's low rates.</div>
-      </div>
-      <div class="faq-item reveal">
-        <div class="faq-q" onclick="toggleFaq(this)">Do I need an advisor to buy a home?<span class="faq-arrow">▾</span></div>
-        <div class="faq-a"><p>In most cases, no. Banks have mortgage specialists who explain the whole process free of charge — the one-third rule, the two tiers, fixed vs SARON and the documents you need. It's worth talking to two or three banks.</p><p>An independent advisor makes sense when your questions go beyond the loan: if you'll use Pillar 2 or 3a for the down payment, if your income is irregular or comes from several countries, or if you want to understand the tax impact of buying before or after 2029.</p></div>
-      </div>
+    <h2 class="reveal" style="margin-bottom:12px">Go Deeper</h2>
+    <div class="further">
+      <a class="fr f1" data-delay="0" href="https://swissexpathub.ch/resources/buying-property-switzerland-foreign-national" target="_top"><div class="n">Buying</div><h3>Buying property as a foreign national</h3><p>Who can buy, by permit, and what it costs.</p><span class="go">Read →</span></a>
+      <a class="fr f2" data-delay="120" href="https://swissexpathub.ch/resources/pillar-2-pension-fund-retirement-switzerland" target="_top"><div class="n">Pillar 2</div><h3>Your pension fund</h3><p>What a withdrawal for your home means for your retirement.</p><span class="go">Read →</span></a>
+      <a class="fr f3" data-delay="240" href="https://swissexpathub.ch/resources/pillar-3a-switzerland-complete-guide" target="_top"><div class="n">Pillar 3a</div><h3>The complete guide</h3><p>How your private retirement account works — and when you can take it out.</p><span class="go">Read →</span></a>
     </div>
   </div>
 
   <!-- CTA -->
   <div class="cta-box reveal">
-    <p>Financing a home in Switzerland rewards those who plan ahead. For the loan itself, the bank's specialist is usually enough. When Pillar 2, income from several countries or the 2029 imputed rental value reform come into play, an independent advisor helps you get the numbers right before you sign.</p>
+    <p>For the loan itself, the bank's mortgage specialists are usually enough. If you'll use Pillar 2, have income from several countries or want to compare buying before or after 2029, SwissExpatHub can connect you with independent advisors.</p>
     <a href="https://swissexpathub.ch/directory" target="_top" class="cta-btn">Find Your Advisor →</a>
   </div>
 
@@ -459,11 +469,11 @@ p:last-child { margin-bottom: 0; }
   <div class="sources reveal">
     <h3>Sources</h3>
     <ol>
-      <li>Swissquote — Swiss Mortgages Explained: Rates, Terms and How They Work, 2026: swissquote.com</li>
-      <li>Swiss National Bank — SARON 2026: snb.ch</li>
-      <li>Grundheim — Mortgage Affordability Calculator Switzerland 2026: grundheim.ch</li>
-      <li>UBS Switzerland — Abolition of the imputed rental value 2029: ubs.com/ch</li>
-      <li>Swiss Federal Council — Entry into force of the imputed rental value reform, 1 April 2026: admin.ch</li>
+      <li><a href="https://www.admin.ch/de/newnsb/yGTqBPowRqyVh0zPokW-q" target="_blank" rel="noopener">Swiss Federal Council — reform of home-ownership taxation in force on 1 January 2029 (1 April 2026)</a></li>
+      <li><a href="https://www.zkb.ch/de/blog/immobilien/eigenmietwert-faellt-weg.html" target="_blank" rel="noopener">Zürcher Kantonalbank — first-time buyer interest deduction (CHF 10,000 / 5,000)</a></li>
+      <li><a href="https://www.ubs.com/ch/en/help/mortgages-and-financing/retirement-capital-as-equity.html" target="_blank" rel="noopener">UBS — retirement capital as equity (Pillar 2 up to 10%, Pillar 3a beyond)</a></li>
+      <li><a href="https://en.comparis.ch/altersvorsorge/Eigentumsfinanzierung" target="_blank" rel="noopener">Comparis — hard equity and Pillar 3a</a></li>
+      <li>Swissquote / Swiss National Bank — mortgage rates and SARON 2026</li>
     </ol>
   </div>
 
@@ -496,9 +506,16 @@ stagger('.reveal', 0.08);
 stagger('.blk', 0.05);
 stagger('.tier', 0.3);
 stagger('.rate', 0.3);
-stagger('.sit', 0.15);
+stagger('.fr', 0.15);
 stagger('.era-row', 0.5);
-stagger('.mk', 0.1);
+
+// Buy vs rent
+function cu(el, to, ms) { const t0 = performance.now(); const st = t => { const k = Math.min(1, (t - t0) / ms), e = 1 - Math.pow(1 - k, 3); el.textContent = 'CHF ' + fmt(Math.round(to * e)); if (k < 1) requestAnimationFrame(st); }; requestAnimationFrame(st); }
+onView('bvr', () => {
+  document.querySelectorAll('#bvr .bvr-seg').forEach((g, i) => setTimeout(() => g.style.width = g.dataset.w + '%', 150 + i * 350));
+  setTimeout(() => cu(document.getElementById('bvr-own'), 1625, 900), 300);
+  setTimeout(() => cu(document.getElementById('bvr-gap'), 875, 900), 1200);
+}, 0.4);
 
 // Down payment stack
 onView('stack', () => {
