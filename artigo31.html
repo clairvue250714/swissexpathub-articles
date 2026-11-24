@@ -47,425 +47,422 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-  background: var(--bg);
-  color: var(--fg);
-  font-family: 'Inter', system-ui, sans-serif;
-  font-size: 16px;
-  line-height: 1.75;
-  padding: 40px max(16px, 5vw) 80px;
-}
-
-.article {
-  max-width: 720px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-
-/* ── HEADER ── */
-.article-header { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
-.article-meta {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: .12em; text-transform: uppercase;
-  color: var(--fg2); margin-bottom: 10px;
-}
-h1 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(24px, 5vw, 36px);
-  font-weight: 700; line-height: 1.2;
-  text-wrap: balance; color: var(--fg);
-}
-.header-rule {
-  height: 2px; background: var(--blue);
-  border-radius: 2px; margin-top: 20px;
-  width: 48px;
-}
-
-/* ── QUICK ANSWER ── */
-.quick-answer {
-  background: var(--blue-light);
-  border-left: 4px solid var(--blue);
-  border-radius: 0 14px 14px 0;
-  padding: 20px 24px;
-}
-.quick-answer p { font-size: 15px; color: var(--fg); margin: 0; }
-
-/* ── TAKEAWAYS ── */
-.takeaways {
-  background: var(--blue);
-  border-radius: 16px;
-  padding: 28px 32px;
-}
-.takeaways h2 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 16px; font-weight: 700;
-  color: rgba(255,255,255,.6);
-  letter-spacing: .08em; text-transform: uppercase;
-  margin-bottom: 16px; margin-top: 0;
-}
+#progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: var(--blue-mid); width: 0%; z-index: 1000; transition: width .1s linear; border-radius: 0 2px 2px 0; }
+body { background: var(--bg); color: var(--fg); font-family: 'Inter', system-ui, sans-serif; font-size: 16px; line-height: 1.75; padding: 48px max(16px, 5vw) 80px; }
+.article { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 36px; }
+.article-meta { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--fg2); margin-bottom: 12px; opacity: 0; transform: translateY(-8px); transition: opacity .5s ease, transform .5s ease; }
+.article-meta.visible { opacity: 1; transform: none; }
+h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(24px, 5vw, 36px); font-weight: 700; line-height: 1.2; text-wrap: balance; color: var(--fg); opacity: 0; transform: translateY(12px); transition: opacity .6s ease .15s, transform .6s ease .15s; }
+h1.visible { opacity: 1; transform: none; }
+.header-rule { height: 3px; background: var(--blue); border-radius: 2px; margin-top: 20px; width: 0; transition: width .8s cubic-bezier(.16,1,.3,1) .5s; }
+.header-rule.visible { width: 48px; }
+.takeaways { background: var(--blue); border-radius: 16px; padding: 28px 32px; }
+.takeaways h2 { font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; color: rgba(255,255,255,.55); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 18px; }
 .takeaways ul { list-style: none; }
-.takeaways ul li {
-  color: #e8ecf5;
-  font-size: 14.5px;
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(255,255,255,.1);
-  display: flex; gap: 12px; align-items: flex-start;
-}
-.takeaways ul li:last-child { border-bottom: none; }
-.takeaways ul li::before {
-  content: "✓"; color: #3dba78;
-  font-weight: 700; flex-shrink: 0; margin-top: 1px;
-}
-
-/* ── HEADINGS ── */
-h2 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 20px; font-weight: 700;
-  color: var(--fg); margin-bottom: 4px;
-}
-h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  color: var(--blue-mid); margin-bottom: 6px;
-}
+.takeaway-item { color: #e8ecf5; font-size: 14.5px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.1); display: flex; gap: 12px; align-items: flex-start; opacity: 0; transform: translateX(-10px); transition: opacity .45s ease, transform .45s ease; }
+.takeaway-item.visible { opacity: 1; transform: none; }
+.takeaway-item:last-child { border-bottom: none; }
+.takeaway-item::before { content: "✓"; color: #3dba78; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+h2 { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; color: var(--fg); margin-bottom: 4px; }
+h3 { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; color: var(--blue-mid); margin-bottom: 6px; }
 p { font-size: 15.5px; color: var(--fg); margin-bottom: 12px; }
 p:last-child { margin-bottom: 0; }
-.hl-blue  { color: var(--blue-mid); font-weight: 600; }
-.hl-green { color: var(--green);    font-weight: 600; }
-.hl-red   { color: var(--red);      font-weight: 600; }
-sup { font-size: 11px; color: var(--blue-mid); }
+.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.viz-label { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--fg2); margin-bottom: 12px; }
+.viz-note { font-size: 12px; color: var(--fg2); margin-top: 10px; line-height: 1.55; }
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+.blk { position: relative; overflow: hidden; background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px; padding: 24px 26px; box-shadow: var(--shadow); opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
+.blk.visible { opacity: 1; transform: none; }
+.blk::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--blue-mid); transform: scaleY(0); transform-origin: top; transition: transform .6s cubic-bezier(.16,1,.3,1) .25s; }
+.blk.visible::before { transform: scaleY(1); }
+.blk h2 { margin-bottom: 12px; font-size: 19px; }
+.blk p { font-size: 15px; }
+.plain { background: var(--green-light); border-radius: 10px; padding: 12px 14px; font-size: 14.5px; margin-bottom: 12px; }
+.plain b { color: var(--green); font-family: 'Space Grotesk', sans-serif; }
+.warnline { margin: 4px 0 14px; padding: 10px 14px; border-radius: 10px; background: var(--gold-light); color: var(--fg); font-size: 14px; border-left: 4px solid var(--gold); }
+.warnline b { color: var(--gold); }
+.panel { margin-top: 16px; padding: 18px; border-radius: 14px; background: var(--bg); border: 1.5px solid var(--border); }
 
-/* ── SITUATION CARDS ── */
-.situation-cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-@media (max-width: 520px) { .situation-cards { grid-template-columns: 1fr; } }
+/* MISTAKES */
+.mk { position: relative; overflow: hidden; background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px; padding: 20px 24px; box-shadow: var(--shadow); display: flex; gap: 16px; opacity: 0; transform: translateX(-14px); transition: opacity .5s ease, transform .5s ease; }
+.mk.visible { opacity: 1; transform: none; }
+.mk-num { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; color: var(--red); opacity: 0; line-height: 1; min-width: 26px; transform: scale(1.6); transition: opacity .5s ease .2s, transform .5s cubic-bezier(.34,1.56,.64,1) .2s; }
+.mk.visible .mk-num { opacity: .25; transform: scale(1); }
+.mk h3 { color: var(--red); font-size: 15px; margin-bottom: 6px; }
+.mk p { font-size: 14.5px; color: var(--fg2); margin: 0; line-height: 1.6; }
 
-.sit-card {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 14px;
-  padding: 18px 20px;
-  box-shadow: var(--shadow);
-  transition: border-color .2s, box-shadow .2s;
-}
-.sit-card:hover { box-shadow: var(--shadow-md); }
-.sit-card.alert { border-color: var(--red); }
-.sit-card h3 { color: var(--blue-mid); margin-bottom: 6px; }
-.sit-card.alert h3 { color: var(--red); }
-.sit-card p { font-size: 13px; color: var(--fg2); margin: 0; }
-
-/* ── CHECKLIST ── */
-.checklist {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 16px;
-  padding: 24px 28px;
-  box-shadow: var(--shadow);
-}
-.checklist h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  margin-bottom: 16px; color: var(--fg);
-}
-.checklist-item {
-  display: flex; align-items: flex-start; gap: 12px;
-  padding: 11px 0;
-  border-bottom: 1px solid var(--border);
-  cursor: pointer;
-}
-.checklist-item:last-of-type { border-bottom: none; }
-.check-box {
-  width: 22px; height: 22px;
-  border: 2px solid var(--blue);
-  border-radius: 6px; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  transition: all .2s; margin-top: 2px;
-}
-.check-box.checked { background: var(--blue); border-color: var(--blue); }
-.check-box.checked::after { content: "✓"; color: white; font-size: 13px; font-weight: 700; }
-.checklist-item.done span { text-decoration: line-through; color: var(--fg2); }
-.checklist-item span { font-size: 14.5px; color: var(--fg); font-family: 'Inter', sans-serif; }
-.progress-bar { height: 5px; background: var(--border); border-radius: 3px; margin-top: 16px; }
-.progress-fill { height: 100%; background: var(--green); border-radius: 3px; transition: width .4s ease; }
-.progress-label { font-size: 12px; color: var(--fg2); margin-top: 6px; font-family: 'Inter', sans-serif; }
-
-/* ── FAQ ── */
-.faq-item {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  margin-bottom: 8px;
-  overflow: hidden;
-  transition: border-color .2s;
-}
-.faq-item.open { border-color: var(--blue); }
-.faq-q {
-  padding: 16px 20px;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 14px; font-weight: 600;
-  cursor: pointer;
-  display: flex; justify-content: space-between; align-items: center;
-  gap: 12px; color: var(--fg);
-  background: transparent;
-}
-.faq-arrow { color: var(--blue); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
+/* FAQ / CTA / SOURCES */
+.faq-item { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; margin-bottom: 8px; overflow: hidden; transition: border-color .2s; }
+.faq-item.open { border-color: var(--blue-mid); }
+.faq-q { padding: 16px 20px; font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; color: var(--fg); user-select: none; }
+.faq-arrow { color: var(--blue-mid); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
 .faq-item.open .faq-arrow { transform: rotate(180deg); }
-.faq-a {
-  display: none;
-  padding: 0 20px 16px;
-  font-size: 14px; color: var(--fg2); line-height: 1.65;
-  font-family: 'Inter', sans-serif;
-}
-.faq-item.open .faq-a { display: block; }
-
-/* ── CTA ── */
-.cta-box {
-  background: var(--blue);
-  border-radius: 16px;
-  padding: 32px 36px;
-  text-align: center;
-}
-.cta-box p {
-  color: rgba(255,255,255,.8);
-  font-size: 15px; margin-bottom: 20px;
-}
-.cta-btn {
-  background: var(--gold);
-  color: #fff;
-  padding: 13px 28px;
-  border-radius: 10px;
-  text-decoration: none;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  display: inline-block;
-  transition: opacity .2s;
-}
-.cta-btn:hover { opacity: .88; }
-
-/* ── SOURCES ── */
-.sources {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  padding: 20px 24px;
-}
-.sources h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: .1em; text-transform: uppercase;
-  color: var(--fg2); margin-bottom: 10px;
-}
+.faq-a { max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .35s ease; font-size: 14px; color: var(--fg2); line-height: 1.65; padding: 0 20px; }
+.faq-a p { font-size: 14px; color: var(--fg2); margin-bottom: 8px; }
+.faq-item.open .faq-a { max-height: 420px; padding: 0 20px 16px; }
+.cta-box { background: var(--blue); border-radius: 16px; padding: 32px 36px; text-align: center; }
+.cta-box p { color: rgba(255,255,255,.85); font-size: 15px; margin-bottom: 20px; }
+.cta-btn { background: var(--gold); color: #fff; padding: 13px 28px; border-radius: 10px; text-decoration: none; font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; display: inline-block; transition: opacity .2s, transform .2s; }
+.cta-btn:hover { opacity: .88; transform: translateY(-1px); }
+.sources { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; padding: 20px 24px; }
+.sources h3 { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--fg2); margin-bottom: 10px; }
 .sources ol { padding-left: 18px; }
-.sources ol li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; }
+.sources li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; }
 
-/* ── FADE IN ── */
-.fade-in { opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
-.fade-in.visible { opacity: 1; transform: translateY(0); }
 
+.quick-answer { background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 14px 14px 0; padding: 20px 24px; }
+.quick-answer p { font-size: 15.5px; margin: 0; }
+
+/* ACCORDION */
+.acc-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+.acc-head p { font-size: 14px; color: var(--fg2); margin: 0; }
+.acc-all { background: none; border: 1.5px solid var(--border); border-radius: 999px; padding: 5px 12px; font: 600 12.5px 'Inter', sans-serif; color: var(--blue-mid); cursor: pointer; }
+.ins { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 14px; margin-bottom: 10px; box-shadow: var(--shadow); overflow: hidden; transition: border-color .25s, box-shadow .25s; opacity: 0; transform: translateY(12px); }
+.ins.visible { opacity: 1; transform: none; transition: opacity .45s ease, transform .45s ease, border-color .25s, box-shadow .25s; }
+.ins.open { border-color: var(--blue-mid); box-shadow: var(--shadow-md); }
+.ins-sum { width: 100%; display: grid; grid-template-columns: 34px 1fr auto auto 22px; gap: 12px; align-items: center; padding: 14px 18px; background: none; border: none; cursor: pointer; text-align: left; color: var(--fg); font: inherit; }
+.ins-sum:focus-visible { outline: 2px solid var(--blue-mid); outline-offset: -2px; }
+.ins-ic { width: 34px; height: 34px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 17px; background: var(--blue-light); }
+.ins-name { font: 700 15.5px 'Space Grotesk', sans-serif; line-height: 1.3; }
+.ins-name small { display: block; font: 500 12.5px 'Inter', sans-serif; color: var(--fg2); }
+.ins-cost { font: 700 14px 'Space Grotesk', sans-serif; color: var(--fg); white-space: nowrap; font-variant-numeric: tabular-nums; text-align: right; }
+.ins-cost small { display: block; font: 500 11px 'Inter', sans-serif; color: var(--fg2); }
+.tag { font: 700 10.5px 'Space Grotesk', sans-serif; letter-spacing: .06em; text-transform: uppercase; padding: 4px 9px; border-radius: 999px; white-space: nowrap; }
+.tag.must { background: var(--red-light); color: var(--red); }
+.tag.ess { background: var(--green-light); color: var(--green); }
+.tag.dep { background: var(--gold-light); color: var(--gold); }
+.tag.job { background: var(--blue-light); color: var(--blue-mid); }
+.tag.no { background: var(--border); color: var(--fg2); }
+.arrow { color: var(--blue-mid); font-size: 18px; transition: transform .35s ease; justify-self: end; }
+.ins.open .arrow { transform: rotate(180deg); }
+.ins-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .45s cubic-bezier(.16,1,.3,1); }
+.ins.open .ins-body { grid-template-rows: 1fr; }
+.ins-inner { overflow: hidden; }
+.ins-content { padding: 0 18px 18px 64px; }
+.ins-content p { font-size: 14.5px; margin-bottom: 10px; }
+.ins-content ul { padding-left: 18px; font-size: 14.5px; margin-bottom: 10px; } .ins-content li { margin-bottom: 5px; }
+.note { background: var(--gold-light); border-left: 4px solid var(--gold); border-radius: 0 10px 10px 0; padding: 10px 14px; font-size: 14px; margin: 6px 0 10px; }
+.note b { color: var(--gold); }
+
+/* 8-HOUR RULE */
+.eight { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 8px 0 10px; }
+.ec { border-radius: 12px; padding: 12px 14px; border: 1.5px solid var(--border); }
+.ec.y { border-color: var(--green); background: var(--green-light); } .ec.n { border-color: var(--red); background: var(--red-light); }
+.ec .hrs { display: flex; gap: 6px; margin: 6px 0; }
+.ec .hb { height: 22px; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #fff; font: 700 11.5px 'Space Grotesk', sans-serif; }
+.ec.y .hb { background: var(--green); } .ec.n .hb { background: var(--red); }
+.ec .v { font: 700 13px 'Space Grotesk', sans-serif; }
+.ec.y .v { color: var(--green); } .ec.n .v { color: var(--red); }
+.ec p { font-size: 12.5px; color: var(--fg2); margin: 0; }
+
+/* TOM */
+.tom { background: var(--green-light); border-left: 4px solid var(--green); border-radius: 0 12px 12px 0; padding: 14px 16px; margin: 10px 0 12px; }
+.tom .t { font: 700 12px 'Space Grotesk', sans-serif; letter-spacing: .08em; text-transform: uppercase; color: var(--green); margin-bottom: 6px; }
+.tom p { font-size: 14px; margin-bottom: 8px; }
+.stack { display: flex; height: 34px; border-radius: 8px; overflow: hidden; background: var(--border); margin: 6px 0 4px; }
+.stack i { display: flex; align-items: center; justify-content: center; color: #fff; font: 700 11.5px 'Space Grotesk', sans-serif; font-style: normal; white-space: nowrap; overflow: hidden; width: 0; transition: width .8s cubic-bezier(.16,1,.3,1); }
+.stack .med { background: var(--red); } .stack .sal { background: var(--gold); }
+.stack-lbl { display: flex; justify-content: space-between; font-size: 12px; color: var(--fg2); font-variant-numeric: tabular-nums; }
+.vs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+.vs div { border-radius: 10px; padding: 10px 12px; background: var(--bg2); }
+.vs .k { font: 700 10.5px 'Space Grotesk', sans-serif; letter-spacing: .08em; text-transform: uppercase; color: var(--fg2); }
+.vs .v { font: 700 20px 'Space Grotesk', sans-serif; font-variant-numeric: tabular-nums; }
+.vs .bad .v { color: var(--red); } .vs .good .v { color: var(--green); }
+.notcov { display: grid; gap: 6px; margin-top: 6px; }
+.nc { display: grid; grid-template-columns: 22px 1fr; gap: 8px; font-size: 14px; align-items: start; }
+.nc .x { color: var(--red); font-weight: 700; }
+.nc b { color: var(--fg); }
+
+/* CONTENTS CALC */
+.cc { background: var(--bg); border: 1.5px solid var(--border); border-radius: 12px; padding: 14px 16px; margin: 8px 0 10px; }
+.cc label { display: flex; justify-content: space-between; font-size: 13.5px; color: var(--fg2); }
+.cc label b { color: var(--fg); font-family: 'Space Grotesk', sans-serif; font-variant-numeric: tabular-nums; }
+.cc input { width: 100%; accent-color: var(--blue-mid); margin: 4px 0 10px; }
+.cc-track { position: relative; height: 14px; border-radius: 7px; background: var(--border); }
+.cc-fill { position: absolute; inset: 0 auto 0 0; border-radius: 7px; background: var(--fg2); transition: width .3s, background .3s; }
+.cc-fill.ok { background: var(--green); }
+.cc-mark { position: absolute; top: -5px; bottom: -5px; width: 2px; background: var(--fg); left: 40%; }
+.cc-mark span { position: absolute; top: -18px; left: 50%; transform: translateX(-50%); font: 700 11px 'Space Grotesk', sans-serif; white-space: nowrap; }
+.cc-v { margin-top: 10px; font-size: 14px; font-weight: 600; }
+.cc-v.ok { color: var(--green); } .cc-v.no { color: var(--fg2); }
+
+/* LEGAL */
+.legal { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 8px 0 4px; }
+.lg { border-radius: 12px; padding: 12px 14px; border: 1.5px solid var(--border); background: var(--bg); }
+.lg .k { font: 700 10.5px 'Space Grotesk', sans-serif; letter-spacing: .08em; text-transform: uppercase; color: var(--fg2); }
+.lg .v { font: 700 20px 'Space Grotesk', sans-serif; font-variant-numeric: tabular-nums; }
+.lg.a .v { color: var(--red); } .lg.b .v { color: var(--green); }
+
+/* FURTHER */
+.fr { display: block; text-decoration: none; background: var(--bg2); border: 1.5px solid var(--border); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); transition: transform .2s, box-shadow .2s, border-color .2s; }
+.fr:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); border-color: var(--blue-mid); }
+.fr .n { font: 700 11px 'Space Grotesk', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: var(--blue-mid); }
+.fr h3 { color: var(--fg); font-size: 15px; margin: 4px 0 4px; }
+.fr p { font-size: 13px; color: var(--fg2); margin: 0 0 8px; }
+.fr .go { font: 700 13px 'Space Grotesk', sans-serif; color: var(--blue-mid); }
+
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .takeaways { background: #1f3a6b; } }
+:root[data-theme="dark"] .takeaways { background: #1f3a6b; }
 @media (max-width: 600px) {
-  h1 { font-size: 24px; }
-  .situation-cards { grid-template-columns: 1fr; }
-  .cta-box { padding: 24px 20px; }
-  .takeaways { padding: 20px 20px; }
+  .takeaways { padding: 20px; } .cta-box { padding: 24px 20px; }
+  .ins-sum { grid-template-columns: 30px 1fr 22px; grid-template-areas: "ic name ar" "ic meta ar"; row-gap: 6px; padding: 12px 14px; }
+  .ins-ic { grid-area: ic; width: 30px; height: 30px; font-size: 15px; align-self: start; }
+  .ins-name { grid-area: name; }
+  .ins-meta { grid-area: meta; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .arrow { grid-area: ar; align-self: start; }
+  .ins-cost { text-align: left; } .ins-cost small { display: inline; margin-left: 4px; }
+  .ins-content { padding: 0 14px 16px; }
+  .eight, .vs, .legal { grid-template-columns: 1fr; }
+}
+@media (min-width: 601px) { .ins-meta { display: contents; } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+  .reveal, .ins, .takeaway-item, .article-meta, h1 { opacity: 1 !important; transform: none !important; }
 }
 </style>
 </head>
 <body>
 <div id="progress-bar"></div>
-
-<header class="hero">
-  <div class="hero-bg"></div>
-  
-  <div class="hero-gradient"></div>
-  <div class="hero-content">
-    <div class="hero-tag" id="heroTag"><span class="hero-tag-pill">Insurance</span><span>Switzerland · Expat Guide</span></div>
-    <h1 class="hero-title" id="heroTitle">Insurance in Switzerland: What Every Expat Needs to Know</h1>
-    <p class="hero-subtitle" id="heroSubtitle">One insurance costs CHF 80–150/year and covers up to CHF 10 million worldwide. Most expats have never heard of it. Here is what you actually need — and what is not worth it.</p>
-    <div class="hero-meta" id="heroMeta"><span>Updated August 2026</span><div class="hero-meta-divider"></div><span>5 min read</span></div>
-  </div>
-</header>
-
 <div class="article">
+
+  <div class="article-header">
+    <p class="article-meta">Insurance · Expat Guide · 5 min read</p>
+    <h1>Insurance in Switzerland: What Every Expat Needs to Know</h1>
+    <div class="header-rule"></div>
+  </div>
+
+  <div class="quick-answer reveal">
+    <p><strong>Quick Answer:</strong> In Switzerland, only health insurance is compulsory for everyone. But there's one policy almost nobody explains to expats, and it costs less than CHF&nbsp;15 a month: personal liability insurance, which pays for damage you cause to other people — up to CHF&nbsp;10 million. Many landlords require it before renting you a flat. Whether you need the others depends on your situation.</p>
+  </div>
+
   <div class="takeaways">
-    <p class="takeaways-label">Key Takeaways</p>
-    <div class="takeaway-item" data-delay="0"><span class="takeaway-num">01</span><span class="takeaway-text">LAMal health insurance is mandatory — must be contracted within 90 days of arrival in Switzerland</span></div>
-    <div class="takeaway-item" data-delay="90"><span class="takeaway-num">02</span><span class="takeaway-text">Personal liability insurance (RC) costs CHF 80–150/year and covers up to CHF 10 million in damages to third parties worldwide</span></div>
-    <div class="takeaway-item" data-delay="180"><span class="takeaway-num">03</span><span class="takeaway-text">RC covers a borrowed friend's car — but NOT your company car. The distinction surprises most expats</span></div>
-    <div class="takeaway-item" data-delay="270"><span class="takeaway-num">04</span><span class="takeaway-text">Contents insurance (mobilier) is only worth it if your personal belongings exceed CHF 20,000 in value</span></div>
-    <div class="takeaway-item" data-delay="360"><span class="takeaway-num">05</span><span class="takeaway-text">Accident insurance for non-professional accidents is covered by your employer if you work 8+ hours/week with them</span></div>
-    <div class="takeaway-item" data-delay="450"><span class="takeaway-num">06</span><span class="takeaway-text">If you work 8+ hours/week for two different employers, the insurer of the employer where you worked most recently before the accident pays</span></div>
+    <h2>Key Takeaways</h2>
+    <ul>
+      <li class="takeaway-item" data-delay="0">Accident insurance comes with your job — if you work at least 8 hours a week for the same employer</li>
+      <li class="takeaway-item" data-delay="100">Personal liability doesn't cover damage to a car a friend or relative lends you — that needs a separate add-on</li>
+      <li class="takeaway-item" data-delay="200">Contents insurance only pays off if your belongings are worth more than CHF 20,000</li>
+      <li class="takeaway-item" data-delay="300">Phone insurance and annual travel insurance are rarely worth it</li>
+    </ul>
   </div>
 
-  <h2 class="reveal">The Most Important Insurance Nobody Mentions</h2>
-  <p class="reveal">Personal liability insurance (RC Privée / Privathaftpflichtversicherung) is the insurance with the best cost-benefit ratio in Switzerland — and it is almost unknown among newly arrived expats.</p>
-
-  <div class="rc-highlight reveal">
-    <h3>Personal Liability Insurance (RC)</h3>
-    <div class="rc-price">CHF 80–150 <span>/ year · worldwide coverage</span></div>
-    <div class="rc-covers">
-      <div class="rc-item">You break a friend's phone</div>
-      <div class="rc-item">Your dog bites someone in the park</div>
-      <div class="rc-item">Your child breaks a neighbour's window</div>
-      <div class="rc-item">You spill wine on a CHF 5,000 sofa</div>
-      <div class="rc-item">You cause a flood in the flat below</div>
-      <div class="rc-item">You injure someone accidentally</div>
+  <!-- ACCORDION -->
+  <div class="sec" id="list">
+    <div class="acc-head reveal">
+      <div><h2 style="margin-bottom:2px">Insurance by Insurance</h2><p>Open only the ones that matter to you. Costs per month, Geneva 2026.</p></div>
+      <button class="acc-all" id="all" aria-expanded="false">Open all</button>
     </div>
-  </div>
 
-  <p class="reveal">In Geneva, with very high salaries and medical costs, a single accident injuring another person can generate a claim of CHF 100,000 to CHF 500,000 — covering medical costs, lost salary, and potentially long-term incapacity. The RC covers up to <span class="hl-green">CHF 10 million</span>. The annual premium is CHF 80 to CHF 150. It is the cheapest and most important insurance you can hold.</p>
-
-  <h2 class="reveal">The Distinction Everyone Gets Wrong — Personal vs Company</h2>
-  <p class="reveal">This is the most common question from expats and the answer surprises many people.</p>
-
-  <div class="rc-grid reveal">
-    <div class="rc-card covers">
-      <h3>✅ RC personal COVERS</h3>
-      <ul>
-        <li>Car borrowed from a friend or family member — YES. If you damage the friend's car, your personal RC covers the damage (if they have no casco insurance) and any third parties involved</li>
-        <li>Rental car — YES, in most cases, covers the excess and vehicle damage</li>
-        <li>Damage to third-party belongings in daily life — YES</li>
-        <li>Damage at someone else's home — YES</li>
-        <li>Valid worldwide — YES</li>
-      </ul>
+    <!-- HEALTH -->
+    <div class="ins" data-delay="0">
+      <button class="ins-sum" aria-expanded="false"><span class="ins-ic">🏥</span><span class="ins-name">Health insurance (LAMal)<small>Basic cover, same at every insurer</small></span><span class="ins-meta"><span class="tag must">Compulsory</span><span class="ins-cost">≈ CHF&nbsp;586<small>per adult</small></span></span><span class="arrow">▾</span></button>
+      <div class="ins-body"><div class="ins-inner"><div class="ins-content">
+        <p>Basic health insurance (LAMal) is compulsory for everyone living in Switzerland and must be taken out within three months of arriving. Every insurer covers exactly the same, but prices vary a lot: in Geneva, an adult pays CHF&nbsp;586 a month on average in 2026, and the cheapest costs CHF&nbsp;562. Premiums rise by about 5% in 2027.</p>
+        <p>Basic insurance doesn't cover the dentist (except after accidents or serious illness), a private hospital room or treatment abroad. For those you need supplementary insurance (LCA) — which, unlike LAMal, an insurer can refuse based on your health.</p>
+        <p><a href="artigo28.html" style="color:var(--blue-mid);font-weight:600">How to choose your health insurance and pay less →</a></p>
+      </div></div></div>
     </div>
-    <div class="rc-card not">
-      <h3>✗ RC personal does NOT cover</h3>
-      <ul>
-        <li>Company car — NO. The company car is covered by the company's insurance. If you damage the company car, your personal insurance does not intervene</li>
-        <li>Damage caused in the course of professional activity — NO</li>
-        <li>Damage to your own belongings — NO, only third-party damage</li>
-        <li>Intentional damage — NEVER</li>
-      </ul>
+
+    <!-- ACCIDENT -->
+    <div class="ins" data-delay="80">
+      <button class="ins-sum" aria-expanded="false"><span class="ins-ic">⛷️</span><span class="ins-name">Accident insurance<small>Work and leisure accidents</small></span><span class="ins-meta"><span class="tag job">Via your employer</span><span class="ins-cost">CHF&nbsp;0<small>for you</small></span></span><span class="arrow">▾</span></button>
+      <div class="ins-body"><div class="ins-inner"><div class="ins-content">
+        <p>If you work at least 8 hours a week for the same employer, they insure you against accidents at work and outside it — evenings, weekends, skiing. You can then remove accident cover from your LAMal and pay less, usually CHF&nbsp;20–40 a month. On your payslip, look for the line "AANP" (non-occupational accident insurance).</p>
+        <div class="eight">
+          <div class="ec y"><div class="v">✓ Covered outside work</div><div class="hrs"><span class="hb" style="width:100%">Company A · 10 h</span></div><p>8 hours or more with one employer.</p></div>
+          <div class="ec n"><div class="v">✕ Not covered outside work</div><div class="hrs"><span class="hb" style="width:50%">A · 6 h</span><span class="hb" style="width:50%">B · 6 h</span></div><p>12 hours in total — but under 8 with each. Keep accident cover in your LAMal.</p></div>
+        </div>
+        <p>With two employers both above 8 hours, the insurer of the employer you worked for most recently before the accident pays.</p>
+      </div></div></div>
     </div>
+
+    <!-- LIABILITY (open) -->
+    <div class="ins open" data-delay="160" id="rc">
+      <button class="ins-sum" aria-expanded="true"><span class="ins-ic">🛡️</span><span class="ins-name">Personal liability (RC)<small>The one nobody explains</small></span><span class="ins-meta"><span class="tag ess">Essential</span><span class="ins-cost">≈ CHF&nbsp;7–13<small>per month</small></span></span><span class="arrow">▾</span></button>
+      <div class="ins-body"><div class="ins-inner"><div class="ins-content">
+        <p>Personal liability insurance (<i>RC privée</i> / <i>Privathaftpflicht</i>) pays for damage you accidentally cause to other people — injuries or broken things — anywhere in the world, up to CHF&nbsp;5 or 10 million. A family policy covers everyone living in the same household. Many landlords require it before renting you a flat, and in most cantons it's compulsory if you own a dog.</p>
+        <p>Examples: breaking a friend's phone, your child breaking the neighbour's window, spilling red wine on an expensive sofa, flooding the flat below, or your dog biting someone in the park.</p>
+        <div class="tom" id="tom"><div class="t">Example — Tom, from London</div>
+          <p>Tom cycles to work in Geneva and, on a bend, knocks over another cyclist, who breaks a leg.</p>
+          <div class="stack"><i class="med" data-w="38.5">Medical CHF 30,000</i><i class="sal" data-w="61.5">Lost salary CHF 48,000</i></div>
+          <div class="stack-lbl"><span>Medical care and rehab: ≈ CHF 30,000</span><span>Lost salary: 6 × CHF 8,000 = CHF 48,000</span></div>
+          <div class="vs"><div class="bad"><div class="k">Without RC — Tom pays</div><div class="v" id="tom-t">CHF&nbsp;78,000</div></div><div class="good"><div class="k">With RC — Tom pays</div><div class="v">≈ CHF&nbsp;10<span style="font-size:13px">/month</span></div></div></div>
+          <p style="margin:8px 0 0;font-size:13px;color:var(--fg2)">30,000 + 48,000 = CHF 78,000. With lifelong after-effects, a claim can exceed CHF 500,000.</p>
+        </div>
+        <p><b>What personal liability doesn't cover:</b></p>
+        <div class="notcov">
+          <div class="nc"><span class="x">✕</span><span><b>Your own belongings</b> — only other people's.</span></div>
+          <div class="nc"><span class="x">✕</span><span><b>Damage at work and the company car</b> — that's your employer's insurance.</span></div>
+          <div class="nc"><span class="x">✕</span><span><b>A car a friend or relative lends you</b> — damage to their car is only covered with a paid add-on, "driving third-party vehicles" (<i>conduite de véhicules de tiers</i>), and only for occasional use. Damage to other people and other cars is paid by the owner's compulsory motor insurance.</span></div>
+          <div class="nc"><span class="x">✕</span><span><b>A rental car</b> — covered by the rental company's insurance or your credit card; check before declining cover at the desk.</span></div>
+          <div class="nc"><span class="x">✕</span><span><b>Intentional damage</b> — never.</span></div>
+        </div>
+      </div></div></div>
+    </div>
+
+    <!-- CONTENTS -->
+    <div class="ins" data-delay="240">
+      <button class="ins-sum" aria-expanded="false"><span class="ins-ic">🛋️</span><span class="ins-name">Household contents<small>Your belongings at home</small></span><span class="ins-meta"><span class="tag dep">If over CHF 20,000</span><span class="ins-cost">≈ CHF&nbsp;13–33<small>with RC</small></span></span><span class="arrow">▾</span></button>
+      <div class="ins-body"><div class="ins-inner"><div class="ins-content">
+        <p>Contents insurance (<i>ménage</i> / <i>Hausrat</i>) covers what you own inside your flat — furniture, clothes, electronics, jewellery, bike — against theft, fire, water and natural disasters. The building has its own insurance.</p>
+        <div class="cc" id="cc">
+          <label>Add up your belongings <b id="cc-v"></b></label>
+          <input type="range" id="cc-in" min="0" max="50000" step="1000" value="15000" aria-label="Value of your belongings">
+          <div class="cc-track"><div class="cc-fill" id="cc-f"></div><div class="cc-mark"><span>CHF 20,000</span></div></div>
+          <div class="cc-v" id="cc-r"></div>
+        </div>
+        <p>Below CHF&nbsp;20,000, the deductible — the part of every loss you always pay yourself — and the effort of proving what you lost cancel out most of the benefit. Watch the per-item limit: many policies only pay CHF&nbsp;1,000–3,000 per item. A CHF&nbsp;8,000 watch or a CHF&nbsp;4,000 bike must be declared separately.</p>
+        <p>Most insurers sell liability and contents as a bundle. Online-only insurers are often cheaper than traditional ones — it's worth comparing.</p>
+      </div></div></div>
+    </div>
+
+    <!-- LEGAL -->
+    <div class="ins" data-delay="320">
+      <button class="ins-sum" aria-expanded="false"><span class="ins-ic">⚖️</span><span class="ins-name">Legal protection<small>Lawyer and court costs</small></span><span class="ins-meta"><span class="tag dep">For tenants</span><span class="ins-cost">≈ CHF&nbsp;13–29<small>per month</small></span></span><span class="arrow">▾</span></button>
+      <div class="ins-body"><div class="ins-inner"><div class="ins-content">
+        <p>Pays for a lawyer and court costs in disputes with your landlord, your employer, a supplier, or after a road accident. In Geneva, disputes over the rental deposit and moving out are common.</p>
+        <div class="legal">
+          <div class="lg a"><div class="k">One hour with a Geneva lawyer</div><div class="v">CHF&nbsp;300–500</div></div>
+          <div class="lg b"><div class="k">A year of legal protection</div><div class="v">CHF&nbsp;150–350</div></div>
+        </div>
+        <p style="margin-top:8px">A single dispute can cost more than several years of cover.</p>
+      </div></div></div>
+    </div>
+
+    <!-- FUNERAL -->
+    <div class="ins" data-delay="400">
+      <button class="ins-sum" aria-expanded="false"><span class="ins-ic">✈️</span><span class="ins-name">Funeral and repatriation<small>Bringing someone home</small></span><span class="ins-meta"><span class="tag dep">If family is far</span><span class="ins-cost">≈ CHF&nbsp;20–60<small>per month</small></span></span><span class="arrow">▾</span></button>
+      <div class="ins-body"><div class="ins-inner"><div class="ins-content">
+        <p>Pays for the funeral and for transporting the body to your home country, which can cost CHF&nbsp;5,000–15,000 and is often not covered by other insurance when death occurs in Switzerland. It makes sense if you want to be buried in your home country; less so if your family is here.</p>
+      </div></div></div>
+    </div>
+
+    <!-- NOT WORTH IT -->
+    <div class="ins" data-delay="480">
+      <button class="ins-sum" aria-expanded="false"><span class="ins-ic">🚫</span><span class="ins-name">Usually not worth it<small>Phone and annual travel insurance</small></span><span class="ins-meta"><span class="tag no">Skip</span><span class="ins-cost">—</span></span><span class="arrow">▾</span></button>
+      <div class="ins-body"><div class="ins-inner"><div class="ins-content">
+        <ul>
+          <li><b>Phone insurance:</b> high deductibles, many exclusions, complicated claims.</li>
+          <li><b>Annual travel insurance:</b> if your credit card already includes travel insurance, it's often duplicate cover. Check what your card covers before buying.</li>
+        </ul>
+      </div></div></div>
+    </div>
+    <p class="viz-note">Approximate figures for Geneva, 2026. Private insurance prices vary by insurer and amount covered.</p>
   </div>
 
-  <div class="quote-block reveal">
-    <p class="quote-label">Simple Rule</p>
-    <p class="quote-text">"Friend's car = your RC covers. Company car = company insurance covers. Rental car = your RC covers. When in doubt — it's probably covered."</p>
-  </div>
-
-  <h2 class="reveal">Accident Insurance — The 8-Hour Rule</h2>
-  <p class="reveal">If you work <span class="hl-blue">8 or more hours per week</span> with the same employer, the employer's accident insurance covers both professional accidents and non-professional accidents (evenings, weekends, ski, cycling). In this case, you should remove the accident coverage from your LAMal — saving CHF 200–400/year.</p>
-
-  <div class="warning-box reveal">
-    <p>⚠ <strong>The rule applies per employer — not in total.</strong> If you work 6h with company A and 6h with company B, you total 12h/week — but you are not covered for private accidents by either employer. Each employer is assessed separately against the 8-hour threshold.</p>
-  </div>
-
-  <div class="blue-box reveal">
-    <p>🔵 <strong>Two employers, both above 8h/week:</strong> If you have a private accident, the insurer of the employer where you worked most recently before the accident is responsible for paying. Both employers must cover you — but only one pays per claim event.</p>
-  </div>
-
-  <h2 class="reveal">Contents Insurance — When It's Worth It</h2>
-  <p class="reveal">Covers your personal belongings inside your home — furniture, clothes, electronics, jewellery — against theft, fire, water damage, and natural disasters. The building insurance covers damage to the building itself; contents insurance covers your belongings inside the apartment.</p>
-  <p class="reveal"><strong>When it makes sense:</strong> if the total value of your belongings exceeds <span class="hl-blue">CHF 20,000</span>. Below that value, the deductible and administrative cost of a claim rarely makes the insurance worthwhile.</p>
-
-  <div class="green-box reveal">
-    <p>✅ <strong>Tip — RC + Contents as a bundle:</strong> Most insurers sell these two together for CHF 150–400/year. Digital providers like Smile (AXA subsidiary) and Simpego cost CHF 190–215/year — significantly cheaper than traditional insurers at CHF 340–345/year. For those who don't need in-person support, digital is the most efficient choice.</p>
-  </div>
-
-  <div class="warning-box reveal">
-    <p>⚠ <strong>Sub-limit on individual items:</strong> Most policies cap individual items at CHF 1,000–3,000. If you have a watch worth CHF 8,000 or a bicycle worth CHF 4,000, these must be declared separately — otherwise the policy only pays up to the standard sub-limit.</p>
-  </div>
-
-  <h2 class="reveal">Insurance Summary — What Every Expat Should Have</h2>
-  <table class="insurance-table reveal">
-    <tr><th>Insurance</th><th>Annual cost</th><th>Status</th></tr>
-    <tr><td>LAMal (health)</td><td>CHF 5,000–7,000</td><td><span class="badge mandatory">Mandatory</span></td></tr>
-    <tr><td>Personal liability (RC)</td><td>CHF 80–150</td><td><span class="badge essential">Essential</span></td></tr>
-    <tr><td>RC + Contents bundle</td><td>CHF 150–400</td><td><span class="badge essential">Strongly recommended</span></td></tr>
-    <tr><td>Legal protection insurance</td><td>CHF 150–350</td><td><span class="badge useful">Useful for tenants</span></td></tr>
-    <tr><td>Funeral / repatriation</td><td>CHF 240–720</td><td><span class="badge useful">For expats far from family</span></td></tr>
-    <tr><td>Supplementary health (LCA)</td><td>CHF 960–4,800</td><td><span class="badge useful">Dental, private room, abroad</span></td></tr>
-  </table>
-
-  <h2 class="reveal">What Is Usually Not Worth It</h2>
-  <div class="not-worth reveal">
-    <div class="not-worth-item">
-      <div class="not-worth-icon">📱</div>
-      <div>
-        <div class="not-worth-title">Phone insurance</div>
-        <div class="not-worth-desc">Deductibles are high, exclusions are many, and the claims process is complicated. The RC personal already covers accidental damage to a third party's phone — yours is a different matter, rarely worth insuring separately.</div>
+  <!-- FAQ -->
+  <div>
+    <h2 class="reveal">Before You Ask</h2>
+    <div style="margin-top:12px">
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">Does basic health insurance cover the dentist?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">No, except after accidents or serious illness. Dental care, a private hospital room or treatment abroad require supplementary insurance (LCA), which an insurer can refuse based on your health.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">If I have a skiing accident, who pays?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">If you work at least 8 hours a week for the same employer, your employer's accident insurance. Otherwise, your LAMal — with the deductible and co-payment, as for an illness.</div>
       </div>
     </div>
-    <div class="not-worth-item">
-      <div class="not-worth-icon">✈️</div>
-      <div>
-        <div class="not-worth-title">Annual travel insurance</div>
-        <div class="not-worth-desc">If you already have personal RC (which covers worldwide) and a good credit card with travel insurance included, a separate annual travel policy is often redundant. Check what your card already covers before buying.</div>
-      </div>
-    </div>
-    <div class="not-worth-item">
-      <div class="not-worth-icon">🏠</div>
-      <div>
-        <div class="not-worth-title">Contents insurance below CHF 20,000</div>
-        <div class="not-worth-desc">The deductible and effort of documenting a claim rarely justify the insurance for low-value belongings. Basic IKEA furniture + a laptop + some clothes may well be below CHF 15,000 — in which case self-insuring is more efficient.</div>
-      </div>
-    </div>
   </div>
 
-  <h2 class="reveal">Before You Ask</h2>
-  <div class="faq-list reveal">
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Does my RC cover me if I damage my company car?<span class="faq-arrow">▾</span></div>
-      <div class="faq-a">No. The company car is covered by the company's insurance. Your personal RC does not intervene in situations related to your employment or company property. If you damage the company car, it is the company's insurer that handles the claim.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">What if I damage a friend's car?<span class="faq-arrow">▾</span></div>
-      <div class="faq-a">Yes, your RC covers damage to the friend's car (if they have no casco insurance) and to any third parties involved in the accident. This is precisely why personal RC is so important — it protects you even when you are using someone else's belongings.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">I work part-time for two companies. Am I covered for private accidents?<span class="faq-arrow">▾</span></div>
-      <div class="faq-a">Only if you work 8 or more hours per week for each employer individually. If you work 6h with company A and 6h with company B, you are not covered for private accidents by either — even though your total is 12h/week. The 8-hour threshold is assessed per employer, not in total. In this case, keep accident coverage in your LAMal.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Do I need contents insurance if I live in a furnished apartment?<span class="faq-arrow">▾</span></div>
-      <div class="faq-a">The landlord's belongings are the landlord's responsibility. Your personal belongings — clothes, electronics, jewellery — are your responsibility. If the value of your personal belongings exceeds CHF 20,000, contents insurance makes sense. If it doesn't, self-insuring is usually more efficient.</div>
-    </div>
+  <div class="sec reveal">
+    <h2 style="margin-bottom:12px">Go Deeper</h2>
+    <a class="fr" href="artigo28.html"><div class="n">Health insurance</div><h3>LAMal: how to choose and pay less</h3><p>Deductibles, models and how to switch insurer.</p><span class="go">Read →</span></a>
   </div>
 
   <div class="cta-box reveal">
-    <p>SwissExpatHub can connect you with advisors who help international residents in Geneva review their insurance coverage, identify gaps, and ensure they are not paying for protection they already have — or missing coverage they genuinely need.</p>
+    <p>An advisor can help you see where you're paying twice for the same cover — and where you have none at all.</p>
     <a href="/directory" class="cta-btn">Find Your Advisor →</a>
   </div>
 
   <div class="sources reveal">
-    <p class="sources-label">Sources</p>
+    <h3>Sources</h3>
     <ol>
-      <li>Expat Savvy — Personal Liability Insurance Switzerland 2026: expat-savvy.ch</li>
-      <li>SUVA — Accident insurance LAA, 8-hour rule: suva.ch</li>
-      <li>Federal Office of Public Health — LAMal accident coverage: bag.admin.ch</li>
-      <li>Insurance Guide Switzerland — RC and household guide 2026: insurance-guide.ch</li>
+      <li>ch.ch — Personal liability insurance: ch.ch</li>
+      <li>Zurich, AXA, Allianz — Driving third-party vehicles (liability add-on)</li>
+      <li>Hospice général / Canton of Geneva — average LAMal premium 2026: ge.ch</li>
+      <li>Moneyland — Health insurance premiums 2026: moneyland.ch</li>
+      <li>Federal Office of Public Health — Premiums 2027 (29.09.2026): bag.admin.ch</li>
+      <li>SUVA — Accident insurance, 8-hour rule: suva.ch</li>
     </ol>
   </div>
+
 </div>
 
 <script>
-  window.addEventListener('scroll', () => {
-    const s = window.scrollY, d = document.documentElement.scrollHeight - window.innerHeight;
-    document.getElementById('progress-bar').style.width = Math.min(100, d > 0 ? (s/d)*100 : 0) + '%';
-  }, { passive: true });
-  window.addEventListener('load', () => {
-    setTimeout(() => document.getElementById('heroTag').classList.add('visible'), 50);
-    setTimeout(() => document.getElementById('heroTitle').classList.add('visible'), 150);
-    setTimeout(() => document.getElementById('heroSubtitle').classList.add('visible'), 280);
-    setTimeout(() => document.getElementById('heroMeta').classList.add('visible'), 420);
-  });
-  const tObs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), parseInt(e.target.dataset.delay||0)); tObs.unobserve(e.target); } });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.takeaway-item').forEach(el => tObs.observe(el));
-  const rObs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), parseInt(e.target.dataset.delay||0)); rObs.unobserve(e.target); } });
-  }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
-  document.querySelectorAll('.reveal').forEach(el => rObs.observe(el));
-  function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+const fmt = n => 'CHF ' + Math.round(n).toLocaleString('en-US');
+window.addEventListener('scroll', () => {
+  const docH = document.documentElement.scrollHeight - window.innerHeight;
+  document.getElementById('progress-bar').style.width = (docH > 0 ? window.scrollY / docH * 100 : 0) + '%';
+});
+window.addEventListener('load', () => {
+  setTimeout(() => document.querySelector('.article-meta').classList.add('visible'), 80);
+  setTimeout(() => document.querySelector('h1').classList.add('visible'), 220);
+  setTimeout(() => document.querySelector('.header-rule').classList.add('visible'), 420);
+});
+function stagger(selector, threshold) {
+  const obs = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), parseInt(e.target.dataset.delay || 0)); obs.unobserve(e.target); }
+  }), { threshold });
+  document.querySelectorAll(selector).forEach(el => obs.observe(el));
+}
+function onView(id, fn, threshold = 0.4) {
+  const el = document.getElementById(id);
+  const obs = new IntersectionObserver(en => { if (en[0].isIntersecting) { fn(); obs.disconnect(); } }, { threshold });
+  obs.observe(el);
+}
+function countUp(el, to, ms, from = 0, f = fmt) {
+  const t0 = performance.now();
+  const step = t => { const k = Math.min(1, (t - t0) / ms), e = 1 - Math.pow(1 - k, 3);
+    el.textContent = f(from + (to - from) * e); if (k < 1) requestAnimationFrame(step); };
+  requestAnimationFrame(step);
+}
+stagger('.takeaway-item', 0.15);
+stagger('.reveal', 0.08);
+stagger('.ins', 0.1);
+
+// Accordion
+const items = [...document.querySelectorAll('.ins')];
+const allBtn = document.getElementById('all');
+function setOpen(it, open) {
+  it.classList.toggle('open', open);
+  it.querySelector('.ins-sum').setAttribute('aria-expanded', open);
+  if (open && it.id === 'rc') playTom();
+}
+items.forEach(it => it.querySelector('.ins-sum').addEventListener('click', () => {
+  setOpen(it, !it.classList.contains('open')); syncAll();
+}));
+function syncAll() {
+  const allOpen = items.every(i => i.classList.contains('open'));
+  allBtn.textContent = allOpen ? 'Close all' : 'Open all';
+  allBtn.setAttribute('aria-expanded', allOpen);
+}
+allBtn.addEventListener('click', () => {
+  const open = !items.every(i => i.classList.contains('open'));
+  items.forEach(i => setOpen(i, open)); syncAll();
+});
+
+// Tom example
+let tomPlayed = false;
+function playTom() {
+  if (tomPlayed) return; tomPlayed = true;
+  document.querySelectorAll('#tom .stack i').forEach((b, i) => setTimeout(() => b.style.width = b.dataset.w + '%', 200 + i * 450));
+  setTimeout(() => countUp(document.getElementById('tom-t'), 78000, 1200), 600);
+}
+onView('tom', () => { if (document.getElementById('rc').classList.contains('open')) playTom(); }, 0.5);
+
+// Contents calculator
+const ccIn = document.getElementById('cc-in');
+function cc() {
+  const v = +ccIn.value, ok = v > 20000;
+  document.getElementById('cc-v').textContent = fmt(v);
+  const f = document.getElementById('cc-f'); f.style.width = (v / 50000 * 100) + '%'; f.classList.toggle('ok', ok);
+  const r = document.getElementById('cc-r'); r.className = 'cc-v ' + (ok ? 'ok' : 'no');
+  r.textContent = ok ? '✓ Worth insuring — a fire or burglary would cost you more than the premium.' : 'Probably not worth it — a basic flat (furniture, laptop, clothes) is often under CHF 15,000.';
+}
+ccIn.addEventListener('input', cc); cc();
+
+function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
 </script>
 </body>
 </html>
