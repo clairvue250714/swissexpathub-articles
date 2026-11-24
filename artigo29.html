@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bringing Money to Switzerland: What Expats Need to Know</title>
+<title>Bringing Money to Switzerland: What You Need to Know</title>
+<meta name="description" content="Bringing savings, investments or a house sale to Switzerland: what is taxed, what to declare, transfer costs, what your bank will ask for, and US FBAR/FATCA rules (2026).">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
 <style>
+
 :root {
   --bg:         #f7f8fa;
   --bg2:        #ffffff;
@@ -47,413 +49,960 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 body {
-  background: var(--bg);
-  color: var(--fg);
+  background: var(--bg); color: var(--fg);
   font-family: 'Inter', system-ui, sans-serif;
-  font-size: 16px;
-  line-height: 1.75;
-  padding: 40px max(16px, 5vw) 80px;
+  font-size: 16px; line-height: 1.75;
+  padding: 48px max(16px, 5vw) 80px;
 }
+.article { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 36px; }
 
-.article {
-  max-width: 720px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
+#progress-bar {
+  position: fixed; top: 0; left: 0; height: 3px;
+  background: var(--blue-mid); width: 0%;
+  z-index: 1000; transition: width .1s linear;
+  border-radius: 0 2px 2px 0;
 }
 
 /* ── HEADER ── */
-.article-header { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
 .article-meta {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: .12em; text-transform: uppercase;
-  color: var(--fg2); margin-bottom: 10px;
+  font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--fg2); margin-bottom: 12px;
+  opacity: 0; transform: translateY(-8px); transition: opacity .5s ease, transform .5s ease;
 }
+.article-meta.visible { opacity: 1; transform: translateY(0); }
 h1 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(24px, 5vw, 36px);
-  font-weight: 700; line-height: 1.2;
-  text-wrap: balance; color: var(--fg);
+  font-family: 'Space Grotesk', sans-serif; font-size: clamp(24px, 5vw, 36px);
+  font-weight: 700; line-height: 1.2; text-wrap: balance; color: var(--fg);
+  opacity: 0; transform: translateY(12px);
+  transition: opacity .6s ease .15s, transform .6s ease .15s;
 }
+h1.visible { opacity: 1; transform: translateY(0); }
 .header-rule {
-  height: 2px; background: var(--blue);
-  border-radius: 2px; margin-top: 20px;
-  width: 48px;
+  height: 3px; background: var(--blue); border-radius: 2px; margin-top: 20px;
+  width: 0; transition: width .8s cubic-bezier(.16,1,.3,1) .5s;
 }
+.header-rule.visible { width: 48px; }
 
-/* ── QUICK ANSWER ── */
-.quick-answer {
-  background: var(--blue-light);
-  border-left: 4px solid var(--blue);
-  border-radius: 0 14px 14px 0;
-  padding: 20px 24px;
-}
-.quick-answer p { font-size: 15px; color: var(--fg); margin: 0; }
-
-/* ── TAKEAWAYS ── */
-.takeaways {
-  background: var(--blue);
-  border-radius: 16px;
-  padding: 28px 32px;
-}
-.takeaways h2 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 16px; font-weight: 700;
-  color: rgba(255,255,255,.6);
-  letter-spacing: .08em; text-transform: uppercase;
-  margin-bottom: 16px; margin-top: 0;
-}
-.takeaways ul { list-style: none; }
-.takeaways ul li {
-  color: #e8ecf5;
-  font-size: 14.5px;
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(255,255,255,.1);
-  display: flex; gap: 12px; align-items: flex-start;
-}
-.takeaways ul li:last-child { border-bottom: none; }
-.takeaways ul li::before {
-  content: "✓"; color: #3dba78;
-  font-weight: 700; flex-shrink: 0; margin-top: 1px;
-}
-
-/* ── HEADINGS ── */
-h2 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 20px; font-weight: 700;
-  color: var(--fg); margin-bottom: 4px;
-}
-h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  color: var(--blue-mid); margin-bottom: 6px;
-}
+/* ── TYPE ── */
+h2 { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; color: var(--fg); margin-bottom: 8px; }
+h3 { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; color: var(--blue-mid); margin-bottom: 6px; }
 p { font-size: 15.5px; color: var(--fg); margin-bottom: 12px; }
 p:last-child { margin-bottom: 0; }
 .hl-blue  { color: var(--blue-mid); font-weight: 600; }
 .hl-green { color: var(--green);    font-weight: 600; }
 .hl-red   { color: var(--red);      font-weight: 600; }
-sup { font-size: 11px; color: var(--blue-mid); }
-
-/* ── SITUATION CARDS ── */
-.situation-cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
+.lead { font-style: italic; color: var(--fg2); }
+.viz-label {
+  font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--fg2); margin-bottom: 12px;
 }
-@media (max-width: 520px) { .situation-cards { grid-template-columns: 1fr; } }
+.viz-note { font-size: 12px; color: var(--fg2); margin-top: 10px; }
+.illus {
+  display: inline-block; font-family: 'Space Grotesk', sans-serif; font-size: 10.5px; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--gold); background: var(--gold-light);
+  border-radius: 6px; padding: 2px 8px; margin-bottom: 10px;
+}
+.calc-line { font-size: 13px; color: var(--fg2); margin-top: 10px; font-variant-numeric: tabular-nums; }
+.calc-line strong { color: var(--fg); }
 
-.sit-card {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 14px;
-  padding: 18px 20px;
-  box-shadow: var(--shadow);
+/* ── QUICK ANSWER / TAKEAWAYS ── */
+.quick-answer { background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 14px 14px 0; padding: 20px 24px; }
+.quick-answer p { font-size: 15px; }
+.takeaways { background: var(--blue); border-radius: 16px; padding: 28px 32px; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .takeaways { background: #1f3a6b; } }
+:root[data-theme="dark"] .takeaways { background: #1f3a6b; }
+.takeaways h2 { font-size: 13px; color: rgba(255,255,255,.55); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 18px; }
+.takeaways ul { list-style: none; }
+.takeaway-item {
+  color: #e8ecf5; font-size: 14.5px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.1);
+  display: flex; gap: 12px; align-items: flex-start;
+  opacity: 0; transform: translateX(-10px); transition: opacity .45s ease, transform .45s ease;
+}
+.takeaway-item:last-child { border-bottom: none; }
+.takeaway-item.visible { opacity: 1; transform: translateX(0); }
+.takeaway-item::before { content: "✓"; color: #3dba78; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+
+
+/* ── CARDS ── */
+.card {
+  position: relative; overflow: hidden;
+  background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px;
+  padding: 24px 26px; box-shadow: var(--shadow);
+  opacity: 0; transform: translateY(16px);
+  transition: opacity .5s ease, transform .5s ease, box-shadow .2s;
+  --accent: var(--blue-mid); --accent-light: var(--blue-light);
+}
+.card.green { --accent: var(--green); --accent-light: var(--green-light); }
+.card.red   { --accent: var(--red);   --accent-light: var(--red-light); }
+.card.gold  { --accent: var(--gold);  --accent-light: var(--gold-light); }
+.card.visible { opacity: 1; transform: none; }
+.card:hover { box-shadow: var(--shadow-md); }
+.card::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--accent);
+  transform: scaleY(0); transform-origin: top; transition: transform .6s cubic-bezier(.16,1,.3,1) .25s;
+}
+.card.visible::before { transform: scaleY(1); }
+.card-head { display: flex; align-items: center; gap: 14px; margin-bottom: 10px; }
+.tag {
+  font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700; color: var(--accent);
+  background: var(--accent-light); border-radius: 8px; padding: 4px 10px; flex-shrink: 0; white-space: nowrap;
+  transform: scale(.6); opacity: 0; transition: transform .5s cubic-bezier(.34,1.56,.64,1) .2s, opacity .4s ease .2s;
+}
+.card.visible .tag { transform: scale(1); opacity: 1; }
+.card-head h2 { margin: 0; font-size: 18px; }
+.card p { font-size: 15px; }
+.viz { margin-top: 18px; padding-top: 16px; border-top: 1px dashed var(--border); }
+
+/* ── EXPLAINER: two columns ── */
+.explain { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 6px; }
+.ex { border-radius: 14px; padding: 16px 18px; border: 1.5px solid var(--border); background: var(--bg); }
+.ex h3 { font-size: 14px; margin-bottom: 4px; }
+.ex .sub { font-size: 12.5px; color: var(--fg2); margin-bottom: 12px; line-height: 1.45; }
+.ex.rsu h3 { color: var(--blue-mid); }
+.ex.opt h3 { color: var(--green); }
+.lots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.lot {
+  text-align: center; border-radius: 8px; padding: 8px 2px; font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px; font-weight: 700; border: 1.5px dashed var(--border); color: var(--fg2); background: var(--bg2);
+  transition: background .4s, color .4s, border-color .4s, transform .4s cubic-bezier(.34,1.56,.64,1);
+}
+.lot small { display: block; font-family: 'Inter', sans-serif; font-weight: 500; font-size: 10px; }
+.lot.on { background: var(--blue-mid); color: #fff; border: 1.5px solid var(--blue-mid); transform: scale(1.04); }
+.lot.on small { color: rgba(255,255,255,.85); }
+.ex-note { font-size: 12.5px; color: var(--fg2); margin-top: 10px; line-height: 1.5; }
+.ex-note b { color: var(--fg); }
+.toggle { display: flex; gap: 6px; margin-bottom: 10px; }
+.tg {
+  flex: 1; font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 600; cursor: pointer;
+  padding: 6px 8px; border-radius: 999px; border: 1.5px solid var(--border); background: var(--bg2); color: var(--fg2);
+}
+.tg.active { background: var(--green); border-color: var(--green); color: #fff; }
+.tg.down.active { background: var(--red); border-color: var(--red); }
+.opt-chart { position: relative; height: 90px; border-radius: 8px; background: var(--bg2); border: 1px solid var(--border); overflow: hidden; }
+.opt-chart svg { width: 100%; height: 100%; display: block; }
+.opt-chart .strike { stroke: var(--fg2); stroke-dasharray: 4 4; stroke-width: 1.5; }
+.opt-chart .price { fill: none; stroke-width: 2.5; stroke-linecap: round; transition: stroke .3s; }
+.opt-result { font-size: 13px; margin-top: 10px; font-weight: 600; min-height: 40px; line-height: 1.45; }
+.opt-result.up { color: var(--green); } .opt-result.down { color: var(--red); }
+.summary { margin-top: 14px; font-size: 14px; font-style: italic; color: var(--fg2); }
+@media (max-width: 580px) { .explain { grid-template-columns: 1fr; } }
+
+/* ── TAX EXAMPLES ── */
+.stat-row { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: center; gap: 8px; }
+.stat { text-align: center; border-radius: 12px; padding: 12px 6px; background: var(--bg); }
+.stat .k { font-family: 'Space Grotesk', sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--fg2); }
+.stat .v { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1.3; color: var(--fg); }
+.stat.res { background: var(--blue-light); } .stat.res .v { color: var(--blue-mid); }
+.stat.res.g { background: var(--green-light); } .stat.res.g .v { color: var(--green); }
+.stat.res.r { background: var(--red-light); } .stat.res.r .v { color: var(--red); }
+.op { font-size: 18px; color: var(--fg2); font-weight: 700; }
+.slider { margin-top: 14px; }
+.slider label { font-size: 13px; color: var(--fg2); display: flex; justify-content: space-between; gap: 10px; }
+.slider .val { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--fg); }
+.slider input[type=range] { width: 100%; accent-color: var(--blue-mid); margin-top: 4px; }
+.note { border-radius: 0 12px 12px 0; padding: 14px 18px; margin-top: 14px; }
+.note p { font-size: 14.5px; }
+.note.warn { background: var(--gold-light); border-left: 4px solid var(--gold); }
+.note.warn strong { color: var(--gold); }
+.note.info { background: var(--blue-light); border-left: 4px solid var(--blue-mid); }
+.note.info strong { color: var(--blue-mid); }
+@media (max-width: 540px) {
+  .stat-row { grid-template-columns: 1fr 1fr; }
+  .stat-row .op { display: none; }
+  .stat-row .stat.res { grid-column: 1 / -1; }
+}
+
+/* ── AFTER VESTING: timeline ── */
+.tl { display: flex; flex-direction: column; gap: 0; position: relative; padding-left: 26px; }
+.tl::before { content: ""; position: absolute; left: 8px; top: 8px; bottom: 8px; width: 2px; background: var(--border); }
+.tl-step {
+  position: relative; padding: 8px 0 14px;
+  opacity: 0; transform: translateX(-8px); transition: opacity .45s ease, transform .45s ease;
+}
+.tl-step.visible { opacity: 1; transform: none; }
+.tl-step::before {
+  content: ""; position: absolute; left: -24px; top: 13px; width: 14px; height: 14px; border-radius: 50%;
+  background: var(--bg2); border: 3px solid var(--dot, var(--blue-mid));
+}
+.tl-step .when { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--fg2); }
+.tl-step .what { font-size: 14.5px; font-weight: 600; color: var(--fg); }
+.tl-step .what .amt { font-variant-numeric: tabular-nums; }
+.tl-step .tax { display: inline-block; margin-top: 4px; font-size: 12.5px; font-weight: 700; padding: 2px 9px; border-radius: 6px; }
+.tax.blue { background: var(--blue-light); color: var(--blue-mid); }
+.tax.green { background: var(--green-light); color: var(--green); }
+.tax.gold { background: var(--gold-light); color: var(--gold); }
+
+/* ── AHV ── */
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+.sp { border-radius: 14px; padding: 16px 18px; border: 1.5px solid var(--border); background: var(--bg); }
+.sp h3 { font-size: 13.5px; color: var(--fg); margin-bottom: 10px; }
+.sp-row {
+  display: flex; justify-content: space-between; gap: 8px; font-size: 13px; padding: 6px 0; border-bottom: 1px solid var(--border);
+  font-variant-numeric: tabular-nums; opacity: 0; transform: translateX(6px); transition: opacity .4s ease, transform .4s ease;
+}
+.sp-row.visible { opacity: 1; transform: none; }
+.sp-row:last-child { border-bottom: none; }
+.sp-row .eq { color: var(--fg2); font-weight: 700; }
+.sp-row .lower { color: var(--green); font-weight: 700; }
+.verdict-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+.vd {
+  text-align: center; border-radius: 12px; padding: 10px; font-size: 13px; font-weight: 600;
+  opacity: 0; transform: scale(.95); transition: opacity .4s ease, transform .4s cubic-bezier(.34,1.56,.64,1);
+}
+.vd.visible { opacity: 1; transform: none; }
+.vd.same { background: var(--bg); border: 1.5px solid var(--border); color: var(--fg); }
+.vd.less { background: var(--green-light); border: 1.5px solid var(--green); color: var(--green); }
+@media (max-width: 560px) { .split, .verdict-row { grid-template-columns: 1fr; } }
+
+/* ── PRO RATA ── */
+.years { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.yr { border-radius: 10px; overflow: hidden; border: 1.5px solid var(--border); background: var(--bg2); }
+.yr .lbl { text-align: center; font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; padding: 6px 0; color: var(--fg); background: var(--bg); }
+.yr .bar { display: flex; height: 30px; }
+.yr .seg {
+  width: 0; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 11.5px; font-weight: 700;
+  white-space: nowrap; overflow: hidden; transition: width .7s cubic-bezier(.16,1,.3,1);
+}
+.seg.uk { background: var(--fg2); }
+.seg.ch { background: var(--red); }
+.yr .days { text-align: center; font-size: 11.5px; color: var(--fg2); padding: 4px 0 6px; font-variant-numeric: tabular-nums; }
+.legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 12px; color: var(--fg2); margin-top: 10px; }
+.legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+.share { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+.sh { border-radius: 12px; padding: 12px; text-align: center; }
+.sh .k { font-size: 12px; color: var(--fg2); }
+.sh .v { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.sh.ch { background: var(--red-light); } .sh.ch .v { color: var(--red); }
+.sh.uk { background: var(--bg); border: 1.5px solid var(--border); } .sh.uk .v { color: var(--fg); }
+@media (max-width: 480px) { .years { grid-template-columns: 1fr; } }
+
+/* ── US table ── */
+.us-table { border: 1.5px solid var(--border); border-radius: 14px; overflow: hidden; }
+.us-row {
+  display: grid; grid-template-columns: 1.2fr 1fr 1fr; font-size: 13.5px; border-bottom: 1px solid var(--border);
+  opacity: 0; transform: translateX(-8px); transition: opacity .4s ease, transform .4s ease;
+}
+.us-row:last-child { border-bottom: none; }
+.us-row.visible, .us-row.head { opacity: 1; transform: none; }
+.us-row > div { padding: 9px 14px; line-height: 1.45; }
+.us-row .lbl { font-weight: 600; background: var(--bg); color: var(--fg); }
+.us-row.head > div { font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #fff; }
+.us-row.head .lbl { background: var(--fg2); }
+.us-row.head .ch { background: var(--red); }
+.us-row.head .us { background: var(--blue); }
+.yes { color: var(--red); font-weight: 600; }
+.no  { color: var(--green); font-weight: 600; }
+@media (max-width: 580px) {
+  .us-row { grid-template-columns: 1fr 1fr; }
+  .us-row .lbl { grid-column: 1 / -1; padding-bottom: 3px; }
+  .us-row.head .lbl { display: none; }
+}
+
+
+/* ── A22: subtitle ── */
+.subtitle { font-size: 16px; color: var(--fg2); margin-top: 14px; font-style: italic;
+  opacity: 0; transform: translateY(8px); transition: opacity .6s ease .35s, transform .6s ease .35s; }
+.subtitle.visible { opacity: 1; transform: none; }
+
+/* ── segmented buttons ── */
+.seg-btns { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+.sbtn {
+  font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer;
+  padding: 7px 14px; border-radius: 999px; border: 1.5px solid var(--border); background: var(--bg2); color: var(--fg2);
+  transition: background .2s, color .2s, border-color .2s;
+}
+.sbtn:hover { border-color: var(--blue-mid); color: var(--blue-mid); }
+.sbtn.active { background: var(--blue); border-color: var(--blue); color: #fff; }
+
+/* ── gross → net bar ── */
+.gn-bar { display: flex; height: 40px; border-radius: 10px; overflow: hidden; background: var(--border); }
+.gn-net, .gn-tax {
+  display: flex; align-items: center; justify-content: center; color: #fff; font-size: 12.5px; font-weight: 700;
+  white-space: nowrap; overflow: hidden; transition: width .8s cubic-bezier(.16,1,.3,1); width: 0;
+}
+.gn-net { background: var(--green); }
+.gn-tax { background: var(--red); }
+.gn-legend { display: flex; justify-content: space-between; gap: 10px; font-size: 12px; color: var(--fg2); margin-top: 8px; flex-wrap: wrap; }
+.gn-legend i { display: inline-block; width: 11px; height: 11px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+.big-net { text-align: center; margin-top: 14px; border-radius: 14px; padding: 14px; background: var(--green-light); }
+.big-net .k { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--fg2); }
+.big-net .v { font-family: 'Space Grotesk', sans-serif; font-size: 30px; font-weight: 700; color: var(--green); font-variant-numeric: tabular-nums; }
+
+/* ── pièces explainer ── */
+.rooms { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
+.room {
+  border-radius: 10px; padding: 10px 12px; font-size: 12.5px; font-weight: 700; text-align: center; min-width: 74px;
+  border: 1.5px solid var(--border); background: var(--bg2); color: var(--fg);
+  opacity: 0; transform: scale(.85); transition: opacity .35s ease, transform .4s cubic-bezier(.34,1.56,.64,1);
+}
+.room.visible { opacity: 1; transform: none; }
+.room small { display: block; font-weight: 500; color: var(--fg2); font-size: 10.5px; }
+.room.kit { background: var(--gold-light); border-color: var(--gold); color: var(--gold); }
+.room.bed { background: var(--blue-light); border-color: var(--blue-mid); color: var(--blue-mid); }
+.rooms-eq { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 15px; margin-top: 10px; color: var(--fg); }
+
+/* ── range bars (rent, schools) ── */
+.ranges { display: flex; flex-direction: column; gap: 10px; }
+.rg { display: grid; grid-template-columns: 170px 1fr; gap: 12px; align-items: center; font-size: 13px; }
+.rg .nm { font-weight: 600; color: var(--fg); line-height: 1.25; }
+.rg .nm small { display: block; font-weight: 500; color: var(--fg2); font-size: 11px; }
+.rg .track { position: relative; height: 26px; background: var(--border); border-radius: 6px; }
+.rg .fill {
+  position: absolute; top: 0; bottom: 0; border-radius: 6px; background: var(--blue-mid);
+  display: flex; align-items: center; justify-content: center; color: #fff; font-size: 11.5px; font-weight: 700;
+  white-space: nowrap; transform-origin: left; transform: scaleX(0); transition: transform .8s cubic-bezier(.16,1,.3,1);
+}
+.rg .fill.visible { transform: scaleX(1); }
+.rg .fill.gold { background: var(--gold); }
+.rg .marker { position: absolute; top: -4px; bottom: -4px; width: 2px; background: var(--green); }
+.rg .marker span { position: absolute; top: -18px; left: 4px; font-size: 10.5px; font-weight: 700; color: var(--green); white-space: nowrap; }
+.axis { display: grid; grid-template-columns: 170px 1fr; gap: 12px; font-size: 11px; color: var(--fg2); }
+.axis .ticks { display: flex; justify-content: space-between; }
+@media (max-width: 560px) { .rg, .axis { grid-template-columns: 1fr; gap: 4px; } .axis > span:first-child { display: none; } }
+
+/* ── share bars (tax share) ── */
+.shares { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.shr { text-align: center; }
+.shr .col { height: 120px; background: var(--border); border-radius: 10px; position: relative; overflow: hidden; }
+.shr .col .f { position: absolute; left: 0; right: 0; bottom: 0; height: 0; background: var(--red); transition: height .9s cubic-bezier(.16,1,.3,1); }
+.shr .col .p { position: absolute; left: 0; right: 0; top: 8px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px; color: var(--fg); }
+.shr .lbl { font-size: 12px; color: var(--fg2); margin-top: 6px; }
+
+/* ── deduction calculator ── */
+.toggle-row { display: flex; align-items: center; gap: 10px; font-size: 14px; margin-top: 4px; cursor: pointer; user-select: none; }
+.toggle-row input { width: 18px; height: 18px; accent-color: var(--green); }
+.ded-out { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+
+/* ── two-children ring ── */
+.kids { display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: center; }
+.ring { width: 120px; height: 120px; position: relative; }
+.ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.ring circle { fill: none; stroke-width: 14; }
+.ring .bg { stroke: var(--border); }
+.ring .fg { stroke: var(--red); stroke-linecap: round; transition: stroke-dashoffset 1.2s cubic-bezier(.16,1,.3,1); }
+.ring .pc { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700; color: var(--red); }
+@media (max-width: 480px) { .kids { grid-template-columns: 1fr; justify-items: center; text-align: center; } }
+
+/* ── budget tabs ── */
+.btabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 12px; }
+.btab {
+  font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; text-align: left;
+  padding: 8px 14px; border-radius: 12px; border: 1.5px solid var(--border); background: var(--bg2); color: var(--fg2); line-height: 1.3;
+}
+.btab small { display: block; font-family: 'Inter', sans-serif; font-weight: 500; font-size: 11px; }
+.btab.active { background: var(--blue); border-color: var(--blue); color: #fff; }
+.btab.active small { color: rgba(255,255,255,.8); }
+.budget { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px; padding: 20px 22px; box-shadow: var(--shadow); }
+.b-row {
+  display: flex; justify-content: space-between; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 14px;
+  font-variant-numeric: tabular-nums; opacity: 0; transform: translateX(-6px); transition: opacity .3s ease, transform .3s ease;
+}
+.b-row.visible { opacity: 1; transform: none; }
+.b-row .amt { font-weight: 600; white-space: nowrap; }
+.b-row.inc .amt { color: var(--green); }
+.b-row.exp .amt { color: var(--red); }
+.b-row.school { background: var(--red-light); margin: 0 -10px; padding: 8px 10px; border-radius: 8px; }
+.remain {
+  display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 14px; padding: 14px 16px;
+  border-radius: 12px; background: var(--green-light); border: 1.5px solid var(--green);
+}
+.remain .k { font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--green); }
+.remain .v { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700; color: var(--green); font-variant-numeric: tabular-nums; }
+
+/* ── worth grid ── */
+.worth { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.wc { border-radius: 14px; padding: 18px 20px; }
+.wc.yes { background: var(--green-light); border: 1.5px solid var(--green); }
+.wc.no  { background: var(--red-light);   border: 1.5px solid var(--red); }
+.wc h3 { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 10px; }
+.wc.yes h3 { color: var(--green); } .wc.no h3 { color: var(--red); }
+.wi { font-size: 14px; color: var(--fg); padding: 8px 0; border-bottom: 1px solid rgba(127,127,127,.18); line-height: 1.5;
+  opacity: 0; transform: translateY(6px); transition: opacity .4s ease, transform .4s ease; }
+.wi.visible { opacity: 1; transform: none; }
+.wi:last-child { border-bottom: none; }
+.wi b { display: block; }
+@media (max-width: 580px) { .worth { grid-template-columns: 1fr; } }
+
+/* ── next article ── */
+.next {
+  display: flex; justify-content: space-between; align-items: center; gap: 16px; text-decoration: none;
+  background: var(--bg2); border: 1.5px solid var(--border); border-radius: 14px; padding: 20px 24px; box-shadow: var(--shadow);
   transition: border-color .2s, box-shadow .2s;
 }
-.sit-card:hover { box-shadow: var(--shadow-md); }
-.sit-card.alert { border-color: var(--red); }
-.sit-card h3 { color: var(--blue-mid); margin-bottom: 6px; }
-.sit-card.alert h3 { color: var(--red); }
-.sit-card p { font-size: 13px; color: var(--fg2); margin: 0; }
+.next:hover { border-color: var(--blue-mid); box-shadow: var(--shadow-md); }
+.next .k { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--fg2); }
+.next .t { font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 700; color: var(--fg); }
+.next .ar { font-size: 22px; color: var(--blue-mid); }
 
-/* ── CHECKLIST ── */
-.checklist {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 16px;
-  padding: 24px 28px;
-  box-shadow: var(--shadow);
+/* ── A24: who files ── */
+.who { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+.wcard {
+  display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start;
+  border-radius: 14px; padding: 16px 18px; border: 1.5px solid var(--border); background: var(--bg2);
+  transition: opacity .3s, transform .3s, box-shadow .3s, border-color .3s;
 }
-.checklist h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  margin-bottom: 16px; color: var(--fg);
+.wcard .badge {
+  font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  padding: 4px 9px; border-radius: 6px; white-space: nowrap; margin-top: 2px;
 }
-.checklist-item {
-  display: flex; align-items: flex-start; gap: 12px;
-  padding: 11px 0;
-  border-bottom: 1px solid var(--border);
-  cursor: pointer;
+.wcard.must .badge { background: var(--red-light); color: var(--red); }
+.wcard.opt  .badge { background: var(--green-light); color: var(--green); }
+.wcard h3 { font-size: 15px; color: var(--fg); margin-bottom: 4px; }
+.wcard p { font-size: 14px; color: var(--fg2); margin-bottom: 6px; }
+.wcard p:last-child { margin-bottom: 0; }
+.who.filtering .wcard { opacity: .35; }
+.who.filtering .wcard.hit { opacity: 1; border-color: var(--blue-mid); box-shadow: var(--shadow-md); transform: translateX(4px); }
+@media (max-width: 480px) { .wcard { grid-template-columns: 1fr; gap: 6px; } .wcard .badge { justify-self: start; } }
+
+/* ── year timeline ── */
+.year { position: relative; margin-top: 8px; }
+.months { display: grid; grid-template-columns: repeat(12, 1fr); font-size: 10.5px; color: var(--fg2); text-align: center; margin-bottom: 6px; }
+.lane { position: relative; height: 30px; margin-bottom: 8px; background: var(--bg); border-radius: 6px; }
+.lane .bar {
+  position: absolute; top: 3px; bottom: 3px; border-radius: 5px; display: flex; align-items: center; padding: 0 8px;
+  color: #fff; font-size: 11.5px; font-weight: 700; white-space: nowrap; overflow: hidden;
+  transform-origin: left; transform: scaleX(0); transition: transform .7s cubic-bezier(.16,1,.3,1);
 }
-.checklist-item:last-of-type { border-bottom: none; }
-.check-box {
-  width: 22px; height: 22px;
-  border: 2px solid var(--blue);
-  border-radius: 6px; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  transition: all .2s; margin-top: 2px;
+.lane .bar.visible { transform: scaleX(1); }
+.bar.b1 { background: var(--blue-mid); }
+.bar.b2 { background: var(--red); }
+.bar.b3 { background: var(--gold); }
+.pin { position: absolute; top: -2px; bottom: -2px; width: 2px; background: var(--red); }
+.lane-lbl { font-size: 11.5px; color: var(--fg2); margin: -4px 0 8px; }
+
+/* ── extension calculator ── */
+.ext-out { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+
+/* ── checklist ── */
+.chk-group { margin-top: 14px; }
+.chk-group:first-child { margin-top: 0; }
+.chk-title { font-family: 'Space Grotesk', sans-serif; font-size: 11.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--blue-mid); margin-bottom: 6px; }
+.chk {
+  display: flex; gap: 12px; align-items: flex-start; padding: 9px 4px; border-bottom: 1px solid var(--border);
+  cursor: pointer; user-select: none; font-size: 14px; color: var(--fg); line-height: 1.5; border-radius: 6px;
 }
-.check-box.checked { background: var(--blue); border-color: var(--blue); }
-.check-box.checked::after { content: "✓"; color: white; font-size: 13px; font-weight: 700; }
-.checklist-item.done span { text-decoration: line-through; color: var(--fg2); }
-.checklist-item span { font-size: 14.5px; color: var(--fg); font-family: 'Inter', sans-serif; }
-.progress-bar { height: 5px; background: var(--border); border-radius: 3px; margin-top: 16px; }
-.progress-fill { height: 100%; background: var(--green); border-radius: 3px; transition: width .4s ease; }
-.progress-label { font-size: 12px; color: var(--fg2); margin-top: 6px; font-family: 'Inter', sans-serif; }
+.chk:hover { background: var(--bg); }
+.chk:last-child { border-bottom: none; }
+.box {
+  width: 20px; height: 20px; border: 2px solid var(--blue-mid); border-radius: 5px; flex-shrink: 0; margin-top: 1px;
+  display: flex; align-items: center; justify-content: center; transition: background .2s, transform .2s;
+}
+.chk.done .box { background: var(--blue-mid); transform: scale(1.08); }
+.chk.done .box::after { content: "✓"; color: #fff; font-size: 12px; font-weight: 700; }
+.chk.done .txt { color: var(--fg2); text-decoration: line-through; }
+.chk-bar { height: 8px; background: var(--border); border-radius: 4px; margin-top: 14px; overflow: hidden; }
+.chk-fill { height: 100%; width: 0; background: var(--green); border-radius: 4px; transition: width .35s ease; }
+.chk-lbl { font-size: 12.5px; color: var(--fg2); margin-top: 6px; }
+
+/* ── filing options ── */
+.opts3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.o3 {
+  border-radius: 14px; padding: 16px 18px; border: 1.5px solid var(--border); background: var(--bg2); box-shadow: var(--shadow);
+  opacity: 0; transform: translateY(12px); transition: opacity .45s ease, transform .45s ease;
+}
+.o3.visible { opacity: 1; transform: none; }
+.o3 .k { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--fg2); }
+.o3 h3 { font-size: 15px; color: var(--fg); margin: 4px 0 6px; }
+.o3 p { font-size: 13.5px; color: var(--fg2); margin-bottom: 8px; line-height: 1.55; }
+.o3 .cost { font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; color: var(--green); }
+@media (max-width: 620px) { .opts3 { grid-template-columns: 1fr; } }
+
+/* ── steps ── */
+.steps { display: flex; flex-direction: column; gap: 0; position: relative; }
+.step { display: grid; grid-template-columns: 44px 1fr; gap: 14px; padding-bottom: 18px; position: relative; }
+.step::before { content: ""; position: absolute; left: 21px; top: 44px; bottom: 0; width: 2px; background: var(--border); }
+.step:last-child::before { display: none; }
+.step .n {
+  width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 700;
+  background: var(--bg2); color: var(--fg2); border: 2px solid var(--border);
+  transition: background .4s, color .4s, border-color .4s, transform .4s cubic-bezier(.34,1.56,.64,1);
+}
+.step.visible .n { background: var(--blue); color: #fff; border-color: var(--blue); transform: scale(1.06); }
+.step.key .n { box-shadow: 0 0 0 4px var(--gold-light); }
+.step h3 { font-size: 15px; color: var(--fg); margin: 10px 0 4px; }
+.step p { font-size: 14.5px; color: var(--fg2); margin: 0; }
+.step .body { opacity: .4; transition: opacity .5s ease; }
+.step.visible .body { opacity: 1; }
+
+/* ── GE vs federal ── */
+.cmp2 { display: flex; flex-direction: column; gap: 14px; margin-top: 12px; }
+.c2 .t { font-size: 13px; font-weight: 600; color: var(--fg); margin-bottom: 6px; }
+.c2-row { display: grid; grid-template-columns: 74px 1fr; gap: 10px; align-items: center; font-size: 12.5px; margin-bottom: 5px; }
+.c2-row .who2 { color: var(--fg2); font-weight: 600; }
+.c2-track { height: 22px; background: var(--border); border-radius: 5px; overflow: hidden; }
+.c2-fill { height: 100%; width: 0; border-radius: 5px; display: flex; align-items: center; justify-content: flex-end; padding-right: 7px;
+  color: #fff; font-size: 11.5px; font-weight: 700; white-space: nowrap; transition: width .9s cubic-bezier(.16,1,.3,1); }
+.c2-fill.fed { background: var(--blue-mid); }
+.c2-fill.ge { background: var(--red); }
+
+/* ── withholding mini ── */
+.wh { display: grid; grid-template-columns: 1fr auto 1fr; gap: 8px; align-items: center; margin-top: 10px; }
+.wh .stat .v { font-size: 18px; }
+@media (max-width: 480px) { .wh { grid-template-columns: 1fr; } .wh .op { display: none; } }
+
+/* ── A26: pro rata months ── */
+.mgrid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 4px; }
+.mo {
+  text-align: center; font-size: 11px; font-weight: 700; padding: 10px 0; border-radius: 6px;
+  background: var(--bg); color: var(--fg2); border: 1.5px solid var(--border); transition: background .3s, color .3s, border-color .3s;
+}
+.mo.on { background: var(--blue-mid); color: #fff; border-color: var(--blue-mid); }
+.mo.out { background: transparent; border-style: dashed; opacity: .55; }
+@media (max-width: 480px) { .mgrid { grid-template-columns: repeat(6, 1fr); } }
+
+/* ── order flow (3 steps) ── */
+.flow3 { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 8px; align-items: stretch; }
+.f3 {
+  border-radius: 12px; padding: 12px 12px; border: 1.5px solid var(--border); background: var(--bg2); text-align: center;
+  opacity: 0; transform: scale(.92); transition: opacity .4s ease, transform .45s cubic-bezier(.34,1.56,.64,1);
+}
+.f3.visible { opacity: 1; transform: none; }
+.f3 .n { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--fg2); }
+.f3 .t { font-weight: 700; font-size: 13.5px; color: var(--fg); margin: 2px 0; }
+.f3 .s { font-size: 11.5px; color: var(--fg2); line-height: 1.4; }
+.f3.mid { border-color: var(--gold); background: var(--gold-light); }
+.f3.end { border-color: var(--green); background: var(--green-light); }
+.f3-ar { align-self: center; color: var(--fg2); font-size: 18px; opacity: 0; transition: opacity .4s ease; }
+.f3-ar.visible { opacity: 1; }
+@media (max-width: 560px) { .flow3 { grid-template-columns: 1fr; } .f3-ar { transform: rotate(90deg); text-align: center; } }
+
+/* ── canton bars ── */
+.cb { display: grid; grid-template-columns: 90px 1fr; gap: 12px; align-items: center; margin-bottom: 10px; font-size: 13px; }
+.cb .nm { font-weight: 700; color: var(--fg); }
+.cb .track { height: 32px; background: var(--border); border-radius: 8px; overflow: hidden; }
+.cb .fill {
+  height: 100%; width: 0; border-radius: 8px; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px;
+  color: #fff; font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; white-space: nowrap;
+  transition: width 1s cubic-bezier(.16,1,.3,1);
+}
+.cb .fill.sz { background: var(--green); }
+.cb .fill.be { background: var(--red); }
+
+/* ── pillar 2 destination ── */
+.p2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 4px; }
+.p2b { border-radius: 12px; padding: 14px 16px; border: 1.5px solid var(--border); transition: background .35s, border-color .35s; }
+.p2b .k { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--fg2); }
+.p2b .v { font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 700; margin-top: 4px; transition: color .35s; }
+.p2b.cash { background: var(--green-light); border-color: var(--green); } .p2b.cash .v { color: var(--green); }
+.p2b.lock { background: var(--bg); border-color: var(--border); } .p2b.lock .v { color: var(--fg2); }
+.p2-tax { margin-top: 10px; font-size: 13.5px; color: var(--fg); background: var(--blue-light); border-radius: 10px; padding: 10px 14px; line-height: 1.5; }
+@media (max-width: 480px) { .p2 { grid-template-columns: 1fr; } }
+
+/* ── country cards ── */
+.ctry { display: flex; flex-direction: column; gap: 10px; }
+.cty {
+  display: grid; grid-template-columns: 54px 1fr; gap: 14px; align-items: start; border-radius: 14px; padding: 14px 16px;
+  border: 1.5px solid var(--border); background: var(--bg2);
+  opacity: 0; transform: translateX(-10px); transition: opacity .4s ease, transform .4s ease;
+}
+.cty.visible { opacity: 1; transform: none; }
+.cty .code { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 15px; text-align: center; padding: 8px 0; border-radius: 10px; background: var(--blue-light); color: var(--blue-mid); }
+.cty h3 { font-size: 14.5px; color: var(--fg); margin-bottom: 4px; }
+.cty p { font-size: 14px; color: var(--fg2); margin: 0; }
+/* ── A29: what is taxed ── */
+.tx4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.tx {
+  border-radius: 12px; padding: 12px 10px; text-align: center; border: 1.5px solid var(--border); background: var(--bg2);
+  opacity: 0; transform: translateY(10px) scale(.95); transition: opacity .4s ease, transform .45s cubic-bezier(.34,1.56,.64,1);
+}
+.tx.visible { opacity: 1; transform: none; }
+.tx .ic { font-size: 20px; line-height: 1; }
+.tx .t { font-weight: 700; font-size: 13px; color: var(--fg); margin: 6px 0 4px; line-height: 1.3; }
+.tx .b { display: inline-block; font-family: 'Space Grotesk', sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; border-radius: 6px; padding: 2px 7px; }
+.tx.no { border-color: var(--green); background: var(--green-light); } .tx.no .b { background: var(--green); color: #fff; }
+.tx.yes .b { background: var(--blue-mid); color: #fff; }
+.tx.rate { border-color: var(--gold); background: var(--gold-light); } .tx.rate .b { background: var(--gold); color: #fff; }
+@media (max-width: 560px) { .tx4 { grid-template-columns: 1fr 1fr; } }
+
+/* ── progression bar ── */
+.prog { display: flex; height: 40px; border-radius: 10px; overflow: hidden; background: var(--border); }
+.prog .seg {
+  width: 0; display: flex; align-items: center; justify-content: center; white-space: nowrap; overflow: hidden;
+  color: #fff; font-family: 'Space Grotesk', sans-serif; font-size: 12.5px; font-weight: 700; transition: width 1s cubic-bezier(.16,1,.3,1);
+}
+.prog .ch { background: var(--blue-mid); }
+.prog .ldn { background: repeating-linear-gradient(135deg, var(--gold) 0 8px, #c99a3e 8px 16px); }
+.prog-lg { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 8px; font-size: 12.5px; color: var(--fg2); }
+.prog-lg i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+
+/* ── transfer compare ── */
+.cmp2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+
+/* ── bank scenarios ── */
+.scn { border-radius: 12px; padding: 14px 16px; border: 1.5px solid var(--border); transition: background .35s, border-color .35s; }
+.scn .k { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--fg2); }
+.scn .v { font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 700; margin: 4px 0; transition: color .35s; }
+.scn p { font-size: 13.5px; color: var(--fg2); margin: 0; }
+.scn.g { background: var(--green-light); border-color: var(--green); } .scn.g .v { color: var(--green); }
+.scn.a { background: var(--gold-light); border-color: var(--gold); } .scn.a .v { color: var(--gold); }
+.scn.r { background: var(--red-light); border-color: var(--red); } .scn.r .v { color: var(--red); }
+.meter { position: relative; height: 10px; border-radius: 6px; margin: 12px 0 4px; background: linear-gradient(90deg, var(--green), var(--gold), var(--red)); }
+.meter .pin { position: absolute; top: -5px; width: 20px; height: 20px; border-radius: 50%; background: var(--bg2); border: 3px solid var(--fg); transform: translateX(-50%); left: 0; transition: left .6s cubic-bezier(.34,1.56,.64,1); }
+.meter-lb { display: flex; justify-content: space-between; font-size: 11.5px; color: var(--fg2); margin-bottom: 10px; }
+.docs { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.doc {
+  font-size: 12.5px; font-weight: 600; padding: 6px 10px; border-radius: 8px; background: var(--blue-light); color: var(--blue-mid);
+  opacity: 0; transform: scale(.85); transition: opacity .35s ease, transform .4s cubic-bezier(.34,1.56,.64,1);
+}
+.doc.visible { opacity: 1; transform: none; }
+
+/* ── CRS flow ── */
+.crs { display: grid; grid-template-columns: 1fr 80px 1fr; align-items: center; gap: 8px; }
+.crs .node { border-radius: 12px; padding: 12px; text-align: center; border: 1.5px solid var(--border); background: var(--bg2); font-size: 13px; color: var(--fg2); }
+.crs .node strong { display: block; color: var(--fg); font-size: 14px; }
+.crs .wire { position: relative; height: 2px; background: var(--border); overflow: visible; }
+.crs .pkt { position: absolute; top: -9px; left: 0; font-size: 14px; opacity: 0; }
+.crs.run .pkt { animation: pkt 2.4s ease-in-out infinite; }
+@keyframes pkt { 0% { left: 0; opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { left: calc(100% - 16px); opacity: 0; } }
+@media (max-width: 480px) { .crs { grid-template-columns: 1fr; } .crs .wire { height: 30px; width: 2px; margin: 0 auto; } .crs .pkt { left: -7px !important; top: 0; } @keyframes pkt { 0% { top: 0; opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { top: 18px; opacity: 0; } } }
+
+/* ── US thresholds ── */
+.us-forms { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.uf { border-radius: 12px; padding: 14px 16px; border: 1.5px solid var(--border); background: var(--bg); transition: background .35s, border-color .35s; }
+.uf .k { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--fg2); }
+.uf .v { font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 700; margin-top: 4px; color: var(--fg2); transition: color .35s; }
+.uf .s { font-size: 12px; color: var(--fg2); margin-top: 2px; }
+.uf.on { background: var(--red-light); border-color: var(--red); } .uf.on .v { color: var(--red); }
+@media (max-width: 480px) { .us-forms, .cmp2 { grid-template-columns: 1fr; } }
+.plain { padding-left: 18px; margin: 0; }
+.plain li { font-size: 15px; color: var(--fg); margin-bottom: 8px; line-height: 1.6; }
+.plain li:last-child { margin-bottom: 0; }
+.stat-row.s3 { grid-template-columns: 1fr auto 1fr; }
+@media (max-width: 540px) { .stat-row.s3 { grid-template-columns: 1fr; } .stat-row.s3 .stat.res { grid-column: auto; } }
+
+/* ── MISTAKES ── */
+.mistakes { display: flex; flex-direction: column; gap: 12px; margin-top: 12px; }
+.mistake-item {
+  background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px; padding: 20px 24px;
+  box-shadow: var(--shadow); display: flex; gap: 18px; align-items: flex-start;
+  opacity: 0; transform: translateX(-14px); transition: opacity .45s ease, transform .45s ease, box-shadow .2s;
+}
+.mistake-item.visible { opacity: 1; transform: translateX(0); }
+.mistake-item:hover { box-shadow: var(--shadow-md); }
+.mistake-number { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; color: var(--red); line-height: 1; flex-shrink: 0; min-width: 32px; opacity: .25; }
+.mistake-content h3 { color: var(--red); font-size: 15px; margin-bottom: 6px; }
+.mistake-content p { font-size: 14.5px; color: var(--fg2); margin: 0; line-height: 1.6; }
 
 /* ── FAQ ── */
-.faq-item {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  margin-bottom: 8px;
-  overflow: hidden;
-  transition: border-color .2s;
-}
-.faq-item.open { border-color: var(--blue); }
-.faq-q {
-  padding: 16px 20px;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 14px; font-weight: 600;
-  cursor: pointer;
-  display: flex; justify-content: space-between; align-items: center;
-  gap: 12px; color: var(--fg);
-  background: transparent;
-}
-.faq-arrow { color: var(--blue); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
+.faq-item { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; margin-bottom: 8px; overflow: hidden; transition: border-color .2s; }
+.faq-item.open { border-color: var(--blue-mid); }
+.faq-q { padding: 16px 20px; font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; color: var(--fg); user-select: none; }
+.faq-arrow { color: var(--blue-mid); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
 .faq-item.open .faq-arrow { transform: rotate(180deg); }
-.faq-a {
-  display: none;
-  padding: 0 20px 16px;
-  font-size: 14px; color: var(--fg2); line-height: 1.65;
-  font-family: 'Inter', sans-serif;
-}
-.faq-item.open .faq-a { display: block; }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .35s ease; font-size: 14px; color: var(--fg2); line-height: 1.65; padding: 0 20px; }
+.faq-item.open .faq-a { max-height: 400px; padding: 0 20px 16px; }
 
-/* ── CTA ── */
-.cta-box {
-  background: var(--blue);
-  border-radius: 16px;
-  padding: 32px 36px;
-  text-align: center;
-}
-.cta-box p {
-  color: rgba(255,255,255,.8);
-  font-size: 15px; margin-bottom: 20px;
-}
-.cta-btn {
-  background: var(--gold);
-  color: #fff;
-  padding: 13px 28px;
-  border-radius: 10px;
-  text-decoration: none;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  display: inline-block;
-  transition: opacity .2s;
-}
-.cta-btn:hover { opacity: .88; }
-
-/* ── SOURCES ── */
-.sources {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  padding: 20px 24px;
-}
-.sources h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: .1em; text-transform: uppercase;
-  color: var(--fg2); margin-bottom: 10px;
-}
+/* ── CTA / SOURCES ── */
+.cta-box { background: var(--blue); border-radius: 16px; padding: 32px 36px; text-align: center; }
+.cta-box p { color: rgba(255,255,255,.85); font-size: 15px; margin-bottom: 14px; }
+.cta-box p:last-of-type { margin-bottom: 20px; }
+.cta-btn { background:var(--gold); color:#fff; padding:13px 28px; border-radius:10px; text-decoration:none; font-family:'Space Grotesk',sans-serif; font-size:15px; font-weight:700; display:inline-block; transition:opacity .2s,transform .2s; }
+.cta-btn:hover { opacity:.88; transform:translateY(-1px); }
+.sources { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; padding: 20px 24px; }
+.sources h3 { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--fg2); margin-bottom: 10px; }
 .sources ol { padding-left: 18px; }
-.sources ol li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; }
+.sources li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; }
 
-/* ── FADE IN ── */
-.fade-in { opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
-.fade-in.visible { opacity: 1; transform: translateY(0); }
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
 
 @media (max-width: 600px) {
-  h1 { font-size: 24px; }
-  .situation-cards { grid-template-columns: 1fr; }
+  body { padding-top: 36px; }
+  .takeaways { padding: 22px 20px; }
   .cta-box { padding: 24px 20px; }
-  .takeaways { padding: 20px 20px; }
+  .opt { padding: 18px 18px; }
+  .stat .v { font-size: 19px; }
+  .growth { padding: 18px 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
 }
 </style>
 </head>
 <body>
 <div id="progress-bar"></div>
-
-<header class="hero">
-  <div class="hero-bg"></div>
-  
-  <div class="hero-gradient"></div>
-  <div class="hero-content">
-    <div class="hero-tag" id="heroTag"><span class="hero-tag-pill">Banking · Tax</span><span>Moving to Switzerland</span></div>
-    <h1 class="hero-title" id="heroTitle">Bringing Money to Switzerland: What Expats Need to Know</h1>
-    <p class="hero-subtitle" id="heroSubtitle">Switzerland does not tax the transfer itself. But what you declare, how you transfer, and what the bank asks for are questions worth understanding before you move.</p>
-    <div class="hero-meta" id="heroMeta"><span>Updated August 2026</span><div class="hero-meta-divider"></div><span>4 min read</span></div>
-  </div>
-</header>
-
 <div class="article">
+
+  <div class="article-header">
+    <p class="article-meta">Banking · Taxes · Moving Money · Updated November 2026 · 4 min read</p>
+    <h1>Bringing Money to Switzerland: What You Need to Know</h1>
+    <p class="subtitle">Savings, investments, the sale of a house: how to bring that money to Switzerland, what to declare and what your bank will ask for.</p>
+    <div class="header-rule"></div>
+  </div>
+
+  <div class="quick-answer reveal">
+    <p><strong>Quick Answer:</strong> Bringing money into Switzerland is not taxed. What Switzerland taxes is the wealth you hold each year — and the income it earns — from the moment you become resident.</p>
+    <p>What usually holds a transfer up is not the tax office but the bank: for large amounts, it will ask for proof of where the money came from. Gather those documents before you transfer.</p>
+  </div>
+
   <div class="takeaways">
-    <p class="takeaways-label">Key Takeaways</p>
-    <div class="takeaway-item" data-delay="0"><span class="takeaway-num">01</span><span class="takeaway-text">Switzerland does not tax the transfer of capital — bringing savings from abroad triggers no Swiss tax on the amount transferred</span></div>
-    <div class="takeaway-item" data-delay="90"><span class="takeaway-num">02</span><span class="takeaway-text">Capital accumulated before Swiss residency enters your wealth declaration — subject to wealth tax (0.1%–1%), not income tax</span></div>
-    <div class="takeaway-item" data-delay="180"><span class="takeaway-num">03</span><span class="takeaway-text">Future income generated by foreign assets — interest, dividends, rent — IS taxable in Switzerland from the moment you become resident</span></div>
-    <div class="takeaway-item" data-delay="270"><span class="takeaway-num">04</span><span class="takeaway-text">Swiss banks must verify the origin of significant transfers — prepare documentation in advance to avoid delays</span></div>
-    <div class="takeaway-item" data-delay="360"><span class="takeaway-num">05</span><span class="takeaway-text">Switzerland shares account data with most countries under CRS — undeclared foreign capital is increasingly difficult to conceal</span></div>
-    <div class="takeaway-item" data-delay="450"><span class="takeaway-num">06</span><span class="takeaway-text">Bringing more than CHF 10,000 in cash into Switzerland requires a customs declaration — no tax, but mandatory</span></div>
-  </div>
-
-  <h2 class="reveal">The Good News — Switzerland Does Not Tax the Transfer</h2>
-  <div class="good-news reveal">
-    <h3>✅ No capital transfer tax</h3>
-    <p>Switzerland has no tax on the transfer of capital. You can bring savings from abroad to a Swiss account without paying any tax on the amount transferred. What Switzerland taxes is income and wealth — not the origin of money or the fact that you transferred it. Capital accumulated before Swiss residency is not taxed as Swiss income — it is declared as wealth and subject to wealth tax (0.1%–1% per year), not income tax at 30%–40%.</p>
-  </div>
-
-  <h2 class="reveal">What You Must Declare</h2>
-  <p class="reveal">From the moment you become a Swiss tax resident, your worldwide assets must be declared in your first tax return. The distinction between what is taxed as income vs what is taxed as wealth is critical.</p>
-
-  <div class="declare-grid reveal">
-    <div class="declare-card wealth">
-      <h3>🏦 Wealth declaration — 0.1% to 1%/year</h3>
-      <ul>
-        <li>Foreign bank account balances (31 December)</li>
-        <li>Foreign investment portfolios (31 December)</li>
-        <li>Property abroad — estimated market value</li>
-        <li>Other significant foreign assets</li>
-        <li>Pillar 3a balances</li>
-      </ul>
-    </div>
-    <div class="declare-card taxable">
-      <h3>📈 Taxable as income — 25% to 43%</h3>
-      <ul>
-        <li>Interest received on foreign accounts</li>
-        <li>Dividends from foreign investments</li>
-        <li>Rental income from property abroad</li>
-        <li>Any other income generated by foreign assets</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="warning-box reveal">
-    <p>⚠ <strong>The transfer itself is not taxable — the future income is.</strong> Bring CHF 500,000 in savings to Switzerland: no tax on the transfer. But if those CHF 500,000 generate CHF 15,000/year in dividends, those dividends are taxable Swiss income from the first year of residency.</p>
-  </div>
-
-  <h2 class="reveal">How to Transfer — Three Options</h2>
-  <div class="transfer-cards reveal">
-    <div class="transfer-card">
-      <div class="transfer-icon">🏦</div>
-      <h3>SWIFT Bank Transfer</h3>
-      <p>Most common and secure. Bank in country of origin sends SWIFT transfer to Swiss account. For large amounts, the Swiss bank may request documentation on the origin of funds.</p>
-      <p class="transfer-tip">Best for: any amount, especially above CHF 50,000</p>
-    </div>
-    <div class="transfer-card">
-      <div class="transfer-icon">📱</div>
-      <h3>Wise / Revolut</h3>
-      <p>Significantly better exchange rates than traditional banks. For CHF 10,000 or less, savings of CHF 100–300 vs a bank transfer. Fast and reliable for smaller amounts.</p>
-      <p class="transfer-tip">Best for: amounts below CHF 50,000</p>
-    </div>
-    <div class="transfer-card">
-      <div class="transfer-icon">💵</div>
-      <h3>Physical Cash</h3>
-      <p>Legal to bring cash into Switzerland. Above CHF 10,000 (or equivalent), must be declared at Swiss customs. No tax — mandatory declaration only. Omitting can result in confiscation and fines.</p>
-      <p class="transfer-tip">Best for: small amounts only</p>
-    </div>
-  </div>
-
-  <h2 class="reveal">What the Bank Will Ask — KYC/AML</h2>
-  <p class="reveal">Swiss banks are legally required to verify the origin of significant funds. For transfers above CHF 10,000–100,000 (threshold varies by bank), expect to provide:</p>
-
-  <div class="kyc-list reveal">
-    <h3>Documents typically requested</h3>
-    <div class="kyc-item">Bank statements from country of origin showing how the capital accumulated over time</div>
-    <div class="kyc-item">Tax declarations from country of origin showing the capital was declared</div>
-    <div class="kyc-item">Inheritance documentation, property sale contract, or other specific origin evidence</div>
-    <div class="kyc-item">Employment contracts or other documents explaining the source of income</div>
-  </div>
-
-  <div class="green-box reveal">
-    <p>✅ <strong>This is not personal — it is legally mandatory for everyone.</strong> KYC/AML checks apply to all customers regardless of nationality or background. Prepare documentation in advance and the process is straightforward. Banks that cannot verify the origin of funds are legally required to decline the transfer.</p>
-  </div>
-
-  <div class="quote-block reveal">
-    <p class="quote-label">The Key Principle</p>
-    <p class="quote-text">"Switzerland does not tax where your money came from. It taxes what your money earns once you are here."</p>
-  </div>
-
-  <h2 class="reveal">Undeclared Capital in Your Country of Origin</h2>
-  <p class="reveal">Switzerland does not automatically inform your country of origin about your accounts here — but the situation is increasingly complex due to the <span class="hl-blue">Common Reporting Standard (CRS)</span>. Under CRS, Switzerland automatically shares information about accounts held by non-residents with the account holder's country of residence. This covers most European countries, Brazil, and many others.</p>
-
-  <div class="warning-box reveal">
-    <p>⚠ <strong>If you have capital not declared in your country of origin</strong>, consult a tax lawyer in that country before bringing it to Switzerland. Voluntary regularisation is almost always significantly less costly than a tax investigation. Switzerland's automatic exchange agreements make the "invisible account" strategy increasingly unrealistic.</p>
-  </div>
-
-  <h2 class="reveal">For US Citizens — Additional Rules</h2>
-  <div class="us-box reveal">
-    <h3>🇺🇸 US citizen obligations when transferring to Switzerland</h3>
+    <h2>Key Takeaways</h2>
     <ul>
-      <li>Bringing money to Switzerland does not create additional US tax — capital already taxed in the US remains taxed</li>
-      <li>FBAR required if Swiss account balance exceeds $10,000 at any point during the year (FinCEN Form 114)</li>
-      <li>FATCA Form 8938 required if total foreign financial assets exceed $200,000 at year-end</li>
-      <li>Swiss banks already report account data to the IRS under the FATCA agreement — non-disclosure is not viable</li>
+      <li class="takeaway-item" data-delay="0">Foreign accounts and investments go on your Swiss tax return; foreign property is not taxed in Switzerland, but it counts towards your tax rate</li>
+      <li class="takeaway-item" data-delay="100">Online transfer services are usually cheaper than a traditional bank</li>
+      <li class="takeaway-item" data-delay="200">Cash does not have to be declared when entering Switzerland — but above CHF 10,000 you must answer if customs asks</li>
+      <li class="takeaway-item" data-delay="300">US citizens: the FBAR applies from US$10,000, adding up all foreign accounts</li>
     </ul>
   </div>
 
-  <h2 class="reveal">Before You Ask</h2>
-  <div class="faq-list reveal">
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">I have CHF 200,000 in savings abroad. Do I pay tax when I bring it to Switzerland?<span class="faq-arrow">▾</span></div>
-      <div class="faq-a">No. The transfer itself is not taxed. The CHF 200,000 enters your wealth declaration and is subject to wealth tax (approximately 0.1%–1%/year on the net value). But any income generated by that capital in Switzerland — interest, dividends — is taxable as income from the first year of residency.</div>
+  <!-- WHAT IS TAXED -->
+  <div class="card">
+    <div class="card-head"><span class="tag">Tax</span><h2>What Switzerland Taxes — and What You Declare</h2></div>
+    <p>Your Swiss tax return includes everything you own abroad, at its value on 31 December — even if the money stays where it is.</p>
+    <div class="viz" id="vtax">
+      <div class="tx4">
+        <div class="tx no" data-delay="0"><div class="ic">↪</div><div class="t">The transfer itself</div><span class="b">Not taxed</span></div>
+        <div class="tx yes" data-delay="120"><div class="ic">🏦</div><div class="t">Accounts &amp; investments</div><span class="b">Wealth tax</span></div>
+        <div class="tx yes" data-delay="240"><div class="ic">％</div><div class="t">Interest &amp; dividends</div><span class="b">Income tax</span></div>
+        <div class="tx rate" data-delay="360"><div class="ic">🏠</div><div class="t">Property abroad</div><span class="b">Rate only</span></div>
+      </div>
     </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Can the Swiss bank refuse my transfer?<span class="faq-arrow">▾</span></div>
-      <div class="faq-a">The bank can request additional documentation, delay processing, or in extreme cases decline. For legal, properly documented capital, the transfer processes without problems. Prepare origin-of-funds documents in advance — especially for amounts above CHF 50,000.</div>
+    <ul class="plain" style="margin-top:14px">
+      <li><strong>Accounts and investments</strong> are subject to wealth tax, which is low. In Geneva, a single person with CHF 100,000 pays roughly CHF 40 a year <span class="illus" style="margin:0">approx.</span>. More in our article on wealth tax in Geneva.</li>
+      <li><strong>Interest and dividends</strong> they earn are taxable income in Switzerland; tax withheld abroad can usually be offset under the double tax treaty.</li>
+      <li><strong>Property abroad</strong> is taxed in the country where it is, but Switzerland uses its value and rental income to set the rate on everything else.</li>
+    </ul>
+    <div class="viz" id="vprog">
+      <span class="illus">Illustrative example</span>
+      <div class="viz-label">CHF 150,000 Swiss income + a London flat rented for CHF 12,000 a year</div>
+      <div class="prog"><div class="seg ch" data-w="92.6">Swiss income 150,000</div><div class="seg ldn" data-w="7.4"></div></div>
+      <div class="prog-lg"><span><i style="background:var(--blue-mid)"></i>Taxed in Switzerland</span><span><i style="background:var(--gold)"></i>London rent CHF 12,000 — not taxed, only sets the rate</span></div>
+      <div class="stat-row s3" style="margin-top:12px">
+        <div class="stat"><div class="k">Taxed amount</div><div class="v" id="p-tax">CHF 0</div></div>
+        <div class="op">at the rate of</div>
+        <div class="stat res"><div class="k">Rate as if you earned</div><div class="v" id="p-rate">CHF 0</div></div>
+      </div>
     </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">I have foreign investments I never declared in my home country. What should I do?<span class="faq-arrow">▾</span></div>
-      <div class="faq-a">Consult a tax lawyer in your country of origin before taking any action. Most countries have voluntary disclosure programmes that significantly reduce penalties compared to a formal investigation. Do not transfer undeclared capital to Switzerland hoping it goes unnoticed — CRS data sharing has made this increasingly impossible.</div>
+  </div>
+
+  <!-- HOW TO TRANSFER -->
+  <div class="card green">
+    <div class="card-head"><span class="tag">Transfer</span><h2>How to Transfer</h2></div>
+    <p>The most common route is an international bank transfer (SWIFT) from your bank back home to your Swiss account. For smaller amounts or frequent transfers, services such as Wise and Revolut usually offer an exchange rate 1% to 3% better.</p>
+    <div class="viz" id="vfx">
+      <span class="illus">Illustrative: 1–3% better exchange rate</span>
+      <div class="slider" style="margin-top:0">
+        <label for="amt">Amount you send <span class="val" id="amt-val">CHF 10,000</span></label>
+        <input type="range" id="amt" min="1000" max="100000" step="1000" value="10000" aria-label="Amount to transfer">
+      </div>
+      <div class="cmp2">
+        <div class="stat res g"><div class="k">You save — from</div><div class="v" id="fx-lo">CHF 0</div></div>
+        <div class="stat res g"><div class="k">You save — up to</div><div class="v" id="fx-hi">CHF 0</div></div>
+      </div>
+      <p class="calc-line" id="fx-line"></p>
     </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">When should I speak with an advisor?<span class="faq-arrow">▾</span></div>
-      <div class="faq-a">Before transferring significant amounts — especially if the capital has a complex origin (inheritance, business sale, property) or if you have questions about how to declare it correctly in Switzerland. An advisor can guide the documentation process and ensure the first Swiss tax return is filed correctly.</div>
+  </div>
+
+  <!-- KYC -->
+  <div class="card gold">
+    <div class="card-head"><span class="tag">KYC / AML</span><h2>Where Did the Money Come From?</h2></div>
+    <p>Swiss banks are required by law to check where money comes from — the KYC (“know your customer”) and AML (anti-money-laundering) rules. There is no fixed amount in law: the bank compares each incoming payment with your profile, and a transfer far above your salary or the wealth you declared when opening the account will trigger questions.</p>
+    <div class="viz" id="vkyc">
+      <span class="illus">Illustrative scenarios · salary CHF 150,000</span>
+      <div class="seg-btns" id="kyc-btns">
+        <button class="sbtn active" data-s="0">CHF 20,000 of savings</button>
+        <button class="sbtn" data-s="1">CHF 500,000 from a house sale, bank told in advance</button>
+        <button class="sbtn" data-s="2">CHF 500,000 split into 10 transfers</button>
+      </div>
+      <div class="meter"><div class="pin" id="kyc-pin"></div></div>
+      <div class="meter-lb"><span>Fits your profile</span><span>Questions</span><span>Red flag</span></div>
+      <div class="scn g" id="kyc-out"><div class="k">What usually happens</div><div class="v" id="kyc-v"></div><p id="kyc-p"></p></div>
+      <div class="viz-label" style="margin-top:16px;margin-bottom:0">What the bank may ask for</div>
+      <div class="docs" id="vdocs">
+        <span class="doc" data-delay="0">Bank statements from back home</span>
+        <span class="doc" data-delay="100">Tax returns from back home</span>
+        <span class="doc" data-delay="200">Inheritance papers</span>
+        <span class="doc" data-delay="300">House sale contract</span>
+        <span class="doc" data-delay="400">Employment contracts</span>
+      </div>
+    </div>
+    <p style="margin-top:14px">This applies to everyone. Without these papers, the transfer can be delayed or, in extreme cases, refused. Tell your bank before a large transfer, and don't split the amount into several smaller ones: that draws more attention, not less.</p>
+  </div>
+
+  <!-- CRS -->
+  <div class="card">
+    <div class="card-head"><span class="tag">CRS</span><h2>Money Not Declared Back Home</h2></div>
+    <p>Countries automatically exchange information on bank accounts (the CRS standard): once you live in Switzerland, banks in the UK and many other countries report your accounts there to Switzerland.</p>
+    <div class="viz" id="vcrs">
+      <div class="crs" id="crs">
+        <div class="node"><strong>🇬🇧 Your UK bank</strong>balances &amp; income</div>
+        <div class="wire"><span class="pkt">📄</span></div>
+        <div class="node"><strong>🇨🇭 Swiss tax office</strong>your country of residence</div>
+      </div>
+    </div>
+    <div class="note warn"><p><strong>Undeclared money?</strong> Speak to a tax lawyer in that country before you transfer it — voluntary disclosure is usually far cheaper than an investigation.</p></div>
+  </div>
+
+  <!-- US -->
+  <div class="card">
+    <div class="card-head"><span class="tag">US citizens</span><h2>US Citizens — Their Own Rules</h2></div>
+    <p>Bringing money to Switzerland creates no extra US tax. But there are reporting duties — and your Swiss bank already reports your accounts to the IRS under FATCA, so not filing is not an option.</p>
+    <div class="viz" id="vus">
+      <div class="seg-btns" id="us-btns">
+        <button class="sbtn active" data-m="1">Single</button>
+        <button class="sbtn" data-m="2">Married, filing jointly</button>
+      </div>
+      <div class="slider" style="margin-top:0">
+        <label for="usv">Highest total of your foreign accounts during the year <span class="val" id="usv-val">US$ 50,000</span></label>
+        <input type="range" id="usv" min="0" max="700000" step="5000" value="50000" aria-label="Foreign account total">
+      </div>
+      <div class="us-forms" style="margin-top:12px">
+        <div class="uf" id="uf-fbar"><div class="k">FBAR (FinCEN 114)</div><div class="v" id="uf-fbar-v"></div><div class="s">over US$10,000 at any time, all accounts combined</div></div>
+        <div class="uf" id="uf-8938"><div class="k">FATCA Form 8938</div><div class="v" id="uf-8938-v"></div><div class="s" id="uf-8938-s"></div></div>
+      </div>
+      <p class="viz-note">Living abroad, Form 8938 applies above the year-end threshold or the during-the-year threshold, whichever is reached first. This tool uses the during-the-year figure.</p>
+    </div>
+    <p style="margin-top:14px">See the details in our article on FBAR and FATCA.</p>
+  </div>
+
+  <!-- FAQ -->
+  <div>
+    <h2 class="reveal">Before You Ask</h2>
+    <div style="margin-top:12px">
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">I inherited money from a relative who lived in the UK. Do I pay inheritance tax in Switzerland?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">Generally not: in Switzerland, inheritance tax is charged by the canton where the deceased lived. If they lived abroad, it's up to their country. Once received, the money becomes part of the wealth you declare in Switzerland.</div>
+      </div>
     </div>
   </div>
 
   <div class="cta-box reveal">
-    <p>SwissExpatHub can connect you with advisors experienced in international capital transfers, first-year Swiss tax declarations, and the correct treatment of foreign assets for new residents in Geneva.</p>
+    <p>If your money has a complex origin — an inheritance, the sale of a business or property — or you are unsure what was declared back home, SwissExpatHub can connect you with advisors who prepare the paperwork and your Swiss tax return.</p>
     <a href="/directory" class="cta-btn">Find Your Advisor →</a>
   </div>
 
   <div class="sources reveal">
-    <p class="sources-label">Sources</p>
+    <h3>Sources</h3>
     <ol>
-      <li>Federal Tax Administration — Wealth tax and foreign assets: estv.admin.ch</li>
-      <li>SECO — Swiss anti-money laundering regulation: seco.admin.ch</li>
-      <li>FinCEN — FBAR reporting requirements: fincen.gov</li>
-      <li>OECD — Common Reporting Standard (CRS): oecd.org</li>
+      <li>Federal Office for Customs and Border Security (FOCBS) — carrying cash: no declaration required; information from CHF 10,000 on request</li>
+      <li>Federal Act on Direct Federal Tax (DBG) art. 6–7 and Federal Supreme Court ruling 150 II 417 — foreign property: exempt, but counted for the rate</li>
+      <li>Geneva Tax Administration — 2025 wealth tax scale</li>
+      <li>Anti-Money Laundering Act (AMLA) and FINMA Anti-Money Laundering Ordinance — risk-based monitoring of business relationships</li>
+      <li>IRS / FinCEN — FBAR and Form 8938 thresholds for taxpayers living abroad</li>
+      <li>OECD — Common Reporting Standard (CRS)</li>
     </ol>
   </div>
+
 </div>
 
 <script>
-  window.addEventListener('scroll', () => {
-    const s = window.scrollY, d = document.documentElement.scrollHeight - window.innerHeight;
-    document.getElementById('progress-bar').style.width = Math.min(100, d > 0 ? (s/d)*100 : 0) + '%';
-  }, { passive: true });
-  window.addEventListener('load', () => {
-    setTimeout(() => document.getElementById('heroTag').classList.add('visible'), 50);
-    setTimeout(() => document.getElementById('heroTitle').classList.add('visible'), 150);
-    setTimeout(() => document.getElementById('heroSubtitle').classList.add('visible'), 280);
-    setTimeout(() => document.getElementById('heroMeta').classList.add('visible'), 420);
-  });
-  const tObs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), parseInt(e.target.dataset.delay||0)); tObs.unobserve(e.target); } });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.takeaway-item').forEach(el => tObs.observe(el));
-  const rObs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), parseInt(e.target.dataset.delay||0)); rObs.unobserve(e.target); } });
-  }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
-  document.querySelectorAll('.reveal').forEach(el => rObs.observe(el));
-  function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+window.addEventListener('scroll', () => {
+  const docH = document.documentElement.scrollHeight - window.innerHeight;
+  document.getElementById('progress-bar').style.width = (docH > 0 ? window.scrollY / docH * 100 : 0) + '%';
+});
+window.addEventListener('load', () => {
+  setTimeout(() => document.querySelector('.article-meta').classList.add('visible'), 80);
+  setTimeout(() => document.querySelector('h1').classList.add('visible'), 220);
+  setTimeout(() => document.querySelector('.subtitle').classList.add('visible'), 320);
+  setTimeout(() => document.querySelector('.header-rule').classList.add('visible'), 420);
+});
+function stagger(selector, threshold) {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), parseInt(e.target.dataset.delay || 0));
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold });
+  document.querySelectorAll(selector).forEach(el => obs.observe(el));
+}
+stagger('.takeaway-item', 0.15);
+stagger('.card', 0.04);
+stagger('.reveal', 0.08);
+stagger('.tx', 0.2);
+stagger('.doc', 0.2);
+
+function onView(id, fn, threshold = 0.4) {
+  const el = document.getElementById(id);
+  const obs = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) { fn(); obs.disconnect(); }
+  }, { threshold });
+  obs.observe(el);
+}
+const fmt = n => 'CHF ' + Math.round(n).toLocaleString('en-US');
+const usd = n => 'US$ ' + Math.round(n).toLocaleString('en-US');
+function countUp(el, to, ms, from = 0, f = fmt) {
+  const t0 = performance.now();
+  const step = t => {
+    const k = Math.min(1, (t - t0) / ms), e = 1 - Math.pow(1 - k, 3);
+    el.textContent = f(from + (to - from) * e);
+    if (k < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+// Progression bar
+onView('vprog', () => {
+  const segs = document.querySelectorAll('#vprog .seg');
+  segs[0].style.width = segs[0].dataset.w + '%';
+  setTimeout(() => { segs[1].style.width = segs[1].dataset.w + '%'; }, 900);
+  countUp(document.getElementById('p-tax'), 150000, 1000);
+  setTimeout(() => countUp(document.getElementById('p-rate'), 162000, 900, 150000), 900);
+}, 0.4);
+
+// FX saving
+const amt = document.getElementById('amt');
+let fxPrev = [0, 0];
+function updFx(animate) {
+  const a = +amt.value, lo = a * 0.01, hi = a * 0.03;
+  document.getElementById('amt-val').textContent = fmt(a);
+  if (animate) { countUp(document.getElementById('fx-lo'), lo, 700, fxPrev[0]); countUp(document.getElementById('fx-hi'), hi, 700, fxPrev[1]); }
+  else { document.getElementById('fx-lo').textContent = fmt(lo); document.getElementById('fx-hi').textContent = fmt(hi); }
+  fxPrev = [lo, hi];
+  document.getElementById('fx-line').innerHTML = `1% × ${fmt(a)} = ${fmt(lo)} · 3% × ${fmt(a)} = <strong>${fmt(hi)}</strong> less in costs than a traditional bank`;
+}
+amt.addEventListener('input', () => updFx(false));
+onView('vfx', () => updFx(true), 0.4);
+
+// KYC scenarios
+const SC = [
+  { c: 'g', pin: 12, v: 'Usually no questions', p: 'In line with what you earn and what you told the bank when you opened the account.' },
+  { c: 'a', pin: 50, v: 'Questions — then released', p: 'Far above your salary, so the bank asks. You already said where it comes from: send the sale contract and the transfer goes through.' },
+  { c: 'r', pin: 90, v: 'Red flag', p: 'Splitting a large amount into smaller transfers is a classic warning sign. It draws more attention, not less.' },
+];
+function updKyc(i) {
+  const S = SC[i], out = document.getElementById('kyc-out');
+  out.className = 'scn ' + S.c;
+  document.getElementById('kyc-pin').style.left = S.pin + '%';
+  document.getElementById('kyc-v').textContent = S.v;
+  document.getElementById('kyc-p').textContent = S.p;
+}
+document.querySelectorAll('#kyc-btns .sbtn').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('#kyc-btns .sbtn').forEach(x => x.classList.remove('active'));
+  b.classList.add('active'); updKyc(+b.dataset.s);
+}));
+updKyc(0);
+onView('vkyc', () => { document.getElementById('kyc-pin').style.left = '0%'; setTimeout(() => updKyc(0), 50); }, 0.5);
+
+// CRS
+onView('vcrs', () => document.getElementById('crs').classList.add('run'), 0.5);
+
+// US forms
+let mult = 1;
+const usv = document.getElementById('usv');
+function updUs() {
+  const v = +usv.value, t8938 = 300000 * mult;
+  document.getElementById('usv-val').textContent = usd(v);
+  const fb = v > 10000, f8 = v > t8938;
+  document.getElementById('uf-fbar').classList.toggle('on', fb);
+  document.getElementById('uf-fbar-v').textContent = fb ? 'You must file' : 'Not required';
+  document.getElementById('uf-8938').classList.toggle('on', f8);
+  document.getElementById('uf-8938-v').textContent = f8 ? 'You must file' : 'Not required';
+  document.getElementById('uf-8938-s').textContent = mult === 1
+    ? 'living abroad: over US$200,000 on 31 Dec or US$300,000 during the year'
+    : 'living abroad: over US$400,000 on 31 Dec or US$600,000 during the year';
+}
+usv.addEventListener('input', updUs);
+document.querySelectorAll('#us-btns .sbtn').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('#us-btns .sbtn').forEach(x => x.classList.remove('active'));
+  b.classList.add('active'); mult = +b.dataset.m; updUs();
+}));
+updUs();
+
+function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
 </script>
 </body>
 </html>
