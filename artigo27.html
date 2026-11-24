@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AHV/AVS: How Switzerland's State Pension Works for Expats</title>
+<title>Children and Taxes in Geneva: How Much Can You Deduct?</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
 <style>
 :root {
@@ -47,389 +47,404 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-  background: var(--bg);
-  color: var(--fg);
-  font-family: 'Inter', system-ui, sans-serif;
-  font-size: 16px;
-  line-height: 1.75;
-  padding: 40px max(16px, 5vw) 80px;
-}
-
-.article {
-  max-width: 720px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-
-/* ── HEADER ── */
-.article-header { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
-.article-meta {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: .12em; text-transform: uppercase;
-  color: var(--fg2); margin-bottom: 10px;
-}
-h1 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(24px, 5vw, 36px);
-  font-weight: 700; line-height: 1.2;
-  text-wrap: balance; color: var(--fg);
-}
-.header-rule {
-  height: 2px; background: var(--blue);
-  border-radius: 2px; margin-top: 20px;
-  width: 48px;
-}
-
-/* ── QUICK ANSWER ── */
-.quick-answer {
-  background: var(--blue-light);
-  border-left: 4px solid var(--blue);
-  border-radius: 0 14px 14px 0;
-  padding: 20px 24px;
-}
-.quick-answer p { font-size: 15px; color: var(--fg); margin: 0; }
-
-/* ── TAKEAWAYS ── */
-.takeaways {
-  background: var(--blue);
-  border-radius: 16px;
-  padding: 28px 32px;
-}
-.takeaways h2 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 16px; font-weight: 700;
-  color: rgba(255,255,255,.6);
-  letter-spacing: .08em; text-transform: uppercase;
-  margin-bottom: 16px; margin-top: 0;
-}
+#progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: var(--blue-mid); width: 0%; z-index: 1000; transition: width .1s linear; border-radius: 0 2px 2px 0; }
+body { background: var(--bg); color: var(--fg); font-family: 'Inter', system-ui, sans-serif; font-size: 16px; line-height: 1.75; padding: 48px max(16px, 5vw) 80px; }
+.article { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 36px; }
+.article-meta { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--fg2); margin-bottom: 12px; opacity: 0; transform: translateY(-8px); transition: opacity .5s ease, transform .5s ease; }
+.article-meta.visible { opacity: 1; transform: none; }
+h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(24px, 5vw, 36px); font-weight: 700; line-height: 1.2; text-wrap: balance; color: var(--fg); opacity: 0; transform: translateY(12px); transition: opacity .6s ease .15s, transform .6s ease .15s; }
+h1.visible { opacity: 1; transform: none; }
+.header-rule { height: 3px; background: var(--blue); border-radius: 2px; margin-top: 20px; width: 0; transition: width .8s cubic-bezier(.16,1,.3,1) .5s; }
+.header-rule.visible { width: 48px; }
+.takeaways { background: var(--blue); border-radius: 16px; padding: 28px 32px; }
+.takeaways h2 { font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; color: rgba(255,255,255,.55); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 18px; }
 .takeaways ul { list-style: none; }
-.takeaways ul li {
-  color: #e8ecf5;
-  font-size: 14.5px;
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(255,255,255,.1);
-  display: flex; gap: 12px; align-items: flex-start;
-}
-.takeaways ul li:last-child { border-bottom: none; }
-.takeaways ul li::before {
-  content: "✓"; color: #3dba78;
-  font-weight: 700; flex-shrink: 0; margin-top: 1px;
-}
-
-/* ── HEADINGS ── */
-h2 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 20px; font-weight: 700;
-  color: var(--fg); margin-bottom: 4px;
-}
-h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  color: var(--blue-mid); margin-bottom: 6px;
-}
+.takeaway-item { color: #e8ecf5; font-size: 14.5px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.1); display: flex; gap: 12px; align-items: flex-start; opacity: 0; transform: translateX(-10px); transition: opacity .45s ease, transform .45s ease; }
+.takeaway-item.visible { opacity: 1; transform: none; }
+.takeaway-item:last-child { border-bottom: none; }
+.takeaway-item::before { content: "✓"; color: #3dba78; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+h2 { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; color: var(--fg); margin-bottom: 4px; }
+h3 { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; color: var(--blue-mid); margin-bottom: 6px; }
 p { font-size: 15.5px; color: var(--fg); margin-bottom: 12px; }
 p:last-child { margin-bottom: 0; }
-.hl-blue  { color: var(--blue-mid); font-weight: 600; }
-.hl-green { color: var(--green);    font-weight: 600; }
-.hl-red   { color: var(--red);      font-weight: 600; }
-sup { font-size: 11px; color: var(--blue-mid); }
+.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.viz-label { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--fg2); margin-bottom: 12px; }
+.viz-note { font-size: 12px; color: var(--fg2); margin-top: 10px; line-height: 1.55; }
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+.blk { position: relative; overflow: hidden; background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px; padding: 24px 26px; box-shadow: var(--shadow); opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
+.blk.visible { opacity: 1; transform: none; }
+.blk::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--blue-mid); transform: scaleY(0); transform-origin: top; transition: transform .6s cubic-bezier(.16,1,.3,1) .25s; }
+.blk.visible::before { transform: scaleY(1); }
+.blk h2 { margin-bottom: 12px; font-size: 19px; }
+.blk p { font-size: 15px; }
+.plain { background: var(--green-light); border-radius: 10px; padding: 12px 14px; font-size: 14.5px; margin-bottom: 12px; }
+.plain b { color: var(--green); font-family: 'Space Grotesk', sans-serif; }
+.warnline { margin: 4px 0 14px; padding: 10px 14px; border-radius: 10px; background: var(--gold-light); color: var(--fg); font-size: 14px; border-left: 4px solid var(--gold); }
+.warnline b { color: var(--gold); }
+.panel { margin-top: 16px; padding: 18px; border-radius: 14px; background: var(--bg); border: 1.5px solid var(--border); }
 
-/* ── SITUATION CARDS ── */
-.situation-cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-@media (max-width: 520px) { .situation-cards { grid-template-columns: 1fr; } }
+/* MISTAKES */
+.mk { position: relative; overflow: hidden; background: var(--bg2); border: 1.5px solid var(--border); border-radius: 16px; padding: 20px 24px; box-shadow: var(--shadow); display: flex; gap: 16px; opacity: 0; transform: translateX(-14px); transition: opacity .5s ease, transform .5s ease; }
+.mk.visible { opacity: 1; transform: none; }
+.mk-num { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; color: var(--red); opacity: 0; line-height: 1; min-width: 26px; transform: scale(1.6); transition: opacity .5s ease .2s, transform .5s cubic-bezier(.34,1.56,.64,1) .2s; }
+.mk.visible .mk-num { opacity: .25; transform: scale(1); }
+.mk h3 { color: var(--red); font-size: 15px; margin-bottom: 6px; }
+.mk p { font-size: 14.5px; color: var(--fg2); margin: 0; line-height: 1.6; }
 
-.sit-card {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 14px;
-  padding: 18px 20px;
-  box-shadow: var(--shadow);
-  transition: border-color .2s, box-shadow .2s;
-}
-.sit-card:hover { box-shadow: var(--shadow-md); }
-.sit-card.alert { border-color: var(--red); }
-.sit-card h3 { color: var(--blue-mid); margin-bottom: 6px; }
-.sit-card.alert h3 { color: var(--red); }
-.sit-card p { font-size: 13px; color: var(--fg2); margin: 0; }
-
-/* ── CHECKLIST ── */
-.checklist {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 16px;
-  padding: 24px 28px;
-  box-shadow: var(--shadow);
-}
-.checklist h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  margin-bottom: 16px; color: var(--fg);
-}
-.checklist-item {
-  display: flex; align-items: flex-start; gap: 12px;
-  padding: 11px 0;
-  border-bottom: 1px solid var(--border);
-  cursor: pointer;
-}
-.checklist-item:last-of-type { border-bottom: none; }
-.check-box {
-  width: 22px; height: 22px;
-  border: 2px solid var(--blue);
-  border-radius: 6px; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  transition: all .2s; margin-top: 2px;
-}
-.check-box.checked { background: var(--blue); border-color: var(--blue); }
-.check-box.checked::after { content: "✓"; color: white; font-size: 13px; font-weight: 700; }
-.checklist-item.done span { text-decoration: line-through; color: var(--fg2); }
-.checklist-item span { font-size: 14.5px; color: var(--fg); font-family: 'Inter', sans-serif; }
-.progress-bar { height: 5px; background: var(--border); border-radius: 3px; margin-top: 16px; }
-.progress-fill { height: 100%; background: var(--green); border-radius: 3px; transition: width .4s ease; }
-.progress-label { font-size: 12px; color: var(--fg2); margin-top: 6px; font-family: 'Inter', sans-serif; }
-
-/* ── FAQ ── */
-.faq-item {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  margin-bottom: 8px;
-  overflow: hidden;
-  transition: border-color .2s;
-}
-.faq-item.open { border-color: var(--blue); }
-.faq-q {
-  padding: 16px 20px;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 14px; font-weight: 600;
-  cursor: pointer;
-  display: flex; justify-content: space-between; align-items: center;
-  gap: 12px; color: var(--fg);
-  background: transparent;
-}
-.faq-arrow { color: var(--blue); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
+/* FAQ / CTA / SOURCES */
+.faq-item { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; margin-bottom: 8px; overflow: hidden; transition: border-color .2s; }
+.faq-item.open { border-color: var(--blue-mid); }
+.faq-q { padding: 16px 20px; font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; color: var(--fg); user-select: none; }
+.faq-arrow { color: var(--blue-mid); transition: transform .3s; flex-shrink: 0; font-size: 18px; }
 .faq-item.open .faq-arrow { transform: rotate(180deg); }
-.faq-a {
-  display: none;
-  padding: 0 20px 16px;
-  font-size: 14px; color: var(--fg2); line-height: 1.65;
-  font-family: 'Inter', sans-serif;
-}
-.faq-item.open .faq-a { display: block; }
-
-/* ── CTA ── */
-.cta-box {
-  background: var(--blue);
-  border-radius: 16px;
-  padding: 32px 36px;
-  text-align: center;
-}
-.cta-box p {
-  color: rgba(255,255,255,.8);
-  font-size: 15px; margin-bottom: 20px;
-}
-.cta-btn {
-  background: var(--gold);
-  color: #fff;
-  padding: 13px 28px;
-  border-radius: 10px;
-  text-decoration: none;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px; font-weight: 700;
-  display: inline-block;
-  transition: opacity .2s;
-}
-.cta-btn:hover { opacity: .88; }
-
-/* ── SOURCES ── */
-.sources {
-  background: var(--bg2);
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  padding: 20px 24px;
-}
-.sources h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: .1em; text-transform: uppercase;
-  color: var(--fg2); margin-bottom: 10px;
-}
+.faq-a { max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .35s ease; font-size: 14px; color: var(--fg2); line-height: 1.65; padding: 0 20px; }
+.faq-a p { font-size: 14px; color: var(--fg2); margin-bottom: 8px; }
+.faq-item.open .faq-a { max-height: 420px; padding: 0 20px 16px; }
+.cta-box { background: var(--blue); border-radius: 16px; padding: 32px 36px; text-align: center; }
+.cta-box p { color: rgba(255,255,255,.85); font-size: 15px; margin-bottom: 20px; }
+.cta-btn { background: var(--gold); color: #fff; padding: 13px 28px; border-radius: 10px; text-decoration: none; font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; display: inline-block; transition: opacity .2s, transform .2s; }
+.cta-btn:hover { opacity: .88; transform: translateY(-1px); }
+.sources { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; padding: 20px 24px; }
+.sources h3 { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--fg2); margin-bottom: 10px; }
 .sources ol { padding-left: 18px; }
-.sources ol li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; }
+.sources li { font-size: 13px; color: var(--fg2); margin-bottom: 5px; }
 
-/* ── FADE IN ── */
-.fade-in { opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
-.fade-in.visible { opacity: 1; transform: translateY(0); }
 
+.quick-answer { background: var(--blue-light); border-left: 4px solid var(--blue); border-radius: 0 14px 14px 0; padding: 20px 24px; }
+.quick-answer p { font-size: 15.5px; margin: 0; }
+.small { font-size: 12.5px; color: var(--fg2); }
+
+/* DEDUCTION TABLE */
+.dt { display: grid; grid-template-columns: 1.1fr 1fr 1fr; border: 1.5px solid var(--border); border-radius: 12px; overflow: hidden; margin: 6px 0 14px; }
+.dt div { padding: 10px 14px; font-size: 14px; border-top: 1px solid var(--border); opacity: 0; transform: translateY(6px); transition: opacity .4s ease, transform .4s ease; font-variant-numeric: tabular-nums; }
+.dt div.visible { opacity: 1; transform: none; }
+.dt .h { border-top: none; color: #fff; font: 700 12px 'Space Grotesk', sans-serif; letter-spacing: .06em; text-transform: uppercase; }
+.dt .h.a { background: var(--fg2); } .dt .h.g { background: var(--blue); } .dt .h.f { background: var(--red); }
+.dt .rl { color: var(--fg2); font-weight: 600; }
+.dt .big { font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 700; color: var(--fg); display: block; }
+.dt .sub { font-size: 12px; color: var(--fg2); }
+.ded-vs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 4px; }
+.dv { border-radius: 12px; padding: 12px 14px; font-size: 13.5px; }
+.dv b { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 4px; }
+.dv.d { background: var(--blue-light); } .dv.d b { color: var(--blue-mid); }
+.dv.r { background: var(--red-light); } .dv.r b { color: var(--red); }
+
+/* CONDITIONS */
+.conds { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 4px 0 12px; }
+.cd { background: var(--bg); border: 1.5px solid var(--border); border-radius: 12px; padding: 12px 14px; opacity: 0; transform: translateY(8px); transition: opacity .4s ease, transform .4s ease; }
+.cd.visible { opacity: 1; transform: none; }
+.cd .n { font: 700 24px 'Space Grotesk', sans-serif; color: var(--blue-mid); line-height: 1; }
+.cd h3 { color: var(--fg); font-size: 14px; margin: 6px 0 2px; }
+.cd p { font-size: 13px; color: var(--fg2); margin: 0; line-height: 1.5; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 4px; }
+.chip { font-size: 12.5px; font-weight: 600; padding: 5px 11px; border-radius: 999px; opacity: 0; transform: scale(.8); transition: opacity .3s ease, transform .35s cubic-bezier(.34,1.56,.64,1); }
+.chip.visible { opacity: 1; transform: none; }
+.chip.y { background: var(--green-light); color: var(--green); border: 1px solid var(--green); }
+.chip.n { background: var(--red-light); color: var(--red); border: 1px solid var(--red); }
+.chip-lbl { font: 700 11px 'Space Grotesk', sans-serif; letter-spacing: .08em; text-transform: uppercase; color: var(--fg2); margin-top: 10px; }
+
+/* CALCULATOR */
+.calc { margin-top: 14px; padding: 18px; border-radius: 14px; background: var(--bg); border: 1.5px solid var(--border); }
+.row-btns { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; align-items: center; }
+.row-btns span { font-size: 13px; color: var(--fg2); margin-right: 4px; min-width: 150px; }
+.row-btns button { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 999px; padding: 5px 12px; font: 600 12.5px 'Inter', sans-serif; color: var(--fg2); cursor: pointer; }
+.row-btns button.active { border-color: var(--blue-mid); color: var(--blue-mid); background: var(--blue-light); }
+.ctrl label { display: flex; justify-content: space-between; font-size: 13.5px; color: var(--fg2); margin-bottom: 2px; }
+.ctrl label b { color: var(--fg); font-family: 'Space Grotesk', sans-serif; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ctrl input[type=range] { width: 100%; accent-color: var(--blue-mid); margin-bottom: 12px; }
+.cbars { margin: 6px 0 4px; }
+.cbrow { display: grid; grid-template-columns: 120px 1fr; gap: 10px; align-items: center; font-size: 12.5px; color: var(--fg2); margin-bottom: 8px; }
+.cbtr { height: 32px; border-radius: 8px; background: var(--border); position: relative; overflow: hidden; display: flex; }
+.cbtr i { height: 100%; display: flex; align-items: center; justify-content: center; color: #fff; font: 700 12px 'Space Grotesk', sans-serif; white-space: nowrap; overflow: hidden; width: 0; transition: width .6s cubic-bezier(.16,1,.3,1); font-style: normal; }
+.i-care { background: var(--fg2); } .i-real { background: var(--blue-mid); } .i-save { background: var(--green); }
+.kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 12px; }
+.kpi { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; padding: 10px 12px; }
+.kpi .k { font: 700 10.5px 'Space Grotesk', sans-serif; letter-spacing: .08em; text-transform: uppercase; color: var(--fg2); }
+.kpi .v { font: 700 20px 'Space Grotesk', sans-serif; font-variant-numeric: tabular-nums; line-height: 1.3; }
+.kpi .s { font-size: 11.5px; color: var(--fg2); font-variant-numeric: tabular-nums; }
+.kpi.save { border-color: var(--green); background: var(--green-light); } .kpi.save .v { color: var(--green); }
+.kpi.real { border-color: var(--blue-mid); background: var(--blue-light); } .kpi.real .v { color: var(--blue-mid); }
+.workings { margin-top: 10px; font-size: 12.5px; color: var(--fg2); line-height: 1.7; font-variant-numeric: tabular-nums; }
+.workings b { color: var(--fg); }
+.worth { display: flex; gap: 12px; align-items: center; background: var(--green-light); border-radius: 12px; padding: 12px 14px; margin-top: 14px; font-size: 14.5px; }
+.worth .big { font: 700 22px 'Space Grotesk', sans-serif; color: var(--green); white-space: nowrap; }
+
+/* ALLOWANCES */
+.allow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 6px 0 12px; }
+.al { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 14px; padding: 14px 16px; box-shadow: var(--shadow); opacity: 0; transform: translateY(10px); transition: opacity .45s ease, transform .45s ease; }
+.al.visible { opacity: 1; transform: none; }
+.al .k { font: 700 11px 'Space Grotesk', sans-serif; letter-spacing: .08em; text-transform: uppercase; color: var(--gold); }
+.al .v { font: 700 24px 'Space Grotesk', sans-serif; color: var(--fg); font-variant-numeric: tabular-nums; margin: 4px 0 2px; }
+.al .s { font-size: 12.5px; color: var(--fg2); }
+.taxnote { background: var(--gold-light); border-left: 4px solid var(--gold); border-radius: 0 12px 12px 0; padding: 12px 16px; font-size: 14.5px; }
+.taxnote b { color: var(--gold); }
+
+/* PERMIT B TIMELINE */
+.tlh { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 12px; position: relative; }
+.tlh::before { content: ""; position: absolute; top: 11px; left: 16%; right: 16%; height: 2px; background: var(--border); }
+.tlh-line { position: absolute; top: 11px; left: 16%; height: 2px; width: 0; background: var(--blue-mid); transition: width 1.4s cubic-bezier(.16,1,.3,1); }
+.tlh .st { text-align: center; position: relative; padding: 0 6px; opacity: 0; transition: opacity .4s ease; }
+.tlh .st.visible { opacity: 1; }
+.tlh .dot { width: 22px; height: 22px; border-radius: 50%; background: var(--bg2); border: 2.5px solid var(--blue-mid); margin: 0 auto 8px; position: relative; z-index: 1; }
+.tlh .st.key .dot { background: var(--red); border-color: var(--red); }
+.tlh .w { font: 700 12px 'Space Grotesk', sans-serif; letter-spacing: .06em; text-transform: uppercase; color: var(--blue-mid); }
+.tlh .st.key .w { color: var(--red); }
+.tlh p { font-size: 13px; color: var(--fg2); margin: 2px 0 0; line-height: 1.45; }
+
+/* FURTHER */
+.further { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.fr { display: block; text-decoration: none; background: var(--bg2); border: 1.5px solid var(--border); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); transition: transform .2s, box-shadow .2s, border-color .2s; opacity: 0; transform: translateY(12px); }
+.fr.visible { opacity: 1; transform: none; }
+.fr:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); border-color: var(--blue-mid); }
+.fr .n { font: 700 11px 'Space Grotesk', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: var(--blue-mid); }
+.fr h3 { color: var(--fg); font-size: 15px; margin: 4px 0 4px; }
+.fr p { font-size: 13px; color: var(--fg2); margin: 0 0 8px; line-height: 1.5; }
+.fr .go { font: 700 13px 'Space Grotesk', sans-serif; color: var(--blue-mid); }
+
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .takeaways { background: #1f3a6b; } }
+:root[data-theme="dark"] .takeaways { background: #1f3a6b; }
 @media (max-width: 600px) {
-  h1 { font-size: 24px; }
-  .situation-cards { grid-template-columns: 1fr; }
-  .cta-box { padding: 24px 20px; }
-  .takeaways { padding: 20px 20px; }
+  .takeaways { padding: 20px; } .cta-box { padding: 24px 20px; } .blk { padding: 20px 18px; }
+  .conds, .allow, .kpis, .further, .ded-vs { grid-template-columns: 1fr; }
+  .dt { grid-template-columns: 90px 1fr 1fr; } .dt div { padding: 8px; font-size: 12.5px; } .dt .big { font-size: 14px; }
+  .cbrow { grid-template-columns: 1fr; gap: 3px; }
+  .row-btns span { flex-basis: 100%; }
+  .worth { flex-direction: column; align-items: flex-start; }
+  .tlh { grid-template-columns: 1fr; gap: 14px; } .tlh::before, .tlh-line { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+  .reveal, .blk, .dt div, .cd, .chip, .al, .tlh .st, .fr, .takeaway-item, .article-meta, h1 { opacity: 1 !important; transform: none !important; }
 }
 </style>
 </head>
 <body>
 <div id="progress-bar"></div>
-<header class="hero">
-  <div class="hero-bg"></div>
-  
-  <div class="hero-gradient"></div>
-  <div class="hero-content">
-    <div class="hero-tag" id="heroTag"><span class="hero-tag-pill">AHV · AVS</span><span>State Pension · Switzerland</span></div>
-    <h1 class="hero-title" id="heroTitle">AHV/AVS: How Switzerland's State Pension Works for Expats</h1>
-    <p class="hero-subtitle" id="heroSubtitle">It appears on every payslip. Most expats never understand what they are paying or what they will receive. Here is everything you need to know about Pillar 1.</p>
-    <div class="hero-meta" id="heroMeta"><span>Updated August 2026</span><div class="hero-meta-divider"></div><span>4 min read</span></div>
-  </div>
-</header>
 <div class="article">
+
+  <div class="article-header">
+    <p class="article-meta">Tax &amp; Finance · Family · Geneva · 5 min read</p>
+    <h1>Children and Taxes in Geneva: How Much Can You Deduct?</h1>
+    <div class="header-rule"></div>
+  </div>
+
+  <div class="quick-answer reveal">
+    <p><strong>Quick Answer:</strong> In Geneva, each child lowers your tax in three ways: a fixed deduction per child, a childcare deduction (up to about CHF&nbsp;26,000 per child a year) and, on federal tax, CHF&nbsp;263 off your bill per child. For a family with two children in childcare, the saving can top CHF&nbsp;1,000 a month. But there are rules: childcare is only deductible if both parents work, and the child must be under 14.</p>
+  </div>
+
   <div class="takeaways">
-    <p class="takeaways-label">Key Takeaways</p>
-    <div class="takeaway-item" data-delay="0"><span class="takeaway-num">01</span><span class="takeaway-text">AHV/AVS is mandatory for everyone working in Switzerland — regardless of nationality or permit type</span></div>
-    <div class="takeaway-item" data-delay="90"><span class="takeaway-num">02</span><span class="takeaway-text">Employees pay 5.3% of gross salary — the employer pays an equal 5.3% on top</span></div>
-    <div class="takeaway-item" data-delay="180"><span class="takeaway-num">03</span><span class="takeaway-text">A full pension (44 years of contributions) pays CHF 1,225–2,450/month in 2026</span></div>
-    <div class="takeaway-item" data-delay="270"><span class="takeaway-num">04</span><span class="takeaway-text">Expats arriving at 30 and working until 65 have 35 years of contributions — receiving a proportionally reduced pension</span></div>
-    <div class="takeaway-item" data-delay="360"><span class="takeaway-num">05</span><span class="takeaway-text">For EU/EFTA countries, Swiss AHV contributions are recognised and combined with contributions from other countries</span></div>
-    <div class="takeaway-item" data-delay="450"><span class="takeaway-num">06</span><span class="takeaway-text">Non-working spouses living in Switzerland must also pay AHV — minimum CHF 530/year</span></div>
+    <h2>Key Takeaways</h2>
+    <ul>
+      <li class="takeaway-item" data-delay="0">Crèches, day mothers, declared babysitters and after-school care count; grandparents generally don't</li>
+      <li class="takeaway-item" data-delay="100">In Geneva, claiming childcare slightly lowers your per-child deduction — but it almost always pays off</li>
+      <li class="takeaway-item" data-delay="200">Family allowances (CHF 311 a month per child) are paid with your salary — and they're taxed</li>
+      <li class="takeaway-item" data-delay="300">If tax is withheld from your salary (B permit), you must claim childcare by 31 March</li>
+    </ul>
   </div>
 
-  <h2 class="reveal">What Is AHV / AVS?</h2>
-  <p class="reveal">AHV (Alters- und Hinterlassenenversicherung in German, AVS in French) is Switzerland's mandatory state pension system — <span class="hl-blue">Pillar 1</span> of the three-pillar retirement system. It operates as a pay-as-you-go system: contributions from today's workers finance pensions for today's retirees. It covers three situations: old age (retirement pension), disability (together with IV/AI), and survivors (pensions for widows and orphans).</p>
-
-  <h2 class="reveal">Who Pays and How Much</h2>
-  <div class="contrib-cards reveal">
-    <div class="contrib-card">
-      <p class="contrib-type">Employees</p>
-      <div class="contrib-rate">5.3%</div>
-      <p class="contrib-desc">Of gross salary. The employer pays an equal 5.3% — total 10.6% on gross salary. No ceiling on contributions.</p>
+  <!-- THREE DEDUCTIONS -->
+  <div class="blk" id="three">
+    <h2>The Three Deductions per Child</h2>
+    <p>Swiss income tax has two parts: cantonal and communal tax (ICC), which goes to Geneva, and direct federal tax (IFD), which goes to Bern. Each has its own deductions:</p>
+    <div class="dt">
+      <div class="h a">Per child, per year (2026)</div><div class="h g">Geneva (ICC)</div><div class="h f">Federal (IFD)</div>
+      <div class="rl" data-delay="0">Child deduction</div><div data-delay="0"><span class="big">CHF&nbsp;13,698</span><span class="sub">CHF 10,536 if you claim childcare</span></div><div data-delay="0"><span class="big">CHF&nbsp;6,800</span></div>
+      <div class="rl" data-delay="150">Childcare by third parties</div><div data-delay="150"><span class="big">up to CHF&nbsp;26,392</span></div><div data-delay="150"><span class="big">up to CHF&nbsp;25,800</span></div>
+      <div class="rl" data-delay="300">Direct cut to your tax bill</div><div data-delay="300"><span class="sub">—</span></div><div data-delay="300"><span class="big">−CHF&nbsp;263</span><span class="sub">off the tax itself</span></div>
     </div>
-    <div class="contrib-card">
-      <p class="contrib-type">Self-employed</p>
-      <div class="contrib-rate">10.0%</div>
-      <p class="contrib-desc">Of net income. Slightly lower rate than the combined employee+employer share because there is no employer to split the cost.</p>
-    </div>
-    <div class="contrib-card">
-      <p class="contrib-type">Non-working residents</p>
-      <div class="contrib-rate">CHF 530+</div>
-      <p class="contrib-desc">Per year minimum. Non-working spouses, early retirees, and anyone living in Switzerland without employment must also register and pay AHV.</p>
+    <div class="ded-vs">
+      <div class="dv d"><b>Deduction</b>Comes off your taxable income, not your tax. What you save depends on your marginal rate — the rate on the last francs you earn.</div>
+      <div class="dv r"><b>Reduction</b>The CHF&nbsp;263 is different: it comes straight off the federal tax you owe.</div>
     </div>
   </div>
 
-  <div class="warning-box reveal">
-    <p>⚠ <strong>There is no ceiling on AHV contributions.</strong> On a salary of CHF 200,000, you pay CHF 10,600/year in AHV (plus CHF 10,600 from your employer). On CHF 300,000, you pay CHF 15,900/year. Unlike Pillar 2, there is no maximum insured salary for AHV contribution purposes.</p>
+  <!-- CHILDCARE -->
+  <div class="blk" id="care">
+    <h2>Childcare: When You Can Deduct It</h2>
+    <div class="conds">
+      <div class="cd" data-delay="0"><div class="n">&lt;14</div><h3>Age</h3><p>Up to the month your child turns 14.</p></div>
+      <div class="cd" data-delay="120"><div class="n">2 × ✓</div><h3>Both parents</h3><p>Must work, study or be unable to look after the child (e.g. through illness). If one parent stays home, there's no deduction. Working single parents can deduct too.</p></div>
+      <div class="cd" data-delay="240"><div class="n">📄</div><h3>The certificate</h3><p>Keep the annual cost statement from your crèche and attach it to your tax return.</p></div>
+    </div>
+    <div class="chip-lbl">Counts — paid childcare, with a receipt</div>
+    <div class="chips"><span class="chip y" data-delay="0">✓ Crèche</span><span class="chip y" data-delay="80">✓ Day mother (maman de jour)</span><span class="chip y" data-delay="160">✓ After-school care</span><span class="chip y" data-delay="240">✓ Declared babysitter or au pair</span></div>
+    <div class="chip-lbl">Doesn't count</div>
+    <div class="chips"><span class="chip n" data-delay="300">✕ Meals</span><span class="chip n" data-delay="380">✕ Music lessons, sport, themed camps</span><span class="chip n" data-delay="460">✕ Payments to grandparents (usually refused)</span></div>
+
+    <div class="calc" id="calc">
+      <div class="row-btns"><span>Preset</span><button class="active" data-p="taylor">The Taylors, from Manchester</button></div>
+      <div class="row-btns" id="kids"><span>Children in childcare</span><button data-k="1">1</button><button data-k="2" class="active">2</button><button data-k="3">3</button></div>
+      <div class="row-btns" id="inc"><span>Household income</span><button data-i="120">≈ CHF 120,000</button><button data-i="200" class="active">≈ CHF 200,000</button><button data-i="300">≈ CHF 300,000</button></div>
+      <div class="ctrl"><label>Childcare cost, all children <b id="v-care"></b></label>
+        <input type="range" id="care-cost" min="0" max="7000" step="50" value="2350" aria-label="Monthly childcare cost for all children"></div>
+      <div class="cbars">
+        <div class="cbrow"><span>Childcare cost</span><div class="cbtr"><i class="i-care" id="b-care"></i></div></div>
+        <div class="cbrow"><span>Real cost + tax saved</span><div class="cbtr"><i class="i-real" id="b-real"></i><i class="i-save" id="b-save"></i></div></div>
+      </div>
+      <div class="kpis">
+        <div class="kpi"><div class="k">Childcare</div><div class="v" id="k-care"></div><div class="s">per month</div></div>
+        <div class="kpi save"><div class="k">Tax saved</div><div class="v" id="k-save"></div><div class="s" id="k-save-y"></div></div>
+        <div class="kpi real"><div class="k">Real cost</div><div class="v" id="k-real"></div><div class="s">per month</div></div>
+      </div>
+      <div class="workings" id="work"></div>
+      <p class="viz-note">Illustrative figures. Marginal rates assumed for a married couple in Geneva: ≈ 20% ICC / 8% IFD at CHF 120,000; ≈ 24% / 11% at CHF 200,000; ≈ 27% / 13% at CHF 300,000. Childcare is split equally between the children. Your exact figures depend on your full tax return.</p>
+    </div>
+
+    <div class="worth"><span class="big">≈ CHF 265</span><span><b>Is claiming childcare worth it if your Geneva child deduction shrinks?</b> Almost always. The child deduction drops by CHF&nbsp;3,162 (13,698 → 10,536). Claiming pays off once childcare costs more than that a year — about CHF&nbsp;265 a month.</span></div>
   </div>
 
-  <h2 class="reveal">What You Receive — The AHV Pension</h2>
-  <p class="reveal">The AHV pension depends on two factors: the number of years of contributions and the average income during your career. A <span class="hl-blue">full pension</span> requires 44 years of contributions. Most expats who arrive mid-career will receive a proportionally reduced pension.</p>
-
-  <div class="pension-box reveal">
-    <h3>AHV pension amounts — 2026, full career (44 years)</h3>
-    <div class="pension-row"><span class="pension-label">Minimum pension (low lifetime income)</span><span class="pension-value">CHF 1,225/month</span></div>
-    <div class="pension-row"><span class="pension-label">Maximum individual pension</span><span class="pension-value">CHF 2,450/month</span></div>
-    <div class="pension-row"><span class="pension-label">Maximum couple pension (150% of individual max)</span><span class="pension-value">CHF 3,675/month</span></div>
+  <!-- ALLOWANCES -->
+  <div class="blk" id="allow">
+    <h2>Family Allowances</h2>
+    <p>On top of the deductions, Geneva pays family allowances, which come with your salary and are paid by your employer:</p>
+    <div class="allow">
+      <div class="al" data-delay="0"><div class="k">Up to age 16</div><div class="v">CHF&nbsp;311</div><div class="s">per month per child · CHF 411 from the 3rd</div></div>
+      <div class="al" data-delay="120"><div class="k">16–25, in education</div><div class="v">CHF&nbsp;415</div><div class="s">per month per child · CHF 515 from the 3rd</div></div>
+      <div class="al" data-delay="240"><div class="k">Birth</div><div class="v">CHF&nbsp;2,073</div><div class="s">once · CHF 3,073 from the 3rd</div></div>
+    </div>
+    <p class="taxnote"><b>Watch out:</b> allowances count as income and are taxed. The Taylors receive 2 × CHF&nbsp;311 = <b id="al-c">CHF&nbsp;622</b> a month, which goes on their tax return as salary.</p>
   </div>
 
-  <h2 class="reveal">How Much Will You Receive? — Calculate Your Pension</h2>
-  <div class="years-calc reveal">
-    <h3>Estimated AHV pension based on years contributed in Switzerland</h3>
-    <div class="years-slider-label"><span>Years contributing to AHV</span><span id="yearsLabel">20 years</span></div>
-    <input type="range" class="years-slider" min="1" max="44" value="20" id="yearsSlider">
-    <div class="years-result">
-      <span class="years-result-label">Estimated monthly AHV pension (at high income)</span>
-      <span class="years-result-value" id="yearsResult">CHF 1,113/month</span>
+  <!-- B PERMIT -->
+  <div class="blk" id="bpermit">
+    <h2>B Permit: Tax Withheld from Your Salary</h2>
+    <p>If you have a B permit and tax is withheld at source, your child deduction is already built into the rate — your employer just needs to know how many children you have. Childcare isn't. To deduct it, you must ask the tax office for a subsequent ordinary assessment (TOU) by 31 March of the following year. If you earn more than CHF&nbsp;120,000 a year, you already file a full tax return and deduct childcare there.</p>
+    <div class="tlh" id="tlh"><div class="tlh-line" id="tlh-line"></div>
+      <div class="st" data-delay="0"><div class="dot"></div><div class="w">During the year</div><p>Tax withheld monthly — child deduction included</p></div>
+      <div class="st" data-delay="400"><div class="dot"></div><div class="w">January</div><p>Your crèche sends the annual cost statement</p></div>
+      <div class="st key" data-delay="800"><div class="dot"></div><div class="w">By 31 March</div><p>Request a TOU to deduct childcare</p></div>
     </div>
   </div>
 
-  <p class="reveal">For most high-earning expats, the AHV pension represents a small fraction of pre-retirement income. The real retirement capital is in <span class="hl-blue">Pillar 2</span> and <span class="hl-blue">Pillar 3a</span>. But the AHV pension is for life — even a reduced pension of CHF 800–1,000/month from 35 years of contributions is meaningful income in retirement.</p>
-
-  <h2 class="reveal">Retirement Age and Flexibility</h2>
-  <p class="reveal">In 2026, the AHV retirement age is <span class="hl-blue">65 years</span> for both men and women (following the AVS 21 reform that equalised the ages). Early retirement is possible from age 63 — but with a permanent reduction in the pension. Deferral is possible up to age 70 — with a permanent increase.</p>
-
-  <h2 class="reveal">What Happens to Your AHV When You Leave Switzerland</h2>
-  <div class="departure-cards reveal">
-    <div class="dep-card">
-      <div class="dep-flag">🇪🇺</div>
-      <div>
-        <div class="dep-title">Leaving for an EU/EFTA country</div>
-        <div class="dep-desc">A social security agreement exists between Switzerland and EU/EFTA. AHV contributions made in Switzerland are recognised and combined with contributions in your destination country. At retirement, you receive a proportional pension from Switzerland (for years contributed here) and a proportional pension from your destination country.</div>
+  <!-- FAQ -->
+  <div>
+    <h2 class="reveal">Before You Ask</h2>
+    <div style="margin-top:12px">
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">We're separated. Who claims the deduction?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">With shared custody, each parent gets half the Geneva child deduction (CHF 6,849) and deducts the share of childcare they paid. A parent who pays child support deducts the support payments instead of the child deduction.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">What about my children's health insurance?<span class="faq-arrow">▾</span></div>
+        <div class="faq-a">That's deductible too, but separately, under insurance premiums. In Geneva, up to a limit per child; for federal tax, within a flat amount that covers insurance and savings interest together.</div>
       </div>
     </div>
-    <div class="dep-card">
-      <div class="dep-flag">🌍</div>
-      <div>
-        <div class="dep-title">Leaving for a non-EU/EFTA country with bilateral treaty</div>
-        <div class="dep-desc">Switzerland has bilateral social security agreements with many countries — USA, Canada, Australia, Brazil, and others. Check whether your destination country has a treaty with Switzerland. If it does, similar rules to the EU/EFTA arrangement may apply.</div>
-      </div>
-    </div>
-    <div class="dep-card">
-      <div class="dep-flag">❓</div>
-      <div>
-        <div class="dep-title">No treaty — contributions stay in Switzerland</div>
-        <div class="dep-desc">Your AHV contributions remain "held" in Switzerland. When you reach Swiss retirement age (65), you receive the proportional pension for the years you contributed — even if you live abroad. The pension is paid to your foreign bank account.</div>
-      </div>
-    </div>
   </div>
 
-  <div class="green-box reveal">
-    <p>✅ <strong>Can you claim a refund of AHV contributions?</strong> Yes — but only if you are a citizen of a country outside the EU/EFTA with no bilateral treaty. The refund is an option — but you permanently lose the right to the future pension. For most people, the lifetime pension value exceeds the refund amount.</p>
-  </div>
-
-  <h2 class="reveal">Before You Ask</h2>
-  <div class="faq-list reveal">
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">I contribute to AHV but will never retire in Switzerland. Is it worth it?<span class="faq-arrow">▾</span></div><div class="faq-a">It is mandatory while you work in Switzerland — there is no choice. But the capital does not disappear: you either receive a proportional pension at retirement age, or (in certain conditions) can request a refund. It is money that remains yours.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">My spouse does not work. Do they need to pay AHV?<span class="faq-arrow">▾</span></div><div class="faq-a">Yes, if they live in Switzerland. Non-working spouses must register with the cantonal compensation office and pay the minimum contribution (CHF 530/year in 2026). Failing to do so means those years are uninsured and reduce the future pension.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How much AHV will I receive if I work in Switzerland for 15 years?<span class="faq-arrow">▾</span></div><div class="faq-a">15 years corresponds to 15/44 of the full pension. At a high income, the full pension would be CHF 2,450/month. With 15 years: approximately CHF 835/month at age 65. A fraction of the maximum — but paid for life.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">When should I speak with an advisor?<span class="faq-arrow">▾</span></div><div class="faq-a">If you are planning to leave Switzerland and want to understand the impact on your AHV rights, or if you want to consolidate contribution years from multiple countries into a unified pension plan. International pension rights analysis is complex and benefits from professional advice.</div></div>
+  <div class="sec">
+    <h2 class="reveal" style="margin-bottom:12px">Go Deeper</h2>
+    <div class="further">
+      <a class="fr" data-delay="0" href="artigo6.html"><div class="n">Deductions</div><h3>5 tax deductions expats overlook</h3><p>Commuting, professional costs and more.</p><span class="go">Read →</span></a>
+      <a class="fr" data-delay="120" href="artigo11.html"><div class="n">Pillar 3a</div><h3>One more deduction, every year</h3><p>How much to pay in and how much tax you save.</p><span class="go">Read →</span></a>
+    </div>
   </div>
 
   <div class="cta-box reveal">
-    <p>SwissExpatHub can connect you with advisors experienced in Swiss pension planning, AHV rights for international residents, and the intersection of Swiss and foreign social security systems.</p>
+    <p>With children, your tax return has more deductions — and more ways to miss them. An advisor can make sure nothing is left out, especially in the year you arrive in Geneva or your family changes.</p>
     <a href="/directory" class="cta-btn">Find Your Advisor →</a>
   </div>
 
   <div class="sources reveal">
-    <p class="sources-label">Sources</p>
+    <h3>Sources</h3>
     <ol>
-      <li>AHV/AVS — Official information on pensions and contributions: ahv-iv.ch</li>
-      <li>Federal Social Insurance Office — Three-pillar pension system: bsv.admin.ch</li>
-      <li>Federal Tax Administration — AHV for self-employed: estv.admin.ch</li>
-      <li>Expat Savvy — AHV/AVS Guide for Expats 2026: expat-savvy.ch</li>
+      <li>Canton of Geneva — RCEPF regulation 2026 (ICC child and childcare deductions): silgeneve.ch</li>
+      <li>Federal Tax Administration — IFD circular 2026 (deductions and CHF 263 reduction): estv.admin.ch</li>
+      <li>Canton of Geneva — L'imposition de la famille: ge.ch</li>
+      <li>PwC — Family allowances 2026: pwc.ch</li>
     </ol>
   </div>
+
 </div>
+
 <script>
-  window.addEventListener('scroll', () => {
-    const s = window.scrollY, d = document.documentElement.scrollHeight - window.innerHeight;
-    document.getElementById('progress-bar').style.width = Math.min(100, d > 0 ? (s/d)*100 : 0) + '%';
-  }, { passive: true });
-  window.addEventListener('load', () => {
-    setTimeout(() => document.getElementById('heroTag').classList.add('visible'), 50);
-    setTimeout(() => document.getElementById('heroTitle').classList.add('visible'), 150);
-    setTimeout(() => document.getElementById('heroSubtitle').classList.add('visible'), 280);
-    setTimeout(() => document.getElementById('heroMeta').classList.add('visible'), 420);
-  });
-  const slider = document.getElementById('yearsSlider');
-  function updateYears() {
-    const years = parseInt(slider.value);
-    const pension = Math.round((years / 44) * 2450);
-    document.getElementById('yearsLabel').textContent = years + ' years';
-    document.getElementById('yearsResult').textContent = 'CHF ' + pension.toLocaleString() + '/month';
-  }
-  slider.addEventListener('input', updateYears);
-  updateYears();
-  const tObs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), parseInt(e.target.dataset.delay||0)); tObs.unobserve(e.target); } }); }, { threshold: 0.1 });
-  document.querySelectorAll('.takeaway-item').forEach(el => tObs.observe(el));
-  const rObs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), parseInt(e.target.dataset.delay||0)); rObs.unobserve(e.target); } }); }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
-  document.querySelectorAll('.reveal').forEach(el => rObs.observe(el));
-  function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+const fmt = n => 'CHF ' + Math.round(n).toLocaleString('en-US');
+window.addEventListener('scroll', () => {
+  const docH = document.documentElement.scrollHeight - window.innerHeight;
+  document.getElementById('progress-bar').style.width = (docH > 0 ? window.scrollY / docH * 100 : 0) + '%';
+});
+window.addEventListener('load', () => {
+  setTimeout(() => document.querySelector('.article-meta').classList.add('visible'), 80);
+  setTimeout(() => document.querySelector('h1').classList.add('visible'), 220);
+  setTimeout(() => document.querySelector('.header-rule').classList.add('visible'), 420);
+});
+function stagger(selector, threshold) {
+  const obs = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), parseInt(e.target.dataset.delay || 0)); obs.unobserve(e.target); }
+  }), { threshold });
+  document.querySelectorAll(selector).forEach(el => obs.observe(el));
+}
+function onView(id, fn, threshold = 0.4) {
+  const el = document.getElementById(id);
+  const obs = new IntersectionObserver(en => { if (en[0].isIntersecting) { fn(); obs.disconnect(); } }, { threshold });
+  obs.observe(el);
+}
+function countUp(el, to, ms, from = 0, f = fmt) {
+  const t0 = performance.now();
+  const step = t => { const k = Math.min(1, (t - t0) / ms), e = 1 - Math.pow(1 - k, 3);
+    el.textContent = f(from + (to - from) * e); if (k < 1) requestAnimationFrame(step); };
+  requestAnimationFrame(step);
+}
+stagger('.takeaway-item', 0.15);
+stagger('.reveal', 0.08);
+stagger('.blk', 0.05);
+stagger('.dt div', 0.4);
+stagger('.cd', 0.3);
+stagger('.chip', 0.6);
+stagger('.al', 0.3);
+stagger('.tlh .st', 0.5);
+stagger('.fr', 0.2);
+
+// Calculator
+const RATES = { 120: [0.20, 0.08], 200: [0.24, 0.11], 300: [0.27, 0.13] };
+let kids = 2, inc = 200, first = true;
+const careIn = document.getElementById('care-cost');
+function calc() {
+  const m = +careIn.value, y = m * 12;
+  const per = kids ? y / kids : 0;
+  const careICC = kids * Math.min(per, 26392), careIFD = kids * Math.min(per, 25800);
+  const childICC = kids * (m > 0 ? 10536 : 13698), childIFD = kids * 6800;
+  const dICC = childICC + careICC, dIFD = childIFD + careIFD;
+  const [rI, rF] = RATES[inc];
+  const sICC = dICC * rI, sIFD = dIFD * rF + 263 * kids, save = sICC + sIFD;
+  const saveM = save / 12, real = Math.max(0, m - saveM);
+  document.getElementById('v-care').textContent = fmt(m) + ' a month';
+  const max = Math.max(m, saveM, 1);
+  const bc = document.getElementById('b-care'), br = document.getElementById('b-real'), bs = document.getElementById('b-save');
+  bc.style.width = (m / max * 100) + '%'; bc.textContent = m ? fmt(m) : '';
+  const realW = Math.min(real, m) / max * 100, saveW = Math.min(saveM, max) / max * 100 - 0;
+  br.style.width = realW + '%'; bs.style.width = Math.min(saveW, 100 - realW) + '%';
+  br.textContent = realW > 14 ? fmt(real) : ''; bs.textContent = saveW > 14 ? fmt(saveM) + ' saved' : '';
+  const set = (id, v) => { const el = document.getElementById(id); if (first) countUp(el, v, 1100); else el.textContent = fmt(v); };
+  set('k-care', m); set('k-save', saveM); set('k-real', real);
+  document.getElementById('k-save-y').textContent = 'per month · ' + fmt(save) + ' a year';
+  document.getElementById('work').innerHTML =
+    '<b>Geneva (ICC):</b> ' + kids + ' × ' + (m > 0 ? '10,536' : '13,698') + ' + ' + Math.round(careICC).toLocaleString('en-US') + ' childcare = ' + fmt(dICC) + ' × ' + Math.round(rI * 100) + '% ≈ ' + fmt(sICC) + '<br>' +
+    '<b>Federal (IFD):</b> ' + kids + ' × 6,800 + ' + Math.round(careIFD).toLocaleString('en-US') + ' = ' + fmt(dIFD) + ' × ' + Math.round(rF * 100) + '% + ' + kids + ' × 263 ≈ ' + fmt(sIFD) + '<br>' +
+    '<b>Total:</b> ' + fmt(save) + ' a year ÷ 12 ≈ ' + fmt(saveM) + ' a month';
+  first = false;
+}
+document.querySelectorAll('#kids button').forEach(b => b.addEventListener('click', () => {
+  kids = +b.dataset.k; document.querySelectorAll('#kids button').forEach(x => x.classList.toggle('active', x === b));
+  document.querySelector('[data-p]').classList.remove('active'); calc();
+}));
+document.querySelectorAll('#inc button').forEach(b => b.addEventListener('click', () => {
+  inc = +b.dataset.i; document.querySelectorAll('#inc button').forEach(x => x.classList.toggle('active', x === b));
+  document.querySelector('[data-p]').classList.remove('active'); calc();
+}));
+document.querySelector('[data-p]').addEventListener('click', e => {
+  kids = 2; inc = 200; careIn.value = 2350; e.target.classList.add('active');
+  document.querySelectorAll('#kids button').forEach(x => x.classList.toggle('active', x.dataset.k === '2'));
+  document.querySelectorAll('#inc button').forEach(x => x.classList.toggle('active', x.dataset.i === '200'));
+  calc();
+});
+careIn.addEventListener('input', () => { document.querySelector('[data-p]').classList.remove('active'); calc(); });
+onView('calc', calc, 0.3);
+
+onView('allow', () => countUp(document.getElementById('al-c'), 622, 1000), 0.5);
+onView('tlh', () => { document.getElementById('tlh-line').style.width = '68%'; }, 0.5);
+
+function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
 </script>
 </body>
 </html>
