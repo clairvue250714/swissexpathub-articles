@@ -454,6 +454,7 @@ p:last-child { margin-bottom: 0; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; } }
 </style>
+<link rel="canonical" href="https://swissexpathub.ch/resources/health-insurance-switzerland-complete-guide-expats">
 </head>
 <body>
 <div id="progress-bar"></div>
@@ -634,7 +635,7 @@ p:last-child { margin-bottom: 0; }
 
   <div class="cta-box reveal">
     <p>SwissExpatHub can connect you with advisors who help international residents choose the right insurance model and tailor supplementary cover to their situation.</p>
-    <a href="/directory" class="cta-btn">Find Your Advisor →</a>
+    <a href="https://swissexpathub.ch/directory" target="_top" class="cta-btn">Find Your Advisor →</a>
   </div>
 
   <div class="sources reveal">
@@ -755,6 +756,11 @@ onView('vgap', () => {
 onView('vdates', () => each('.dates li', l => later(l, 'visible')), 0.3);
 
 function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+</script>
+<script>
+(function(){function s(){try{parent.postMessage({type:'sehHeight',h:document.documentElement.scrollHeight},'*')}catch(e){}}
+window.addEventListener('load',s);window.addEventListener('resize',s);
+if(window.ResizeObserver){new ResizeObserver(s).observe(document.body)}setInterval(s,1500);})();
 </script>
 </body>
 </html>

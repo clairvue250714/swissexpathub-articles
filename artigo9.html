@@ -532,6 +532,7 @@ p:last-child { margin-bottom: 0; }
   .lock { grid-template-columns: repeat(7, 1fr); gap: 3px; } .lk small { font-size: 8px; }
 }
 </style>
+<link rel="canonical" href="https://swissexpathub.ch/resources/double-taxation-us-switzerland">
 </head>
 <body>
 <div id="progress-bar"></div>
@@ -759,7 +760,7 @@ p:last-child { margin-bottom: 0; }
   <!-- CTA -->
   <div class="cta-box reveal">
     <p>The tools exist. The hard part is knowing which ones apply to you, combining them without mistakes and filing the right forms on time. SwissExpatHub connects you with advisors experienced in US expatriate taxation and the US–Switzerland tax treaty.</p>
-    <a href="/directory" class="cta-btn">Find Your Advisor →</a>
+    <a href="https://swissexpathub.ch/directory" target="_top" class="cta-btn">Find Your Advisor →</a>
   </div>
 
   <!-- SOURCES -->
@@ -873,6 +874,11 @@ onView('amer', () => document.querySelectorAll('.irs-fill').forEach((f, i) => se
 onView('lock', () => document.querySelectorAll('.lk').forEach(l => setTimeout(() => l.classList.add('lit'), parseInt(l.dataset.delay) + 300)), 0.5);
 
 function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+</script>
+<script>
+(function(){function s(){try{parent.postMessage({type:'sehHeight',h:document.documentElement.scrollHeight},'*')}catch(e){}}
+window.addEventListener('load',s);window.addEventListener('resize',s);
+if(window.ResizeObserver){new ResizeObserver(s).observe(document.body)}setInterval(s,1500);})();
 </script>
 </body>
 </html>

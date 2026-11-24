@@ -545,6 +545,7 @@ p:last-child { margin-bottom: 0; }
   .steps .o { font-size: 13px; }
 }
 </style>
+<link rel="canonical" href="https://swissexpathub.ch/resources/fbar-and-fatca-explained-americans-in-switzerland">
 </head>
 <body>
 <div id="progress-bar"></div>
@@ -745,7 +746,7 @@ p:last-child { margin-bottom: 0; }
   <!-- CTA -->
   <div class="cta-box reveal">
     <p>FBAR and FATCA are among the areas where Americans in Switzerland most often discover a problem — not because they wanted to hide anything, but because they didn't know these obligations existed. The good news is that there is still a way to catch up without penalties. The bad news is that it disappears once the IRS contacts you. SwissExpatHub connects you with advisors experienced in US expatriate obligations, FBAR and FATCA.</p>
-    <a href="/directory" class="cta-btn">Find Your Advisor →</a>
+    <a href="https://swissexpathub.ch/directory" target="_top" class="cta-btn">Find Your Advisor →</a>
   </div>
 
   <!-- SOURCES -->
@@ -848,6 +849,11 @@ onView('ba', () => {
 onView('joint', () => document.querySelectorAll('.joint-fill').forEach((f, i) => setTimeout(() => f.style.width = f.dataset.w + '%', i * 600)), 0.5);
 
 function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+</script>
+<script>
+(function(){function s(){try{parent.postMessage({type:'sehHeight',h:document.documentElement.scrollHeight},'*')}catch(e){}}
+window.addEventListener('load',s);window.addEventListener('resize',s);
+if(window.ResizeObserver){new ResizeObserver(s).observe(document.body)}setInterval(s,1500);})();
 </script>
 </body>
 </html>
